@@ -93,15 +93,24 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
   padding-top:64px;position:relative;overflow:hidden;
 }
 .hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.4;pointer-events:none}
-.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(59,130,246,.25),transparent 70%)}
-.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(30,58,138,.2),transparent 70%)}
-.hero-bg-orb-3{width:300px;height:300px;top:40%;left:50%;background:radial-gradient(circle,rgba(96,165,250,.1),transparent 70%)}
+.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(59,130,246,.25),transparent 70%);animation:orbFloat1 14s ease-in-out infinite}
+.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(30,58,138,.2),transparent 70%);animation:orbFloat2 18s ease-in-out infinite}
+.hero-bg-orb-3{width:300px;height:300px;top:40%;left:50%;background:radial-gradient(circle,rgba(96,165,250,.1),transparent 70%);animation:orbFloat3 12s ease-in-out infinite}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,-35px)}}
 .hero-grid{position:absolute;inset:0;background-image:
   linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
   linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
   background-size:60px 60px;pointer-events:none;
 }
 .hero .container{position:relative;z-index:1;text-align:center;padding:80px 24px}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-fade{opacity:0;animation:heroFadeUp .8s cubic-bezier(.22,1,.36,1) forwards}
+.hero-fade-1{animation-delay:.1s}
+.hero-fade-2{animation-delay:.3s}
+.hero-fade-3{animation-delay:.5s}
+.hero-fade-4{animation-delay:.7s}
 .hero h1{color:var(--white);margin-bottom:24px}
 .hero h1 .text-gradient{
   background:linear-gradient(135deg,var(--blue-400) 0%,var(--blue-500) 50%,var(--blue-200) 100%);
@@ -312,15 +321,15 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
   <div class="hero-bg-orb hero-bg-orb-3"></div>
   <div class="hero-grid"></div>
   <div class="container">
-    <div class="badge badge-blue" style="margin-bottom:24px;border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08)">ENGINEERING SOFTWARE COMPANY</div>
-    <h1>
+    <div class="badge badge-blue hero-fade hero-fade-1" style="margin-bottom:24px;border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08)">ENGINEERING SOFTWARE COMPANY</div>
+    <h1 class="hero-fade hero-fade-2">
       엔지니어링의 복잡함을<br>
       <span class="text-gradient">소프트웨어로 풀어냅니다</span>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub hero-fade hero-fade-3">
       VerusLab은 엔지니어링 현장의 실제 문제를 해결하는 소프트웨어를 만듭니다.
     </p>
-    <div class="hero-actions">
+    <div class="hero-actions hero-fade hero-fade-4">
       <a href="#products" class="btn btn-primary">제품 살펴보기</a>
       <a href="#contact" class="btn btn-outline-light">문의하기</a>
     </div>
