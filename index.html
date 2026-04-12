@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VerusLab - 엔지니어링 소프트웨어 개발 회사. Valentis(진동/충격 해석)와 Linkspace(CRM) 솔루션을 제공합니다.">
+<meta property="og:title" content="VerusLab — Engineering Software Company">
+<meta property="og:description" content="엔지니어링의 복잡함을 소프트웨어로 풀어냅니다. Valentis, Linkspace.">
+<meta property="og:type" content="website">
+<title>VerusLab — Engineering Software Company</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231d4ed8'/><text x='5' y='24' font-size='22' font-weight='bold' fill='white' font-family='sans-serif'>VL</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue-50:#eff6ff;--blue-100:#dbeafe;--blue-200:#bfdbfe;
+  --blue-400:#60a5fa;--blue-500:#3b82f6;--blue-600:#2563eb;
+  --blue:#1d4ed8;--blue-d:#1e3a8a;--navy:#172554;--navy-d:#0f172a;
+  --slate-9:#0f172a;--slate-8:#1e293b;--slate-7:#334155;
+  --slate-6:#475569;--slate-5:#64748b;--slate-4:#94a3b8;--slate-3:#cbd5e1;
+  --slate-2:#e2e8f0;--slate-1:#f1f5f9;--slate-0:#f8fafc;
+  --white:#ffffff;--green:#10b981;--emerald-50:#ecfdf5;
+  --radius:14px;--radius-sm:10px;--radius-xs:8px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06);
+  --shadow:0 4px 20px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+  --shadow-xl:0 20px 60px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06);
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── Utility ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.text-center{text-align:center}
+.text-gradient{
+  background:linear-gradient(135deg,var(--blue-500) 0%,var(--blue) 50%,var(--blue-d) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.2;letter-spacing:-.03em;word-break:keep-all}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;letter-spacing:-.02em}
+h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.subtitle{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--slate-5);max-width:640px;margin:0 auto 48px;line-height:1.8}
+.badge{
+  display:inline-block;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;
+}
+.badge-blue{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.12)}
+
+/* ── Animations ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ── Navbar ── */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(15,23,42,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.navbar.scrolled{background:rgba(15,23,42,.95);box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#fff}
+.nav-logo span{color:var(--blue-400)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{
+  font-size:.84rem;font-weight:500;color:var(--slate-4);transition:var(--transition);position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--blue-400);border-radius:1px;transition:width .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--blue-400)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--slate-4);margin:5px 0;transition:all .3s;border-radius:1px}
+
+/* ── Hero ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(160deg,var(--slate-9) 0%,var(--navy) 50%,#0c1a3a 100%);
+  padding-top:64px;position:relative;overflow:hidden;
+}
+.hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.4;pointer-events:none}
+.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(59,130,246,.25),transparent 70%)}
+.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(30,58,138,.2),transparent 70%)}
+.hero-bg-orb-3{width:300px;height:300px;top:40%;left:50%;background:radial-gradient(circle,rgba(96,165,250,.1),transparent 70%)}
+.hero-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.hero .container{position:relative;z-index:1;text-align:center;padding:80px 24px}
+.hero h1{color:var(--white);margin-bottom:24px}
+.hero h1 .text-gradient{
+  background:linear-gradient(135deg,var(--blue-400) 0%,var(--blue-500) 50%,var(--blue-200) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--slate-4);max-width:600px;margin:0 auto 48px;line-height:1.85;word-break:keep-all}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-stats{display:flex;justify-content:center;gap:64px;margin-top:72px;padding-top:48px;border-top:1px solid rgba(255,255,255,.08)}
+.hero-stat-num{font-size:2rem;font-weight:800;color:var(--blue-400);line-height:1}
+.hero-stat-label{font-size:.78rem;color:var(--slate-4);margin-top:6px;font-weight:500}
+
+/* ── Buttons ── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 32px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;
+  cursor:pointer;border:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+  letter-spacing:-.01em;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--blue),var(--blue-d));color:var(--white);
+  box-shadow:0 4px 16px rgba(30,58,138,.3),0 1px 3px rgba(30,58,138,.15);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);background:linear-gradient(135deg,var(--blue-600),var(--blue));
+  box-shadow:0 8px 28px rgba(30,58,138,.4);
+}
+.btn-outline-light{
+  background:transparent;color:var(--slate-3);border:1.5px solid rgba(255,255,255,.15);
+}
+.btn-outline-light:hover{border-color:var(--blue-400);color:var(--blue-400);transform:translateY(-2px)}
+.btn-outline{background:var(--white);color:var(--blue);border:1.5px solid var(--blue-200);box-shadow:var(--shadow-sm)}
+.btn-outline:hover{border-color:var(--blue);background:var(--blue-50);transform:translateY(-2px)}
+
+/* ── Section: Products ── */
+.section-products{padding:120px 0;background:var(--white)}
+.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-top:16px}
+.product-card{
+  background:var(--white);border:1px solid var(--slate-2);border-radius:20px;
+  padding:48px 40px;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+}
+.product-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:transparent}
+.product-card:hover::before{transform:scaleX(1)}
+.product-card.valentis::before{background:linear-gradient(90deg,var(--blue-400),var(--blue))}
+.product-card.linkspace::before{background:linear-gradient(90deg,var(--green),#059669)}
+.product-icon{
+  width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:24px;
+}
+.product-card.valentis .product-icon{background:rgba(29,78,216,.08);color:var(--blue)}
+.product-card.linkspace .product-icon{background:rgba(16,185,129,.08);color:var(--green)}
+.product-card h3{font-size:1.4rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+.product-card .product-tagline{font-size:.88rem;color:var(--blue);font-weight:600;margin-bottom:16px}
+.product-card.linkspace .product-tagline{color:var(--green)}
+.product-card p{font-size:.92rem;color:var(--slate-6);line-height:1.8;margin-bottom:24px;word-break:keep-all}
+.product-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.product-features li{
+  display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--slate-7);
+}
+.product-features li .check{
+  width:18px;height:18px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--white);
+}
+.product-card.valentis .check{background:linear-gradient(135deg,var(--blue-500),var(--blue))}
+.product-card.linkspace .check{background:linear-gradient(135deg,var(--green),#059669)}
+.product-link{
+  display:inline-flex;align-items:center;gap:6px;font-size:.88rem;font-weight:600;
+  transition:var(--transition);
+}
+.product-card.valentis .product-link{color:var(--blue)}
+.product-card.linkspace .product-link{color:var(--green)}
+.product-link:hover{gap:10px}
+.product-link svg{transition:transform .3s}
+.product-link:hover svg{transform:translateX(3px)}
+
+/* ── Section: About ── */
+.section-about{padding:120px 0;background:var(--slate-0)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-content h2{text-align:left;margin-bottom:24px}
+.about-content p{font-size:.95rem;color:var(--slate-6);line-height:1.85;margin-bottom:20px;word-break:keep-all}
+.about-values{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.about-value{
+  padding:24px;border-radius:var(--radius);background:var(--white);
+  border:1px solid var(--slate-2);transition:var(--transition);
+}
+.about-value:hover{border-color:var(--blue-200);box-shadow:var(--shadow)}
+.about-value-icon{font-size:1.3rem;margin-bottom:10px}
+.about-value h4{font-size:.88rem;font-weight:700;margin-bottom:4px;color:var(--slate-8)}
+.about-value p{font-size:.8rem;color:var(--slate-5);line-height:1.65;margin-bottom:0}
+
+/* ── Section: Contact ── */
+.section-contact{
+  padding:120px 0;
+  background:linear-gradient(180deg,var(--slate-9) 0%,var(--navy-d) 100%);
+  color:var(--slate-3);
+}
+.section-contact h2{color:var(--white)}
+.section-contact .subtitle{color:var(--slate-4)}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+.contact-card{
+  text-align:center;padding:40px 28px;border-radius:var(--radius);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  transition:var(--transition);
+}
+.contact-card:hover{background:rgba(255,255,255,.07);border-color:rgba(96,165,250,.2);transform:translateY(-4px)}
+.contact-icon{
+  width:48px;height:48px;border-radius:14px;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.15);
+}
+.contact-icon svg{width:20px;height:20px;color:var(--blue-400)}
+.contact-card h4{font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:8px}
+.contact-card p{font-size:.85rem;color:var(--slate-4);line-height:1.7}
+.contact-card a{color:var(--blue-400);transition:var(--transition)}
+.contact-card a:hover{color:var(--blue-200)}
+
+/* ── Footer ── */
+.footer{
+  padding:32px 0;background:var(--navy-d);
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.footer .container{display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:.78rem;color:var(--slate-5)}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:.78rem;color:var(--slate-5);transition:var(--transition)}
+.footer-links a:hover{color:var(--blue-400)}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .products-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .contact-grid{grid-template-columns:1fr;max-width:400px}
+  .hero-stats{gap:32px;flex-wrap:wrap}
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
+    background:rgba(15,23,42,.98);flex-direction:column;align-items:center;
+    justify-content:center;gap:32px;
+  }
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+}
+@media(max-width:600px){
+  .about-values{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+  .product-card{padding:32px 24px}
+  .footer .container{flex-direction:column;gap:16px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">Verus<span>Lab</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero" id="hero">
+  <div class="hero-bg-orb hero-bg-orb-1"></div>
+  <div class="hero-bg-orb hero-bg-orb-2"></div>
+  <div class="hero-bg-orb hero-bg-orb-3"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="badge badge-blue" style="margin-bottom:24px;border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08)">ENGINEERING SOFTWARE COMPANY</div>
+    <h1>
+      엔지니어링의 복잡함을<br>
+      <span class="text-gradient">소프트웨어로 풀어냅니다</span>
+    </h1>
+    <p class="hero-sub">
+      VerusLab은 엔지니어링 현장의 실제 문제를 해결하는<br>
+      소프트웨어를 만듭니다. 해석, 영업, 데이터 — 모두 하나로.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn btn-primary">제품 살펴보기</a>
+      <a href="#contact" class="btn btn-outline-light">문의하기</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div>
+        <div class="hero-stat-num" data-count="2">0</div>
+        <div class="hero-stat-label">Products</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">B2B</div>
+        <div class="hero-stat-label">Focus</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">Web</div>
+        <div class="hero-stat-label">Platform</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Products ── -->
+<section class="section-products" id="products">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge badge-blue">PRODUCTS</div>
+      <h2 style="margin-top:16px">현장을 위한 솔루션</h2>
+      <p class="subtitle">엔지니어링과 비즈니스, 두 영역의 핵심 과제를 해결합니다.</p>
+    </div>
+    <div class="products-grid">
+
+      <!-- Valentis -->
+      <div class="product-card valentis reveal">
+        <div class="product-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Valentis</h3>
+        <div class="product-tagline">계산부터 의사결정까지, 하나로</div>
+        <p>진동/충격 해석, 하중 정의, DOE, 메타모델, 신뢰성 분석, 파레토 최적화를 하나의 웹 플랫폼에서 수행합니다.</p>
+        <ul class="product-features">
+          <li><span class="check">&#10003;</span>웹 기반 — 설치 없이 브라우저에서</li>
+          <li><span class="check">&#10003;</span>진동/충격 스펙트럼 해석</li>
+          <li><span class="check">&#10003;</span>DOE &amp; 메타모델 기반 최적화</li>
+          <li><span class="check">&#10003;</span>신뢰성 해석 &amp; 파레토 최적화</li>
+        </ul>
+        <a href="https://valentis.verus-lab.kr" class="product-link" target="_blank" rel="noopener">
+          자세히 보기
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- Linkspace -->
+      <div class="product-card linkspace reveal reveal-delay-1">
+        <div class="product-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Linkspace</h3>
+        <div class="product-tagline">Connect. Align. Grow.</div>
+        <p>고객사 관리, 영업 파이프라인, 마케팅, 기술지원까지 — B2B 영업의 전 과정을 하나의 CRM에서 관리합니다.</p>
+        <ul class="product-features">
+          <li><span class="check">&#10003;</span>고객사 &amp; 담당자 통합 관리</li>
+          <li><span class="check">&#10003;</span>영업 파이프라인 &amp; 활동 추적</li>
+          <li><span class="check">&#10003;</span>마케팅 &amp; 리드 관리</li>
+          <li><span class="check">&#10003;</span>기술지원 &amp; 교육 이력 관리</li>
+        </ul>
+        <a href="https://linkspace.verus-lab.kr" class="product-link" target="_blank" rel="noopener">
+          자세히 보기
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section class="section-about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content reveal">
+        <div class="badge badge-blue" style="margin-bottom:16px">ABOUT US</div>
+        <h2>엔지니어가 만드는<br>엔지니어링 소프트웨어</h2>
+        <p>
+          VerusLab은 엔지니어링 현장의 경험을 바탕으로 소프트웨어를 개발합니다.
+          복잡한 해석 워크플로우를 단순화하고, 흩어진 비즈니스 데이터를 하나로 연결합니다.
+        </p>
+        <p>
+          우리는 "진짜 쓸 수 있는 도구"를 만듭니다.
+          현장에서 시작해 현장으로 돌아가는 솔루션, 그것이 VerusLab의 방향입니다.
+        </p>
+      </div>
+      <div class="about-values reveal reveal-delay-1">
+        <div class="about-value">
+          <div class="about-value-icon">&#9878;</div>
+          <h4>정밀한 해석</h4>
+          <p>검증된 알고리즘과 표준 기반의 정확한 엔지니어링 계산</p>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">&#9881;</div>
+          <h4>실용적 설계</h4>
+          <p>현장 엔지니어가 바로 쓸 수 있는 직관적인 인터페이스</p>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">&#9729;</div>
+          <h4>웹 기반 플랫폼</h4>
+          <p>설치 없이 브라우저에서, 어디서든 접근 가능</p>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">&#10070;</div>
+          <h4>지속적 발전</h4>
+          <p>고객 피드백 기반의 빠른 업데이트와 기능 확장</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section class="section-contact" id="contact">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge badge-blue" style="border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08)">CONTACT</div>
+      <h2 style="margin-top:16px">함께 이야기해요</h2>
+      <p class="subtitle">제품 문의, 기술 상담, 파트너십 — 무엇이든 편하게 연락 주세요.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h4>Email</h4>
+        <p><a href="mailto:contact@verus-lab.kr">contact@verus-lab.kr</a></p>
+      </div>
+      <div class="contact-card reveal reveal-delay-1">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4>Location</h4>
+        <p>South Korea</p>
+      </div>
+      <div class="contact-card reveal reveal-delay-2">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h4>Website</h4>
+        <p><a href="https://verus-lab.kr">verus-lab.kr</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-copy">&copy; 2026 VerusLab. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+/* ── Navbar scroll ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+/* ── Hamburger ── */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+/* ── Active nav link ── */
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 120;
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const height = section.offsetHeight;
+    const id = section.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) {
+      link.classList.toggle('active', scrollY >= top && scrollY < top + height);
+    }
+  });
+});
+
+/* ── Count up animation ── */
+const countEls = document.querySelectorAll('[data-count]');
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      let current = 0;
+      const step = () => {
+        current++;
+        el.textContent = current;
+        if (current < target) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+countEls.forEach(el => countObserver.observe(el));
+</script>
+</body>
+</html>
