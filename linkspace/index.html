@@ -90,11 +90,8 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(79,142,247,.5),transparent 70%);opacity:.6;animation:orbFloat2 18s ease-in-out infinite}
 @keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
 @keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
-.hero-grid{position:absolute;inset:0;background-image:
-  linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:60px 60px;pointer-events:none;
-}
+.hero-network{position:absolute;inset:0;pointer-events:none}
+.hero-network canvas{width:100%;height:100%}
 .hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:80px;padding-bottom:80px}
 @keyframes heroFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-fade{opacity:0;animation:heroFadeUp .8s cubic-bezier(.22,1,.36,1) forwards}
@@ -193,11 +190,14 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 /* CTA */
 .section-cta{
   padding:100px 0;text-align:center;
-  background:linear-gradient(160deg,var(--white) 0%,var(--acc-50) 30%,var(--acc-100) 100%);
-  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--slate-9) 0%,#0c1222 100%);
+  color:var(--slate-3);position:relative;overflow:hidden;
 }
-.section-cta h2{color:var(--slate-8);margin-bottom:16px}
-.section-cta p{color:var(--slate-5);font-size:1.05rem;margin-bottom:40px}
+.cta-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.cta-orb-1{width:400px;height:400px;top:-120px;right:-100px;background:radial-gradient(circle,rgba(79,142,247,.5),transparent 70%);opacity:.6}
+.cta-orb-2{width:450px;height:450px;bottom:-120px;left:-100px;background:radial-gradient(circle,rgba(79,142,247,.5),transparent 70%);opacity:.7}
+.section-cta h2{color:var(--white);margin-bottom:16px}
+.section-cta p{color:var(--slate-4);font-size:1.05rem;margin-bottom:40px}
 
 /* Footer */
 .footer{height:64px;display:flex;align-items:center;background:var(--slate-9);border-top:1px solid rgba(255,255,255,.05)}
@@ -267,7 +267,7 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 <section class="hero" id="hero">
   <div class="hero-bg-orb hero-bg-orb-1"></div>
   <div class="hero-bg-orb hero-bg-orb-2"></div>
-  <div class="hero-grid"></div>
+  <div class="hero-network"><canvas id="heroNetwork"></canvas></div>
   <div class="container">
     <div class="hero-text">
       <div class="badge badge-acc hero-fade hero-fade-1" style="margin-bottom:24px">B2B CRM PLATFORM</div>
@@ -423,8 +423,10 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 
 <!-- CTA -->
 <section class="section-cta" id="cta">
-  <div class="container">
-    <div class="badge badge-acc" style="margin-bottom:24px">GET STARTED</div>
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="badge badge-acc" style="margin-bottom:24px;border-color:rgba(79,142,247,.25);color:var(--acc-400);background:rgba(79,142,247,.1)">GET STARTED</div>
     <h2>Linkspace와 함께 시작하세요</h2>
     <p>데모 요청, 기능 문의 등 편하게 연락해 주세요.</p>
     <a href="mailto:verus.lab.kr@gmail.com" class="btn btn-primary">문의하기</a>
@@ -470,6 +472,36 @@ window.addEventListener('scroll',()=>{
     if(link)link.classList.toggle('active',y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight);
   });
 });
+
+/* ── Hero Node Network ── */
+(function(){
+  const c = document.getElementById('heroNetwork');
+  if(!c) return;
+  const hero = c.closest('.hero');
+  function resize(){c.width=hero.offsetWidth*2;c.height=hero.offsetHeight*2}
+  resize();
+  window.addEventListener('resize',resize);
+  const ctx = c.getContext('2d');
+  const nodes=[];const count=50;
+  for(let i=0;i<count;i++) nodes.push({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3});
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(let i=0;i<count;i++){
+      for(let j=i+1;j<count;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<200){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle='rgba(255,255,255,'+(0.1*(1-dist/200))+')';ctx.lineWidth=1;ctx.stroke()}
+      }
+    }
+    nodes.forEach(n=>{
+      ctx.beginPath();ctx.arc(n.x,n.y,2.5,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.14)';ctx.fill();
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>c.width)n.vx*=-1;
+      if(n.y<0||n.y>c.height)n.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 </script>
 </body>
 </html>
