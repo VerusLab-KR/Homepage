@@ -85,14 +85,23 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   padding-top:64px;position:relative;overflow:hidden;
 }
 .hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.35;pointer-events:none}
-.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(79,142,247,.25),transparent 70%)}
-.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(79,142,247,.2),transparent 70%)}
+.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(79,142,247,.25),transparent 70%);animation:orbFloat1 14s ease-in-out infinite}
+.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(79,142,247,.2),transparent 70%);animation:orbFloat2 18s ease-in-out infinite}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
 .hero-grid{position:absolute;inset:0;background-image:
   linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
   linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
   background-size:60px 60px;pointer-events:none;
 }
 .hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:80px;padding-bottom:80px}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-fade{opacity:0;animation:heroFadeUp .8s cubic-bezier(.22,1,.36,1) forwards}
+.hero-fade-1{animation-delay:.1s}
+.hero-fade-2{animation-delay:.3s}
+.hero-fade-3{animation-delay:.5s}
+.hero-fade-4{animation-delay:.7s}
+.hero-fade-5{animation-delay:.9s}
 .hero-text h1{color:var(--white);margin-bottom:24px}
 .hero-text h1 .accent{color:var(--acc-400)}
 .hero-text p{font-size:clamp(1rem,2vw,1.15rem);color:var(--slate-4);max-width:500px;line-height:1.85;margin-bottom:40px;word-break:keep-all}
@@ -257,21 +266,21 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-text">
-      <div class="badge badge-acc" style="margin-bottom:24px">B2B CRM PLATFORM</div>
-      <h1>
+      <div class="badge badge-acc hero-fade hero-fade-1" style="margin-bottom:24px">B2B CRM PLATFORM</div>
+      <h1 class="hero-fade hero-fade-2">
         Connect. Align. Grow.<br>
         <span class="accent">비즈니스를 하나로</span>
       </h1>
-      <p>
+      <p class="hero-fade hero-fade-3">
         고객사 관리부터 영업, 마케팅, 기술지원, 프로젝트까지 —<br>
         B2B 비즈니스의 모든 흐름을 하나의 플랫폼에서 관리합니다.
       </p>
-      <div class="hero-actions">
+      <div class="hero-actions hero-fade hero-fade-4">
         <a href="#features" class="btn btn-primary">기능 살펴보기</a>
         <a href="#cta" class="btn btn-outline-light">문의하기</a>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual hero-fade hero-fade-5">
       <div class="hero-card">
         <div class="hc-titlebar">
           <div class="hc-dot" style="background:#ef4444"></div>
