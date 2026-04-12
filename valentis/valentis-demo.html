@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Valentis™ Demo — 기능별 데모 영상으로 Valentis의 주요 기능을 확인하세요.">
+<title>Valentis™ — Demo</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text x='4' y='26' font-size='28' font-weight='bold' fill='%231d4ed8'>V</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue-50:#eff6ff;--blue-100:#dbeafe;--blue-200:#bfdbfe;
+  --blue-400:#60a5fa;--blue-500:#3b82f6;--blue-600:#2563eb;
+  --blue:#1d4ed8;--blue-d:#1e3a8a;--navy:#172554;--navy-d:#0f172a;
+  --slate-9:#0f172a;--slate-8:#1e293b;--slate-7:#334155;
+  --slate-6:#475569;--slate-5:#64748b;--slate-4:#94a3b8;--slate-3:#cbd5e1;
+  --slate-2:#e2e8f0;--slate-1:#f1f5f9;--slate-0:#f8fafc;
+  --white:#ffffff;
+  --radius:14px;--radius-sm:10px;--radius-xs:8px;
+  --shadow:0 4px 20px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+
+/* ── Navbar ── */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:#1a1f2e;border-bottom:1px solid rgba(255,255,255,.06);
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.navbar.scrolled{box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#fff}
+.nav-logo span{color:#60a5fa}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  font-size:.84rem;font-weight:500;color:#94a3b8;transition:var(--transition);position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:#60a5fa;border-radius:1px;transition:width .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover,.nav-links a.active{color:#60a5fa}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links>li{position:relative}
+.nav-dropdown{
+  display:none;position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);
+  background:#1a1f2e;border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  padding:8px 0;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.3);
+  list-style:none;z-index:910;
+}
+.nav-dropdown::before{
+  content:'';position:absolute;top:-14px;left:0;right:0;height:14px;
+}
+.nav-dropdown::after{
+  content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:6px solid rgba(255,255,255,.08);
+}
+.nav-links>li:hover .nav-dropdown{display:block}
+.nav-dropdown a{
+  display:block;padding:8px 20px;font-size:.78rem;color:#94a3b8;
+  white-space:nowrap;transition:all .2s;
+}
+.nav-dropdown a::after{display:none}
+.nav-dropdown a:hover{color:#60a5fa;background:rgba(96,165,250,.08)}
+.lang-toggle{display:flex;border:1px solid #4a5568;border-radius:6px;overflow:hidden}
+.lang-toggle button{
+  background:transparent;border:none;color:#94a3b8;padding:4px 8px;
+  font-size:11px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.5px;
+}
+.lang-toggle button:hover{color:#e2e8f0}
+.lang-toggle button.active{background:#2563eb;color:#fff}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:20px;height:1.5px;background:#94a3b8;margin:5px 0;transition:all .3s;border-radius:1px}
+
+/* ── Utility ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.text-gradient{
+  background:linear-gradient(135deg,var(--blue-500) 0%,var(--blue) 50%,var(--blue-d) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ── Hero ── */
+.demo-hero{
+  padding:120px 0 60px;
+  background:linear-gradient(160deg,var(--white) 0%,var(--blue-50) 30%,var(--blue-100) 100%);
+  text-align:center;
+}
+.demo-hero h1{
+  font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;line-height:1.25;
+  letter-spacing:-.02em;margin-bottom:16px;
+}
+.demo-hero p{
+  font-size:clamp(.95rem,1.5vw,1.1rem);color:var(--slate-5);
+  max-width:600px;margin:0 auto;line-height:1.8;
+}
+.badge{
+  display:inline-block;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;
+  letter-spacing:.04em;margin-bottom:20px;
+}
+.badge-blue{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.12)}
+
+/* ── Category Section ── */
+.category{padding:72px 0}
+.category:nth-child(odd){background:var(--slate-0)}
+.category h2{
+  font-size:clamp(1.2rem,2.2vw,1.6rem);font-weight:700;letter-spacing:-.02em;
+  margin-bottom:12px;display:flex;align-items:center;gap:12px;
+}
+.category>p{color:var(--slate-5);font-size:.92rem;margin-bottom:36px}
+
+/* ── Video Grid ── */
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.video-card{
+  background:var(--white);border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--slate-2);transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.video-card:hover{
+  transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--blue-200);
+}
+.video-thumb{
+  position:relative;width:100%;aspect-ratio:16/9;
+  background:linear-gradient(135deg,var(--slate-8) 0%,var(--slate-9) 100%);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;
+}
+.video-thumb .play-btn{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(255,255,255,.15);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;border:1px solid rgba(255,255,255,.2);
+}
+.video-thumb .play-btn svg{width:22px;height:22px;fill:#fff;margin-left:3px}
+.video-card:hover .play-btn{background:rgba(37,99,235,.8);border-color:rgba(37,99,235,.6);transform:scale(1.1)}
+.video-thumb .coming{
+  position:absolute;top:12px;right:12px;
+  background:rgba(0,0,0,.5);color:var(--slate-3);
+  font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:12px;
+  letter-spacing:.03em;backdrop-filter:blur(4px);
+}
+.video-info{padding:18px 20px}
+.video-info h3{font-size:.95rem;font-weight:700;margin-bottom:6px;letter-spacing:-.01em}
+.video-info p{font-size:.8rem;color:var(--slate-5);line-height:1.6}
+
+/* ── Video Modal ── */
+.video-modal{
+  display:none;position:fixed;inset:0;z-index:9000;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;
+}
+.video-modal.open{display:flex}
+.video-modal-inner{
+  position:relative;width:90vw;max-width:960px;aspect-ratio:16/9;
+  border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.6);
+}
+.video-modal-inner iframe{width:100%;height:100%;border:none}
+.video-modal-close{
+  position:absolute;top:-40px;right:0;
+  background:none;border:none;color:#fff;font-size:28px;
+  cursor:pointer;opacity:.7;transition:opacity .2s;
+}
+.video-modal-close:hover{opacity:1}
+
+/* ── Top Button ── */
+.btn-top{
+  position:fixed;bottom:32px;right:32px;z-index:800;
+  width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;
+  background:#1a1f2e;color:#94a3b8;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.btn-top.visible{opacity:1;pointer-events:all}
+.btn-top:hover{background:#2563eb;color:#fff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
+
+/* ── Footer ── */
+.footer{background:#1a1f2e;color:#cbd5e1;padding:16px 0;font-size:12px}
+.footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.footer-logo span{color:#60a5fa}
+
+/* ── Animations ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .nav-links{display:none}.hamburger{display:block}
+  .video-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .category{padding:48px 0}
+  .demo-hero{padding:100px 0 48px}
+}
+@media(min-width:1600px){
+  .container{max-width:1440px}
+}
+:lang(ko) p,:lang(ko) li,:lang(ko) h1,:lang(ko) h2,:lang(ko) h3{word-break:keep-all}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="valentis.html" class="nav-logo"><span>V</span>alentis™</a>
+    <ul class="nav-links">
+      <li><a href="valentis.html#problems" data-i18n="nav_problems">Why Valentis</a></li>
+      <li><a href="valentis.html#values" data-i18n="nav_values">Value</a></li>
+      <li><a href="valentis.html#features" data-i18n="nav_features">Features</a></li>
+      <li><a href="valentis.html#modules" data-i18n="nav_modules">AI Modules</a></li>
+      <li>
+        <a href="#" class="active" data-i18n="nav_demo">Demo</a>
+        <ul class="nav-dropdown">
+          <li><a href="#material" data-i18n="nav_sub_material">Material</a></li>
+          <li><a href="#load" data-i18n="nav_sub_load">Load Definition</a></li>
+          <li><a href="#tools" data-i18n="nav_sub_tools">Curve Digitizer</a></li>
+          <li><a href="#characterization" data-i18n="nav_sub_char">Characterization</a></li>
+          <li><a href="#ai" data-i18n="nav_sub_ai">AI Modules</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('ko')">KO</button>
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('zh')">ZH</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="demo-hero">
+  <div class="container reveal">
+    <div class="badge badge-blue">Demo Videos</div>
+    <h1 data-i18n="demo_title">기능별 <span class="text-gradient">데모 영상</span></h1>
+    <p data-i18n="demo_desc">각 기능의 실제 사용 흐름을 영상으로 확인하세요.</p>
+  </div>
+</section>
+
+<!-- Material Property -->
+<section class="category" id="material">
+  <div class="container">
+    <h2 class="reveal"><span data-i18n="cat_material">Material Property</span></h2>
+    <div class="video-grid">
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_mat_t">⚙ Material Property</h3>
+          <p data-i18n="v_mat_d">881개 재료물성치 검색 및 상세 비교, 적용 이력 리비전 추적</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Dynamic Load Definition -->
+<section class="category" id="load">
+  <div class="container">
+    <h2 class="reveal"><span data-i18n="cat_load">Dynamic Load Definition</span></h2>
+    <div class="video-grid">
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_shock_t">⚡ Shock</h3>
+          <p data-i18n="v_shock_d">Half-sine, Sawtooth, Trapezoidal 충격 하중 생성 및 MIL-STD-810H / IEC 61373 프리셋 적용</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_harmonic_t">∿ Harmonic</h3>
+          <p data-i18n="v_harmonic_d">Sweep / Sine 모드, 변위↔가속도 변환, 다중 하모닉 합성 및 MIL-STD-167-1A 프리셋</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_random_t">📊 Random PSD</h3>
+          <p data-i18n="v_random_d">랜덤 진동 PSD 프로파일 생성, Slope/Breakpoint 모드 및 MIL-STD-810H / IEC 61373 프리셋</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_psd_t">🚀 RMS / PSD</h3>
+          <p data-i18n="v_psd_d">실측 시간 데이터에서 Welch PSD 추정 및 RMS 분석</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_response_t">🌍 Response Spectrum</h3>
+          <p data-i18n="v_response_d">UBC-97 / KDS 41 / ASCE 7-16 / Eurocode 8 내진 설계 응답 스펙트럼 자동 생성</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Data Tools -->
+<section class="category" id="tools">
+  <div class="container">
+    <h2 class="reveal"><span data-i18n="cat_tools">Curve Digitizer</span></h2>
+    <div class="video-grid">
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_curve_t">✏️ Curve Digitizer</h3>
+          <p data-i18n="v_curve_d">팬커브, 성능곡선, 토크/효율 그래프 등 이미지에서 수치 데이터 추출 — 3점 캘리브레이션 및 스플라인 보간</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Dynamic Characterization -->
+<section class="category" id="characterization">
+  <div class="container">
+    <h2 class="reveal"><span data-i18n="cat_char">Dynamic Characterization</span></h2>
+    <div class="video-grid">
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_mass_t">⚖️ Mass Participation</h3>
+          <p data-i18n="v_mass_d">모달 해석 결과의 질량 참여율 및 누적참여율 시각화, Dominant Mode 식별</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Analysis Intelligence -->
+<section class="category" id="ai">
+  <div class="container">
+    <h2 class="reveal"><span data-i18n="cat_ai">Analysis Intelligence</span></h2>
+    <div class="video-grid">
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_scenario_t">📋 Scenario (DOE)</h3>
+          <p data-i18n="v_scenario_d">LHS, Monte Carlo, Full Factorial, Taguchi, CCD 5가지 실험 계획법으로 설계 공간 탐색</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_dt_t">🔄 Data Transposition</h3>
+          <p data-i18n="v_dt_d">CAE CSV / Flow XLSX 결과 파일을 드래그 앤 드롭으로 입출력 통합 테이블 변환</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_sens_t">📈 Sensitivity</h3>
+          <p data-i18n="v_sens_d">Pearson / Spearman 상관분석 및 상관 매트릭스로 핵심 설계 변수 식별</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_de_t">🔬 Design Explorer</h3>
+          <p data-i18n="v_de_d">제약조건 기반 설계 필터링, 정량적 순위 선정 및 Parallel Coordinates 시각화</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_mm_t">🤖 Meta Model</h3>
+          <p data-i18n="v_mm_d">Kriging, Polynomial, 머신러닝, 딥러닝 등 6종 알고리즘 + Adaptive Sampling, 3D 응답면 및 잔차 분석</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_rel_t">🛡️ Reliability</h3>
+          <p data-i18n="v_rel_d">Monte Carlo 기반 확률적 신뢰성 분석, 대리모델 연동 고장 확률 정량화</p>
+        </div>
+      </div>
+
+      <div class="video-card reveal">
+        <div class="video-thumb" data-video="">
+          <div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></div>
+          <span class="coming" data-i18n="coming">Coming Soon</span>
+        </div>
+        <div class="video-info">
+          <h3 data-i18n="v_pareto_t">🎯 Pareto Optimizer</h3>
+          <p data-i18n="v_pareto_d">다목적 최적화, 상충 목표 간 트레이드오프 시각화</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo"><span>V</span>alentis™</div>
+    <div>&copy; WEBS System Korea &middot; All Rights Reserved</div>
+  </div>
+</footer>
+
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoFrame" src="" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Top">&#9650;</button>
+
+<script>
+/* ── i18n ── */
+const T = {
+  ko: {
+    nav_problems:'Why Valentis', nav_values:'Value', nav_features:'기능', nav_modules:'AI 모듈', nav_demo:'Demo',
+    nav_sub_material:'Material', nav_sub_load:'Load Definition', nav_sub_tools:'Curve Digitizer', nav_sub_char:'Characterization', nav_sub_ai:'AI Modules',
+    demo_title:'기능별 <span class="text-gradient">데모 영상</span>',
+    demo_desc:'각 기능의 실제 사용 흐름을 영상으로 확인하세요.',
+    coming:'Coming Soon',
+    cat_material:'Material Property', cat_tools:'Curve Digitizer', cat_char:'Dynamic Characterization', cat_load:'Dynamic Load Definition', cat_ai:'Analysis Intelligence',
+    v_mat_t:'⚙ Material Property', v_mat_d:'881개 재료물성치 검색 및 상세 비교, 적용 이력 리비전 추적',
+    v_curve_t:'✏️ Curve Digitizer', v_curve_d:'팬커브, 성능곡선, 토크/효율 그래프 등 이미지에서 수치 데이터 추출 — 3점 캘리브레이션 및 스플라인 보간',
+    v_mass_t:'⚖️ Mass Participation', v_mass_d:'모달 해석 결과의 질량 참여율 및 누적참여율 시각화, Dominant Mode 식별',
+    v_shock_t:'⚡ Shock', v_shock_d:'Half-sine, Sawtooth, Trapezoidal 충격 하중 생성 및 MIL-STD-810H / IEC 61373 프리셋 적용',
+    v_harmonic_t:'∿ Harmonic', v_harmonic_d:'Sweep / Sine 모드, 변위↔가속도 변환, 다중 하모닉 합성 및 MIL-STD-167-1A 프리셋',
+    v_random_t:'📊 Random PSD', v_random_d:'랜덤 진동 PSD 프로파일 생성, Slope/Breakpoint 모드 및 MIL-STD-810H / IEC 61373 프리셋',
+    v_psd_t:'🚀 RMS / PSD', v_psd_d:'실측 시간 데이터에서 Welch PSD 추정 및 RMS 분석',
+    v_response_t:'🌍 Response Spectrum', v_response_d:'UBC-97 / KDS 41 / ASCE 7-16 / Eurocode 8 내진 설계 응답 스펙트럼 자동 생성',
+    v_scenario_t:'📋 Scenario (DOE)', v_scenario_d:'LHS, Monte Carlo, Full Factorial, Taguchi, CCD 5가지 실험 계획법으로 설계 공간 탐색',
+    v_dt_t:'🔄 Data Transposition', v_dt_d:'CAE CSV / Flow XLSX 결과 파일을 드래그 앤 드롭으로 입출력 통합 테이블 변환',
+    v_sens_t:'📈 Sensitivity', v_sens_d:'Pearson / Spearman 상관분석 및 상관 매트릭스로 핵심 설계 변수 식별',
+    v_de_t:'🔬 Design Explorer', v_de_d:'제약조건 기반 설계 필터링, 정량적 순위 선정 및 Parallel Coordinates 시각화',
+    v_mm_t:'🤖 Meta Model', v_mm_d:'Kriging, Polynomial, 머신러닝, 딥러닝 등 6종 알고리즘 + Adaptive Sampling, 3D 응답면 및 잔차 분석',
+    v_rel_t:'🛡️ Reliability', v_rel_d:'Monte Carlo 기반 확률적 신뢰성 분석, 대리모델 연동 고장 확률 정량화',
+    v_pareto_t:'🎯 Pareto Optimizer', v_pareto_d:'다목적 최적화, 상충 목표 간 트레이드오프 시각화'
+  },
+  en: {
+    nav_problems:'Why Valentis', nav_values:'Value', nav_features:'Features', nav_modules:'AI Modules', nav_demo:'Demo',
+    nav_sub_material:'Material', nav_sub_load:'Load Definition', nav_sub_tools:'Curve Digitizer', nav_sub_char:'Characterization', nav_sub_ai:'AI Modules',
+    demo_title:'Feature <span class="text-gradient">Demo Videos</span>',
+    demo_desc:'See how each feature works in real usage.',
+    coming:'Coming Soon',
+    cat_material:'Material Property', cat_tools:'Curve Digitizer', cat_char:'Dynamic Characterization', cat_load:'Dynamic Load Definition', cat_ai:'Analysis Intelligence',
+    v_mat_t:'⚙ Material Property', v_mat_d:'Search and compare 881 material properties with revision tracking',
+    v_curve_t:'✏️ Curve Digitizer', v_curve_d:'Extract numerical data from fan curves, performance curves, torque/efficiency graphs and more — 3-point calibration & spline interpolation',
+    v_mass_t:'⚖️ Mass Participation', v_mass_d:'Visualize mass participation ratio & cumulative participation from modal analysis, identify dominant modes',
+    v_shock_t:'⚡ Shock', v_shock_d:'Generate Half-sine, Sawtooth, Trapezoidal shock loads with MIL-STD-810H / IEC 61373 presets',
+    v_harmonic_t:'∿ Harmonic', v_harmonic_d:'Sweep / Sine modes, displacement↔acceleration conversion, multi-harmonic synthesis & MIL-STD-167-1A presets',
+    v_random_t:'📊 Random PSD', v_random_d:'Random vibration PSD profile generation with Slope/Breakpoint mode & MIL-STD-810H / IEC 61373 presets',
+    v_psd_t:'🚀 RMS / PSD', v_psd_d:'Welch PSD estimation and RMS analysis from measured time-domain data',
+    v_response_t:'🌍 Response Spectrum', v_response_d:'Auto-generate UBC-97 / KDS 41 / ASCE 7-16 / Eurocode 8 seismic design response spectra',
+    v_scenario_t:'📋 Scenario (DOE)', v_scenario_d:'Explore the design space with 5 DOE methods: LHS, Monte Carlo, Full Factorial, Taguchi, CCD',
+    v_dt_t:'🔄 Data Transposition', v_dt_d:'Drag & drop CAE CSV / Flow XLSX result files into a unified input-output table',
+    v_sens_t:'📈 Sensitivity', v_sens_d:'Identify key design variables with Pearson / Spearman correlation analysis & correlation matrix',
+    v_de_t:'🔬 Design Explorer', v_de_d:'Filter designs by constraints, rank quantitatively & visualize with Parallel Coordinates',
+    v_mm_t:'🤖 Meta Model', v_mm_d:'6 algorithms incl. Kriging, Polynomial, ML & Deep Learning + Adaptive Sampling, 3D response surface & residual analysis',
+    v_rel_t:'🛡️ Reliability', v_rel_d:'Monte Carlo-based probabilistic reliability analysis with surrogate model integration',
+    v_pareto_t:'🎯 Pareto Optimizer', v_pareto_d:'Multi-objective optimization, trade-off visualization between conflicting goals'
+  },
+  zh: {
+    nav_problems:'Why Valentis', nav_values:'Value', nav_features:'功能', nav_modules:'AI 模块', nav_demo:'Demo',
+    nav_sub_material:'Material', nav_sub_load:'Load Definition', nav_sub_tools:'Curve Digitizer', nav_sub_char:'Characterization', nav_sub_ai:'AI Modules',
+    demo_title:'功能 <span class="text-gradient">演示视频</span>',
+    demo_desc:'通过视频了解各功能的实际使用流程。',
+    coming:'Coming Soon',
+    cat_material:'Material Property', cat_tools:'Curve Digitizer', cat_char:'Dynamic Characterization', cat_load:'Dynamic Load Definition', cat_ai:'Analysis Intelligence',
+    v_mat_t:'⚙ Material Property', v_mat_d:'搜索和比较 881 种材料属性，支持修订历史追踪',
+    v_curve_t:'✏️ Curve Digitizer', v_curve_d:'从风机曲线、性能曲线、扭矩/效率图等图像中提取数值数据 — 3点校准及样条插值',
+    v_mass_t:'⚖️ Mass Participation', v_mass_d:'可视化模态分析的质量参与率和累积参与率，识别主导模态',
+    v_shock_t:'⚡ Shock', v_shock_d:'生成 Half-sine、Sawtooth、Trapezoidal 冲击载荷，支持 MIL-STD-810H / IEC 61373 预设',
+    v_harmonic_t:'∿ Harmonic', v_harmonic_d:'Sweep / Sine 模式，位移↔加速度转换，多次谐波合成及 MIL-STD-167-1A 预设',
+    v_random_t:'📊 Random PSD', v_random_d:'随机振动 PSD 曲线生成，Slope/Breakpoint 模式及 MIL-STD-810H / IEC 61373 预设',
+    v_psd_t:'🚀 RMS / PSD', v_psd_d:'从实测时间数据进行 Welch PSD 估计和 RMS 分析',
+    v_response_t:'🌍 Response Spectrum', v_response_d:'自动生成 UBC-97 / KDS 41 / ASCE 7-16 / Eurocode 8 抗震设计反应谱',
+    v_scenario_t:'📋 Scenario (DOE)', v_scenario_d:'通过 LHS、Monte Carlo、Full Factorial、Taguchi、CCD 5种实验设计方法探索设计空间',
+    v_dt_t:'🔄 Data Transposition', v_dt_d:'拖放 CAE CSV / Flow XLSX 结果文件，合并为统一输入输出数据表',
+    v_sens_t:'📈 Sensitivity', v_sens_d:'通过 Pearson / Spearman 相关分析及相关矩阵识别关键设计变量',
+    v_de_t:'🔬 Design Explorer', v_de_d:'基于约束条件筛选设计方案、定量排序及 Parallel Coordinates 可视化',
+    v_mm_t:'🤖 Meta Model', v_mm_d:'Kriging、Polynomial、机器学习、深度学习等6种算法 + 自适应采样，3D 响应面及残差分析',
+    v_rel_t:'🛡️ Reliability', v_rel_d:'基于 Monte Carlo 的概率可靠性分析，联动代理模型量化失效概率',
+    v_pareto_t:'🎯 Pareto Optimizer', v_pareto_d:'多目标优化，冲突目标间权衡可视化'
+  }
+};
+
+let curLang = 'ko';
+function setLang(lang) {
+  curLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+}
+
+/* ── Reveal on scroll ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── Navbar scroll shadow ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  document.getElementById('btnTop').classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+/* ── Scroll spy ── */
+const demoLink = document.querySelector('.nav-links a[data-i18n="nav_demo"]');
+const subAnchors = document.querySelectorAll('.nav-dropdown a[href^="#"]');
+const spySections = document.querySelectorAll('section.category[id]');
+window.addEventListener('scroll', () => {
+  const top = window.scrollY + 120;
+  let currentId = '';
+  spySections.forEach(s => { if (s.offsetTop <= top) currentId = s.id; });
+  subAnchors.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
+  });
+  if (demoLink) demoLink.classList.add('active');
+}, { passive: true });
+
+/* ── Smooth scroll for nav links ── */
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ── Mobile menu ── */
+document.getElementById('hamburger').addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  const isOpen = links.style.display === 'flex';
+  links.style.display = isOpen ? 'none' : 'flex';
+  if (!isOpen) {
+    Object.assign(links.style, {
+      flexDirection:'column', position:'absolute', top:'64px',
+      left:'0', right:'0', background:'#1a1f2e',
+      backdropFilter:'blur(20px)', padding:'20px 24px',
+      boxShadow:'0 8px 24px rgba(0,0,0,.3)', gap:'16px',
+      borderBottom:'1px solid rgba(255,255,255,.08)'
+    });
+  }
+});
+
+/* ── Video Modal ── */
+document.querySelectorAll('.video-thumb').forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    const id = thumb.dataset.video;
+    if (!id) return;
+    document.getElementById('videoFrame').src =
+      'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+    document.getElementById('videoModal').classList.add('open');
+  });
+});
+function closeVideo() {
+  document.getElementById('videoModal').classList.remove('open');
+  document.getElementById('videoFrame').src = '';
+}
+document.getElementById('videoModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeVideo();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeVideo();
+});
+</script>
+</body>
+</html>
