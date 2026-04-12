@@ -190,9 +190,21 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 .about-value{
   padding:24px;border-radius:var(--radius);background:var(--white);
   border:1px solid var(--slate-2);transition:var(--transition);
+  position:relative;overflow:hidden;
 }
-.about-value:hover{border-color:var(--blue-200);box-shadow:var(--shadow)}
-.about-value-icon{font-size:1.3rem;margin-bottom:10px}
+.about-value::before{
+  content:'';position:absolute;top:-40px;right:-40px;width:100px;height:100px;
+  border-radius:50%;background:var(--value-glow,var(--blue-500));opacity:0;
+  filter:blur(40px);transition:opacity .4s;
+}
+.about-value:hover{border-color:var(--value-accent,var(--blue-200));box-shadow:var(--shadow);transform:translateY(-2px)}
+.about-value:hover::before{opacity:.12}
+.about-value-icon{
+  width:44px;height:44px;border-radius:12px;margin-bottom:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--value-bg,rgba(59,130,246,.08));color:var(--value-accent,var(--blue-500));
+}
+.about-value-icon svg{width:22px;height:22px}
 .about-value h4{font-size:.88rem;font-weight:700;margin-bottom:4px;color:var(--slate-8)}
 .about-value p{font-size:.8rem;color:var(--slate-5);line-height:1.65;margin-bottom:0}
 
@@ -384,23 +396,31 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
         </p>
       </div>
       <div class="about-values reveal reveal-delay-1">
-        <div class="about-value">
-          <div class="about-value-icon">&#9878;</div>
+        <div class="about-value" style="--value-accent:#3b82f6;--value-bg:rgba(59,130,246,.08);--value-glow:#3b82f6">
+          <div class="about-value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
           <h4>정밀한 분석</h4>
           <p>검증된 알고리즘과 표준 기반의 정확한 엔지니어링 계산</p>
         </div>
-        <div class="about-value">
-          <div class="about-value-icon">&#9881;</div>
+        <div class="about-value" style="--value-accent:#8b5cf6;--value-bg:rgba(139,92,246,.08);--value-glow:#8b5cf6">
+          <div class="about-value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+          </div>
           <h4>실용적 설계</h4>
           <p>현장 엔지니어가 바로 쓸 수 있는 직관적인 인터페이스</p>
         </div>
-        <div class="about-value">
-          <div class="about-value-icon">&#9729;</div>
+        <div class="about-value" style="--value-accent:#06b6d4;--value-bg:rgba(6,182,212,.08);--value-glow:#06b6d4">
+          <div class="about-value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
           <h4>웹 기반 플랫폼</h4>
           <p>설치 없이 브라우저에서, 어디서든 접근 가능</p>
         </div>
-        <div class="about-value">
-          <div class="about-value-icon">&#10070;</div>
+        <div class="about-value" style="--value-accent:#10b981;--value-bg:rgba(16,185,129,.08);--value-glow:#10b981">
+          <div class="about-value-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
           <h4>지속적 발전</h4>
           <p>고객 피드백 기반의 빠른 업데이트와 기능 확장</p>
         </div>
