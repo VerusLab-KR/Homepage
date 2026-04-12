@@ -244,7 +244,11 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 .section-contact{
   padding:120px 0;
   background:linear-gradient(180deg,var(--slate-9) 0%,var(--navy-d) 100%);
-  color:var(--slate-3);
+  color:var(--slate-3);position:relative;overflow:hidden;
+}
+.contact-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.contact-orb-1{width:400px;height:400px;top:-120px;right:-100px;background:radial-gradient(circle,rgba(59,130,246,.5),transparent 70%);opacity:.6}
+.contact-orb-2{width:450px;height:450px;bottom:-120px;left:-100px;background:radial-gradient(circle,rgba(59,130,246,.5),transparent 70%);opacity:.7
 }
 .section-contact h2{color:var(--white)}
 .section-contact .subtitle{color:var(--slate-4)}
@@ -465,7 +469,9 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 
 <!-- ── Contact ── -->
 <section class="section-contact" id="contact">
-  <div class="container">
+  <div class="contact-orb contact-orb-1"></div>
+  <div class="contact-orb contact-orb-2"></div>
+  <div class="container" style="position:relative;z-index:1">
     <div class="text-center">
       <div class="badge badge-blue" style="border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08)">CONTACT</div>
       <h2 style="margin-top:16px">함께 이야기해요</h2>
