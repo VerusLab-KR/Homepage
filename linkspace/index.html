@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Linkspace — B2B CRM. 고객, 영업, 마케팅, 기술지원, 프로젝트를 하나의 플랫폼에서 관리합니다.">
+<meta property="og:title" content="Linkspace — B2B CRM Platform">
+<meta property="og:description" content="Connect. Align. Grow. B2B 영업의 전 과정을 하나로.">
+<meta property="og:type" content="website">
+<title>Linkspace — B2B CRM Platform</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2310b981'/><text x='5' y='24' font-size='20' font-weight='bold' fill='white' font-family='sans-serif'>Ls</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green-50:#ecfdf5;--green-100:#d1fae5;--green-200:#a7f3d0;
+  --green-400:#34d399;--green-500:#10b981;--green-600:#059669;
+  --green:#047857;--green-d:#065f46;--teal-d:#134e4a;
+  --slate-9:#0f172a;--slate-8:#1e293b;--slate-7:#334155;
+  --slate-6:#475569;--slate-5:#64748b;--slate-4:#94a3b8;--slate-3:#cbd5e1;
+  --slate-2:#e2e8f0;--slate-1:#f1f5f9;--slate-0:#f8fafc;
+  --white:#ffffff;--blue-400:#60a5fa;
+  --radius:14px;--radius-sm:10px;--radius-xs:8px;
+  --shadow:0 4px 20px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+  --shadow-xl:0 20px 60px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06);
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.text-center{text-align:center}
+h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.2;letter-spacing:-.03em;word-break:keep-all}
+h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;line-height:1.25;margin-bottom:16px;letter-spacing:-.02em}
+h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.subtitle{font-size:clamp(1rem,1.8vw,1.1rem);color:var(--slate-5);max-width:600px;margin:0 auto 48px;line-height:1.8}
+.badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.badge-green{background:rgba(16,185,129,.08);color:var(--green-500);border:1px solid rgba(16,185,129,.15)}
+
+/* Animations */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+
+/* Navbar */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(15,23,42,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.navbar.scrolled{background:rgba(15,23,42,.95);box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-home{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;color:#64748b;transition:.3s;margin-right:12px}
+.nav-home:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-home svg{width:16px;height:16px}
+.nav-logo{font-family:'Syne','Inter',sans-serif;font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#fff}
+.nav-logo span{color:var(--green-400)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:.84rem;font-weight:500;color:var(--slate-4);transition:var(--transition);position:relative}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--green-400);border-radius:1px;transition:width .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--green-400)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--slate-4);margin:5px 0;transition:all .3s;border-radius:1px}
+
+/* Hero */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(160deg,var(--slate-9) 0%,#0d1f2d 50%,#0a1f1a 100%);
+  padding-top:64px;position:relative;overflow:hidden;
+}
+.hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.35;pointer-events:none}
+.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(16,185,129,.25),transparent 70%)}
+.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(5,150,105,.2),transparent 70%)}
+.hero-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding-top:80px;padding-bottom:80px}
+.hero-text h1{color:var(--white);margin-bottom:24px}
+.hero-text h1 .accent{color:var(--green-400)}
+.hero-text p{font-size:clamp(1rem,2vw,1.15rem);color:var(--slate-4);max-width:500px;line-height:1.85;margin-bottom:40px;word-break:keep-all}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 32px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;
+  cursor:pointer;border:none;transition:all .3s cubic-bezier(.4,0,.2,1);letter-spacing:-.01em;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--green-500),var(--green-d));color:var(--white);
+  box-shadow:0 4px 16px rgba(5,150,105,.3);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(5,150,105,.4)}
+.btn-outline-light{background:transparent;color:var(--slate-3);border:1.5px solid rgba(255,255,255,.15)}
+.btn-outline-light:hover{border-color:var(--green-400);color:var(--green-400);transform:translateY(-2px)}
+
+/* Hero Mock UI */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-card{
+  background:var(--slate-9);border-radius:20px;
+  box-shadow:var(--shadow-xl),0 0 0 1px rgba(255,255,255,.06);
+  max-width:480px;width:100%;overflow:hidden;color:var(--slate-3);
+}
+.hc-titlebar{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.06)}
+.hc-dot{width:7px;height:7px;border-radius:50%}
+.hc-title{font-size:.7rem;color:var(--slate-4);margin-left:6px;font-weight:500}
+.hc-body{padding:20px}
+.hc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.hc-stat{text-align:center;padding:14px 4px;border-radius:var(--radius-xs);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.hc-stat-num{font-size:1.4rem;font-weight:800;color:var(--green-400);line-height:1}
+.hc-stat-label{font-size:.55rem;color:var(--slate-4);margin-top:4px;font-weight:500;letter-spacing:.02em}
+.hc-pipeline{display:flex;gap:4px;margin-bottom:16px}
+.hc-pipe-step{flex:1;text-align:center;padding:10px 2px;border-radius:6px;font-size:.5rem;font-weight:600;color:var(--slate-4);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);transition:var(--transition)}
+.hc-pipe-step.active{background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.3);color:var(--green-400)}
+.hc-list{list-style:none}
+.hc-list li{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;font-size:.7rem;color:var(--slate-3);border-bottom:1px solid rgba(255,255,255,.04)}
+.hc-list li:last-child{border-bottom:none}
+.hc-avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.5rem;font-weight:700;color:#fff;flex-shrink:0}
+.hc-list-name{flex:1;font-weight:500}
+.hc-list-tag{font-size:.5rem;padding:2px 8px;border-radius:10px;font-weight:600}
+
+/* Features */
+.section-features{padding:120px 0;background:var(--white)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:16px}
+.feature-card{
+  padding:36px 28px;border-radius:var(--radius);border:1px solid var(--slate-2);
+  transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+}
+.feature-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--green-400),var(--green-500));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--green-200)}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-icon{
+  width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;background:rgba(16,185,129,.08);color:var(--green-500);
+}
+.feature-icon svg{width:22px;height:22px}
+.feature-card h3{color:var(--slate-8)}
+.feature-card p{font-size:.88rem;color:var(--slate-6);line-height:1.75;word-break:keep-all}
+
+/* AI Section */
+.section-ai{padding:120px 0;background:linear-gradient(180deg,var(--slate-9) 0%,#0a1f1a 100%);color:var(--slate-3)}
+.section-ai h2{color:var(--white)}
+.section-ai .subtitle{color:var(--slate-4)}
+.ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:0 auto}
+.ai-card{
+  padding:36px 28px;border-radius:var(--radius);
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  transition:var(--transition);
+}
+.ai-card:hover{background:rgba(255,255,255,.07);border-color:rgba(52,211,153,.2);transform:translateY(-4px)}
+.ai-icon{
+  width:48px;height:48px;border-radius:14px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.15);
+}
+.ai-icon svg{width:22px;height:22px;color:var(--green-400)}
+.ai-card h3{color:var(--white);margin-bottom:8px}
+.ai-card p{font-size:.88rem;color:var(--slate-4);line-height:1.75;word-break:keep-all}
+
+/* CTA */
+.section-cta{
+  padding:100px 0;text-align:center;
+  background:linear-gradient(160deg,var(--white) 0%,var(--green-50) 30%,var(--green-100) 100%);
+  position:relative;overflow:hidden;
+}
+.section-cta h2{color:var(--slate-8);margin-bottom:16px}
+.section-cta p{color:var(--slate-5);font-size:1.05rem;margin-bottom:40px}
+
+/* Footer */
+.footer{padding:32px 0;background:var(--slate-9);border-top:1px solid rgba(255,255,255,.05)}
+.footer .container{display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:.78rem;color:var(--slate-5)}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:.78rem;color:var(--slate-5);transition:var(--transition)}
+.footer-links a:hover{color:var(--green-400)}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero .container{grid-template-columns:1fr;text-align:center}
+  .hero-text p{margin:0 auto 40px}
+  .hero-actions{justify-content:center}
+  .hero-visual{margin-top:48px}
+  .features-grid{grid-template-columns:1fr}
+  .ai-grid{grid-template-columns:1fr}
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
+    background:rgba(15,23,42,.98);flex-direction:column;align-items:center;
+    justify-content:center;gap:32px;
+  }
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+}
+@media(max-width:600px){
+  .hero-card{max-width:100%}
+  .footer .container{flex-direction:column;gap:16px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div style="display:flex;align-items:center">
+      <a href="/" class="nav-home" title="VerusLab Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+      <a href="#" class="nav-logo">Link<span>space</span></a>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#ai">AI</a></li>
+      <li><a href="#cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg-orb hero-bg-orb-1"></div>
+  <div class="hero-bg-orb hero-bg-orb-2"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-text">
+      <div class="badge badge-green" style="margin-bottom:24px">B2B CRM PLATFORM</div>
+      <h1>
+        Connect. Align. Grow.<br>
+        <span class="accent">비즈니스를 하나로</span>
+      </h1>
+      <p>
+        고객사 관리부터 영업, 마케팅, 기술지원, 프로젝트까지 —<br>
+        B2B 비즈니스의 모든 흐름을 하나의 플랫폼에서 관리합니다.
+      </p>
+      <div class="hero-actions">
+        <a href="#features" class="btn btn-primary">기능 살펴보기</a>
+        <a href="#cta" class="btn btn-outline-light">문의하기</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hc-titlebar">
+          <div class="hc-dot" style="background:#ef4444"></div>
+          <div class="hc-dot" style="background:#f59e0b"></div>
+          <div class="hc-dot" style="background:#22c55e"></div>
+          <div class="hc-title">Linkspace — Dashboard</div>
+        </div>
+        <div class="hc-body">
+          <div class="hc-stats">
+            <div class="hc-stat">
+              <div class="hc-stat-num">127</div>
+              <div class="hc-stat-label">고객사</div>
+            </div>
+            <div class="hc-stat">
+              <div class="hc-stat-num">34</div>
+              <div class="hc-stat-label">진행 중 딜</div>
+            </div>
+            <div class="hc-stat">
+              <div class="hc-stat-num">89%</div>
+              <div class="hc-stat-label">목표 달성률</div>
+            </div>
+          </div>
+          <div class="hc-pipeline">
+            <div class="hc-pipe-step">리드</div>
+            <div class="hc-pipe-step active">미팅</div>
+            <div class="hc-pipe-step">제안</div>
+            <div class="hc-pipe-step">협상</div>
+            <div class="hc-pipe-step">수주</div>
+          </div>
+          <ul class="hc-list">
+            <li>
+              <div class="hc-avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">A</div>
+              <div class="hc-list-name">A사 — 연간 계약</div>
+              <div class="hc-list-tag" style="background:rgba(16,185,129,.15);color:#34d399">수주</div>
+            </li>
+            <li>
+              <div class="hc-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">B</div>
+              <div class="hc-list-name">B사 — 솔루션 제안</div>
+              <div class="hc-list-tag" style="background:rgba(245,158,11,.15);color:#fbbf24">협상</div>
+            </li>
+            <li>
+              <div class="hc-avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">C</div>
+              <div class="hc-list-name">C사 — 기술 검토</div>
+              <div class="hc-list-tag" style="background:rgba(96,165,250,.15);color:#60a5fa">미팅</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section-features" id="features">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge badge-green">FEATURES</div>
+      <h2 style="margin-top:16px">B2B 비즈니스의 모든 것</h2>
+      <p class="subtitle">흩어진 업무를 하나로 연결합니다.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>고객사 & 담당자 관리</h3>
+        <p>고객사 정보, 담당자 연락처, 거래 이력을 한곳에서 통합 관리합니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>영업 파이프라인</h3>
+        <p>리드부터 수주까지, 영업 기회의 전체 흐름을 시각적으로 추적합니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </div>
+        <h3>마케팅 & 리드</h3>
+        <p>마케팅 캠페인 관리와 리드 추적으로 잠재 고객을 놓치지 않습니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>기술지원 & 교육</h3>
+        <p>고객 문의 대응, 교육 이력 관리를 체계적으로 수행합니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-4">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="6" y="6" width="8" height="2" rx="1"/><rect x="9" y="11" width="9" height="2" rx="1"/><rect x="4" y="16" width="6" height="2" rx="1"/></svg>
+        </div>
+        <h3>프로젝트 관리</h3>
+        <p>영업과 연결된 프로젝트를 생성하고 진행 상태를 관리합니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-5">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>캘린더 & 활동 기록</h3>
+        <p>일정, 미팅, 영업 활동을 캘린더로 관리하고 이력을 자동 기록합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="section-ai" id="ai">
+  <div class="container">
+    <div class="text-center">
+      <div class="badge badge-green" style="border-color:rgba(52,211,153,.25);color:var(--green-400);background:rgba(52,211,153,.08)">AI-POWERED</div>
+      <h2 style="margin-top:16px">AI가 영업을 돕습니다</h2>
+      <p class="subtitle">반복적인 작업은 AI에게, 핵심 판단은 사람에게.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card reveal">
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>교육보고서 자동 작성</h3>
+        <p>교육 내용과 참석 정보를 기반으로 보고서를 AI가 자동으로 생성합니다.</p>
+      </div>
+      <div class="ai-card reveal reveal-delay-1">
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>영업 & 마케팅 전략 수립</h3>
+        <p>고객 데이터와 영업 이력을 분석하여 맞춤형 전략을 제안합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta" id="cta">
+  <div class="container">
+    <div class="badge badge-green" style="margin-bottom:24px">GET STARTED</div>
+    <h2>Linkspace와 함께 시작하세요</h2>
+    <p>데모 요청, 기능 문의 등 편하게 연락해 주세요.</p>
+    <a href="mailto:verus.lab.kr@gmail.com" class="btn btn-primary">문의하기</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-copy">&copy; 2026 VerusLab. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="/">VerusLab</a></li>
+      <li><a href="/valentis/">Valentis</a></li>
+      <li><a href="#features">Features</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>30)});
+
+const hamburger=document.getElementById('hamburger');
+const navLinks=document.getElementById('navLinks');
+hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');navLinks.classList.toggle('open')});
+navLinks.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{hamburger.classList.remove('active');navLinks.classList.remove('open')}));
+
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.15});
+reveals.forEach(el=>observer.observe(el));
+
+const sections=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY+120;
+  sections.forEach(s=>{
+    const link=document.querySelector(`.nav-links a[href="#${s.id}"]`);
+    if(link)link.classList.toggle('active',y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight);
+  });
+});
+</script>
+</body>
+</html>
