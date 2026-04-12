@@ -187,10 +187,12 @@ a{color:inherit;text-decoration:none}
 .btn-top:hover{background:#2563eb;color:#fff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
 
 /* ── Footer ── */
-.footer{background:#1a1f2e;color:#cbd5e1;padding:16px 0;font-size:12px}
-.footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.footer-logo{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-.02em}
-.footer-logo span{color:#60a5fa}
+.footer{padding:32px 0;background:var(--slate-9);border-top:1px solid rgba(255,255,255,.05)}
+.footer .container{display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:.78rem;color:var(--slate-5)}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:.78rem;color:var(--slate-5);transition:var(--transition)}
+.footer-links a:hover{color:var(--blue-400)}
 
 /* ── Animations ── */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
@@ -469,8 +471,12 @@ a{color:inherit;text-decoration:none}
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-logo"><span>V</span>alentis™</div>
-    <div>&copy; 2026 VerusLab. All rights reserved.</div>
+    <div class="footer-copy">&copy; 2026 VerusLab. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="/">VerusLab</a></li>
+      <li><a href="/linkspace/">Linkspace</a></li>
+      <li><a href="./">Valentis</a></li>
+    </ul>
   </div>
 </footer>
 
