@@ -165,27 +165,24 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .feature-card p{font-size:.88rem;color:var(--slate-6);line-height:1.75;word-break:keep-all}
 
 /* AI Section */
-.section-ai{padding:120px 0;background:linear-gradient(180deg,var(--slate-9) 0%,#0c1222 100%);color:var(--slate-3);position:relative;overflow:hidden}
-.ai-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
-.ai-orb-1{width:400px;height:400px;top:-120px;right:-100px;background:radial-gradient(circle,rgba(79,142,247,.5),transparent 70%);opacity:.6}
-.ai-orb-2{width:450px;height:450px;bottom:-120px;left:-100px;background:radial-gradient(circle,rgba(79,142,247,.5),transparent 70%);opacity:.7}
-.section-ai h2{color:var(--white)}
-.section-ai .subtitle{color:var(--slate-4)}
+.section-ai{padding:120px 0;background:var(--slate-0);position:relative;overflow:hidden}
+.section-ai h2{color:var(--slate-8)}
+.section-ai .subtitle{color:var(--slate-5)}
 .ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:0 auto}
 .ai-card{
   padding:36px 28px;border-radius:var(--radius);
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
-  transition:var(--transition);
+  background:var(--white);border:1px solid var(--slate-2);
+  transition:var(--transition);box-shadow:var(--shadow-sm);
 }
-.ai-card:hover{background:rgba(255,255,255,.07);border-color:rgba(52,211,153,.2);transform:translateY(-4px)}
+.ai-card:hover{border-color:var(--acc-200);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .ai-icon{
   width:48px;height:48px;border-radius:14px;margin-bottom:16px;
   display:flex;align-items:center;justify-content:center;
-  background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.15);
+  background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.12);
 }
-.ai-icon svg{width:22px;height:22px;color:var(--acc-400)}
-.ai-card h3{color:var(--white);margin-bottom:8px}
-.ai-card p{font-size:.88rem;color:var(--slate-4);line-height:1.75;word-break:keep-all}
+.ai-icon svg{width:22px;height:22px;color:var(--acc-500)}
+.ai-card h3{color:var(--slate-8);margin-bottom:8px}
+.ai-card p{font-size:.88rem;color:var(--slate-6);line-height:1.75;word-break:keep-all}
 
 /* CTA */
 .section-cta{
@@ -394,12 +391,10 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 
 <!-- AI -->
 <section class="section-ai" id="ai">
-  <div class="ai-orb ai-orb-1"></div>
-  <div class="ai-orb ai-orb-2"></div>
-  <div class="container" style="position:relative;z-index:1">
+  <div class="container">
     <div class="text-center">
-      <div class="badge badge-acc" style="border-color:rgba(79,142,247,.25);color:var(--acc-400);background:rgba(79,142,247,.1)">AI-POWERED</div>
-      <h2 style="margin-top:16px">AI가 영업을 돕습니다</h2>
+      <div class="badge badge-acc" style="margin-bottom:16px">AI-POWERED</div>
+      <h2>AI가 영업을 돕습니다</h2>
       <p class="subtitle">반복적인 작업은 AI에게, 핵심 판단은 사람에게.</p>
     </div>
     <div class="ai-grid">
