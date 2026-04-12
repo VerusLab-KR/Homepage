@@ -233,6 +233,18 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 .footer-links a{font-size:.78rem;color:var(--slate-5);transition:var(--transition)}
 .footer-links a:hover{color:var(--blue-400)}
 
+/* ── Back to Top ── */
+.btn-top{
+  position:fixed;bottom:32px;right:32px;z-index:800;
+  width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;
+  background:#1a1f2e;color:#94a3b8;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.btn-top.visible{opacity:1;pointer-events:all}
+.btn-top:hover{background:#2563eb;color:#fff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
+
 /* ── Responsive ── */
 @media(max-width:900px){
   .products-grid{grid-template-columns:1fr}
@@ -431,6 +443,8 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
   </div>
 </section>
 
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Top">&#9650;</button>
+
 <!-- ── Footer ── -->
 <footer class="footer">
   <div class="container">
@@ -448,6 +462,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 30);
+  document.getElementById('btnTop').classList.toggle('visible', window.scrollY > 400);
 });
 
 /* ── Hamburger ── */
