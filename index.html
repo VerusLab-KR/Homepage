@@ -197,6 +197,25 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 .product-link svg{transition:transform .3s}
 .product-link:hover svg{transform:translateX(3px)}
 
+/* ── Product Visuals ── */
+.product-visual{
+  background:#0c1220;border-radius:12px;padding:16px 20px;
+  margin-bottom:28px;height:150px;position:relative;overflow:hidden;
+  border:1px solid rgba(255,255,255,.06);
+}
+.pv-dots{display:flex;gap:5px;margin-bottom:14px}
+.pv-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.15)}
+.pv-dots span:first-child{background:#ef4444}
+.pv-dots span:nth-child(2){background:#f59e0b}
+.pv-dots span:last-child{background:#22c55e}
+.pv-chart{width:100%;height:calc(100% - 28px)}
+.pv-pipeline{display:flex;gap:8px;height:calc(100% - 28px)}
+.pv-col{flex:1;background:rgba(255,255,255,.04);border-radius:6px;padding:8px 6px;display:flex;flex-direction:column;gap:5px}
+.pv-col-title{font-size:.45rem;color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.pv-card{border-radius:4px;height:16px;flex-shrink:0;background:rgba(255,255,255,.06)}
+.pv-card.hl-b{background:rgba(29,78,216,.25);border:1px solid rgba(59,130,246,.2)}
+.pv-card.hl-s{background:rgba(79,142,247,.2);border:1px solid rgba(79,142,247,.15)}
+
 /* ── Section: About ── */
 .section-about{padding:120px 0;background:var(--slate-0)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
@@ -223,6 +242,11 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 .about-value-icon svg{width:22px;height:22px}
 .about-value h4{font-size:.88rem;font-weight:700;margin-bottom:4px;color:var(--slate-8)}
 .about-value p{font-size:.8rem;color:var(--slate-5);line-height:1.65;margin-bottom:0}
+
+/* ── Section Dividers ── */
+.section-about{position:relative}
+.section-wave{position:absolute;bottom:0;left:0;width:100%;line-height:0;z-index:2;pointer-events:none}
+.section-wave svg{display:block;width:100%;height:auto}
 
 /* ── Section: Contact ── */
 .section-contact{
@@ -334,6 +358,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
       <a href="#contact" class="btn btn-outline-light">문의하기</a>
     </div>
   </div>
+  <div class="section-wave"><svg viewBox="0 0 1440 56" preserveAspectRatio="none"><path d="M0,56 C480,0 960,0 1440,56 Z" fill="#ffffff"/></svg></div>
 </section>
 
 <!-- ── Products ── -->
@@ -348,6 +373,16 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 
       <!-- Valentis -->
       <div class="product-card valentis reveal" onclick="location.href='/valentis/'">
+        <div class="product-visual">
+          <div class="pv-dots"><span></span><span></span><span></span></div>
+          <svg class="pv-chart" viewBox="0 0 280 80" preserveAspectRatio="none">
+            <line x1="0" y1="20" x2="280" y2="20" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
+            <line x1="0" y1="40" x2="280" y2="40" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
+            <line x1="0" y1="60" x2="280" y2="60" stroke="rgba(255,255,255,.04)" stroke-width=".5"/>
+            <polyline points="0,40 10,28 20,48 30,18 40,52 50,24 60,46 70,30 80,42 90,35 100,38 110,40 120,36 130,44 140,28 150,50 160,22 170,48 180,32 190,40 200,34 210,44 220,30 230,46 240,26 250,48 260,20 270,45 280,40" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,45 20,38 40,52 60,36 80,50 100,42 120,46 140,38 160,48 180,36 200,50 220,40 240,48 260,36 280,44" fill="none" stroke="#60a5fa" stroke-width="1" stroke-linecap="round" opacity=".35"/>
+          </svg>
+        </div>
         <div class="product-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
@@ -370,6 +405,15 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 
       <!-- Linkspace -->
       <div class="product-card linkspace reveal reveal-delay-1" onclick="location.href='/linkspace/'">
+        <div class="product-visual">
+          <div class="pv-dots"><span></span><span></span><span></span></div>
+          <div class="pv-pipeline">
+            <div class="pv-col"><div class="pv-col-title">Lead</div><div class="pv-card"></div><div class="pv-card hl-s"></div><div class="pv-card"></div></div>
+            <div class="pv-col"><div class="pv-col-title">Contact</div><div class="pv-card hl-s"></div><div class="pv-card"></div></div>
+            <div class="pv-col"><div class="pv-col-title">Proposal</div><div class="pv-card"></div><div class="pv-card hl-s"></div></div>
+            <div class="pv-col"><div class="pv-col-title">Close</div><div class="pv-card hl-s"></div></div>
+          </div>
+        </div>
         <div class="product-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
@@ -443,6 +487,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
       </div>
     </div>
   </div>
+  <div class="section-wave"><svg viewBox="0 0 1440 56" preserveAspectRatio="none"><path d="M0,56 C480,0 960,0 1440,56 Z" fill="#0f172a"/></svg></div>
 </section>
 
 <!-- ── Contact ── -->
