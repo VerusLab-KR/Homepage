@@ -90,7 +90,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 /* ── Hero ── */
 .hero{
   min-height:100vh;display:flex;align-items:center;
-  background:linear-gradient(160deg,var(--slate-9) 0%,var(--navy) 50%,#0c1a3a 100%);
+  background:linear-gradient(160deg,var(--slate-9) 0%,#0e1629 50%,#0c1222 100%);
   padding-top:64px;position:relative;overflow:hidden;
 }
 .hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
@@ -100,11 +100,8 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
 @keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
 @keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
 @keyframes orbFloat3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,-35px)}}
-.hero-grid{position:absolute;inset:0;background-image:
-  linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:60px 60px;pointer-events:none;
-}
+.hero-network{position:absolute;inset:0;pointer-events:none}
+.hero-network canvas{width:100%;height:100%}
 .hero .container{position:relative;z-index:1;text-align:center;padding:80px 24px}
 @keyframes heroFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-fade{opacity:0;animation:heroFadeUp .8s cubic-bezier(.22,1,.36,1) forwards}
@@ -339,7 +336,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
   <div class="hero-bg-orb hero-bg-orb-1"></div>
   <div class="hero-bg-orb hero-bg-orb-2"></div>
   <div class="hero-bg-orb hero-bg-orb-3"></div>
-  <div class="hero-grid"></div>
+  <div class="hero-network"><canvas id="heroNetwork"></canvas></div>
   <div class="container">
     <div class="badge badge-blue hero-fade hero-fade-1" style="margin-bottom:24px;border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08)">ENGINEERING SOFTWARE COMPANY</div>
     <h1 class="hero-fade hero-fade-2">
@@ -597,6 +594,36 @@ const countObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 countEls.forEach(el => countObserver.observe(el));
+
+/* ── Hero Node Network ── */
+(function(){
+  const c = document.getElementById('heroNetwork');
+  if(!c) return;
+  const hero = c.closest('.hero');
+  function resize(){c.width=hero.offsetWidth*2;c.height=hero.offsetHeight*2}
+  resize();
+  window.addEventListener('resize',resize);
+  const ctx = c.getContext('2d');
+  const nodes=[];const count=50;
+  for(let i=0;i<count;i++) nodes.push({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3});
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(let i=0;i<count;i++){
+      for(let j=i+1;j<count;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<200){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle='rgba(255,255,255,'+(0.1*(1-dist/200))+')';ctx.lineWidth=1;ctx.stroke()}
+      }
+    }
+    nodes.forEach(n=>{
+      ctx.beginPath();ctx.arc(n.x,n.y,2.5,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.14)';ctx.fill();
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>c.width)n.vx*=-1;
+      if(n.y<0||n.y>c.height)n.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 </script>
 </body>
 </html>

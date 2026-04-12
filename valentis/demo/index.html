@@ -105,11 +105,8 @@ a{color:inherit;text-decoration:none}
 .demo-hero-orb-2{width:350px;height:350px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(79,142,247,.5),transparent 70%);opacity:.6;animation:demoOrb2 18s ease-in-out infinite}
 @keyframes demoOrb1{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,20px)}}
 @keyframes demoOrb2{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-15px)}}
-.demo-hero-grid{position:absolute;inset:0;background-image:
-  linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
-  background-size:60px 60px;pointer-events:none;
-}
+.demo-hero-network{position:absolute;inset:0;pointer-events:none}
+.demo-hero-network canvas{width:100%;height:100%}
 .demo-hero .container{position:relative;z-index:1}
 @keyframes heroFadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-fade{opacity:0;animation:heroFadeUp .7s cubic-bezier(.22,1,.36,1) forwards}
@@ -277,7 +274,7 @@ a{color:inherit;text-decoration:none}
 <section class="demo-hero">
   <div class="demo-hero-orb demo-hero-orb-1"></div>
   <div class="demo-hero-orb demo-hero-orb-2"></div>
-  <div class="demo-hero-grid"></div>
+  <div class="demo-hero-network"><canvas id="demoNetwork"></canvas></div>
   <div class="container">
     <div class="badge badge-blue hero-fade hero-fade-1">Demo Videos</div>
     <h1 class="hero-fade hero-fade-2" data-i18n="demo_title">기능별 <span class="text-gradient">데모 영상</span></h1>
@@ -676,6 +673,36 @@ document.getElementById('videoModal').addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeVideo();
 });
+
+/* ── Hero Node Network ── */
+(function(){
+  const c = document.getElementById('demoNetwork');
+  if(!c) return;
+  const hero = c.closest('.demo-hero');
+  function resize(){c.width=hero.offsetWidth*2;c.height=hero.offsetHeight*2}
+  resize();
+  window.addEventListener('resize',resize);
+  const ctx = c.getContext('2d');
+  const nodes=[];const count=40;
+  for(let i=0;i<count;i++) nodes.push({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3});
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(let i=0;i<count;i++){
+      for(let j=i+1;j<count;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<200){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle='rgba(255,255,255,'+(0.1*(1-dist/200))+')';ctx.lineWidth=1;ctx.stroke()}
+      }
+    }
+    nodes.forEach(n=>{
+      ctx.beginPath();ctx.arc(n.x,n.y,2.5,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,.14)';ctx.fill();
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>c.width)n.vx*=-1;
+      if(n.y<0||n.y>c.height)n.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 </script>
 </body>
 </html>
