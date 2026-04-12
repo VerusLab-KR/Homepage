@@ -8,7 +8,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text x='4' y='26' font-size='28' font-weight='bold' fill='%231d4ed8'>V</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Exo+2:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -40,6 +40,10 @@ a{color:inherit;text-decoration:none}
 }
 .navbar.scrolled{box-shadow:0 2px 16px rgba(0,0,0,.25)}
 .navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-home{font-family:'Exo 2','Inter',sans-serif;font-size:1rem;font-weight:700;color:#64748b;transition:.3s;letter-spacing:-.02em}
+.nav-home:hover{color:#fff}
+.nav-home span{color:#60a5fa}
+.nav-sep{color:#334155;margin:0 12px;font-size:.8rem}
 .nav-logo{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#fff}
 .nav-logo span{color:#60a5fa}
 .nav-links{display:flex;gap:36px;list-style:none}
@@ -212,7 +216,7 @@ a{color:inherit;text-decoration:none}
 
 <nav class="navbar" id="navbar">
   <div class="container">
-    <a href="./" class="nav-logo"><span>V</span>alentis™</a>
+    <a href="/" class="nav-home">Verus<span>Lab</span></a><span class="nav-sep">/</span><a href="./" class="nav-logo"><span>V</span>alentis™</a>
     <ul class="nav-links">
       <li><a href="./#problems" data-i18n="nav_problems">Why Valentis</a></li>
       <li><a href="./#values" data-i18n="nav_values">Value</a></li>
