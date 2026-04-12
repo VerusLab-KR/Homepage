@@ -146,10 +146,17 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
   content:'';position:absolute;top:0;left:0;right:0;height:4px;
   transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);
 }
+.product-card::after{
+  content:'';position:absolute;top:-60px;right:-60px;width:160px;height:160px;
+  border-radius:50%;opacity:0;filter:blur(60px);transition:opacity .4s;
+}
+.product-card.valentis::after{background:var(--blue)}
+.product-card.linkspace::after{background:var(--sky)}
 .product-card{cursor:pointer;display:flex;flex-direction:column}
 .product-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;flex:1}
 .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:transparent}
 .product-card:hover::before{transform:scaleX(1)}
+.product-card:hover::after{opacity:.1}
 .product-card.valentis::before{background:linear-gradient(90deg,var(--blue-400),var(--blue))}
 .product-card.linkspace::before{background:linear-gradient(90deg,var(--sky),var(--sky-d))}
 .product-icon{
