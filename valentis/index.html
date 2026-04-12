@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Valentis™ — 계산부터 의사결정까지, 하나로. 하중 정의, 재료물성치, DOE, 메타모델, 신뢰성, 파레토 최적화를 하나의 플랫폼에서.">
+<meta property="og:title" content="Valentis™ — Engineering Analysis Platform">
+<meta property="og:description" content="계산부터 의사결정까지, 하나로. 시뮬레이션 전후의 모든 엔지니어링 워크플로우를 통합합니다.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/VerusLab-KR/valentis-assets/main/Valentis_Landing.png">
+<title>Valentis™ — Engineering Analysis Platform</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text x='4' y='26' font-size='28' font-weight='bold' fill='%231d4ed8'>V</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue-50: #eff6ff; --blue-100:#dbeafe; --blue-200:#bfdbfe;
+  --blue-400:#60a5fa; --blue-500:#3b82f6; --blue-600:#2563eb;
+  --blue:    #1d4ed8; --blue-d:#1e3a8a; --navy:#172554; --navy-d:#0f172a;
+  --slate-9: #0f172a; --slate-8:#1e293b; --slate-7:#334155;
+  --slate-6: #475569; --slate-5:#64748b; --slate-4:#94a3b8; --slate-3:#cbd5e1;
+  --slate-2: #e2e8f0; --slate-1:#f1f5f9; --slate-0:#f8fafc;
+  --white:#ffffff; --green:#10b981; --amber:#f59e0b;
+  --radius:14px; --radius-sm:10px; --radius-xs:8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.06);
+  --shadow: 0 4px 20px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.06);
+  --glass: rgba(255,255,255,.7); --glass-border: rgba(255,255,255,.5);
+  --transition: .3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+
+/* ── Language Toggle ── */
+.lang-toggle{display:flex;border:1px solid #4a5568;border-radius:6px;overflow:hidden}
+.lang-toggle button{
+  background:transparent;border:none;color:#94a3b8;padding:4px 8px;
+  font-size:11px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.5px;
+}
+.lang-toggle button:hover{color:#e2e8f0}
+.lang-toggle button.active{background:#2563eb;color:#fff}
+
+/* ── Utility ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:120px 0}
+.section-alt{background:var(--slate-0)}
+.section-navy{background:var(--navy);color:var(--slate-3)}
+.section-navy h2,.section-navy h3{color:var(--white)}
+.section-navy .subtitle{color:var(--slate-4)}
+.section-navy .badge-blue{background:rgba(96,165,250,.1);color:var(--blue-400);border-color:rgba(96,165,250,.2)}
+.section-dark{background:linear-gradient(180deg,var(--slate-9) 0%,#0c1222 100%);color:var(--slate-3)}
+.section-dark h2,.section-dark h3{color:var(--white)}
+.text-center{text-align:center}
+.text-gradient{
+  background:linear-gradient(135deg,var(--blue-500) 0%,var(--blue) 50%,var(--blue-d) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+h1{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.25;letter-spacing:-.02em;word-break:keep-all}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;letter-spacing:-.02em}
+h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.subtitle{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--slate-5);max-width:680px;margin:0 auto 48px;line-height:1.8}
+.badge{
+  display:inline-block;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;
+  letter-spacing:.04em;
+}
+.badge-blue{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.12)}
+.badge-green{background:rgba(16,185,129,.07);color:var(--green);border:1px solid rgba(16,185,129,.12)}
+
+/* ── Animations ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ── Navbar ── */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:#1a1f2e;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.navbar.scrolled{background:#1a1f2e;border-bottom-color:rgba(255,255,255,.08);box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#fff}
+.nav-logo span{color:#60a5fa}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  font-size:.84rem;font-weight:500;color:#94a3b8;transition:var(--transition);
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:#60a5fa;border-radius:1px;transition:width .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover,.nav-links a.active{color:#60a5fa}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links>li{position:relative}
+.nav-dropdown{
+  display:none;position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);
+  background:#1a1f2e;border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  padding:8px 0;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.3);
+  list-style:none;z-index:910;
+}
+.nav-dropdown::before{
+  content:'';position:absolute;top:-14px;left:0;right:0;height:14px;
+}
+.nav-dropdown::after{
+  content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+  border-left:6px solid transparent;border-right:6px solid transparent;
+  border-bottom:6px solid rgba(255,255,255,.08);
+}
+.nav-links>li:hover .nav-dropdown{display:block}
+.nav-dropdown a{
+  display:block;padding:8px 20px;font-size:.78rem;color:#94a3b8;
+  white-space:nowrap;transition:all .2s;
+}
+.nav-dropdown a::after{display:none}
+.nav-dropdown a:hover{color:#60a5fa;background:rgba(96,165,250,.08)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:20px;height:1.5px;background:#94a3b8;margin:5px 0;transition:all .3s;border-radius:1px}
+
+/* ── Hero ── */
+.hero{
+  min-height:0;display:flex;align-items:center;
+  background:linear-gradient(160deg,var(--white) 0%,var(--blue-50) 30%,var(--blue-100) 100%);
+  padding-top:150px;padding-bottom:90px;position:relative;overflow:hidden;
+}
+.hero-bg-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none}
+.hero-bg-orb-1{width:600px;height:600px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(59,130,246,.15),transparent 70%)}
+.hero-bg-orb-2{width:500px;height:500px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(30,58,138,.1),transparent 70%)}
+.hero-bg-orb-3{width:300px;height:300px;top:30%;left:40%;background:radial-gradient(circle,rgba(96,165,250,.08),transparent 70%)}
+.hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:end}
+.hero-text h1{margin-bottom:24px}
+.hero-text p{font-size:1rem;color:var(--slate-7);margin-bottom:40px;max-width:500px;line-height:1.85;word-break:keep-all}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;
+  cursor:pointer;border:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+  letter-spacing:-.01em;position:relative;overflow:hidden;
+  min-width:180px;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--blue),var(--blue-d));color:var(--white);
+  box-shadow:0 4px 16px rgba(30,58,138,.3),0 1px 3px rgba(30,58,138,.15);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);background:linear-gradient(135deg,var(--blue-d),var(--navy));
+  box-shadow:0 8px 28px rgba(30,58,138,.4),0 2px 6px rgba(30,58,138,.2);
+}
+.btn-primary:active{transform:translateY(0)}
+.btn-outline{background:var(--white);color:var(--blue);border:1.5px solid var(--blue-200);box-shadow:var(--shadow-sm)}
+.btn-outline:hover{border-color:var(--blue);background:var(--blue-50);transform:translateY(-2px)}
+
+/* ── Hero Card ── */
+.hero-graphic{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-card{
+  background:var(--slate-9);border-radius:20px;padding:0;
+  box-shadow:var(--shadow-xl),0 0 0 1px rgba(255,255,255,.06);
+  max-width:460px;width:100%;position:relative;overflow:hidden;
+  color:var(--slate-3);
+}
+.hero-card::before{
+  content:'';position:absolute;inset:-1px;border-radius:21px;
+  background:linear-gradient(135deg,rgba(59,130,246,.2),transparent 50%,rgba(30,58,138,.15));
+  z-index:-1;
+}
+/* card titlebar */
+.hc-titlebar{
+  display:flex;align-items:center;gap:8px;padding:14px 20px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hc-dot{width:7px;height:7px;border-radius:50%}
+.hc-title{font-size:.7rem;color:var(--slate-3);margin-left:6px;font-weight:500}
+/* card body */
+.hc-body{padding:20px}
+/* stat row */
+.hc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.hc-stat{text-align:center;padding:14px 4px;border-radius:var(--radius-xs);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.hc-stat-num{font-size:1.5rem;font-weight:800;color:var(--blue-400);line-height:1}
+.hc-stat-label{font-size:.58rem;color:var(--slate-3);margin-top:5px;font-weight:500;letter-spacing:.02em}
+/* chart area */
+.hc-chart{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--radius-xs);padding:16px 14px 12px;position:relative;
+}
+.hc-chart-label{font-size:.6rem;color:var(--slate-3);margin-bottom:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.hc-bars{display:flex;align-items:flex-end;gap:4px;height:64px}
+.mini-bar{
+  border-radius:3px 3px 0 0;flex:1;
+  background:linear-gradient(to top,var(--blue),var(--blue-400));
+  transition:height .6s cubic-bezier(.4,0,.2,1);opacity:.85;
+}
+.mini-bar:nth-child(odd){background:linear-gradient(to top,var(--blue-d),var(--blue-500))}
+/* workflow mini */
+.hc-workflow{display:flex;align-items:center;gap:6px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.hc-wf-step{
+  flex:1;text-align:center;padding:8px 2px;border-radius:6px;
+  font-size:.52rem;font-weight:600;color:var(--slate-3);
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);
+  transition:var(--transition);letter-spacing:.01em;
+}
+.hc-wf-step.active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.3);color:var(--blue-400)}
+.hc-wf-arrow{font-size:.5rem;color:var(--slate-3);flex-shrink:0}
+
+/* ── Section Divider ── */
+.wave-divider{position:relative;height:80px;margin-top:-1px}
+.wave-divider svg{position:absolute;bottom:0;width:100%;height:80px}
+
+/* ── Problems ── */
+.problems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.problem-card{
+  background:var(--slate-8);border-radius:var(--radius);padding:32px 28px;
+  border:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.problem-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue-400),var(--blue));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.problem-card::after{
+  content:'';position:absolute;bottom:-40px;right:-40px;width:120px;height:120px;
+  border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.1),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.problem-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.25);border-color:rgba(59,130,246,.2)}
+.problem-card:hover::before{transform:scaleX(1)}
+.problem-card:hover::after{opacity:1}
+.problem-card:hover .problem-icon{transform:scale(1.08)}
+.problem-num{
+  position:absolute;top:20px;right:24px;font-size:3.5rem;font-weight:900;
+  color:rgba(255,255,255,.15);line-height:1;pointer-events:none;transition:color .4s;
+}
+.problem-card:hover .problem-num{color:rgba(255,255,255,.22)}
+.problem-icon{
+  width:52px;height:52px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;margin-bottom:20px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+  color:var(--white);transition:transform .4s cubic-bezier(.4,0,.2,1);
+  filter:grayscale(1) brightness(10);
+}
+.problem-card h3{font-size:1rem;margin-bottom:10px;color:var(--white);position:relative}
+.problem-card p{font-size:.88rem;color:var(--slate-1);line-height:1.7;position:relative;overflow-wrap:break-word}
+
+/* ── Values ── */
+.values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:48px}
+.value-card{
+  text-align:center;padding:36px 20px;border-radius:var(--radius);
+  border:1px solid transparent;transition:var(--transition);
+}
+.value-card:hover{background:var(--blue-50);border-color:var(--blue-200)}
+.value-num{font-size:2.6rem;font-weight:900;margin-bottom:4px;line-height:1}
+.value-card h3{font-size:.95rem;margin-bottom:8px;color:var(--slate-8)}
+.value-card p{font-size:.84rem;color:var(--slate-6);line-height:1.65;overflow-wrap:break-word}
+
+/* ── Features ── */
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;padding:72px 0}
+.feature-row:not(:last-child){border-bottom:1px solid var(--slate-2)}
+.feature-row.reverse .feature-content{order:2}
+.feature-row.reverse .feature-visual{order:1}
+.feature-content .badge{margin-bottom:18px}
+.feature-content h2{font-size:clamp(1.4rem,2.5vw,1.9rem)}
+.feature-content p{color:var(--slate-6);margin-bottom:24px;line-height:1.8;font-size:.94rem}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.feature-list li{
+  display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--slate-7);line-height:1.6;
+}
+.feature-check{
+  width:20px;height:20px;border-radius:6px;flex-shrink:0;margin-top:2px;
+  background:linear-gradient(135deg,var(--blue-500),var(--blue));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-size:.65rem;font-weight:700;
+}
+.feature-visual{
+  background:linear-gradient(145deg,var(--slate-0),var(--blue-50));
+  border-radius:20px;padding:32px;min-height:300px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;border:1px solid var(--slate-2);
+}
+.feature-visual .mock-ui{
+  background:var(--white);border-radius:var(--radius-sm);padding:20px;width:100%;
+  box-shadow:var(--shadow);border:1px solid var(--slate-2);
+}
+.mock-toolbar{display:flex;gap:6px;margin-bottom:14px;align-items:center}
+.mock-dot{width:8px;height:8px;border-radius:50%}
+.mock-toolbar-title{margin-left:8px;font-size:.68rem;color:var(--slate-4);font-weight:500}
+.mock-line{height:8px;border-radius:4px;margin-bottom:6px}
+.mock-chart-area{height:120px;border-radius:var(--radius-xs);position:relative;overflow:hidden}
+
+/* ── Modules ── */
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.modules-grid > :last-child:nth-child(3n+1){grid-column:2}
+@media(max-width:900px){.modules-grid{grid-template-columns:repeat(2,1fr)}.modules-grid > :last-child:nth-child(odd){grid-column:1 / -1;max-width:50%;margin:0 auto}}
+@media(max-width:600px){.modules-grid{grid-template-columns:1fr}.modules-grid > :last-child:nth-child(odd){max-width:100%}}
+.module-card{
+  background:var(--white);
+  border:1px solid var(--slate-2);
+  border-radius:var(--radius);padding:28px;transition:all .4s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.module-card::before{
+  content:'';position:absolute;inset:0;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(59,130,246,.04),transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.module-card:hover{background:var(--white);border-color:var(--blue-200);transform:translateY(-3px);box-shadow:0 8px 30px rgba(29,78,216,.08)}
+.module-card:hover::before{opacity:1}
+.module-card .mod-icon{font-size:1.5rem;margin-bottom:14px;position:relative}
+.mod-step{
+  position:absolute;top:16px;right:18px;width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,var(--blue-500),var(--blue));
+  color:var(--white);font-size:.78rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(29,78,216,.18);z-index:1;
+}
+.mod-chart{
+  background:var(--slate-8);border:1px solid var(--slate-7);
+  border-radius:8px;padding:14px 10px;margin-bottom:16px;position:relative;
+  display:flex;align-items:center;justify-content:center;min-height:80px;
+}
+.module-card h3{color:var(--slate-8);font-size:.95rem;margin-bottom:10px;position:relative}
+.module-card p{font-size:.82rem;color:var(--slate-6);line-height:1.7;position:relative;overflow-wrap:break-word}
+
+/* ── CTA ── */
+.cta-section{
+  background:linear-gradient(160deg,var(--white) 0%,var(--blue-50) 30%,var(--blue-100) 100%);
+  color:var(--slate-8);text-align:center;padding:100px 0;position:relative;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 50%,rgba(59,130,246,.06),transparent 60%),
+             radial-gradient(ellipse at 70% 50%,rgba(59,130,246,.04),transparent 60%);
+}
+.cta-section .container{position:relative}
+.cta-section h2{color:var(--slate-8);font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:16px;line-height:1.35}
+.cta-section p{color:var(--slate-5);font-size:1.05rem;margin-bottom:40px;font-weight:400}
+.btn-white{
+  background:linear-gradient(135deg,var(--blue),var(--blue-d));color:var(--white);padding:16px 40px;
+  font-size:1rem;font-weight:700;border-radius:var(--radius-sm);
+  box-shadow:0 4px 16px rgba(30,58,138,.3),0 1px 3px rgba(30,58,138,.15);border:none;cursor:pointer;
+  transition:all .3s cubic-bezier(.4,0,.2,1);letter-spacing:-.01em;
+}
+.btn-white:hover{transform:translateY(-3px);background:linear-gradient(135deg,var(--blue-d),var(--navy));box-shadow:0 8px 28px rgba(30,58,138,.4)}
+
+/* ── Footer ── */
+.footer{background:#1a1f2e;color:#cbd5e1;padding:16px 0;font-size:12px}
+.footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.footer-logo span{color:#60a5fa}
+
+/* ── Top Button ── */
+.btn-top{
+  position:fixed;bottom:32px;right:32px;z-index:800;
+  width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;
+  background:#1a1f2e;color:#94a3b8;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.btn-top.visible{opacity:1;pointer-events:all}
+.btn-top:hover{background:#2563eb;color:#fff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,99,235,.3)}
+
+/* ── Korean word-break ── */
+:lang(ko) p,
+:lang(ko) li,
+:lang(ko) h1,
+:lang(ko) h2,
+:lang(ko) h3{word-break:keep-all}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .hero .container{grid-template-columns:1fr;text-align:center}
+  .hero-text p{margin:0 auto 36px}
+  .hero-actions{justify-content:center}
+  .hero-graphic{margin-top:40px}
+  .feature-row{grid-template-columns:1fr;gap:36px}
+  .feature-row.reverse .feature-content{order:1}
+  .feature-row.reverse .feature-visual{order:2}
+  .nav-links{display:none}
+  .hamburger{display:block}
+}
+@media(max-width:600px){
+  .section{padding:72px 0}
+  .stats{grid-template-columns:1fr!important}
+  .hero{min-height:auto;padding:100px 0 60px}
+  br{display:inline-block;width:.3em;height:0;overflow:hidden;vertical-align:baseline}
+}
+@media(min-width:1600px){
+  .container{max-width:1440px}
+  .hero .container{gap:96px}
+  .hero-text h1{font-size:clamp(2.2rem,3.5vw,3.2rem)}
+  .hero-text p{font-size:1.1rem;max-width:560px}
+  .hero-card{max-width:520px}
+  .section{padding:100px 0}
+  .subtitle{max-width:800px}
+  .modules-grid{gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo"><span>V</span>alentis™</a>
+    <ul class="nav-links">
+      <li><a href="#problems" data-i18n="nav_problems">Why Valentis</a></li>
+      <li><a href="#values" data-i18n="nav_values">Value</a></li>
+      <li><a href="#features" data-i18n="nav_features">Features</a></li>
+      <li><a href="#modules" data-i18n="nav_modules">AI Modules</a></li>
+      <li>
+        <a href="valentis-demo.html" data-i18n="nav_demo">Demo</a>
+        <ul class="nav-dropdown">
+          <li><a href="valentis-demo.html#material" data-i18n="nav_sub_material">Material</a></li>
+          <li><a href="valentis-demo.html#load" data-i18n="nav_sub_load">Load Definition</a></li>
+          <li><a href="valentis-demo.html#tools" data-i18n="nav_sub_tools">Curve Digitizer</a></li>
+          <li><a href="valentis-demo.html#characterization" data-i18n="nav_sub_char">Characterization</a></li>
+          <li><a href="valentis-demo.html#ai" data-i18n="nav_sub_ai">AI Modules</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('ko')">KO</button>
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('zh')">ZH</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg-orb hero-bg-orb-1"></div>
+  <div class="hero-bg-orb hero-bg-orb-2"></div>
+  <div class="hero-bg-orb hero-bg-orb-3"></div>
+  <div class="container">
+    <div class="hero-text reveal">
+      <div class="badge badge-blue" data-i18n="hero_badge">Engineering Analysis Platform</div>
+      <h1 style="margin-top:20px" data-i18n="hero_title">계산부터 의사결정까지 <span class="text-gradient">하나로.</span></h1>
+      <p data-i18n="hero_desc">
+        하중 조건은 Excel, 물성치는 핸드북, 결과 분석은 또 다른 툴...<br>복잡하게 나뉜 작업 속에서<br>정작 중요한 엔지니어링 판단에 집중하지 못하고 계신가요?<br><strong>Valentis</strong>가 그 시간을 돌려드립니다.
+      </p>
+      <div class="hero-actions">
+        <a href="#features" class="btn btn-primary" data-i18n="hero_cta1">기능 살펴보기</a>
+        <a href="#modules" class="btn btn-outline" data-i18n="hero_cta2">AI 모듈 보기</a>
+      </div>
+    </div>
+    <div class="hero-graphic reveal reveal-delay-2">
+      <div class="hero-card">
+        <div class="hc-titlebar">
+          <div class="hc-dot" style="background:#f43f5e"></div>
+          <div class="hc-dot" style="background:#f59e0b"></div>
+          <div class="hc-dot" style="background:#10b981"></div>
+          <span class="hc-title">Valentis™ — Dashboard</span>
+        </div>
+        <div class="hc-body">
+          <div class="hc-stats">
+            <div class="hc-stat">
+              <div class="hc-stat-num" data-count="7">0</div>
+              <div class="hc-stat-label" data-i18n="stat_modules">분석 모듈</div>
+            </div>
+            <div class="hc-stat">
+              <div class="hc-stat-num" data-count="6">0</div>
+              <div class="hc-stat-label" data-i18n="stat_models">예측 알고리즘</div>
+            </div>
+            <div class="hc-stat">
+              <div class="hc-stat-num" data-count="881">0</div>
+              <div class="hc-stat-label" data-i18n="stat_materials">재료 물성치</div>
+            </div>
+            <div class="hc-stat">
+              <div class="hc-stat-num" data-count="0">0</div>
+              <div class="hc-stat-label" data-i18n="stat_server">서버 의존</div>
+            </div>
+          </div>
+          <div class="hc-chart">
+            <div class="hc-chart-label" data-i18n="hc_chart_label">Analysis Output</div>
+            <div class="hc-bars">
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+              <div class="mini-bar" style="height:0%"></div>
+            </div>
+          </div>
+          <div class="hc-workflow">
+            <div class="hc-wf-step active">Scenario</div>
+            <div class="hc-wf-arrow">→</div>
+            <div class="hc-wf-step active">Sensitivity</div>
+            <div class="hc-wf-arrow">→</div>
+            <div class="hc-wf-step">Meta Model</div>
+            <div class="hc-wf-arrow">→</div>
+            <div class="hc-wf-step">Reliability</div>
+            <div class="hc-wf-arrow">→</div>
+            <div class="hc-wf-step">Pareto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problems Section -->
+<section class="section section-alt" id="problems">
+  <div class="container text-center">
+    <div class="reveal">
+      <div class="badge badge-blue" data-i18n="problems_badge">이런 경험, 있으시죠?</div>
+      <h2 style="margin-top:18px" data-i18n="problems_title">시뮬레이션보다 준비 작업에<br>더 많은 시간을 쓰고 계신가요?</h2>
+      <p class="subtitle" data-i18n="problems_subtitle">
+        많은 엔지니어들이 해석 자체보다 그 전후의 반복 작업에 더 오랜 시간을 소비합니다.<br>
+        익숙하지만 비효율적인 이 과정, 더 이상 당연하지 않습니다.
+      </p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card reveal">
+        <div class="problem-num">01</div>
+        <div class="problem-icon" style="filter:none;font-size:1.5rem;font-weight:800">⟳</div>
+        <h3 data-i18n="prob1_title">"또 Excel로 하중 계산..."</h3>
+        <p data-i18n="prob1_desc">매 프로젝트마다 하중 조건을 Excel로 다시 만들고, 핸드북에서 물성치를 찾고, 결과를 다른 툴로 옮기는 반복 작업에 소중한 시간을 빼앗기고 있습니다.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-num">02</div>
+        <div class="problem-icon">⚠</div>
+        <h3 data-i18n="prob2_title">"g랑 m/s² 또 헷갈렸네..."</h3>
+        <p data-i18n="prob2_desc">단위 변환 실수 한 번이 수일간의 해석을 무의미하게 만듭니다. 수식 오입력, 데이터 복사 실수 — 사람이기에 피할 수 없는 오류들이 해석 품질을 위협합니다.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-num">03</div>
+        <div class="problem-icon">🔗</div>
+        <h3 data-i18n="prob3_title">"데이터를 또 옮겨야 해..."</h3>
+        <p data-i18n="prob3_desc">하중 정의, DOE, 후처리, 최적화를 각각 다른 소프트웨어에서 수행하다 보면, 정작 분석보다 데이터를 옮기고 포맷을 맞추는 데 더 많은 시간이 걸립니다.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-num">04</div>
+        <div class="problem-icon" style="filter:none;font-size:2rem;font-weight:900">≠</div>
+        <h3 data-i18n="prob4_title">"같은 데이터, 다른 결론"</h3>
+        <p data-i18n="prob4_desc">동일한 해석 결과를 놓고도 분석하는 사람에 따라 결론이 달라집니다. 표준화된 프로세스가 없으면 분석 품질은 경험에 의존할 수밖에 없습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values Section -->
+<section class="section" id="values">
+  <div class="container text-center">
+    <div class="reveal">
+      <div class="badge badge-blue" data-i18n="values_badge">Valentis를 쓰면</div>
+      <h2 style="margin-top:18px" data-i18n="values_title">당신의 업무가 이렇게 달라집니다</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-num text-gradient">Auto</div>
+        <h3 data-i18n="val1_title">준비 시간 단축</h3>
+        <p data-i18n="val1_desc">반복적인 하중 생성,<br> 물성치 검색, 데이터 정리를 자동화하여 분석과 판단에 집중할 수 있습니다.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-num text-gradient">100%</div>
+        <h3 data-i18n="val2_title">입력 오류 제거</h3>
+        <p data-i18n="val2_desc">검증된 수식과 자동 단위 변환으로, 단위 혼동이나 수식 실수로 해석을 다시 돌리는 일이 사라집니다.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-num text-gradient">1/N</div>
+        <h3 data-i18n="val3_title">해석 비용 절감</h3>
+        <p data-i18n="val3_desc">최적 DOE로 시뮬레이션 횟수를 최소화하고, 예측 모델로<br> 수천 개의 설계 조합을<br> 즉시 탐색합니다.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-num text-gradient">Data</div>
+        <h3 data-i18n="val4_title">확신 있는 의사결정</h3>
+        <p data-i18n="val4_desc">민감도 분석부터 파레토 최적화까지, 데이터에 기반한 체계적 판단 근거를<br> 즉시 확보합니다.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-4">
+        <div class="value-num text-gradient">$0</div>
+        <h3 data-i18n="val5_title">추가 비용 없이</h3>
+        <p data-i18n="val5_desc">고가의 통계 소프트웨어나<br> 서버 없이, 브라우저 하나로 모든 분석을 수행할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section section-alt" id="features">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge badge-blue" data-i18n="features_badge">Features</div>
+      <h2 style="margin-top:18px" data-i18n="features_title">이런 일들을 해결해 드립니다</h2>
+      <p class="subtitle" data-i18n="features_subtitle">시뮬레이션 전처리(입력 준비)부터 후처리(결과 분석)까지,<br> 분산된 작업을 하나로 연결합니다.</p>
+    </div>
+
+    <!-- Material Property -->
+    <div class="feature-row reveal">
+      <div class="feature-content">
+        <div class="badge badge-blue">Material Property</div>
+        <h2 data-i18n="feat1_title">재료물성치 찾느라 시간 낭비하지 마세요</h2>
+        <p data-i18n="feat1_desc">핸드북을 찾거나 외부 데이터시트를 검색할 필요 없이, 881개 재료물성치를<br> 즉시 확인하고 적용할 수 있습니다.<br> "어떤 물성치를 적용했는지" 리비전으로 추적되어,<br> 설계 변경 시 잘못된 물성치가 적용되는 리스크도 방지합니다.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="feat1_li1">금속, 세라믹, 복합재 등 881개 재료 즉시 검색</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat1_li2">밀도, 영률, 항복강도, 열전도율 등 한눈에 비교</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat1_li3">적용 이력 추적으로 설계 변경 시 실수 방지</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat1_li4">유체 물성치(Gas/Liquid)도 지원</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat1_li5">필요한 재료가 없으면 요청만으로 DB 확장 가능</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual" style="background:linear-gradient(145deg,var(--slate-9),#0c1222);border-color:rgba(255,255,255,.06)">
+        <div class="mock-ui" style="background:transparent;box-shadow:none;border:none;padding:4px">
+          <!-- Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:8px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--blue-400);font-weight:700">⚙</div>
+              <div>
+                <div style="font-size:.72rem;font-weight:700;color:var(--white)">AISI 304 Stainless Steel</div>
+                <div style="font-size:.55rem;color:var(--slate-3)">Metal · Austenitic · Rev.3</div>
+              </div>
+            </div>
+            <div style="font-size:.5rem;padding:3px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:#10b981;font-weight:600">Active</div>
+          </div>
+          <!-- Search bar -->
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px 12px;margin-bottom:14px;display:flex;align-items:center;gap:8px">
+            <span style="font-size:.65rem;color:var(--slate-3)">🔍</span>
+            <span style="font-size:.65rem;color:var(--slate-3)">Search 881 materials...</span>
+          </div>
+          <!-- Property grid -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:8px;padding:12px 8px;text-align:center">
+              <div style="font-size:1.1rem;font-weight:800;color:var(--blue-400)">8000</div>
+              <div style="font-size:.52rem;color:var(--slate-3);margin-top:3px">Density · kg/m³</div>
+            </div>
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:8px;padding:12px 8px;text-align:center">
+              <div style="font-size:1.1rem;font-weight:800;color:var(--blue-400)">190</div>
+              <div style="font-size:.52rem;color:var(--slate-3);margin-top:3px">Young's · GPa</div>
+            </div>
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:8px;padding:12px 8px;text-align:center">
+              <div style="font-size:1.1rem;font-weight:800;color:var(--blue-400)">0.29</div>
+              <div style="font-size:.52rem;color:var(--slate-3);margin-top:3px">Poisson's · ν</div>
+            </div>
+          </div>
+          <!-- Property rows -->
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,.03);border-radius:6px;border:1px solid rgba(255,255,255,.05)">
+              <span style="font-size:.6rem;color:var(--slate-3)">Yield Stress</span>
+              <span style="font-size:.65rem;font-weight:700;color:var(--white)">207 MPa</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,.03);border-radius:6px;border:1px solid rgba(255,255,255,.05)">
+              <span style="font-size:.6rem;color:var(--slate-3)">Tensile Strength</span>
+              <span style="font-size:.65rem;font-weight:700;color:var(--white)">517 MPa</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:rgba(255,255,255,.03);border-radius:6px;border:1px solid rgba(255,255,255,.05)">
+              <span style="font-size:.6rem;color:var(--slate-3)">Thermal Conductivity</span>
+              <span style="font-size:.65rem;font-weight:700;color:var(--white)">16.0 W/m·K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Load -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-content">
+        <div class="badge badge-blue">Dynamic Load Definition</div>
+        <h2 data-i18n="feat2_title">하중 입력, 다시는 틀리지 않습니다</h2>
+        <p data-i18n="feat2_desc">하중 입력은 가장 빈번하게 실수가 발생하는 단계입니다. 단위 변환 오류, 수식 오기입 하나가 해석 전체를 무의미하게 만듭니다. Valentis는 검증된 수식으로 정확한 하중을 생성하고, 시뮬레이션 소프트웨어에 바로 넣을 수 있는 포맷으로 내보냅니다.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="feat2_li1">MIL-STD-810H · IEC 61373 규격 충격·진동 하중 원클릭 생성</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat2_li2">UBC-97 / KDS 41 내진 설계 응답 스펙트럼 자동 생성</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat2_li3">변위(mm) → 가속도(g) 변환을 주파수별로 자동 처리</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat2_li4">목표 RMS만 입력하면 PSD 프로파일을 역산</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat2_li5">실측 데이터에서 바로 시뮬레이션 입력 하중을 생성</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual" style="background:linear-gradient(145deg,var(--slate-9),#0c1222);border-color:rgba(255,255,255,.06)">
+        <div class="mock-ui" style="background:transparent;box-shadow:none;border:none;padding:4px">
+          <!-- Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:8px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--blue-400);font-weight:700">∿</div>
+              <div>
+                <div style="font-size:.72rem;font-weight:700;color:var(--white)">Random Vibration PSD</div>
+                <div style="font-size:.55rem;color:var(--slate-3)">MIL-STD-810H · Method 514.8 · Cat.4 Transverse</div>
+              </div>
+            </div>
+            <div style="font-size:.5rem;padding:3px 8px;border-radius:4px;background:rgba(59,130,246,.12);color:var(--blue-400);font-weight:600">Computed</div>
+          </div>
+          <!-- Chart area -->
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px 12px 10px;margin-bottom:12px">
+            <div style="font-size:.6rem;color:var(--slate-3);margin-bottom:8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase">PSD Profile (log-log)</div>
+            <svg viewBox="0 0 300 100" style="width:100%;height:80px" preserveAspectRatio="none">
+              <!-- Grid lines -->
+              <line x1="20" y1="25" x2="280" y2="25" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+              <line x1="20" y1="45" x2="280" y2="45" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+              <line x1="20" y1="65" x2="280" y2="65" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+              <!-- Tolerance band (±3dB) -->
+              <path d="M20,48 L66,11 L93,11 L280,75" fill="none" stroke="rgba(96,165,250,.12)" stroke-width="1" stroke-dasharray="4,3"/>
+              <path d="M20,62 L66,25 L93,25 L280,89" fill="none" stroke="rgba(96,165,250,.12)" stroke-width="1" stroke-dasharray="4,3"/>
+              <!-- PSD trapezoid fill (MIL-STD-810H Cat4 Transverse, log-log mapped) -->
+              <path d="M20,55 L66,18 L93,18 L280,82 L280,95 L20,95 Z" fill="url(#psdGradDark)" opacity=".15"/>
+              <!-- PSD trapezoid line -->
+              <path d="M20,55 L66,18 L93,18 L280,82" fill="none" stroke="var(--blue-400)" stroke-width="2.5" stroke-linejoin="round"/>
+              <!-- Break points -->
+              <circle cx="20" cy="55" r="3" fill="var(--blue-400)" opacity=".9"/>
+              <circle cx="66" cy="18" r="3" fill="var(--blue-400)" opacity=".9"/>
+              <circle cx="93" cy="18" r="3" fill="var(--blue-400)" opacity=".9"/>
+              <circle cx="280" cy="82" r="3" fill="var(--blue-400)" opacity=".9"/>
+              <!-- Axis labels -->
+              <text x="16" y="99" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif">10</text>
+              <text x="60" y="99" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif">20</text>
+              <text x="87" y="99" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif">30</text>
+              <text x="262" y="99" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif">500</text>
+              <defs><linearGradient id="psdGradDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs>
+            </svg>
+          </div>
+          <!-- Stats row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:6px;padding:8px 6px;text-align:center">
+              <div style="font-size:.85rem;font-weight:800;color:var(--blue-400)">0.20</div>
+              <div style="font-size:.48rem;color:var(--slate-3);margin-top:2px">Overall gRMS</div>
+            </div>
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:6px;padding:8px 6px;text-align:center">
+              <div style="font-size:.85rem;font-weight:800;color:var(--blue-400)">10–500</div>
+              <div style="font-size:.48rem;color:var(--slate-3);margin-top:2px">Hz Range</div>
+            </div>
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:6px;padding:8px 6px;text-align:center">
+              <div style="font-size:.85rem;font-weight:800;color:var(--blue-400)">+7/−3</div>
+              <div style="font-size:.48rem;color:var(--slate-3);margin-top:2px">dB/oct slope</div>
+            </div>
+          </div>
+          <!-- Tab buttons -->
+          <div style="display:flex;gap:4px;flex-wrap:wrap">
+            <span style="font-size:.58rem;padding:4px 10px;background:rgba(255,255,255,.04);color:var(--slate-3);border-radius:5px;border:1px solid rgba(255,255,255,.06)">Shock</span>
+            <span style="font-size:.58rem;padding:4px 10px;background:rgba(255,255,255,.04);color:var(--slate-3);border-radius:5px;border:1px solid rgba(255,255,255,.06)">Harmonic</span>
+            <span style="font-size:.58rem;padding:4px 10px;background:rgba(59,130,246,.15);color:var(--blue-400);border-radius:5px;font-weight:600;border:1px solid rgba(59,130,246,.25)">Random</span>
+            <span style="font-size:.58rem;padding:4px 10px;background:rgba(255,255,255,.04);color:var(--slate-3);border-radius:5px;border:1px solid rgba(255,255,255,.06)">RMS/PSD</span>
+            <span style="font-size:.58rem;padding:4px 10px;background:rgba(255,255,255,.04);color:var(--slate-3);border-radius:5px;border:1px solid rgba(255,255,255,.06)">Response</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Curve Digitizer -->
+    <div class="feature-row reveal">
+      <div class="feature-content">
+        <div class="badge badge-blue">Curve Digitizer</div>
+        <h2 data-i18n="feat3_title">과거 그래프도 데이터로 되살립니다</h2>
+        <p data-i18n="feat3_desc">원본 데이터가 유실된 과거 보고서, 논문, 시험 성적서의 그래프가 있으신가요?<br>이미지 위에 점을 찍으면 수치 데이터로 복원됩니다.<br>재시험 없이 레거시 자료를 재활용하세요.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="feat3_li1">이미지(PNG/JPG)를 드래그 앤 드롭하면 바로 시작</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat3_li2">3점 캘리브레이션으로 정확한 좌표 매핑</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat3_li3">스플라인 보간으로 매끄러운 곡선 복원</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat3_li4">CSV로 내보내어 다른 분석에 바로 활용</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual" style="background:linear-gradient(145deg,var(--slate-9),#0c1222);border-color:rgba(255,255,255,.06)">
+        <div class="mock-ui" style="background:transparent;box-shadow:none;border:none;padding:4px">
+          <!-- Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:8px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--blue-400);font-weight:700">✎</div>
+              <div>
+                <div style="font-size:.72rem;font-weight:700;color:var(--white)">Curve Digitizer</div>
+                <div style="font-size:.55rem;color:var(--slate-3)">Spline Interpolation · 12 points</div>
+              </div>
+            </div>
+            <div style="font-size:.5rem;padding:3px 8px;border-radius:4px;background:rgba(59,130,246,.12);color:var(--blue-400);font-weight:600">Digitized</div>
+          </div>
+          <!-- Chart area -->
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px 12px 10px;margin-bottom:12px">
+            <div style="font-size:.6rem;color:var(--slate-3);margin-bottom:8px;font-weight:600;letter-spacing:.04em;text-transform:uppercase">Image → Data Extraction</div>
+            <svg viewBox="0 0 300 100" style="width:100%;height:80px">
+              <!-- Axes -->
+              <line x1="28" y1="8" x2="28" y2="90" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+              <line x1="28" y1="90" x2="290" y2="90" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+              <!-- Grid -->
+              <line x1="28" y1="30" x2="290" y2="30" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <line x1="28" y1="50" x2="290" y2="50" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <line x1="28" y1="70" x2="290" y2="70" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <!-- Original trace (dashed, faded) -->
+              <path d="M32,82 C55,80 75,68 95,55 C115,42 130,28 155,22 C180,16 200,20 220,30 C240,40 255,35 275,18" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <!-- Spline fit (smooth solid line) -->
+              <path d="M32,82 C52,79 72,68 92,56 C112,44 128,30 153,23 C178,16 198,20 218,30 C238,40 256,34 276,18" fill="none" stroke="var(--blue-400)" stroke-width="2.5"/>
+              <!-- Fill under spline -->
+              <path d="M32,82 C52,79 72,68 92,56 C112,44 128,30 153,23 C178,16 198,20 218,30 C238,40 256,34 276,18 L276,90 L32,90 Z" fill="url(#curveGradDark)" opacity=".1"/>
+              <!-- Data points with crosshair style -->
+              <circle cx="32" cy="82" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="32" cy="82" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="65" cy="72" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="65" cy="72" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="95" cy="55" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="95" cy="55" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="125" cy="35" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="125" cy="35" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="155" cy="22" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="155" cy="22" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="185" cy="18" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="185" cy="18" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="210" cy="26" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="210" cy="26" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="235" cy="34" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="235" cy="34" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="255" cy="34" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="255" cy="34" r="1.5" fill="var(--blue-400)"/>
+              <circle cx="276" cy="18" r="4" fill="none" stroke="var(--blue-400)" stroke-width="1.5" opacity=".8"/>
+              <circle cx="276" cy="18" r="1.5" fill="var(--blue-400)"/>
+              <!-- Calibration markers (3-point) -->
+              <g opacity=".5">
+                <line x1="28" y1="86" x2="36" y2="86" stroke="#f59e0b" stroke-width="1"/>
+                <line x1="32" y1="82" x2="32" y2="90" stroke="#f59e0b" stroke-width="1"/>
+                <line x1="155" y1="18" x2="155" y2="26" stroke="#f59e0b" stroke-width="1"/>
+                <line x1="151" y1="22" x2="159" y2="22" stroke="#f59e0b" stroke-width="1"/>
+                <line x1="276" y1="14" x2="276" y2="22" stroke="#f59e0b" stroke-width="1"/>
+                <line x1="272" y1="18" x2="280" y2="18" stroke="#f59e0b" stroke-width="1"/>
+              </g>
+              <defs><linearGradient id="curveGradDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs>
+            </svg>
+          </div>
+          <!-- Stats row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:6px;padding:8px 6px;text-align:center">
+              <div style="font-size:.85rem;font-weight:800;color:var(--blue-400)">10</div>
+              <div style="font-size:.48rem;color:var(--slate-3);margin-top:2px">Data Points</div>
+            </div>
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:6px;padding:8px 6px;text-align:center">
+              <div style="font-size:.85rem;font-weight:800;color:var(--blue-400)">3-pt</div>
+              <div style="font-size:.48rem;color:var(--slate-3);margin-top:2px">Calibration</div>
+            </div>
+            <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:6px;padding:8px 6px;text-align:center">
+              <div style="font-size:.85rem;font-weight:800;color:var(--blue-400)">Cubic</div>
+              <div style="font-size:.48rem;color:var(--slate-3);margin-top:2px">Spline Fit</div>
+            </div>
+          </div>
+          <!-- Legend -->
+          <div style="display:flex;gap:14px;align-items:center">
+            <span style="display:flex;align-items:center;gap:5px;font-size:.58rem;color:var(--slate-3)"><span style="display:inline-block;width:14px;height:1.5px;background:rgba(255,255,255,.2);border-radius:1px;border-top:1px dashed rgba(255,255,255,.3)"></span> Original</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:.58rem;color:var(--slate-3)"><span style="display:inline-block;width:14px;height:2.5px;background:var(--blue-400);border-radius:1px"></span> Spline Fit</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:.58rem;color:var(--slate-3)"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;border:1.5px solid var(--blue-400);background:transparent"></span> Points</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Characterization — Mass Participation -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-content">
+        <div class="badge badge-blue">Dynamic Characterization</div>
+        <h2 data-i18n="feat_mass_title">내 모델, 충분한 모드를 포함하고 있을까?</h2>
+        <p data-i18n="feat_mass_desc">모달 해석 후 "모드를 몇 개까지 포함해야 하는가?"는 항상 남는 질문입니다. Mass Participation은 각 모드의 질량 참여율과 누적참여율을 즉시 시각화하여, 해석에 포함할 모드 수를 정량적으로 판단할 수 있게 합니다.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="feat_mass_li1">CSV 드래그 앤 드롭으로 모달 결과 즉시 로드</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat_mass_li2">모드별 질량 참여율 + 누적참여율 차트</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat_mass_li3">80% 미달성 시 빨간색 경고로 부족한 모드 즉시 식별</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="feat_mass_li4">Dominant Mode 리포트로 핵심 모드 자동 식별</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual" style="background:linear-gradient(145deg,var(--slate-9),#0c1222);border-color:rgba(255,255,255,.06)">
+        <div class="mock-ui" style="background:transparent;box-shadow:none;border:none;padding:4px">
+          <!-- Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:8px;background:rgba(59,130,246,.15);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--blue-400);font-weight:700">▥</div>
+              <div>
+                <div style="font-size:.72rem;font-weight:700;color:var(--white)">Mass Participation</div>
+                <div style="font-size:.55rem;color:var(--slate-3)">20 Modes · X / Y / Z Direction</div>
+              </div>
+            </div>
+            <div style="font-size:.5rem;padding:3px 8px;border-radius:4px;background:rgba(16,185,129,.12);color:#10b981;font-weight:600">Loaded</div>
+          </div>
+          <!-- Dual-axis: X MPR (red line+markers, left Y) + Cumulative (green line, right Y) -->
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:12px 12px 8px;margin-bottom:10px">
+            <div style="font-size:.55rem;color:var(--slate-3);margin-bottom:6px;font-weight:600;letter-spacing:.04em;text-transform:uppercase">X Direction — MPR &amp; Cumulative</div>
+            <svg viewBox="0 0 300 95" style="width:100%;height:80px">
+              <!-- Grid -->
+              <line x1="28" y1="10" x2="272" y2="10" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <line x1="28" y1="30" x2="272" y2="30" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <line x1="28" y1="50" x2="272" y2="50" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <line x1="28" y1="70" x2="272" y2="70" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <!-- X axis -->
+              <line x1="28" y1="82" x2="272" y2="82" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+              <!-- Left Y axis label (MPR, red) -->
+              <text x="6" y="10" fill="rgba(220,38,38,.45)" font-size="4.5" font-family="Inter,sans-serif" text-anchor="start">MPR</text>
+              <!-- Right Y axis label (Cum, green) -->
+              <text x="294" y="10" fill="rgba(16,185,129,.45)" font-size="4.5" font-family="Inter,sans-serif" text-anchor="end">Cum</text>
+              <!-- 80% cumulative threshold (dashed) -->
+              <line x1="28" y1="18" x2="272" y2="18" stroke="rgba(239,68,68,.3)" stroke-width=".8" stroke-dasharray="3,3"/>
+              <text x="275" y="20" fill="rgba(239,68,68,.4)" font-size="4.5" font-family="Inter,sans-serif">80%</text>
+              <!--
+                20 modes, X spacing: mode 1=34, step ~12.5px → mode 20=271
+                MPR data: mode 3 spike(0.35), mode 9 spike(0.25), rest small(0.01~0.05)
+                Y range 0~0.40 mapped to 82(0)→10(0.40)  → scale: val*180
+                Cum range 0~1.0 mapped to 82(0)→10(1.0) → scale: val*72
+              -->
+              <!-- X MPR line (red) — spikes at mode 3 and 9 -->
+              <polyline points="34,78 46,76 59,15 71,76 84,78 96,77 109,78 121,77 134,37 146,77 159,78 171,78 184,77 196,78 209,78 221,78 234,78 246,78 259,79 271,79" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- MPR markers (highlight spikes) -->
+              <circle cx="59"  cy="15" r="2.5" fill="#dc2626"/>
+              <circle cx="134" cy="37" r="2.5" fill="#dc2626"/>
+              <circle cx="34"  cy="78" r="1.5" fill="#dc2626" opacity=".5"/><circle cx="46"  cy="76" r="1.5" fill="#dc2626" opacity=".5"/>
+              <circle cx="71"  cy="76" r="1.5" fill="#dc2626" opacity=".5"/><circle cx="84"  cy="78" r="1.5" fill="#dc2626" opacity=".5"/>
+              <circle cx="96"  cy="77" r="1.5" fill="#dc2626" opacity=".5"/><circle cx="109" cy="78" r="1.5" fill="#dc2626" opacity=".5"/>
+              <circle cx="121" cy="77" r="1.5" fill="#dc2626" opacity=".5"/><circle cx="146" cy="77" r="1.5" fill="#dc2626" opacity=".5"/>
+              <circle cx="159" cy="78" r="1.5" fill="#dc2626" opacity=".5"/><circle cx="171" cy="78" r="1.5" fill="#dc2626" opacity=".5"/>
+              <circle cx="184" cy="77" r="1.5" fill="#dc2626" opacity=".5"/><circle cx="196" cy="78" r="1.5" fill="#dc2626" opacity=".5"/>
+              <circle cx="271" cy="79" r="1.5" fill="#dc2626" opacity=".5"/>
+              <!-- Cumulative line (green) — jumps at mode 3 and 9, gradual elsewhere -->
+              <polyline points="34,79 46,76 59,50 71,47 84,44 96,42 109,40 121,38 134,20 146,18 159,17 171,16 184,15.5 196,15 209,14.5 221,14 234,13.5 246,13 259,12.5 271,12" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Cumulative markers (key points) -->
+              <circle cx="59"  cy="50" r="2" fill="#10b981"/>
+              <circle cx="134" cy="20" r="2" fill="#10b981"/>
+              <circle cx="271" cy="12" r="2" fill="#10b981"/>
+              <!-- Mode labels (selected) -->
+              <text x="34"  y="90" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">1</text>
+              <text x="59"  y="90" fill="rgba(255,255,255,.3)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">3</text>
+              <text x="96"  y="90" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">6</text>
+              <text x="134" y="90" fill="rgba(255,255,255,.3)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">9</text>
+              <text x="184" y="90" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">13</text>
+              <text x="234" y="90" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">17</text>
+              <text x="271" y="90" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">20</text>
+            </svg>
+          </div>
+          <!-- Legend -->
+          <div style="display:flex;gap:16px;align-items:center;margin-bottom:10px">
+            <span style="display:flex;align-items:center;gap:5px;font-size:.55rem;color:var(--slate-3)"><span style="display:inline-block;width:14px;height:2px;background:#dc2626;border-radius:1px"></span> MPR</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:.55rem;color:var(--slate-3)"><span style="display:inline-block;width:14px;height:2px;background:#10b981;border-radius:1px"></span> Cumulative</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:.55rem;color:var(--slate-3)"><span style="display:inline-block;width:14px;height:1px;background:rgba(239,68,68,.4);border-radius:1px;border-top:1px dashed rgba(239,68,68,.5)"></span> 80%</span>
+          </div>
+          <!-- Stats row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px">
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:7px 4px;text-align:center">
+              <div style="font-size:.8rem;font-weight:800;color:var(--white)">20</div>
+              <div style="font-size:.46rem;color:var(--slate-3);margin-top:2px">Modes</div>
+            </div>
+            <div style="background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.15);border-radius:6px;padding:7px 4px;text-align:center">
+              <div style="font-size:.8rem;font-weight:800;color:#dc2626">94.2%</div>
+              <div style="font-size:.46rem;color:var(--slate-3);margin-top:2px">X final</div>
+            </div>
+            <div style="background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.15);border-radius:6px;padding:7px 4px;text-align:center">
+              <div style="font-size:.8rem;font-weight:800;color:#16a34a">87.5%</div>
+              <div style="font-size:.46rem;color:var(--slate-3);margin-top:2px">Y final</div>
+            </div>
+            <div style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.15);border-radius:6px;padding:7px 4px;text-align:center">
+              <div style="font-size:.8rem;font-weight:800;color:#2563eb">83.1%</div>
+              <div style="font-size:.46rem;color:var(--slate-3);margin-top:2px">Z final</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analysis Intelligence -->
+    <div class="feature-row reveal" id="modules" style="border-bottom:none;display:block;padding-top:72px;padding-bottom:0">
+      <div class="text-center" style="margin-bottom:48px">
+        <div class="badge badge-blue">Analysis Intelligence</div>
+        <h2 style="margin-top:18px" data-i18n="wf_title">데이터를 옮기지 말고, 흐름을 이어가세요</h2>
+        <p class="subtitle" style="max-width:860px" data-i18n="wf_subtitle">7개 분석 모듈이 하나의 세션으로 연결됩니다.<br>한 단계의 결과가 다음 단계의 입력으로 자연스럽게 이어져, 데이터 이관 없이 분석에만 집중할 수 있습니다.</p>
+      </div>
+      <div class="modules-grid">
+      <!-- Scenario (DOE) — Pairplot: diagonal=histogram, off-diagonal=scatter -->
+      <div class="module-card reveal">
+        <span class="mod-step">1</span>
+        <div class="mod-chart">
+          <svg viewBox="0 0 200 70" style="width:100%;height:56px">
+            <!-- 3x3 grid lines -->
+            <line x1="67" y1="0" x2="67" y2="70" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+            <line x1="134" y1="0" x2="134" y2="70" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+            <line x1="0" y1="23" x2="200" y2="23" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+            <line x1="0" y1="47" x2="200" y2="47" stroke="rgba(255,255,255,.06)" stroke-width=".5"/>
+            <!-- Anti-diagonal: histograms (bottom-left → top-right) -->
+            <!-- Cell (row3, col1) -->
+            <rect x="8" y="57" width="10" height="13" rx="1" fill="#7dd3fc" opacity=".8"/><rect x="20" y="52" width="10" height="18" rx="1" fill="#93c5fd" opacity=".85"/><rect x="32" y="55" width="10" height="15" rx="1" fill="#a5d8ff" opacity=".7"/><rect x="44" y="59" width="10" height="11" rx="1" fill="#7dd3fc" opacity=".65"/>
+            <!-- Cell (row2, col2) -->
+            <rect x="76" y="32" width="10" height="15" rx="1" fill="#7dd3fc" opacity=".7"/><rect x="88" y="28" width="10" height="19" rx="1" fill="#93c5fd" opacity=".85"/><rect x="100" y="34" width="10" height="13" rx="1" fill="#a5d8ff" opacity=".65"/><rect x="112" y="30" width="10" height="17" rx="1" fill="#7dd3fc" opacity=".8"/>
+            <!-- Cell (row1, col3) -->
+            <rect x="143" y="10" width="10" height="13" rx="1" fill="#7dd3fc" opacity=".65"/><rect x="155" y="5" width="10" height="18" rx="1" fill="#93c5fd" opacity=".85"/><rect x="167" y="8" width="10" height="15" rx="1" fill="#a5d8ff" opacity=".8"/><rect x="179" y="12" width="10" height="11" rx="1" fill="#7dd3fc" opacity=".55"/>
+            <!-- Off-diagonal: scatter dots -->
+            <!-- (row1, col1) -->
+            <circle cx="12" cy="8" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="28" cy="15" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="40" cy="6" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="52" cy="18" r="1.5" fill="#7dd3fc" opacity=".9"/>
+            <!-- (row1, col2) -->
+            <circle cx="80" cy="8" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="92" cy="15" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="105" cy="5" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="118" cy="12" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="88" cy="18" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="100" cy="10" r="1.5" fill="#7dd3fc" opacity=".9"/>
+            <!-- (row2, col1) -->
+            <circle cx="12" cy="30" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="28" cy="38" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="40" cy="32" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="52" cy="40" r="1.5" fill="#7dd3fc" opacity=".9"/>
+            <!-- (row2, col3) -->
+            <circle cx="148" cy="30" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="160" cy="40" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="175" cy="33" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="185" cy="42" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="155" cy="36" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="170" cy="28" r="1.5" fill="#7dd3fc" opacity=".9"/>
+            <!-- (row3, col2) -->
+            <circle cx="80" cy="55" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="95" cy="62" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="108" cy="50" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="120" cy="58" r="1.5" fill="#7dd3fc" opacity=".9"/>
+            <!-- (row3, col3) -->
+            <circle cx="148" cy="55" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="162" cy="62" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="178" cy="52" r="1.5" fill="#7dd3fc" opacity=".9"/><circle cx="188" cy="58" r="1.5" fill="#7dd3fc" opacity=".9"/>
+          </svg>
+        </div>
+        <h3>Scenario (DOE)</h3>
+        <p data-i18n="mod1">"몇 개의 케이스를 어떤 조합으로 돌려야 할까?"<br>LHS, Monte Carlo, Taguchi 등 5가지 방법으로 최소 케이스로 설계 공간을 최대한 커버합니다.</p>
+      </div>
+      <!-- Data Transposition — files → unified table -->
+      <div class="module-card reveal reveal-delay-1">
+        <span class="mod-step">2</span>
+        <div class="mod-chart">
+          <svg viewBox="0 0 200 70" style="width:100%;height:56px">
+            <!-- Source files -->
+            <rect x="6" y="8" width="22" height="26" rx="3" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+            <line x1="12" y1="17" x2="22" y2="17" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <line x1="12" y1="23" x2="20" y2="23" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <rect x="34" y="14" width="22" height="26" rx="3" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+            <line x1="40" y1="23" x2="50" y2="23" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <line x1="40" y1="29" x2="48" y2="29" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <rect x="20" y="38" width="22" height="26" rx="3" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+            <line x1="26" y1="47" x2="36" y2="47" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <line x1="26" y1="53" x2="34" y2="53" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+            <!-- Arrow -->
+            <path d="M68,35 L96,35" stroke="#7dd3fc" stroke-width="1.5" opacity=".9"/>
+            <path d="M92,30 L100,35 L92,40" fill="#7dd3fc" opacity=".9"/>
+            <!-- Unified table -->
+            <rect x="108" y="6" width="86" height="58" rx="4" fill="rgba(125,211,252,.08)" stroke="rgba(125,211,252,.25)" stroke-width="1.5"/>
+            <!-- Header row -->
+            <rect x="108" y="6" width="86" height="12" rx="4" fill="rgba(125,211,252,.15)"/>
+            <rect x="108" y="14" width="86" height="4" rx="0" fill="rgba(125,211,252,.15)"/>
+            <line x1="108" y1="18" x2="194" y2="18" stroke="rgba(125,211,252,.2)" stroke-width="1"/>
+            <!-- Data rows -->
+            <line x1="108" y1="30" x2="194" y2="30" stroke="rgba(125,211,252,.12)" stroke-width="1"/>
+            <line x1="108" y1="42" x2="194" y2="42" stroke="rgba(125,211,252,.12)" stroke-width="1"/>
+            <line x1="108" y1="54" x2="194" y2="54" stroke="rgba(125,211,252,.12)" stroke-width="1"/>
+            <!-- Column dividers -->
+            <line x1="130" y1="6" x2="130" y2="64" stroke="rgba(125,211,252,.08)" stroke-width="1"/>
+            <line x1="152" y1="6" x2="152" y2="64" stroke="rgba(125,211,252,.08)" stroke-width="1"/>
+            <line x1="174" y1="6" x2="174" y2="64" stroke="rgba(125,211,252,.08)" stroke-width="1"/>
+            <!-- Header badges -->
+            <text x="113" y="14" fill="var(--blue-400)" font-size="5" font-family="Inter,sans-serif" font-weight="600">INPUT</text>
+            <text x="156" y="14" fill="var(--blue-400)" font-size="5" font-family="Inter,sans-serif" font-weight="600">OUTPUT</text>
+          </svg>
+        </div>
+        <h3>Data Transposition</h3>
+        <p data-i18n="mod2">수십~수백 개의 해석 결과 파일을<br>하나하나 열어서 정리하던 작업을,<br>드래그 앤 드롭 한 번으로 통합 테이블로 변환합니다.</p>
+      </div>
+      <!-- Sensitivity — Correlation bar chart (Pearson solid + Spearman outlined) -->
+      <div class="module-card reveal reveal-delay-2">
+        <span class="mod-step">3</span>
+        <div class="mod-chart">
+          <svg viewBox="0 0 200 70" style="width:100%;height:56px">
+            <!-- Zero line -->
+            <line x1="5" y1="35" x2="195" y2="35" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+            <!-- X1: strong positive (yellow) -->
+            <rect x="12" y="8" width="14" height="27" rx="2" fill="#fbbf24" opacity=".9"/>
+            <rect x="28" y="12" width="14" height="23" rx="2" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity=".7"/>
+            <!-- X2: moderate negative (sky blue) -->
+            <rect x="52" y="35" width="14" height="20" rx="2" fill="#7dd3fc" opacity=".9"/>
+            <rect x="68" y="35" width="14" height="16" rx="2" fill="none" stroke="#7dd3fc" stroke-width="1.2" opacity=".7"/>
+            <!-- X3: strong positive (yellow) -->
+            <rect x="92" y="12" width="14" height="23" rx="2" fill="#fbbf24" opacity=".85"/>
+            <rect x="108" y="15" width="14" height="20" rx="2" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity=".7"/>
+            <!-- X4: weak negative (sky blue) -->
+            <rect x="132" y="35" width="14" height="10" rx="2" fill="#7dd3fc" opacity=".7"/>
+            <rect x="148" y="35" width="14" height="8" rx="2" fill="none" stroke="#7dd3fc" stroke-width="1.2" opacity=".55"/>
+            <!-- X5: weak positive (yellow) -->
+            <rect x="172" y="28" width="14" height="7" rx="2" fill="#fbbf24" opacity=".6"/>
+            <rect x="188" y="30" width="8" height="5" rx="2" fill="none" stroke="#fbbf24" stroke-width="1.2" opacity=".45"/>
+            <!-- Labels -->
+            <text x="22" y="68" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">X₁</text>
+            <text x="62" y="68" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">X₂</text>
+            <text x="102" y="68" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">X₃</text>
+            <text x="142" y="68" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">X₄</text>
+            <text x="180" y="68" fill="rgba(255,255,255,.25)" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">X₅</text>
+          </svg>
+        </div>
+        <h3>Sensitivity</h3>
+        <p data-i18n="mod3">"어떤 변수가 결과에 가장 큰 영향을 미치는가?"<br>영향이 미미한 변수를 조기에 식별하여<br>핵심 변수에 리소스를 집중할 수 있습니다.</p>
+      </div>
+      <!-- Design Explorer — Parallel coordinates with rank coloring -->
+      <div class="module-card reveal">
+        <span class="mod-step">4</span>
+        <div class="mod-chart">
+          <svg viewBox="0 0 200 70" style="width:100%;height:56px">
+            <!-- Vertical axes -->
+            <line x1="20" y1="5" x2="20" y2="62" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <line x1="56" y1="5" x2="56" y2="62" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <line x1="92" y1="5" x2="92" y2="62" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <line x1="128" y1="5" x2="128" y2="62" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <line x1="164" y1="5" x2="164" y2="62" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+            <!-- Grayed-out lines (filtered out) -->
+            <polyline points="20,40 56,20 92,50 128,15 164,45" fill="none" stroke="rgba(200,200,200,.12)" stroke-width="1"/>
+            <polyline points="20,15 56,50 92,20 128,55 164,30" fill="none" stroke="rgba(200,200,200,.12)" stroke-width="1"/>
+            <polyline points="20,55 56,35 92,45 128,40 164,55" fill="none" stroke="rgba(200,200,200,.12)" stroke-width="1"/>
+            <polyline points="20,25 56,45 92,12 128,48 164,18" fill="none" stroke="rgba(200,200,200,.12)" stroke-width="1"/>
+            <!-- Rank-colored lines (sky blue→green→amber→yellow) -->
+            <polyline points="20,10 56,30 92,18 128,8 164,12" fill="none" stroke="#7dd3fc" stroke-width="1.8" opacity=".95"/>
+            <polyline points="20,22 56,15 92,28 128,12 164,20" fill="none" stroke="#6ee7b7" stroke-width="1.5" opacity=".9"/>
+            <polyline points="20,35 56,25 92,35 128,22 164,28" fill="none" stroke="#fde68a" stroke-width="1.5" opacity=".85"/>
+            <polyline points="20,48 56,38 92,42 128,35 164,40" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity=".8"/>
+            <!-- Axis labels -->
+            <text x="20" y="69" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">X₁</text>
+            <text x="56" y="69" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">X₂</text>
+            <text x="92" y="69" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">X₃</text>
+            <text x="128" y="69" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">Y₁</text>
+            <text x="164" y="69" fill="rgba(255,255,255,.2)" font-size="5" font-family="Inter,sans-serif" text-anchor="middle">Y₂</text>
+          </svg>
+        </div>
+        <h3>Design Explorer</h3>
+        <p data-i18n="mod4">"제약조건을 만족하면서 가장 좋은 설계는?"<br>경험 기반의 설계 선정을<br>정량적 순위 기반 의사결정으로 전환합니다.</p>
+      </div>
+      <!-- Meta Model — 3D wireframe surface mesh (wave) -->
+      <div class="module-card reveal reveal-delay-1">
+        <span class="mod-step">5</span>
+        <div class="mod-chart">
+          <svg viewBox="0 18 200 56" style="width:100%;height:56px">
+            <!-- 3D wave surface wireframe (7×7 grid, isometric) -->
+            <!-- j-constant lines (back→front) -->
+            <polyline points="100,27 113,26 126,29 139,37 152,44 165,48 178,47" fill="none" stroke="#7dd3fc" stroke-width=".6" opacity=".35"/>
+            <polyline points="87,32 100,31 113,34 126,42 139,49 152,52 165,52" fill="none" stroke="#7dd3fc" stroke-width=".7" opacity=".5"/>
+            <polyline points="74,38 87,37 100,41 113,48 126,56 139,59 152,58" fill="none" stroke="#7dd3fc" stroke-width=".8" opacity=".65"/>
+            <polyline points="61,43 74,42 87,46 100,53 113,61 126,64 139,63" fill="none" stroke="#a5d8ff" stroke-width="1" opacity=".8"/>
+            <polyline points="48,45 61,44 74,47 87,55 100,62 113,66 126,65" fill="none" stroke="#7dd3fc" stroke-width=".9" opacity=".75"/>
+            <polyline points="35,45 48,44 61,47 74,55 87,62 100,66 113,65" fill="none" stroke="#7dd3fc" stroke-width=".7" opacity=".6"/>
+            <polyline points="22,47 35,46 48,49 61,57 74,64 87,67 100,66" fill="none" stroke="#7dd3fc" stroke-width=".6" opacity=".4"/>
+            <!-- i-constant lines (left→right) -->
+            <polyline points="100,27 87,32 74,38 61,43 48,45 35,45 22,47" fill="none" stroke="#7dd3fc" stroke-width=".6" opacity=".35"/>
+            <polyline points="113,26 100,31 87,37 74,42 61,44 48,44 35,46" fill="none" stroke="#a5d8ff" stroke-width=".8" opacity=".7"/>
+            <polyline points="126,29 113,34 100,41 87,46 74,47 61,47 48,49" fill="none" stroke="#a5d8ff" stroke-width=".8" opacity=".7"/>
+            <polyline points="139,37 126,42 113,48 100,53 87,55 74,55 61,57" fill="none" stroke="#7dd3fc" stroke-width=".9" opacity=".75"/>
+            <polyline points="152,44 139,49 126,56 113,61 100,62 87,62 74,64" fill="none" stroke="#7dd3fc" stroke-width=".8" opacity=".6"/>
+            <polyline points="165,48 152,52 139,59 126,64 113,66 100,66 87,67" fill="none" stroke="#7dd3fc" stroke-width=".7" opacity=".5"/>
+            <polyline points="178,47 165,52 152,58 139,63 126,65 113,65 100,66" fill="none" stroke="#7dd3fc" stroke-width=".6" opacity=".35"/>
+          </svg>
+        </div>
+        <h3>Meta Model</h3>
+        <p data-i18n="mod5">1회 해석에 수 시간이 걸리더라도,<br>예측 모델을 통해 수천 개의 설계 조합을<br>즉시 탐색합니다. 6종 알고리즘 + Adaptive Sampling.</p>
+      </div>
+      <!-- Reliability — 2D contour: Safe(blue) vs Unsafe(red) -->
+      <div class="module-card reveal reveal-delay-2">
+        <span class="mod-step">6</span>
+        <div class="mod-chart">
+          <svg viewBox="0 0 200 70" style="width:100%;height:56px">
+            <!-- Safe contours (sky blue) -->
+            <ellipse cx="65" cy="40" rx="55" ry="28" fill="rgba(125,211,252,.08)" stroke="rgba(125,211,252,.2)" stroke-width="1"/>
+            <ellipse cx="65" cy="40" rx="38" ry="20" fill="rgba(125,211,252,.1)" stroke="rgba(125,211,252,.28)" stroke-width="1"/>
+            <ellipse cx="65" cy="40" rx="20" ry="12" fill="rgba(125,211,252,.15)" stroke="rgba(125,211,252,.38)" stroke-width="1"/>
+            <!-- Unsafe contours (yellow) -->
+            <ellipse cx="150" cy="30" rx="42" ry="25" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.2)" stroke-width="1"/>
+            <ellipse cx="150" cy="30" rx="28" ry="17" fill="rgba(251,191,36,.1)" stroke="rgba(251,191,36,.28)" stroke-width="1"/>
+            <ellipse cx="150" cy="30" rx="14" ry="9" fill="rgba(251,191,36,.15)" stroke="rgba(251,191,36,.38)" stroke-width="1"/>
+            <!-- Safe points (sky blue, white border) -->
+            <circle cx="50" cy="35" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><circle cx="72" cy="45" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+            <circle cx="60" cy="28" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><circle cx="78" cy="38" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+            <circle cx="55" cy="50" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><circle cx="68" cy="32" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+            <circle cx="45" cy="42" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><circle cx="80" cy="48" r="2.5" fill="#7dd3fc" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+            <!-- Unsafe points (yellow, white border) -->
+            <circle cx="140" cy="25" r="2.5" fill="#fbbf24" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><circle cx="155" cy="32" r="2.5" fill="#fbbf24" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+            <circle cx="148" cy="20" r="2.5" fill="#fbbf24" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><circle cx="160" cy="38" r="2.5" fill="#fbbf24" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+            <circle cx="135" cy="35" r="2.5" fill="#fbbf24" stroke="rgba(255,255,255,.4)" stroke-width=".5"/><circle cx="152" cy="28" r="2.5" fill="#fbbf24" stroke="rgba(255,255,255,.4)" stroke-width=".5"/>
+            <!-- Labels -->
+            <text x="65" y="42" fill="rgba(125,211,252,.55)" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">Safe</text>
+            <text x="150" y="32" fill="rgba(251,191,36,.55)" font-size="6" font-family="Inter,sans-serif" text-anchor="middle">Fail</text>
+          </svg>
+        </div>
+        <h3>Reliability</h3>
+        <p data-i18n="mod6">"이 설계가 얼마나 안전한가?"<br>단순 Pass/Fail이 아닌, 확률적으로 정량화합니다.<br>과잉 설계와 과소 설계 사이의 균형점을 찾으세요.</p>
+      </div>
+      <!-- Pareto — 4-layer: gray infeasible, dark feasible, cyan expanded, gold front -->
+      <div class="module-card reveal reveal-delay-3">
+        <span class="mod-step">7</span>
+        <div class="mod-chart">
+          <svg viewBox="0 0 200 70" style="width:100%;height:56px">
+            <!-- Axes -->
+            <line x1="12" y1="5" x2="12" y2="62" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <line x1="12" y1="62" x2="195" y2="62" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <!-- Layer 1: Infeasible (gray) -->
+            <circle cx="160" cy="50" r="2.5" fill="#cbd5e1" opacity=".4" stroke="#94a3b8" stroke-width=".5"/><circle cx="175" cy="55" r="2.5" fill="#cbd5e1" opacity=".4" stroke="#94a3b8" stroke-width=".5"/>
+            <circle cx="145" cy="58" r="2.5" fill="#cbd5e1" opacity=".4" stroke="#94a3b8" stroke-width=".5"/><circle cx="185" cy="42" r="2.5" fill="#cbd5e1" opacity=".4" stroke="#94a3b8" stroke-width=".5"/>
+            <!-- Layer 2: Feasible non-Pareto (dark gray) -->
+            <circle cx="80" cy="35" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/><circle cx="100" cy="28" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/>
+            <circle cx="120" cy="32" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/><circle cx="90" cy="42" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/>
+            <circle cx="110" cy="38" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/><circle cx="135" cy="25" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/>
+            <circle cx="70" cy="45" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/><circle cx="148" cy="30" r="2.5" fill="#94a3b8" opacity=".7" stroke="#64748b" stroke-width=".5"/>
+            <!-- Layer 3: Expanded (cyan) -->
+            <circle cx="42" cy="22" r="2.5" fill="#7dd3fc" opacity=".85" stroke="#38bdf8" stroke-width=".5"/><circle cx="65" cy="30" r="2.5" fill="#7dd3fc" opacity=".85" stroke="#38bdf8" stroke-width=".5"/>
+            <circle cx="105" cy="18" r="2.5" fill="#7dd3fc" opacity=".85" stroke="#38bdf8" stroke-width=".5"/><circle cx="140" cy="15" r="2.5" fill="#7dd3fc" opacity=".85" stroke="#38bdf8" stroke-width=".5"/>
+            <!-- Layer 4: Pareto front (gold diamonds + line) -->
+            <path d="M22,8 C35,10 55,18 80,30 C105,42 140,52 175,56" fill="none" stroke="#FFC000" stroke-width="1.5" opacity=".8"/>
+            <rect x="19.5" y="5.5" width="5" height="5" rx=".5" fill="#FFC000" stroke="white" stroke-width="1" transform="rotate(45,22,8)"/>
+            <rect x="47.5" y="15.5" width="5" height="5" rx=".5" fill="#FFC000" stroke="white" stroke-width="1" transform="rotate(45,50,18)"/>
+            <rect x="77.5" y="27.5" width="5" height="5" rx=".5" fill="#FFC000" stroke="white" stroke-width="1" transform="rotate(45,80,30)"/>
+            <rect x="112.5" y="40.5" width="5" height="5" rx=".5" fill="#FFC000" stroke="white" stroke-width="1" transform="rotate(45,115,43)"/>
+            <rect x="152.5" y="50.5" width="5" height="5" rx=".5" fill="#FFC000" stroke="white" stroke-width="1" transform="rotate(45,155,53)"/>
+            <rect x="172.5" y="53.5" width="5" height="5" rx=".5" fill="#FFC000" stroke="white" stroke-width="1" transform="rotate(45,175,56)"/>
+          </svg>
+        </div>
+        <h3>Pareto Optimizer</h3>
+        <p data-i18n="mod7">"가볍고 싶으면서 강하고 싶다"<br>서로 상충하는 목표 사이에서<br>무엇을 포기하면 무엇을 얻는지 시각화합니다.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container reveal">
+    <h2 data-i18n="cta_title">반복 작업은 Valentis에게 맡기고,<br>엔지니어링 판단에 집중하세요.</h2>
+    <p data-i18n="cta_desc">시뮬레이션 전후의 모든 과정을, 하나의 플랫폼에서.</p>
+    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn-white" data-i18n="cta_btn">지금 시작하기</a>
+  </div>
+</section>
+
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Top">&#9650;</button>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo"><span>V</span>alentis™</div>
+    <div>&copy; WEBS System Korea &middot; All Rights Reserved</div>
+  </div>
+</footer>
+
+<script>
+/* ── i18n ── */
+const T = {
+  ko: {
+    nav_problems:'Why Valentis', nav_values:'Value', nav_features:'기능', nav_modules:'AI 모듈', nav_demo:'Demo',
+    nav_sub_material:'Material', nav_sub_load:'Load Definition', nav_sub_tools:'Curve Digitizer', nav_sub_char:'Characterization', nav_sub_ai:'AI Modules',
+    hero_badge:'Engineering Analysis Platform',
+    hero_title:'계산부터 의사결정까지 <span class="text-gradient">하나로.</span>',
+    hero_desc:'하중 조건은 Excel, 물성치는 핸드북, 결과 분석은 또 다른 툴...<br>복잡하게 나뉜 작업 속에서<br>정작 중요한 엔지니어링 판단에 집중하지 못하고 계신가요?<br><strong>Valentis</strong>가 그 시간을 돌려드립니다.',
+    hero_cta1:'기능 살펴보기', hero_cta2:'AI 모듈 보기',
+    hero_card_title:'하나의 플랫폼에서 모두 해결', hero_card_sub:'Unified Session',
+    stat_modules:'분석 모듈', stat_models:'예측 알고리즘', stat_materials:'재료 물성치', stat_server:'서버 의존',
+    hc_chart_label:'Analysis Output',
+    problems_badge:'이런 경험, 있으시죠?', problems_title:'시뮬레이션보다 준비 작업에<br>더 많은 시간을 쓰고 계신가요?',
+    problems_subtitle:'많은 엔지니어들이 해석 자체보다 그 전후의 반복 작업에 더 오랜 시간을 소비합니다.<br>익숙하지만 비효율적인 이 과정, 더 이상 당연하지 않습니다.',
+    prob1_title:'"또 Excel로 하중 계산..."', prob1_desc:'매 프로젝트마다 하중 조건을 Excel로 다시 만들고, 핸드북에서 물성치를 찾고, 결과를 다른 툴로 옮기는 반복 작업에 소중한 시간을 빼앗기고 있습니다.',
+    prob2_title:'"g랑 m/s² 또 헷갈렸네..."', prob2_desc:'단위 변환 실수 한 번이 수일간의 해석을 무의미하게 만듭니다. 수식 오입력, 데이터 복사 실수 — 사람이기에 피할 수 없는 오류들이 해석 품질을 위협합니다.',
+    prob3_title:'"데이터를 또 옮겨야 해..."', prob3_desc:'하중 정의, DOE, 후처리, 최적화를 각각 다른 소프트웨어에서 수행하다 보면, 정작 분석보다 데이터를 옮기고 포맷을 맞추는 데 더 많은 시간이 걸립니다.',
+    prob4_title:'"같은 데이터, 다른 결론"', prob4_desc:'동일한 해석 결과를 놓고도 분석하는 사람에 따라 결론이 달라집니다. 표준화된 프로세스가 없으면 분석 품질은 경험에 의존할 수밖에 없습니다.',
+    values_badge:'Valentis를 쓰면', values_title:'당신의 업무가 이렇게 달라집니다',
+    val1_title:'준비 시간 단축', val1_desc:'반복적인 하중 생성, 물성치 검색, 데이터 정리를 자동화하여 분석과 판단에 집중할 수 있습니다.',
+    val2_title:'입력 오류 제거', val2_desc:'검증된 수식과 자동 단위 변환으로, 단위 혼동이나 수식 실수로 해석을 다시 돌리는 일이 사라집니다.',
+    val3_title:'해석 비용 절감', val3_desc:'최적 DOE로 시뮬레이션 횟수를 최소화하고, 예측 모델로 수천 개의 설계 조합을 즉시 탐색합니다.',
+    val4_title:'확신 있는 의사결정', val4_desc:'민감도 분석부터 파레토 최적화까지, 데이터에 기반한 체계적 판단 근거를 즉시 확보합니다.',
+    val5_title:'추가 비용 없이', val5_desc:'고가의 통계 소프트웨어나 서버 없이, 브라우저 하나로 모든 분석을 수행할 수 있습니다.',
+    features_badge:'Features', features_title:'이런 일들을 해결해 드립니다',
+    features_subtitle:'시뮬레이션 전처리(입력 준비)부터 후처리(결과 분석)까지,<br>분산된 작업을 하나로 연결합니다.',
+    feat1_title:'물성치 찾느라 시간 낭비하지 마세요', feat1_desc:'핸드북을 찾거나 외부 데이터시트를 검색할 필요 없이, 881개 재료물성치를<br>즉시 확인하고 적용할 수 있습니다.<br>"어떤 물성치를 적용했는지" 리비전으로 추적되어,<br>설계 변경 시 잘못된 물성치가 적용되는 리스크도 방지합니다.',
+    feat1_li1:'금속, 세라믹, 복합재 등 881개 재료 즉시 검색', feat1_li2:'밀도, 영률, 항복강도, 열전도율 등 한눈에 비교',
+    feat1_li3:'적용 이력 추적으로 설계 변경 시 실수 방지', feat1_li4:'유체 물성치(Gas/Liquid)도 지원', feat1_li5:'필요한 재료가 없으면 요청만으로 DB 확장 가능',
+    feat2_title:'하중 입력, 다시는 틀리지 않습니다', feat2_desc:'하중 입력은 가장 빈번하게 실수가 발생하는 단계입니다. 단위 변환 오류, 수식 오기입 하나가 해석 전체를 무의미하게 만듭니다. Valentis는 검증된 수식으로 정확한 하중을 생성하고, 시뮬레이션 소프트웨어에 바로 넣을 수 있는 포맷으로 내보냅니다.',
+    feat2_li1:'MIL-STD-810H · IEC 61373 규격 충격·진동 하중 원클릭 생성', feat2_li2:'UBC-97 / KDS 41 내진 설계 응답 스펙트럼 자동 생성',
+    feat2_li3:'변위(mm) → 가속도(g) 변환을 주파수별로 자동 처리', feat2_li4:'목표 RMS만 입력하면 PSD 프로파일을 역산',
+    feat2_li5:'실측 데이터에서 바로 시뮬레이션 입력 하중을 생성',
+    feat_mass_title:'내 모델, 충분한 모드를 포함하고 있을까?', feat_mass_desc:'모달 해석 후 "모드를 몇 개까지 포함해야 하는가?"는 항상 남는 질문입니다. Mass Participation은 각 모드의 질량 참여율과 누적참여율을 즉시 시각화하여, 해석에 포함할 모드 수를 정량적으로 판단할 수 있게 합니다.',
+    feat_mass_li1:'CSV 드래그 앤 드롭으로 모달 결과 즉시 로드', feat_mass_li2:'모드별 질량 참여율 + 누적참여율 차트',
+    feat_mass_li3:'80% 미달성 시 빨간색 경고로 부족한 모드 즉시 식별', feat_mass_li4:'Dominant Mode 리포트로 핵심 모드 자동 식별',
+    feat3_title:'과거 그래프도 데이터로 되살립니다', feat3_desc:'원본 데이터가 유실된 과거 보고서, 논문, 시험 성적서의 그래프가 있으신가요?<br>이미지 위에 점을 찍으면 수치 데이터로 복원됩니다.<br>재시험 없이 레거시 자료를 재활용하세요.',
+    feat3_li1:'이미지(PNG/JPG)를 드래그 앤 드롭하면 바로 시작', feat3_li2:'3점 캘리브레이션으로 정확한 좌표 매핑',
+    feat3_li3:'스플라인 보간으로 매끄러운 곡선 복원', feat3_li4:'CSV로 내보내어 다른 분석에 바로 활용',
+    wf_title:'데이터를 옮기지 말고, 흐름을 이어가세요',
+    wf_subtitle:'7개 분석 모듈이 하나의 세션으로 연결됩니다.<br>한 단계의 결과가 다음 단계의 입력으로 자연스럽게 이어져, 데이터 이관 없이 분석에만 집중할 수 있습니다.',
+    mod1:'"몇 개의 케이스를 어떤 조합으로 돌려야 할까?"<br>LHS, Monte Carlo, Taguchi 등 5가지 방법으로 최소 케이스로 설계 공간을 최대한 커버합니다.',
+    mod2:'수십~수백 개의 해석 결과 파일을<br>하나하나 열어서 정리하던 작업을,<br>드래그 앤 드롭 한 번으로 통합 테이블로 변환합니다.',
+    mod3:'"어떤 변수가 결과에 가장 큰 영향을 미치는가?"<br>영향이 미미한 변수를 조기에 식별하여<br>핵심 변수에 리소스를 집중할 수 있습니다.',
+    mod4:'"제약조건을 만족하면서 가장 좋은 설계는?"<br>경험 기반의 설계 선정을<br>정량적 순위 기반 의사결정으로 전환합니다.',
+    mod5:'1회 해석에 수 시간이 걸리더라도,<br>예측 모델을 통해 수천 개의 설계 조합을<br>즉시 탐색합니다. 6종 알고리즘 + Adaptive Sampling.',
+    mod6:'"이 설계가 얼마나 안전한가?"<br>단순 Pass/Fail이 아닌, 확률적으로 정량화합니다.<br>과잉 설계와 과소 설계 사이의 균형점을 찾으세요.',
+    mod7:'"가볍고 싶으면서 강하고 싶다"<br>서로 상충하는 목표 사이에서<br>무엇을 포기하면 무엇을 얻는지 시각화합니다.',
+    cta_title:'반복 작업은 Valentis에게 맡기고,<br>엔지니어링 판단에 집중하세요.', cta_desc:'시뮬레이션 전후의 모든 과정을, 하나의 플랫폼에서.', cta_btn:'지금 시작하기'
+  },
+  en: {
+    nav_problems:'Why Valentis', nav_values:'Value', nav_features:'Features', nav_modules:'AI Modules', nav_demo:'Demo',
+    nav_sub_material:'Material', nav_sub_load:'Load Definition', nav_sub_tools:'Curve Digitizer', nav_sub_char:'Characterization', nav_sub_ai:'AI Modules',
+    hero_badge:'Engineering Analysis Platform',
+    hero_title:'From Calculation to Decision, <span class="text-gradient">All in One.</span>',
+    hero_desc:'Loads in Excel, materials in handbooks, analysis in another tool...<br>Lost in fragmented workflows,<br>too little time left for the engineering judgment that truly matters?<br><strong>Valentis</strong> gives you that time back.',
+    hero_cta1:'Explore Features', hero_cta2:'AI Modules',
+    hero_card_title:'Everything in one platform', hero_card_sub:'Unified Session',
+    stat_modules:'Modules', stat_models:'Algorithms', stat_materials:'Materials', stat_server:'Server Dep.',
+    hc_chart_label:'Analysis Output',
+    problems_badge:'Sound familiar?', problems_title:'Spending more time on prep work<br>than on the simulation itself?',
+    problems_subtitle:'Engineers often spend more time on prep work than on analysis itself.<br>This familiar but inefficient process doesn\'t have to be the norm.',
+    prob1_title:'"Building load cases in Excel, again..."', prob1_desc:'Every project, you rebuild load conditions in Excel, search handbooks for material properties, and transfer results to other tools — precious time consumed by repetitive, unproductive work.',
+    prob2_title:'"Mixed up g and m/s² again..."', prob2_desc:'One unit conversion mistake can invalidate days of analysis. Formula typos, copy-paste errors — inevitable human mistakes that threaten analysis quality.',
+    prob3_title:'"Moving this data to that program..."', prob3_desc:'When load definition, DOE, post-processing, and optimization each require different software, you end up spending more time on data transfer and format conversion than on actual analysis.',
+    prob4_title:'"Same data, different conclusions"', prob4_desc:'Different engineers draw different conclusions from the same simulation results. Without a standardized process, analysis quality inevitably depends on individual experience.',
+    values_badge:'With Valentis', values_title:'Here\'s how your work changes',
+    val1_title:'Automated Prep', val1_desc:'Automate repetitive load generation, material lookup, and data wrangling so you can focus on analysis and judgment.',
+    val2_title:'Zero Input Errors', val2_desc:'Validated formulas and automatic unit conversion eliminate the costly mistakes that force you to re-run analyses.',
+    val3_title:'Lower Analysis Cost', val3_desc:'Optimal DOE minimizes simulation runs; surrogate models let you explore thousands of design combinations instantly.',
+    val4_title:'Confident Decisions', val4_desc:'From sensitivity analysis to Pareto optimization, get systematic, data-driven evidence for every design decision.',
+    val5_title:'No Extra Cost', val5_desc:'No expensive statistics software or servers needed — perform all analyses in a single browser window.',
+    features_badge:'Features', features_title:'Here\'s what we solve for you',
+    features_subtitle:'From pre-processing to post-processing,<br>we connect fragmented workflows into one.',
+    feat1_title:'Stop wasting time searching for material properties', feat1_desc:'No more digging through handbooks or external datasheets.<br>Instantly search and apply properties from 881 materials.<br>Revision tracking ensures the right properties are always applied,<br>preventing costly mistakes during design changes.',
+    feat1_li1:'Instantly search 881 materials: metals, ceramics, composites', feat1_li2:'Compare density, Young\'s modulus, yield stress, thermal conductivity at a glance',
+    feat1_li3:'Track application history to prevent errors during design changes', feat1_li4:'Fluid properties (Gas/Liquid) also supported', feat1_li5:'Need a material not listed? Just request it — DB expansion on demand',
+    feat2_title:'Load inputs — never wrong again', feat2_desc:'Load input is where mistakes happen most frequently. A single unit conversion error or formula typo can invalidate the entire analysis. Valentis generates accurate loads with validated formulas and exports in formats ready for your simulation software.',
+    feat2_li1:'MIL-STD-810H · IEC 61373 shock & vibration loads in one click', feat2_li2:'Auto-generate UBC-97 / KDS 41 seismic response spectra',
+    feat2_li3:'Auto-convert displacement (mm) → acceleration (g) per frequency', feat2_li4:'Just enter target RMS — PSD profile is auto-calculated',
+    feat2_li5:'Generate simulation input loads directly from measured data',
+    feat_mass_title:'Does my model include enough modes?', feat_mass_desc:'After modal analysis, "how many modes should I include?" is always the lingering question. Mass Participation instantly visualizes each mode\'s participation ratio and cumulative participation, so you can make a quantitative decision on the number of modes to include.',
+    feat_mass_li1:'Drag & drop CSV to instantly load modal results', feat_mass_li2:'Per-mode mass participation ratio + cumulative participation chart',
+    feat_mass_li3:'Red warning when 80% threshold is not met — spot insufficient modes instantly', feat_mass_li4:'Dominant Mode report auto-identifies the key modes',
+    feat3_title:'Bring old graphs back to life as data', feat3_desc:'Lost the original data behind a report or test graph?<br>Just click points on the image to restore numerical data.<br>Reuse legacy materials without re-testing.',
+    feat3_li1:'Drag & drop an image (PNG/JPG) to get started', feat3_li2:'3-point calibration for precise coordinate mapping',
+    feat3_li3:'Spline interpolation for smooth curve reconstruction', feat3_li4:'Export to CSV for immediate use in other analyses',
+    wf_title:'Don\'t move data — keep the flow going',
+    wf_subtitle:'7 analysis modules connected in a single session.<br>Each step\'s output flows naturally into the next — no data transfer, just analysis.',
+    mod1:'"How many cases, in what combinations?"<br>5 methods including LHS, Monte Carlo, and Taguchi<br>cover the design space with minimal cases.',
+    mod2:'Dozens or hundreds of result files —<br>no more opening them one by one.<br>Drag & drop to unify into a single table.',
+    mod3:'"Which variable impacts the result most?"<br>Identify low-impact variables early<br>and focus resources on what truly matters.',
+    mod4:'"Best design meeting all constraints?"<br>Move from experience-based selection<br>to quantitative, ranked decision-making.',
+    mod5:'Even if one simulation takes hours,<br>surrogate models let you explore thousands<br>of combinations instantly. 6 algorithms + Adaptive Sampling.',
+    mod6:'"How safe is this design?"<br>Quantify with probability, not just Pass/Fail.<br>Find the balance between over- and under-design.',
+    mod7:'"Light yet strong"<br>Visualize trade-offs between conflicting goals:<br>what you give up and what you gain.',
+    cta_title:'Let Valentis handle the repetitive work.<br>Focus on engineering judgment.', cta_desc:'Everything before and after simulation, in one platform.', cta_btn:'Get Started'
+  },
+  zh: {
+    nav_problems:'Why Valentis', nav_values:'Value', nav_features:'功能', nav_modules:'AI 模块', nav_demo:'Demo',
+    nav_sub_material:'Material', nav_sub_load:'Load Definition', nav_sub_tools:'Curve Digitizer', nav_sub_char:'Characterization', nav_sub_ai:'AI Modules',
+    hero_badge:'Engineering Analysis Platform',
+    hero_title:'从计算到决策，<span class="text-gradient">一站式平台。</span>',
+    hero_desc:'载荷用Excel，材料查手册，分析又换工具...<br>在碎片化的工作流中，<br>真正重要的工程判断，还剩多少时间？<br><strong>Valentis</strong>帮您找回那些时间。',
+    hero_cta1:'功能介绍', hero_cta2:'AI 模块',
+    hero_card_title:'一个平台解决所有问题', hero_card_sub:'Unified Session',
+    stat_modules:'分析模块', stat_models:'预测算法', stat_materials:'材料属性', stat_server:'服务器依赖',
+    hc_chart_label:'Analysis Output',
+    problems_badge:'是否似曾相识？', problems_title:'花在准备工作上的时间<br>比仿真本身还多？',
+    problems_subtitle:'许多工程师在分析前后的重复性工作上花费的时间远超分析本身。<br>这个熟悉却低效的流程，不必再继续下去。',
+    prob1_title:'"又要用Excel算载荷…"', prob1_desc:'每个项目都要用Excel重新创建载荷条件、在手册中查找材料属性、将结果转移到其他工具——宝贵的时间被重复性工作消耗。',
+    prob2_title:'"g和m/s²又搞混了…"', prob2_desc:'一次单位换算错误就能让数天的分析前功尽弃。公式输入错误、数据复制失误——人为错误不可避免，却威胁着分析质量。',
+    prob3_title:'"数据又要搬到那个软件…"', prob3_desc:'载荷定义、DOE、后处理、优化分别在不同软件中进行，结果花在数据迁移和格式转换上的时间比分析本身还多。',
+    prob4_title:'"同样的数据，不同的结论"', prob4_desc:'面对相同的仿真结果，不同工程师得出不同结论。没有标准化流程，分析质量只能依赖个人经验。',
+    values_badge:'使用Valentis后', values_title:'您的工作将发生这样的变化',
+    val1_title:'缩短准备时间', val1_desc:'自动化重复性的载荷生成、材料查找和数据整理，让您专注于分析与判断。',
+    val2_title:'消除输入错误', val2_desc:'经过验证的公式和自动单位转换，消除因单位混淆或公式错误而重新计算的困扰。',
+    val3_title:'降低分析成本', val3_desc:'最优DOE最小化仿真次数，代理模型让您即时探索数千种设计组合。',
+    val4_title:'自信决策', val4_desc:'从敏感度分析到Pareto优化，即时获得系统化、数据驱动的决策依据。',
+    val5_title:'无额外成本', val5_desc:'无需昂贵的统计软件或服务器，一个浏览器即可完成所有分析。',
+    features_badge:'Features', features_title:'我们为您解决这些问题',
+    features_subtitle:'从仿真前处理（输入准备）到后处理（结果分析），将分散的工作流整合为一。',
+    feat1_title:'不再为查找材料属性浪费时间', feat1_desc:'无需翻阅手册或搜索外部数据表，<br>即可查询并应用881种材料的属性。<br>修订追踪确保始终使用正确的属性，<br>防止设计变更时的误用风险。',
+    feat1_li1:'即时搜索881种材料：金属、陶瓷、复合材料', feat1_li2:'密度、杨氏模量、屈服强度、热导率一目了然',
+    feat1_li3:'应用历史追踪，防止设计变更时出错', feat1_li4:'同时支持流体属性（气体/液体）', feat1_li5:'需要的材料不在库中？提交请求即可扩展数据库',
+    feat2_title:'载荷输入，再也不会出错', feat2_desc:'载荷输入是最容易出错的环节。一个单位换算错误或公式笔误就能让整个分析失去意义。Valentis用经过验证的公式生成精确载荷，并以仿真软件可直接使用的格式导出。',
+    feat2_li1:'MIL-STD-810H · IEC 61373 冲击与振动载荷一键生成', feat2_li2:'自动生成UBC-97 / KDS 41抗震设计响应谱',
+    feat2_li3:'按频率自动转换位移(mm)→加速度(g)', feat2_li4:'只需输入目标RMS，自动反算PSD曲线',
+    feat2_li5:'从实测数据直接生成仿真输入载荷',
+    feat_mass_title:'我的模型包含了足够的模态吗？', feat_mass_desc:'模态分析后，"应该包含多少个模态？"总是遗留的问题。Mass Participation即时可视化每个模态的质量参与率和累积参与率，让您可以定量判断需要包含的模态数量。',
+    feat_mass_li1:'拖放CSV即时加载模态分析结果', feat_mass_li2:'逐模态质量参与率 + 累积参与率图表',
+    feat_mass_li3:'未达80%阈值时红色警告——即刻识别不足的模态', feat_mass_li4:'Dominant Mode报告自动识别关键模态',
+    feat3_title:'让旧图表重新变为数据', feat3_desc:'有原始数据丢失的旧报告、论文或测试报告中的图表吗？<br>在图像上点击即可恢复数值数据。<br>无需重新测试即可复用历史资料。',
+    feat3_li1:'拖放图片（PNG/JPG）即可开始', feat3_li2:'三点标定实现精确坐标映射',
+    feat3_li3:'样条插值实现平滑曲线重建', feat3_li4:'导出CSV，立即用于其他分析',
+    wf_title:'不要搬运数据，让流程延续',
+    wf_subtitle:'7个分析模块在一个会话中连接。<br>每一步的输出自然流入下一步——无需数据迁移，专注分析。',
+    mod1:'"要跑多少个案例？用什么组合？"<br>LHS、Monte Carlo、Taguchi等5种方法<br>用最少案例最大化覆盖设计空间。',
+    mod2:'数十到数百个分析结果文件，<br>不再逐个打开整理，<br>拖放一次即可合并为统一表格。',
+    mod3:'"哪个变量对结果影响最大？"<br>尽早识别影响微弱的变量，<br>将资源集中在关键变量上。',
+    mod4:'"满足所有约束的最优设计是什么？"<br>从基于经验的选择<br>转向定量排序的决策方式。',
+    mod5:'即使单次仿真耗时数小时，<br>代理模型也能让您即时探索<br>数千种设计组合。6种算法 + 自适应采样。',
+    mod6:'"这个设计有多安全？"<br>不只是Pass/Fail，用概率来量化。<br>在过度设计和不足设计之间找到平衡点。',
+    mod7:'"又轻又强——可能吗？"<br>在相互矛盾的目标之间，<br>可视化展示取舍关系。',
+    cta_title:'把重复性工作交给Valentis，<br>专注于工程判断。', cta_desc:'仿真前后的所有流程，在一个平台上完成。', cta_btn:'立即开始'
+  }
+};
+
+let curLang = 'ko';
+function setLang(lang) {
+  curLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+}
+
+/* ── Scroll reveal ── */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ── Navbar scroll + Top button ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  document.getElementById('btnTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ── Counter animation ── */
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = +el.dataset.count;
+    if (target === 0) { el.textContent = '0'; return; }
+    const duration = 1200;
+    const start = performance.now();
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+
+/* ── Animate hero chart bars ── */
+function animateBars() {
+  const heights = [30, 50, 75, 60, 90, 45, 85, 100, 55, 70, 80, 40];
+  document.querySelectorAll('.mini-bar').forEach((bar, i) => {
+    setTimeout(() => { bar.style.height = heights[i] + '%'; }, i * 70);
+  });
+}
+
+/* ── Animate workflow steps ── */
+function animateWorkflow() {
+  const steps = document.querySelectorAll('.hc-wf-step:not(.active)');
+  steps.forEach((step, i) => {
+    setTimeout(() => { step.classList.add('active'); }, 1200 + i * 400);
+  });
+}
+
+/* ── Trigger hero animations after load ── */
+const heroObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { animateCounters(); animateBars(); animateWorkflow(); heroObs.unobserve(e.target); }
+  });
+}, { threshold: 0.3 });
+heroObs.observe(document.querySelector('.hero-card'));
+
+/* ── Mobile menu ── */
+document.getElementById('hamburger').addEventListener('click', () => {
+  const links = document.querySelector('.nav-links');
+  const isOpen = links.style.display === 'flex';
+  links.style.display = isOpen ? 'none' : 'flex';
+  if (!isOpen) {
+    Object.assign(links.style, {
+      flexDirection:'column', position:'absolute', top:'64px',
+      left:'0', right:'0', background:'#1a1f2e',
+      backdropFilter:'blur(20px)', padding:'20px 24px',
+      boxShadow:'0 8px 24px rgba(0,0,0,.3)', gap:'16px',
+      borderBottom:'1px solid rgba(255,255,255,.08)'
+    });
+  }
+});
+
+/* ── Scroll spy — highlight active nav link ── */
+const spySections = document.querySelectorAll('section[id], [id="modules"]');
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  const top = window.scrollY + 120;
+  let currentId = '';
+  spySections.forEach(s => { if (s.offsetTop <= top) currentId = s.id; });
+  navAnchors.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
