@@ -224,6 +224,65 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 .hc-wf-step.active{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.3);color:var(--blue-400)}
 .hc-wf-arrow{font-size:.5rem;color:var(--slate-3);flex-shrink:0}
 
+/* ── Evolution ── */
+.evolution{padding:80px 0;background:var(--white)}
+.evo-layout{display:flex;flex-direction:column;align-items:center;margin-top:48px;gap:0}
+.evo-apps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;max-width:800px}
+.evo-app{
+  text-align:center;padding:24px 16px;border-radius:var(--radius);
+  border:1px solid var(--slate-2);
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.evo-app::before{
+  content:'';position:absolute;top:-40px;right:-40px;width:100px;height:100px;
+  border-radius:50%;background:var(--evo-glow);opacity:0;
+  filter:blur(40px);transition:opacity .4s;
+}
+.evo-app:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--evo-accent)}
+.evo-app:hover::before{opacity:.12}
+.evo-app-icon{
+  width:44px;height:44px;border-radius:12px;margin:0 auto 10px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--evo-bg);color:var(--evo-accent);
+}
+.evo-app-name{font-size:.88rem;font-weight:700;color:var(--slate-8);margin-bottom:2px}
+.evo-app-desc{font-size:.72rem;color:var(--slate-5);line-height:1.5}
+.evo-curves{width:100%;max-width:800px;height:48px}
+.evo-curves path{fill:none;stroke:var(--slate-2);stroke-width:1}
+.evo-curves path{stroke-dasharray:500;stroke-dashoffset:500}
+.evo-curves.visible path{animation:evoDraw 5s cubic-bezier(.25,0,.2,1) forwards}
+.evo-curves.visible path:nth-child(2){animation-delay:.15s}
+.evo-curves.visible path:nth-child(3){animation-delay:.15s}
+.evo-curves.visible path:nth-child(4){animation-delay:0s}
+@keyframes evoDraw{to{stroke-dashoffset:0}}
+.evo-result{
+  text-align:center;padding:40px 60px;border-radius:var(--radius);
+  border:1px solid var(--slate-2);
+  color:var(--slate-8);min-width:280px;position:relative;overflow:hidden;
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.evo-result::before{
+  content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;
+  border-radius:50%;background:var(--blue);opacity:0;
+  filter:blur(40px);transition:opacity .4s;
+}
+.evo-result:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--blue-400)}
+.evo-result:hover::before{opacity:.12}
+.evo-result-name{font-size:1.5rem;font-weight:800;margin-bottom:6px;font-family:'Exo 2','Inter',sans-serif;letter-spacing:.02em;position:relative;color:var(--slate-8)}
+.evo-result-name span{color:var(--blue-400)}
+.evo-result-desc{font-size:.8rem;color:var(--slate-5);position:relative}
+.evo-result-badge{
+  display:inline-block;margin-top:12px;padding:4px 14px;border-radius:12px;
+  font-size:.65rem;font-weight:600;letter-spacing:.03em;position:relative;
+  background:rgba(59,130,246,.08);color:var(--blue);border:1px solid rgba(59,130,246,.12);
+}
+@media(max-width:768px){
+  .evo-apps{grid-template-columns:1fr 1fr;max-width:400px}
+  .evo-curves{display:none}
+  .evo-layout{gap:24px}
+}
+
 /* ── Section Divider ── */
 .wave-divider{position:relative;height:80px;margin-top:-1px}
 .wave-divider svg{position:absolute;bottom:0;width:100%;height:80px}
@@ -536,6 +595,54 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
     </div>
   </div>
 </section>
+
+<!-- Evolution Section (비활성화 — 추후 Features 뒤로 이동 검토) -->
+<!--
+<section class="evolution" id="evolution">
+  <div class="container text-center">
+    <div class="reveal">
+      <div class="badge badge-blue">EVOLUTION</div>
+      <h2 style="margin-top:18px">4개의 전문 앱, 하나의 웹 플랫폼으로</h2>
+      <p class="subtitle">데스크톱에 흩어져 있던 엔지니어링 도구들을 Valentis 하나로 통합했습니다.</p>
+    </div>
+    <div class="evo-layout reveal">
+      <div class="evo-apps">
+        <div class="evo-app" style="--evo-accent:#3b82f6;--evo-bg:rgba(59,130,246,.08);--evo-glow:#3b82f6">
+          <div class="evo-app-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="7" r="3"/><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M10.5 9.5L7.5 14.5"/><path d="M13.5 9.5L16.5 14.5"/><path d="M9 17h6"/></svg></div>
+          <div class="evo-app-name">MateriX</div>
+          <div class="evo-app-desc">재료물성치 DB</div>
+        </div>
+        <div class="evo-app" style="--evo-accent:#10b981;--evo-bg:rgba(16,185,129,.08);--evo-glow:#10b981">
+          <div class="evo-app-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 6C5 6 7 7 10 13S16 20 22 20"/></svg></div>
+          <div class="evo-app-name">CurvePICK</div>
+          <div class="evo-app-desc">데이터 추출</div>
+        </div>
+        <div class="evo-app" style="--evo-accent:#f59e0b;--evo-bg:rgba(245,158,11,.08);--evo-glow:#f59e0b">
+          <div class="evo-app-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-2 3-2 8h-4c0-5-2-6.05-2-8a4 4 0 0 1 4-4z"/><path d="M10 14h4"/><path d="M10 17h4"/><path d="M11 20h2"/></svg></div>
+          <div class="evo-app-name">SmartSIM</div>
+          <div class="evo-app-desc">AI Module</div>
+        </div>
+        <div class="evo-app" style="--evo-accent:#06b6d4;--evo-bg:rgba(6,182,212,.08);--evo-glow:#06b6d4">
+          <div class="evo-app-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3 9 6-18 3 9h4"/></svg></div>
+          <div class="evo-app-name">VibeShock</div>
+          <div class="evo-app-desc">하중계산 / 질량참여율</div>
+        </div>
+      </div>
+      <svg class="evo-curves" viewBox="0 0 800 48" preserveAspectRatio="none">
+        <path d="M100 0 C100 30, 400 40, 400 48"/>
+        <path d="M300 0 C300 25, 400 38, 400 48"/>
+        <path d="M500 0 C500 25, 400 38, 400 48"/>
+        <path d="M700 0 C700 30, 400 40, 400 48"/>
+      </svg>
+      <div class="evo-result">
+        <div class="evo-result-name"><span>V</span>alentis</div>
+        <div class="evo-result-desc">웹 기반 통합 플랫폼</div>
+        <div class="evo-result-badge">WEB PLATFORM</div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
 
 <!-- Problems Section -->
 <section class="section section-alt" id="problems">
@@ -1415,7 +1522,7 @@ function setLang(lang) {
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.reveal,.evo-curves').forEach(el => obs.observe(el));
 
 /* ── Navbar scroll + Top button ── */
 window.addEventListener('scroll', () => {
