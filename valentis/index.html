@@ -290,40 +290,42 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 /* ── Problems ── */
 .problems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 .problem-card{
-  background:var(--slate-8);border-radius:var(--radius);padding:32px 28px;
-  border:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1);
+  background:var(--white);border-radius:var(--radius);padding:32px 28px;
+  border:1px solid var(--slate-2);border-left:3px solid #f59e0b;
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
+  transition:all .4s cubic-bezier(.4,0,.2,1);
   position:relative;overflow:hidden;
 }
 .problem-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--blue-400),var(--blue));
+  background:linear-gradient(90deg,#f59e0b,#ef4444);
   transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);
 }
 .problem-card::after{
   content:'';position:absolute;bottom:-40px;right:-40px;width:120px;height:120px;
-  border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.1),transparent);
+  border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.08),transparent);
   opacity:0;transition:opacity .4s;
 }
-.problem-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.25);border-color:rgba(59,130,246,.2)}
+.problem-card:hover{transform:translateY(-5px);box-shadow:0 8px 32px rgba(0,0,0,.08);border-color:rgba(245,158,11,.3);border-left-color:#ef4444}
 .problem-card:hover::before{transform:scaleX(1)}
 .problem-card:hover::after{opacity:1}
 .problem-card:hover .problem-icon{transform:scale(1.08)}
 .problem-num{
   position:absolute;top:20px;right:24px;font-size:3.5rem;font-weight:900;
-  color:rgba(255,255,255,.15);line-height:1;pointer-events:none;transition:color .4s;
+  color:rgba(245,158,11,.1);line-height:1;pointer-events:none;transition:color .4s;
 }
-.problem-card:hover .problem-num{color:rgba(255,255,255,.22)}
+.problem-card:hover .problem-num{color:rgba(245,158,11,.18)}
 .problem-icon{
-  width:52px;height:52px;border-radius:14px;
+  width:48px;height:48px;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;margin-bottom:20px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.1);
-  color:var(--white);transition:transform .4s cubic-bezier(.4,0,.2,1);
-  filter:grayscale(1) brightness(10);
+  margin-bottom:20px;
+  background:rgba(245,158,11,.08);
+  border:1px solid rgba(245,158,11,.15);
+  color:#d97706;transition:transform .4s cubic-bezier(.4,0,.2,1);
 }
-.problem-card h3{font-size:1rem;margin-bottom:10px;color:var(--white);position:relative}
-.problem-card p{font-size:.88rem;color:var(--slate-1);line-height:1.7;position:relative;overflow-wrap:break-word}
+.problem-icon svg{width:22px;height:22px;stroke:#d97706;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.problem-card h3{font-size:1rem;margin-bottom:10px;color:var(--slate-8);position:relative}
+.problem-card p{font-size:.88rem;color:var(--slate-6);line-height:1.7;position:relative;overflow-wrap:break-word}
 
 /* ── Values ── */
 .values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:48px}
@@ -399,7 +401,7 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 .mod-chart{
   background:var(--slate-8);border:1px solid var(--slate-7);
   border-radius:8px;padding:14px 10px;margin-bottom:16px;position:relative;
-  display:flex;align-items:center;justify-content:center;min-height:80px;
+  display:flex;align-items:center;justify-content:center;min-height:120px;
 }
 .module-card h3{color:var(--slate-8);font-size:.95rem;margin-bottom:10px;position:relative}
 .module-card p{font-size:.82rem;color:var(--slate-6);line-height:1.7;position:relative;overflow-wrap:break-word}
@@ -658,25 +660,25 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
     <div class="problems-grid">
       <div class="problem-card reveal">
         <div class="problem-num">01</div>
-        <div class="problem-icon" style="filter:none;font-size:1.5rem;font-weight:800">⟳</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></div>
         <h3 data-i18n="prob1_title">"또 Excel로 하중 계산..."</h3>
         <p data-i18n="prob1_desc">매 프로젝트마다 하중 조건을 Excel로 다시 만들고, 핸드북에서 물성치를 찾고, 결과를 다른 툴로 옮기는 반복 작업에 소중한 시간을 빼앗기고 있습니다.</p>
       </div>
       <div class="problem-card reveal reveal-delay-1">
         <div class="problem-num">02</div>
-        <div class="problem-icon">⚠</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
         <h3 data-i18n="prob2_title">"g랑 m/s² 또 헷갈렸네..."</h3>
         <p data-i18n="prob2_desc">단위 변환 실수 한 번이 수일간의 해석을 무의미하게 만듭니다. 수식 오입력, 데이터 복사 실수 — 사람이기에 피할 수 없는 오류들이 해석 품질을 위협합니다.</p>
       </div>
       <div class="problem-card reveal reveal-delay-2">
         <div class="problem-num">03</div>
-        <div class="problem-icon">🔗</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="8" height="8" rx="1"/><path d="M10 6h4M6 10v4M18 10v4M10 18h4"/></svg></div>
         <h3 data-i18n="prob3_title">"데이터를 또 옮겨야 해..."</h3>
         <p data-i18n="prob3_desc">하중 정의, DOE, 후처리, 최적화를 각각 다른 소프트웨어에서 수행하다 보면, 정작 분석보다 데이터를 옮기고 포맷을 맞추는 데 더 많은 시간이 걸립니다.</p>
       </div>
       <div class="problem-card reveal reveal-delay-3">
         <div class="problem-num">04</div>
-        <div class="problem-icon" style="filter:none;font-size:2rem;font-weight:900">≠</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M21 3l-7 7"/><path d="M3 3l7 7"/><path d="M16 21h5v-5"/><path d="M8 21H3v-5"/><path d="M21 21l-7-7"/><path d="M3 21l7-7"/></svg></div>
         <h3 data-i18n="prob4_title">"같은 데이터, 다른 결론"</h3>
         <p data-i18n="prob4_desc">동일한 해석 결과를 놓고도 분석하는 사람에 따라 결론이 달라집니다. 표준화된 프로세스가 없으면 분석 품질은 경험에 의존할 수밖에 없습니다.</p>
       </div>
