@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KRD3N7JX3C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KRD3N7JX3C');</script>
+<meta name="description" content="VerusLab Simulation — SOLIDWORKS 기반 구조 해석(정적, 비선형, 진동, 충격, 피로)과 유동 해석(CFD, 전자냉각, HVAC) 서비스를 제공합니다.">
+<meta property="og:title" content="Simulation — SOLIDWORKS 구조 · 유동 해석">
+<meta property="og:description" content="설계 단계에서 구조적 안전성과 유동 특성을 검증하여, 시행착오를 줄이고 최적의 설계를 도출합니다.">
+<meta property="og:type" content="website">
+<title>Simulation — SOLIDWORKS 구조 · 유동 해석 | VerusLab</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231d4ed8'/><text x='5' y='24' font-size='22' font-weight='bold' fill='white' font-family='sans-serif'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Exo+2:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --emerald-50:#ecfdf5;--emerald-100:#d1fae5;--emerald-200:#a7f3d0;
+  --emerald-400:#34d399;--emerald-500:#10b981;--emerald-600:#059669;
+  --emerald:#047857;--emerald-d:#065f46;--green-d:#064e3b;
+  --blue-50:#eff6ff;--blue-100:#dbeafe;--blue-200:#bfdbfe;
+  --blue-400:#60a5fa;--blue-500:#3b82f6;--blue-600:#2563eb;
+  --blue:#1d4ed8;--blue-d:#1e3a8a;
+  --slate-9:#0f172a;--slate-8:#1e293b;--slate-7:#334155;
+  --slate-6:#475569;--slate-5:#64748b;--slate-4:#94a3b8;--slate-3:#cbd5e1;
+  --slate-2:#e2e8f0;--slate-1:#f1f5f9;--slate-0:#f8fafc;
+  --white:#ffffff;
+  --radius:14px;--radius-sm:10px;--radius-xs:8px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06);
+  --shadow:0 4px 20px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+  --shadow-lg:0 10px 40px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+  --shadow-xl:0 20px 60px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06);
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:inherit;text-decoration:none}
+
+/* ── Utility ── */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0}
+.section-alt{background:var(--slate-0)}
+.text-center{text-align:center}
+.text-gradient-blue{
+  background:linear-gradient(135deg,var(--blue-500) 0%,var(--blue) 50%,var(--blue-d) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+h1{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.25;letter-spacing:0em;word-break:keep-all}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;letter-spacing:0em}
+h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
+.subtitle{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--slate-5);max-width:680px;margin:0 auto 48px;line-height:1.8}
+.badge{
+  display:inline-block;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;
+  letter-spacing:.04em;
+}
+.badge-emerald{background:rgba(5,150,105,.07);color:var(--emerald-600);border:1px solid rgba(5,150,105,.12)}
+.badge-blue{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.12)}
+
+/* ── Animations ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ── Navbar ── */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:#1a1f2e;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1);
+}
+.navbar.scrolled{background:#1a1f2e;border-bottom-color:rgba(255,255,255,.08);box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-home{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;color:#64748b;transition:.3s;margin-right:12px}
+.nav-home:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-home svg{width:16px;height:16px}
+.nav-logo{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;color:#fff;transition:text-shadow .3s}
+.nav-logo:hover{text-shadow:0 0 12px rgba(96,165,250,.5),0 0 24px rgba(96,165,250,.2)}
+.nav-logo span{color:var(--blue-400)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  font-size:.84rem;font-weight:500;color:#94a3b8;transition:var(--transition);
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--blue-400);border-radius:1px;transition:width .3s cubic-bezier(.4,0,.2,1);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--blue-400)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:20px;height:1.5px;background:#94a3b8;margin:5px 0;transition:all .3s;border-radius:1px}
+
+/* ── Hero ── */
+.hero{
+  min-height:min(100vh,900px);display:flex;align-items:center;
+  background:linear-gradient(160deg,var(--slate-9) 0%,#0e1629 50%,#0c1222 100%);
+  padding-top:150px;padding-bottom:90px;position:relative;overflow:hidden;
+}
+.hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(59,130,246,.8),transparent 70%);opacity:.85;animation:orbFloat1 14s ease-in-out infinite}
+.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(30,58,138,.7),transparent 70%);opacity:.8;animation:orbFloat2 18s ease-in-out infinite}
+.hero-bg-orb-3{width:300px;height:300px;top:40%;left:50%;background:radial-gradient(circle,rgba(96,165,250,.6),transparent 70%);opacity:.7;animation:orbFloat3 12s ease-in-out infinite}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,-35px)}}
+.hero-network{position:absolute;inset:0;pointer-events:none}
+.hero-network canvas{width:100%;height:100%}
+.hero .container{position:relative;z-index:1;text-align:center}
+.hero h1{margin-bottom:24px;color:var(--white)}
+.hero .badge-blue{background:rgba(96,165,250,.1);color:var(--blue-400);border-color:rgba(96,165,250,.2)}
+.hero p{font-size:1.05rem;color:var(--slate-4);margin:0 auto 40px;max-width:600px;line-height:1.85;word-break:keep-all}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;
+  cursor:pointer;border:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+  letter-spacing:0em;position:relative;overflow:hidden;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--blue),var(--blue-d));color:var(--white);
+  box-shadow:0 4px 16px rgba(30,58,138,.3),0 1px 3px rgba(30,58,138,.15);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);background:linear-gradient(135deg,var(--blue-d),#172554);
+  box-shadow:0 8px 28px rgba(30,58,138,.4),0 2px 6px rgba(30,58,138,.2);
+}
+.btn-outline{background:transparent;color:var(--blue-400);border:1.5px solid rgba(96,165,250,.3);box-shadow:none}
+.btn-outline:hover{border-color:rgba(96,165,250,.6);background:rgba(96,165,250,.08);transform:translateY(-2px)}
+
+/* ── Domain Tabs ── */
+.domain-nav{display:flex;justify-content:center;gap:8px;margin-bottom:56px;flex-wrap:wrap}
+.domain-tab{
+  padding:12px 32px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;
+  cursor:pointer;border:1.5px solid var(--slate-2);background:var(--white);color:var(--slate-6);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.domain-tab:hover{border-color:var(--blue-400);color:var(--blue)}
+.domain-tab.active{
+  background:linear-gradient(135deg,var(--blue),var(--blue-d));color:var(--white);
+  border-color:transparent;box-shadow:0 4px 16px rgba(29,78,216,.2);
+}
+.domain-panel{display:none}
+.domain-panel.active{display:block}
+
+/* ── Analysis Cards Grid ── */
+.analysis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.analysis-card{
+  background:var(--white);border:1px solid var(--slate-2);border-radius:var(--radius);
+  padding:32px 24px;transition:all .4s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+}
+.analysis-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue-400),var(--blue));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.analysis-card::after{
+  content:'';position:absolute;bottom:-40px;right:-40px;width:120px;height:120px;
+  border-radius:50%;background:radial-gradient(circle,rgba(29,78,216,.08),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.analysis-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--blue-200)}
+.analysis-card:hover::before{transform:scaleX(1)}
+.analysis-card:hover::after{opacity:1}
+.analysis-icon{
+  width:48px;height:48px;border-radius:12px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(29,78,216,.08);border:1px solid rgba(29,78,216,.12);
+  color:var(--blue);
+}
+.analysis-icon svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.analysis-card h3{font-size:.95rem;color:var(--slate-8);margin-bottom:4px}
+.analysis-card .analysis-sub{font-size:.75rem;color:var(--blue);font-weight:600;margin-bottom:10px}
+.analysis-card p{font-size:.84rem;color:var(--slate-6);line-height:1.7}
+
+/* ── Flow cards use blue accent ── */
+.flow .analysis-icon{background:rgba(29,78,216,.08);border-color:rgba(29,78,216,.12);color:var(--blue)}
+.flow .analysis-icon svg{stroke:var(--blue)}
+.flow .analysis-card::before{background:linear-gradient(90deg,var(--blue-400),var(--blue))}
+.flow .analysis-card:hover{border-color:var(--blue-200)}
+.flow .analysis-card .analysis-sub{color:var(--blue)}
+
+/* ── CTA ── */
+.cta-section{
+  background:linear-gradient(180deg,var(--slate-9) 0%,#0c1222 100%);
+  color:var(--slate-3);text-align:center;padding:100px 0;position:relative;overflow:hidden;
+}
+.cta-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.cta-orb-1{width:400px;height:400px;top:-120px;right:-100px;background:radial-gradient(circle,rgba(96,165,250,.4),transparent 70%);opacity:.5}
+.cta-orb-2{width:450px;height:450px;bottom:-120px;left:-100px;background:radial-gradient(circle,rgba(59,130,246,.4),transparent 70%);opacity:.6}
+.cta-section .container{position:relative}
+.cta-section h2{color:var(--white);font-size:clamp(1.6rem,3vw,2.4rem);margin-bottom:16px;line-height:1.35}
+.cta-section p{color:var(--slate-4);font-size:1.05rem;margin-bottom:40px;font-weight:400}
+.btn-cta{
+  background:linear-gradient(135deg,var(--blue),var(--blue-d));color:var(--white);padding:16px 40px;
+  font-size:1rem;font-weight:700;border-radius:var(--radius-sm);
+  box-shadow:0 4px 16px rgba(30,58,138,.3),0 1px 3px rgba(30,58,138,.15);border:none;cursor:pointer;
+  transition:all .3s cubic-bezier(.4,0,.2,1);letter-spacing:0em;
+}
+.btn-cta:hover{transform:translateY(-3px);background:linear-gradient(135deg,var(--blue-d),#172554);box-shadow:0 8px 28px rgba(30,58,138,.4)}
+
+/* ── Footer ── */
+.footer{height:64px;display:flex;align-items:center;background:var(--slate-9);border-top:1px solid rgba(255,255,255,.05)}
+.footer .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.footer-copy{font-size:.78rem;color:var(--slate-5)}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:.78rem;color:var(--slate-5);transition:var(--transition)}
+.footer-links a:hover{color:var(--blue-400)}
+
+/* ── Top Button ── */
+.btn-top{
+  position:fixed;bottom:32px;right:32px;z-index:800;
+  width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;
+  background:#1a1f2e;color:#94a3b8;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.btn-top.visible{opacity:1;pointer-events:all}
+.btn-top:hover{background:var(--blue);color:#fff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,78,216,.3)}
+
+/* ── Korean word-break ── */
+:lang(ko) p,:lang(ko) li,:lang(ko) h1,:lang(ko) h2,:lang(ko) h3{word-break:keep-all}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .hero{min-height:auto;padding:120px 0 60px}
+  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
+    background:rgba(15,23,42,.98);flex-direction:column;align-items:center;
+    justify-content:center;gap:32px;
+  }
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+  .analysis-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .section{padding:72px 0}
+  .analysis-grid{grid-template-columns:1fr}
+  .domain-tab{padding:10px 20px;font-size:.84rem}
+  .footer{height:auto;padding:24px 0}
+  .footer .container{flex-direction:column;gap:16px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div style="display:flex;align-items:center">
+      <a href="/" class="nav-home" title="VerusLab Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
+      <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false"><span>S</span>imulation</a>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#structural">구조 해석</a></li>
+      <li><a href="#flow">유동 해석</a></li>
+      <li><a href="#contact">문의</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg-orb hero-bg-orb-1"></div>
+  <div class="hero-bg-orb hero-bg-orb-2"></div>
+  <div class="hero-bg-orb hero-bg-orb-3"></div>
+  <div class="hero-network"><canvas id="heroNetwork"></canvas></div>
+  <div class="container">
+    <div class="reveal">
+      <div class="badge badge-blue" style="margin-bottom:24px">SOLIDWORKS Simulation</div>
+      <h1>설계의 안전성을<br><span class="text-gradient-blue">시뮬레이션으로 검증합니다.</span></h1>
+      <p>구조 해석과 유동 해석을 통해 설계 단계에서 문제를 발견하고,<br>시행착오를 줄여 최적의 설계를 도출합니다.</p>
+      <div class="hero-actions">
+        <a href="#structural" class="btn btn-primary">구조 해석</a>
+        <a href="#flow" class="btn btn-outline">유동 해석</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Structural Analysis -->
+<section class="section" id="structural">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge badge-blue">Structural Analysis</div>
+      <h2 style="margin-top:18px">구조 해석</h2>
+      <p class="subtitle">정적 해석부터 피로 해석까지, 설계의 구조적 안전성을 다각도로 검증합니다.</p>
+    </div>
+    <div class="analysis-grid">
+
+      <div class="analysis-card reveal">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+        </div>
+        <h3>정적 해석</h3>
+        <div class="analysis-sub">Static Analysis</div>
+        <p>정적 하중 조건에서의 응력, 변형, 변위를 계산하여 구조물의 안전성을 평가합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-1">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 12C5 7 9 4 12 4s7 3 10 8c-3 5-7 8-10 8s-7-3-10-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <h3>비선형 해석</h3>
+        <div class="analysis-sub">Nonlinear Analysis</div>
+        <p>대변형, 재료 비선형, 접촉 조건 등 선형으로 풀 수 없는 복잡한 거동을 해석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-2">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>좌굴 해석</h3>
+        <div class="analysis-sub">Buckling Analysis</div>
+        <p>압축 하중에 의한 좌굴 모드와 임계 하중을 예측하여 구조적 불안정성을 사전에 방지합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 12h4l3-9 6 18 3-9h4"/></svg>
+        </div>
+        <h3>고유진동 주파수</h3>
+        <div class="analysis-sub">Natural Frequency</div>
+        <p>구조물의 고유 진동수와 모드 형상을 분석하여 공진 회피 설계에 활용합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-1">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>충격 해석</h3>
+        <div class="analysis-sub">Impact / Shock Analysis</div>
+        <p>낙하, 충돌 등 순간적인 충격 하중에 대한 구조물의 동적 응답을 평가합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-2">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>하모닉 응답 해석</h3>
+        <div class="analysis-sub">Harmonic Response</div>
+        <p>주기적 가진에 대한 정상 상태 응답을 주파수 영역에서 분석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
+        <h3>랜덤 진동 해석</h3>
+        <div class="analysis-sub">Random Vibration</div>
+        <p>PSD 기반의 랜덤 가진 조건에서 구조물의 통계적 응답(RMS)을 예측합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-1">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+        </div>
+        <h3>내진 해석</h3>
+        <div class="analysis-sub">Seismic Analysis</div>
+        <p>지진 응답 스펙트럼(RS)을 적용하여 구조물의 내진 안전성을 검증합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-2">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3>피로 해석</h3>
+        <div class="analysis-sub">Fatigue Analysis</div>
+        <p>반복 하중에 의한 피로 수명과 손상도를 예측하여 장기 신뢰성을 확보합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 8h-4c0-5-2-6-2-8a4 4 0 0 1 4-4z"/><path d="M10 14h4"/><path d="M10 17h4"/><path d="M11 20h2"/></svg>
+        </div>
+        <h3>열 해석</h3>
+        <div class="analysis-sub">Thermal Analysis</div>
+        <p>전도, 대류, 복사에 의한 온도 분포와 열응력을 분석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-1">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3>모션 해석</h3>
+        <div class="analysis-sub">Motion Analysis</div>
+        <p>기구 메커니즘의 운동학/동역학 시뮬레이션으로 힘, 속도, 가속도를 분석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-2">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>위상 최적화</h3>
+        <div class="analysis-sub">Topology Optimization</div>
+        <p>하중과 구속 조건을 만족하는 최적의 형상을 자동으로 도출합니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Flow Analysis -->
+<section class="section section-alt" id="flow">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge badge-blue">Flow Simulation</div>
+      <h2 style="margin-top:18px">유동 해석</h2>
+      <p class="subtitle">내부/외부 유동, 열전달, 전자 냉각까지 — 유체 거동을 정밀하게 예측합니다.</p>
+    </div>
+    <div class="analysis-grid flow">
+
+      <div class="analysis-card reveal">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </div>
+        <h3>내부/외부 유동</h3>
+        <div class="analysis-sub">Internal & External Flow</div>
+        <p>배관, 밸브 등 내부 유동과 차량, 건물 등 외부 유동 특성을 분석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-1">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v16"/></svg>
+        </div>
+        <h3>층류/난류 해석</h3>
+        <div class="analysis-sub">Laminar & Turbulent</div>
+        <p>레이놀즈 수에 따른 층류 및 난류 유동 특성을 정밀하게 예측합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-2">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 8h-4c0-5-2-6-2-8a4 4 0 0 1 4-4z"/><path d="M10 17h4"/><path d="M11 20h2"/></svg>
+        </div>
+        <h3>열전달 해석</h3>
+        <div class="analysis-sub">Heat Transfer</div>
+        <p>유체와 고체 사이의 열전달(대류, 전도, 복사)을 복합적으로 분석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12a4 4 0 0 1 8 0"/><path d="M12 8v8"/></svg>
+        </div>
+        <h3>회전체 해석</h3>
+        <div class="analysis-sub">Rotating Components</div>
+        <p>팬, 펌프, 임펠러 등 회전 기계의 유동 성능을 평가합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-1">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+        </div>
+        <h3>전자 냉각</h3>
+        <div class="analysis-sub">Electronic Cooling</div>
+        <p>PCB, 히트싱크, 히트파이프 등 전자 부품의 발열과 냉각 성능을 해석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-2">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>HVAC 시뮬레이션</h3>
+        <div class="analysis-sub">HVAC Module</div>
+        <p>실내 공조, 환기, 열 쾌적성 등 건물 환경의 유동·열 특성을 시뮬레이션합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>압축성 유동</h3>
+        <div class="analysis-sub">Compressible Flow</div>
+        <p>초음속/천음속 유동 및 충격파가 포함된 압축성 유동을 해석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-1">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2"/><path d="M2 12c0-2.8 1.2-5.3 3-7"/><path d="M12 6v6l4 4"/></svg>
+        </div>
+        <h3>비정상 유동 / 자유 표면</h3>
+        <div class="analysis-sub">Transient & Free Surface</div>
+        <p>시간에 따른 유동 변화와 자유 수면 거동을 해석합니다.</p>
+      </div>
+
+      <div class="analysis-card reveal reveal-delay-2">
+        <div class="analysis-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 17l4-8 4 4 4-8"/></svg>
+        </div>
+        <h3>파라미터 최적화</h3>
+        <div class="analysis-sub">Parameter Optimization</div>
+        <p>설계 변수의 자동 탐색을 통해 유동 성능 목표를 달성하는 최적 조건을 도출합니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="container reveal">
+    <h2>시뮬레이션이 필요하신가요?</h2>
+    <p>구조/유동 해석 의뢰 및 기술 상담을 도와드립니다.</p>
+    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn-cta">문의하기</a>
+  </div>
+</section>
+
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Top">&#9650;</button>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-copy">&copy; WEBS System Korea | VerusLab. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/valentis/">Valentis</a></li>
+      <li><a href="/linkspace/">Linkspace</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+/* ── Navbar scroll ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 30);
+  document.getElementById('btnTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+/* ── Hamburger ── */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+/* ── Active nav link ── */
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 120;
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const height = section.offsetHeight;
+    const id = section.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) {
+      link.classList.toggle('active', scrollY >= top && scrollY < top + height);
+    }
+  });
+});
+
+/* ── Hero Node Network ── */
+(function(){
+  const c = document.getElementById('heroNetwork');
+  if(!c) return;
+  const hero = c.closest('.hero');
+  const dpr=window.devicePixelRatio||1;
+  const ctx = c.getContext('2d');
+  let linkDist;
+  function resize(){
+    const w=hero.offsetWidth,h=hero.offsetHeight;
+    c.width=w*dpr;c.height=h*dpr;
+    c.style.width=w+'px';c.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    linkDist=Math.min(w,h)*.16;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  const nodes=[];
+  let W=hero.offsetWidth,H=hero.offsetHeight;
+  const count=Math.max(30,Math.min(60,Math.floor(W*H/20000)));
+  for(let i=0;i<count;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,phase:Math.random()*Math.PI*2,speed:.5+Math.random()*1.5});
+  let t=0;
+  function draw(){
+    t+=.016;
+    W=hero.offsetWidth;H=hero.offsetHeight;
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<count;i++){
+      for(let j=i+1;j<count;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<linkDist){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle='rgba(96,165,250,'+(0.4*(1-dist/linkDist))+')';ctx.lineWidth=.7;ctx.stroke()}
+      }
+    }
+    nodes.forEach(n=>{
+      const glow=.1+.25*(.5+.5*Math.sin(t*n.speed+n.phase));
+      const r=1.6+.6*(.5+.5*Math.sin(t*n.speed+n.phase));
+      ctx.beginPath();ctx.arc(n.x,n.y,r+2,0,Math.PI*2);ctx.fillStyle='rgba(96,165,250,'+glow*.15+')';ctx.fill();
+      ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);ctx.fillStyle='rgba(150,200,255,'+glow+')';ctx.fill();
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>W)n.vx*=-1;
+      if(n.y<0||n.y>H)n.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
