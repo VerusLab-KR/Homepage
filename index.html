@@ -545,11 +545,12 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         <span class="news-link">자세히 보기 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </div>
 
-      <div class="news-card reveal reveal-delay-1" style="--news-accent:#3b82f6">
-        <div class="news-date">2026.04</div>
+      <div class="news-card reveal reveal-delay-1" style="--news-accent:#3b82f6;cursor:pointer" onclick="document.getElementById('releaseOverlay').classList.add('active')">
+        <div class="news-date">2026.04.01</div>
         <span class="news-badge" style="background:rgba(59,130,246,.1);color:#3b82f6">RELEASE</span>
-        <h3>Valentis v1.0 출시</h3>
+        <h3>Valentis v1.0.0 출시</h3>
         <p>파라미터 스터디 웹 플랫폼 Valentis의 첫 번째 버전이 출시되었습니다.</p>
+        <span class="news-link">자세히 보기 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </div>
 
       <div class="news-card reveal reveal-delay-2" style="--news-accent:#06b6d4">
@@ -1028,7 +1029,121 @@ countEls.forEach(el => countObserver.observe(el));
 (function(){
   const o=document.getElementById('seminarOverlay');
   o.addEventListener('click',(e)=>{if(e.target===o)o.classList.remove('active')});
-  document.addEventListener('keydown',(e)=>{if(e.key==='Escape')o.classList.remove('active')});
+})();
+</script>
+
+<!-- ── Release Modal ── -->
+<style>
+.release-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  z-index:10000;display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:all .3s ease;
+}
+.release-overlay.active{opacity:1;visibility:visible}
+.release-modal{
+  background:#f8fafc;border-radius:16px;
+  width:95%;max-width:720px;max-height:85vh;
+  position:relative;overflow-y:auto;
+  transform:translateY(20px);transition:transform .3s ease;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  padding:48px 40px;color:#475569;
+}
+.release-overlay.active .release-modal{transform:translateY(0)}
+.release-modal-close{
+  position:absolute;top:12px;right:12px;
+  width:36px;height:36px;border-radius:50%;border:none;
+  background:rgba(0,0,0,.06);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  z-index:10;transition:background .2s;
+}
+.release-modal-close:hover{background:rgba(0,0,0,.12)}
+.release-modal h2{color:#0f172a;font-size:1.5rem;font-weight:800;margin-bottom:4px;line-height:1.3}
+.release-ver{display:inline-block;padding:4px 12px;border-radius:8px;font-size:.75rem;font-weight:700;background:rgba(59,130,246,.1);color:#2563eb;margin-bottom:20px}
+.release-meta{font-size:.82rem;color:#94a3b8;margin-bottom:28px}
+.release-section{margin-bottom:24px}
+.release-section h3{color:#0f172a;font-size:.95rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.release-section h3 svg{color:#3b82f6;flex-shrink:0}
+.release-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.release-table td{padding:8px 12px;vertical-align:top;line-height:1.6;border-bottom:1px solid #f1f5f9}
+.release-table .feat-name{white-space:nowrap;font-weight:600;color:#0f172a;width:180px}
+.release-table .feat-detail{color:#475569}
+.release-table .feat-sub{display:block;font-size:.75rem;color:#94a3b8;margin-top:2px}
+.release-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:10px;font-size:.88rem;font-weight:700;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;
+  border:none;cursor:pointer;margin-top:8px;
+  transition:all .3s;text-decoration:none;
+}
+.release-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,.3)}
+@media(max-width:600px){
+  .release-modal{padding:32px 20px}
+  .release-table .feat-name{width:120px}
+  .release-table{font-size:.75rem}
+  .release-table td{padding:6px 8px}
+}
+</style>
+<div class="release-overlay" id="releaseOverlay">
+  <div class="release-modal">
+    <button class="release-modal-close" onclick="document.getElementById('releaseOverlay').classList.remove('active')" aria-label="닫기">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <h2>Valentis v1.0.0</h2>
+    <span class="release-ver">Initial Release</span>
+    <div class="release-meta">2026.04.01 — 최초 릴리스</div>
+
+    <div class="release-section">
+      <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Dynamic Load Definition</h3>
+      <table class="release-table">
+        <tr><td class="feat-name">Shock, Harmonic, Random PSD, RMS/PSD, Response Spectrum</td><td class="feat-detail">동적 하중 정의 모듈</td></tr>
+        <tr><td class="feat-name">Vibration / Shock 프리셋</td><td class="feat-detail">MIL-STD-810H · MIL-STD-167-1A · NAVMAT P-9492 · IEC 61373</td></tr>
+        <tr><td class="feat-name">Seismic 프리셋</td><td class="feat-detail">UBC-97 · KDS 41 · ASCE 7-16 · Eurocode 8</td></tr>
+        <tr><td class="feat-name">Dynamic Characterization</td><td class="feat-detail">Mass Participation 분석</td></tr>
+      </table>
+    </div>
+
+    <div class="release-section">
+      <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Analysis Intelligence</h3>
+      <table class="release-table">
+        <tr><td class="feat-name">Scenario, Data Transposition, Sensitivity</td><td class="feat-detail">시나리오 관리 및 민감도 분석</td></tr>
+        <tr><td class="feat-name">Design Explorer, Meta Model, Reliability, Pareto Optimizer</td><td class="feat-detail">메타모델 기반 최적 설계</td></tr>
+      </table>
+    </div>
+
+    <div class="release-section">
+      <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>Material Property</h3>
+      <table class="release-table">
+        <tr><td class="feat-name">Solid 데이터베이스</td><td class="feat-detail">798종</td></tr>
+        <tr><td class="feat-name">Fluid 데이터베이스</td><td class="feat-detail">83종 — Gas / Liquid / Solid</td></tr>
+      </table>
+    </div>
+
+    <div class="release-section">
+      <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Data Tools</h3>
+      <table class="release-table">
+        <tr><td class="feat-name">Curve Digitizer</td><td class="feat-detail">이미지 기반 곡선 데이터 추출</td></tr>
+      </table>
+    </div>
+
+    <div class="release-section">
+      <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>다국어 지원</h3>
+      <table class="release-table">
+        <tr><td class="feat-name">한국어 / English</td><td class="feat-detail">UI 전체 다국어 대응</td></tr>
+      </table>
+    </div>
+
+    <a href="/valentis/" class="release-cta">Valentis 자세히 보기 &rarr;</a>
+  </div>
+</div>
+<script>
+(function(){
+  const o=document.getElementById('releaseOverlay');
+  o.addEventListener('click',(e)=>{if(e.target===o)o.classList.remove('active')});
+  document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){
+    document.getElementById('seminarOverlay').classList.remove('active');
+    o.classList.remove('active');
+  }});
 })();
 </script>
 </body>
