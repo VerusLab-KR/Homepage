@@ -1054,7 +1054,18 @@ countEls.forEach(el => countObserver.observe(el));
   padding:20px 28px;display:flex;align-items:center;justify-content:space-between;
   background:linear-gradient(135deg,#1e293b,#0f172a);
   border-bottom:1px solid rgba(255,255,255,.06);
-  flex-shrink:0;
+  flex-shrink:0;position:relative;overflow:hidden;
+}
+.release-header::before,.release-header::after{
+  content:'';position:absolute;border-radius:50%;filter:blur(40px);pointer-events:none;
+}
+.release-header::before{
+  width:200px;height:200px;top:-100px;right:-40px;
+  background:radial-gradient(circle,rgba(59,130,246,.6),transparent 70%);opacity:.7;
+}
+.release-header::after{
+  width:150px;height:150px;bottom:-80px;left:-30px;
+  background:radial-gradient(circle,rgba(30,58,138,.5),transparent 70%);opacity:.6;
 }
 .release-header h2{color:#fff;font-size:1.1rem;font-weight:800;margin:0}
 .release-header-close{
