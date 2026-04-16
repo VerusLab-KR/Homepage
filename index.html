@@ -1042,11 +1042,11 @@ countEls.forEach(el => countObserver.observe(el));
 }
 .release-overlay.active{opacity:1;visibility:visible}
 .release-modal{
-  background:#0f172a;border-radius:16px;
+  background:#fff;border-radius:16px;
   width:95%;max-width:720px;max-height:85vh;
   position:relative;overflow:hidden;
   transform:translateY(20px);transition:transform .3s ease;
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
   display:flex;flex-direction:column;
 }
 .release-overlay.active .release-modal{transform:translateY(0)}
@@ -1066,8 +1066,7 @@ countEls.forEach(el => countObserver.observe(el));
 .release-header-close:hover{background:rgba(255,255,255,.15)}
 .release-body{
   padding:32px 36px;overflow-y:auto;flex:1;
-  margin:0 24px 24px;
-  background:#fff;border-radius:12px;border:1px solid #e2e8f0;
+  margin:0;
 }
 .release-title-row{display:flex;align-items:center;gap:12px;margin-bottom:4px;flex-wrap:wrap}
 .release-ver{font-size:1.3rem;font-weight:800;color:#fff}
