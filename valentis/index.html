@@ -477,8 +477,18 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   .feature-row{grid-template-columns:1fr;gap:36px}
   .feature-row.reverse .feature-content{order:1}
   .feature-row.reverse .feature-visual{order:2}
-  .nav-links{display:none}
+  .nav-links{
+    display:none;position:absolute;top:64px;left:0;right:0;
+    background:#1a1f2e;flex-direction:column;align-items:center;
+    padding:24px 0;gap:20px;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-links.open{display:flex}
   .hamburger{display:block}
+  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.active span:nth-child(2){opacity:0}
+  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 }
 @media(max-width:600px){
   .section{padding:72px 0}
@@ -1597,19 +1607,17 @@ const heroObs = new IntersectionObserver((entries) => {
 heroObs.observe(document.querySelector('.hero-card'));
 
 /* ── Mobile menu ── */
-document.getElementById('hamburger').addEventListener('click', () => {
-  const links = document.querySelector('.nav-links');
-  const isOpen = links.style.display === 'flex';
-  links.style.display = isOpen ? 'none' : 'flex';
-  if (!isOpen) {
-    Object.assign(links.style, {
-      flexDirection:'column', position:'absolute', top:'64px',
-      left:'0', right:'0', background:'#1a1f2e',
-      backdropFilter:'blur(20px)', padding:'20px 24px',
-      boxShadow:'0 8px 24px rgba(0,0,0,.3)', gap:'16px',
-      borderBottom:'1px solid rgba(255,255,255,.08)'
-    });
-  }
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
 });
 
 /* ── Scroll spy — highlight active nav link ── */
