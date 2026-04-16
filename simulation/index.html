@@ -239,9 +239,12 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 /* ── Responsive ── */
 @media(max-width:900px){
   .hero{min-height:auto;padding:120px 0 60px}
-  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
-    background:rgba(15,23,42,.98);flex-direction:column;align-items:center;
-    justify-content:center;gap:32px;
+  .nav-links{
+    display:none;position:absolute;top:64px;left:0;right:0;
+    background:#1a1f2e;flex-direction:column;align-items:center;
+    padding:24px 0;gap:20px;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
+    border-bottom:1px solid rgba(255,255,255,.08);
   }
   .nav-links.open{display:flex}
   .hamburger{display:block}

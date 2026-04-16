@@ -334,9 +334,12 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   .about-grid{grid-template-columns:1fr;gap:48px}
   .contact-grid{grid-template-columns:1fr;max-width:400px}
   .hero-stats{gap:32px;flex-wrap:wrap}
-  .nav-links{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;
-    background:rgba(15,23,42,.98);flex-direction:column;align-items:center;
-    justify-content:center;gap:32px;
+  .nav-links{
+    display:none;position:absolute;top:64px;left:0;right:0;
+    background:#1a1f2e;flex-direction:column;align-items:center;
+    padding:24px 0;gap:20px;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);
+    border-bottom:1px solid rgba(255,255,255,.08);
   }
   .nav-links.open{display:flex}
   .nav-dropdown > a{display:none}
@@ -344,7 +347,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
     position:static;transform:none;background:transparent;border:none;
     box-shadow:none;backdrop-filter:none;padding:0;
     opacity:1;visibility:visible;min-width:0;
-    display:flex;flex-direction:column;align-items:center;gap:32px;
+    display:flex;flex-direction:column;align-items:center;gap:20px;
   }
   .nav-dropdown:hover .nav-dropdown-menu{transform:none}
   .nav-dropdown-menu li a{display:block;padding:0;font-size:.84rem;font-weight:500;color:var(--slate-4);white-space:normal}
