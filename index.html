@@ -919,14 +919,9 @@ countEls.forEach(el => countObserver.observe(el));
 .seminar-note{font-size:.78rem;color:#92400e;margin-bottom:28px;padding:12px 16px;border-radius:8px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18)}
 .seminar-topics{margin-bottom:28px}
 .seminar-topics h3{color:#0f172a;font-size:1rem;font-weight:700;margin-bottom:14px}
-.seminar-topics ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.seminar-topics li{
-  display:flex;align-items:flex-start;gap:10px;font-size:.85rem;line-height:1.7;
-}
-.seminar-topics li::before{
-  content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;
-  background:#f59e0b;margin-top:8px;
-}
+.seminar-topics table{width:100%;border-collapse:collapse;font-size:.82rem}
+.seminar-topics td{padding:10px 12px;vertical-align:top;line-height:1.6;border-bottom:1px solid #f1f5f9}
+.seminar-topics .topic-name{white-space:nowrap;font-weight:700;color:#0f172a;padding-right:0}
 .seminar-agenda h3{color:#0f172a;font-size:1rem;font-weight:700;margin-bottom:14px}
 .seminar-agenda table{width:100%;border-collapse:collapse;font-size:.8rem}
 .seminar-agenda th{
@@ -975,11 +970,11 @@ countEls.forEach(el => countObserver.observe(el));
     <div class="seminar-note">※ 한정된 좌석으로 선착순 마감되며, 한 고객사당 2명 이하로 참석이 제한됩니다.</div>
     <div class="seminar-topics">
       <h3>세미나 주요 내용</h3>
-      <ul>
-        <li><strong>SOLIDWORKS AI</strong> — 설계 생산성을 극대화하는 차세대 AI 솔루션 및 혁신적인 시뮬레이션 기능 공개</li>
-        <li><strong>MODSIM 활용</strong> — 모델링과 시뮬레이션의 완벽한 통합 프로세스를 통한 설계 변경 실시간 피드백 및 제품 품질 향상 전략</li>
-        <li><strong>VALENTIS</strong> — 민감도 분석, 메타모델 기반 응답 예측 및 웹 브라우저 기반의 간편한 해석 결과 분석 플랫폼 Launching 소개</li>
-      </ul>
+      <table>
+        <tr><td class="topic-name">SOLIDWORKS AI</td><td>설계 생산성을 극대화하는 차세대 AI 솔루션 및 혁신적인 시뮬레이션 기능 공개</td></tr>
+        <tr><td class="topic-name">MODSIM 활용</td><td>모델링과 시뮬레이션의 완벽한 통합 프로세스를 통한 설계 변경 실시간 피드백 및 제품 품질 향상 전략</td></tr>
+        <tr><td class="topic-name">VALENTIS</td><td>민감도 분석, 메타모델 기반 응답 예측 및 웹 브라우저 기반의 간편한 해석 결과 분석 플랫폼 Launching 소개</td></tr>
+      </table>
     </div>
     <div class="seminar-agenda">
       <h3>Agenda</h3>
