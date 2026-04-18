@@ -1,0 +1,13 @@
+title: VerusLab
+url: "https://verus-lab.kr"
+baseurl: ""
+permalink: /blog/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+exclude:
+  - devlog/
+  - preview/
+  - WEBS_R2S.html
+  - .claude/
+  - "logo/*.pptx"

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KRD3N7JX3C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KRD3N7JX3C');</script>
+<meta name="description" content="{{ page.description }}">
+<meta property="og:title" content="{{ page.title }} | VerusLab Blog">
+<meta property="og:description" content="{{ page.description }}">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+<title>{{ page.title }} | VerusLab Blog</title>
+<link rel="icon" type="image/x-icon" href="/logo/veruslab_3.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Exo+2:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue-50:#eff6ff;--blue-200:#bfdbfe;
+  --blue-400:#60a5fa;--blue-500:#3b82f6;
+  --blue:#1d4ed8;--blue-d:#1e3a8a;
+  --slate-9:#0f172a;--slate-8:#1e293b;--slate-7:#334155;
+  --slate-6:#475569;--slate-5:#64748b;--slate-4:#94a3b8;
+  --slate-3:#cbd5e1;--slate-2:#e2e8f0;--slate-1:#f1f5f9;--slate-0:#f8fafc;
+  --white:#ffffff;
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+@media(min-width:1024px){.container{max-width:1320px}}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(15,23,42,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.navbar.scrolled{background:rgba(15,23,42,.95);box-shadow:0 2px 16px rgba(0,0,0,.25)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
+.nav-logo{font-family:'Exo 2','Inter',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:.02em;line-height:1;color:#fff;transition:text-shadow .3s}
+.nav-logo:hover{text-shadow:0 0 12px rgba(96,165,250,.5),0 0 24px rgba(96,165,250,.2)}
+.nav-logo span{color:#4f8ef7;position:relative;top:.04em}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{font-size:.84rem;font-weight:500;color:var(--slate-4);transition:var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--blue-400);border-radius:1px;transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--blue-400)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--slate-4);margin:5px 0;transition:all .3s;border-radius:1px}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:absolute;top:64px;left:0;right:0;background:#1a1f2e;border-bottom:1px solid rgba(255,255,255,.08);padding:8px 0;z-index:800}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:12px 24px;font-size:.9rem;font-weight:500;color:var(--slate-4);transition:color .2s}
+.mobile-menu a:hover{color:var(--blue-400)}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:block}}
+
+/* Post header */
+.post-header{background:linear-gradient(160deg,var(--slate-9) 0%,#0e1629 50%,#0c1222 100%);padding:100px 0 56px;text-align:center}
+.post-breadcrumb{font-size:.8rem;color:var(--slate-5);margin-bottom:16px}
+.post-breadcrumb a{color:var(--blue-400)}
+.post-breadcrumb a:hover{text-decoration:underline}
+.post-category{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:rgba(96,165,250,.1);color:var(--blue-400);border:1px solid rgba(96,165,250,.2);margin-bottom:20px}
+.post-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;line-height:1.25;color:#fff;max-width:800px;margin:0 auto 20px;word-break:keep-all;letter-spacing:0}
+.post-meta{font-size:.82rem;color:var(--slate-5)}
+
+/* Post body */
+.post-body{max-width:720px;margin:0 auto;padding:64px 24px 80px}
+.post-body h2{font-size:1.35rem;font-weight:700;margin:52px 0 16px;color:var(--slate-8);border-left:3px solid var(--blue-400);padding-left:16px;line-height:1.35;word-break:keep-all;letter-spacing:0}
+.post-body h3{font-size:1.05rem;font-weight:700;margin:32px 0 10px;color:var(--slate-7);letter-spacing:0}
+.post-body p{margin-bottom:20px;line-height:1.9;color:var(--slate-7)}
+.post-body strong{font-weight:700;color:var(--slate-8)}
+.post-body em{color:var(--slate-6);font-style:italic}
+.post-body hr{border:none;border-top:1px solid var(--slate-2);margin:44px 0}
+.post-body ul,.post-body ol{padding-left:24px;margin-bottom:20px}
+.post-body li{margin-bottom:8px;line-height:1.75;color:var(--slate-7)}
+.post-body blockquote{border-left:3px solid var(--blue-400);padding:14px 20px;background:var(--blue-50);border-radius:0 8px 8px 0;margin:28px 0}
+.post-body blockquote p{color:var(--slate-7);margin:0;font-style:italic}
+
+/* Post nav */
+.post-nav{max-width:720px;margin:0 auto;padding:32px 24px 80px;border-top:1px solid var(--slate-2)}
+.post-nav-back{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--blue-500);transition:gap .2s}
+.post-nav-back:hover{gap:12px}
+
+/* Footer */
+.footer{background:var(--slate-9);padding:28px 0;border-top:1px solid rgba(255,255,255,.06)}
+.footer .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.footer-copy{font-size:.78rem;color:var(--slate-5)}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:.78rem;color:var(--slate-5);transition:var(--transition)}
+.footer-links a:hover{color:var(--blue-400)}
+.footer-social{display:flex;gap:16px;list-style:none}
+.footer-social a{color:var(--slate-5);transition:var(--transition)}
+.footer-social a:hover{color:var(--blue-400)}
+.footer-social svg{width:18px;height:18px;vertical-align:middle}
+@media(max-width:600px){.footer{height:auto;padding:24px 0}.footer .container{flex-direction:column;gap:16px;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="/" class="nav-logo">Verus<span>Lab</span></a>
+    <ul class="nav-links">
+      <li><a href="/#products">Solutions</a></li>
+      <li><a href="/#news">News</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/">홈</a>
+    <a href="/#products">Solutions</a>
+    <a href="/#news">News</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="post-header">
+  <div class="container">
+    <div class="post-breadcrumb">
+      <a href="/blog/">Blog</a> &rsaquo; {% if page.category %}{{ page.category }}{% endif %}
+    </div>
+    {% if page.category %}<div class="post-category">{{ page.category }}</div>{% endif %}
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">{{ page.date | date: "%Y.%m.%d" }}</div>
+  </div>
+</header>
+
+<article class="post-body">
+  {{ content }}
+</article>
+
+<div class="post-nav">
+  <a href="/blog/" class="post-nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    블로그 목록으로
+  </a>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-copy">&copy; WEBS System Korea | VerusLab. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="/simulation/">Simulation</a></li>
+      <li><a href="/valentis/">Valentis</a></li>
+      <li><a href="/linkspace/">Linkspace</a></li>
+    </ul>
+    <ul class="footer-social">
+      <li><a href="https://www.websco.co.kr/" target="_blank" title="WEBS System Korea"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a></li>
+      <li><a href="https://blog.naver.com/webs_system_korea" target="_blank" title="Blog"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><rect x="2" y="2" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="18.5" text-anchor="middle" font-size="18" font-weight="800" font-family="Arial Rounded MT Bold,sans-serif" fill="currentColor">b</text></svg></a></li>
+      <li><a href="https://www.youtube.com/@websco1996" target="_blank" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 30));
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  mobileMenu.classList.remove('open');
+}));
+</script>
+</body>
+</html>
