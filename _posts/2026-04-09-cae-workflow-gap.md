@@ -2,7 +2,7 @@
 layout: post
 title: "해석 전·후의 빈칸, 왜 아무도 채우지 않았나"
 date: 2026-04-09
-category: Engineering
+category: Valentis
 description: "CAE 해석 전·후의 반복 수작업이 왜 아직도 남아 있는가. 하중 계산, 재료 데이터, 결과 정리까지 — 툴 밖에 남겨진 영역과 그것을 채워야 하는 이유."
 ---
 
