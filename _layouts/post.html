@@ -94,7 +94,7 @@ img{max-width:100%;display:block}
 .post-meta{font-size:.82rem;color:var(--slate-5)}
 
 /* Post body */
-.post-body{max-width:800px;margin:0 auto;padding:64px 24px 80px}
+.post-body{max-width:800px;margin:0 auto;padding:40px 24px 80px}
 .post-body h2{font-size:1.35rem;font-weight:700;margin:52px 0 16px;color:var(--slate-8);border-left:3px solid var(--blue-400);padding-left:16px;line-height:1.35;word-break:keep-all;letter-spacing:0}
 .post-body h3{font-size:1.05rem;font-weight:700;margin:32px 0 10px;color:var(--slate-7);letter-spacing:0}
 .post-body p{margin-bottom:20px;line-height:1.9;color:var(--slate-7)}
@@ -108,6 +108,7 @@ img{max-width:100%;display:block}
 
 /* Post nav */
 .post-nav{max-width:800px;margin:0 auto;padding:32px 24px 80px;border-top:1px solid var(--slate-2)}
+.post-nav-top{padding:20px 24px 0;border-top:none}
 .post-nav-back{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--blue-500);transition:gap .2s}
 .post-nav-back:hover{gap:12px}
 
@@ -178,7 +179,7 @@ img{max-width:100%;display:block}
   </div>
 </header>
 
-<div class="post-nav">
+<div class="post-nav post-nav-top">
   <a href="/blog/" class="post-nav-back">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     블로그 목록으로
