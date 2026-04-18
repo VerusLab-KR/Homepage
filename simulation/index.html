@@ -56,7 +56,7 @@ a{color:inherit;text-decoration:none}
 h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;line-height:1.2;letter-spacing:0em;word-break:keep-all}
 h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;letter-spacing:0em}
 h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
-.subtitle{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--slate-5);max-width:680px;margin:0 auto 48px;line-height:1.8}
+.subtitle{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--slate-5);max-width:900px;margin:0 auto 48px;line-height:1.8}
 .badge{
   display:inline-block;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;
   letter-spacing:.04em;
@@ -263,6 +263,15 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   .footer{height:auto;padding:24px 0}
   .footer .container{flex-direction:column;gap:16px;text-align:center}
 }
+.lang-toggle{display:flex;border:1px solid #4a5568;border-radius:6px;overflow:hidden;flex-shrink:0}
+.lang-toggle button{
+  background:transparent;border:none;color:#94a3b8;padding:4px 8px;
+  font-size:11px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.5px;
+}
+.lang-toggle button:hover{color:#e2e8f0}
+.lang-toggle button.active{background:#2563eb;color:#fff}
+:lang(ko) p,:lang(ko) li,:lang(ko) h1,:lang(ko) h2,:lang(ko) h3{word-break:keep-all}
+@media(max-width:768px){.lang-toggle{display:none}}
 </style>
 </head>
 <body>
@@ -275,10 +284,15 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
       <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false"><span>S</span>imulation</a>
     </div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#structural">구조 해석</a></li>
-      <li><a href="#flow">유동 해석</a></li>
-      <li><a href="#contact">문의</a></li>
+      <li><a href="#structural">Structural</a></li>
+      <li><a href="#flow">Flow</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="lang-toggle" id="langToggle">
+      <button onclick="setLang('ko')" class="active">KO</button>
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('zh')">ZH</button>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -294,11 +308,11 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="container">
     <div class="reveal">
       <div class="badge badge-blue" style="margin-bottom:24px">SOLIDWORKS Simulation</div>
-      <h1>설계의 안전성을<br><span class="text-gradient-blue">시뮬레이션으로 검증합니다</span></h1>
-      <p>구조 해석과 유동 해석을 통해 설계 단계에서 문제를 발견하고,<br>시행착오를 줄여 최적의 설계를 도출합니다.</p>
+      <h1 data-i18n="hero_h1">설계의 안전성을<br><span class="text-gradient-blue">시뮬레이션으로 검증합니다</span></h1>
+      <p data-i18n="hero_sub">구조 해석과 유동 해석을 통해 설계 단계에서 문제를 발견하고,<br>시행착오를 줄여 최적의 설계를 도출합니다.</p>
       <div class="hero-actions">
-        <a href="#structural" class="btn btn-primary">구조 해석</a>
-        <a href="#flow" class="btn btn-outline">유동 해석</a>
+        <a href="#structural" class="btn btn-primary" data-i18n="hero_cta1">구조 해석</a>
+        <a href="#flow" class="btn btn-outline" data-i18n="hero_cta2">유동 해석</a>
       </div>
     </div>
   </div>
@@ -309,8 +323,8 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="container">
     <div class="text-center reveal">
       <div class="badge badge-blue">Structural Analysis</div>
-      <h2 style="margin-top:18px">구조 해석</h2>
-      <p class="subtitle">정적 해석부터 피로 해석까지, 설계의 구조적 안전성을 다각도로 검증합니다.</p>
+      <h2 style="margin-top:18px" data-i18n="structural_h2">구조 해석</h2>
+      <p class="subtitle" data-i18n="structural_sub">정적 해석부터 피로 해석까지, 설계의 구조적 안전성을 다각도로 검증합니다.</p>
     </div>
     <div class="analysis-grid">
 
@@ -318,108 +332,108 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
         </div>
-        <h3>정적 해석</h3>
+        <h3 data-i18n="s1_h3">정적 해석</h3>
         <div class="analysis-sub">Static Analysis</div>
-        <p>정적 하중 조건에서의 응력, 변형, 변위를 계산하여 구조물의 안전성을 평가합니다.</p>
+        <p data-i18n="s1_p">정적 하중 조건에서의 응력, 변형, 변위를 계산하여 구조물의 안전성을 평가합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-1">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M2 12C5 7 9 4 12 4s7 3 10 8c-3 5-7 8-10 8s-7-3-10-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <h3>비선형 해석</h3>
+        <h3 data-i18n="s2_h3">비선형 해석</h3>
         <div class="analysis-sub">Nonlinear Analysis</div>
-        <p>대변형, 재료 비선형, 접촉 조건 등 선형으로 풀 수 없는 복잡한 거동을 해석합니다.</p>
+        <p data-i18n="s2_p">대변형, 재료 비선형, 접촉 조건 등 선형으로 풀 수 없는 복잡한 거동을 해석합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-2">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-        <h3>좌굴 해석</h3>
+        <h3 data-i18n="s3_h3">좌굴 해석</h3>
         <div class="analysis-sub">Buckling Analysis</div>
-        <p>압축 하중에 의한 좌굴 모드와 임계 하중을 예측하여 구조적 불안정성을 사전에 방지합니다.</p>
+        <p data-i18n="s3_p">압축 하중에 의한 좌굴 모드와 임계 하중을 예측하여 구조적 불안정성을 사전에 방지합니다.</p>
       </div>
 
       <div class="analysis-card reveal">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M2 12h4l3-9 6 18 3-9h4"/></svg>
         </div>
-        <h3>고유진동 주파수</h3>
+        <h3 data-i18n="s4_h3">고유진동 주파수</h3>
         <div class="analysis-sub">Natural Frequency</div>
-        <p>구조물의 고유 진동수와 모드 형상을 분석하여 공진 회피 설계에 활용합니다.</p>
+        <p data-i18n="s4_p">구조물의 고유 진동수와 모드 형상을 분석하여 공진 회피 설계에 활용합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-1">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <h3>충격 해석</h3>
+        <h3 data-i18n="s5_h3">충격 해석</h3>
         <div class="analysis-sub">Impact / Shock Analysis</div>
-        <p>낙하, 충돌 등 순간적인 충격 하중에 대한 구조물의 동적 응답을 평가합니다.</p>
+        <p data-i18n="s5_p">낙하, 충돌 등 순간적인 충격 하중에 대한 구조물의 동적 응답을 평가합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-2">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
-        <h3>하모닉 응답 해석</h3>
+        <h3 data-i18n="s6_h3">하모닉 응답 해석</h3>
         <div class="analysis-sub">Harmonic Response</div>
-        <p>주기적 가진에 대한 정상 상태 응답을 주파수 영역에서 분석합니다.</p>
+        <p data-i18n="s6_p">주기적 가진에 대한 정상 상태 응답을 주파수 영역에서 분석합니다.</p>
       </div>
 
       <div class="analysis-card reveal">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
         </div>
-        <h3>랜덤 진동 해석</h3>
+        <h3 data-i18n="s7_h3">랜덤 진동 해석</h3>
         <div class="analysis-sub">Random Vibration</div>
-        <p>PSD 기반의 랜덤 가진 조건에서 구조물의 통계적 응답(RMS)을 예측합니다.</p>
+        <p data-i18n="s7_p">PSD 기반의 랜덤 가진 조건에서 구조물의 통계적 응답(RMS)을 예측합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-1">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
         </div>
-        <h3>내진 해석</h3>
+        <h3 data-i18n="s8_h3">내진 해석</h3>
         <div class="analysis-sub">Seismic Analysis</div>
-        <p>지진 응답 스펙트럼(RS)을 적용하여 구조물의 내진 안전성을 검증합니다.</p>
+        <p data-i18n="s8_p">지진 응답 스펙트럼(RS)을 적용하여 구조물의 내진 안전성을 검증합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-2">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6"/><path d="M12 18h.01"/></svg>
         </div>
-        <h3>피로 해석</h3>
+        <h3 data-i18n="s9_h3">피로 해석</h3>
         <div class="analysis-sub">Fatigue Analysis</div>
-        <p>반복 하중에 의한 피로 수명과 손상도를 예측하여 장기 신뢰성을 확보합니다.</p>
+        <p data-i18n="s9_p">반복 하중에 의한 피로 수명과 손상도를 예측하여 장기 신뢰성을 확보합니다.</p>
       </div>
 
       <div class="analysis-card reveal">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 8h-4c0-5-2-6-2-8a4 4 0 0 1 4-4z"/><path d="M10 14h4"/><path d="M10 17h4"/><path d="M11 20h2"/></svg>
         </div>
-        <h3>열 해석</h3>
+        <h3 data-i18n="s10_h3">열 해석</h3>
         <div class="analysis-sub">Thermal Analysis</div>
-        <p>전도, 대류, 복사에 의한 온도 분포와 열응력을 분석합니다.</p>
+        <p data-i18n="s10_p">전도, 대류, 복사에 의한 온도 분포와 열응력을 분석합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-1">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
         </div>
-        <h3>모션 해석</h3>
+        <h3 data-i18n="s11_h3">모션 해석</h3>
         <div class="analysis-sub">Motion Analysis</div>
-        <p>기구 메커니즘의 운동학/동역학 시뮬레이션으로 힘, 속도, 가속도를 분석합니다.</p>
+        <p data-i18n="s11_p">기구 메커니즘의 운동학/동역학 시뮬레이션으로 힘, 속도, 가속도를 분석합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-2">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <h3>위상 최적화</h3>
+        <h3 data-i18n="s12_h3">위상 최적화</h3>
         <div class="analysis-sub">Topology Optimization</div>
-        <p>하중과 구속 조건을 만족하는 최적의 형상을 자동으로 도출합니다.</p>
+        <p data-i18n="s12_p">하중과 구속 조건을 만족하는 최적의 형상을 자동으로 도출합니다.</p>
       </div>
 
     </div>
@@ -431,8 +445,8 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="container">
     <div class="text-center reveal">
       <div class="badge badge-blue">Flow Simulation</div>
-      <h2 style="margin-top:18px">유동 해석</h2>
-      <p class="subtitle">내부/외부 유동, 열전달, 전자 냉각까지 — 유체 거동을 정밀하게 예측합니다.</p>
+      <h2 style="margin-top:18px" data-i18n="flow_h2">유동 해석</h2>
+      <p class="subtitle" data-i18n="flow_sub">내부/외부 유동, 열전달, 전자 냉각까지 — 유체 거동을 정밀하게 예측합니다.</p>
     </div>
     <div class="analysis-grid flow">
 
@@ -440,81 +454,81 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
         </div>
-        <h3>내부/외부 유동</h3>
-        <div class="analysis-sub">Internal & External Flow</div>
-        <p>배관, 밸브 등 내부 유동과 차량, 건물 등 외부 유동 특성을 분석합니다.</p>
+        <h3 data-i18n="f1_h3">내부/외부 유동</h3>
+        <div class="analysis-sub">Internal &amp; External Flow</div>
+        <p data-i18n="f1_p">배관, 밸브 등 내부 유동과 차량, 건물 등 외부 유동 특성을 분석합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-1">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 12h16"/><path d="M12 4v16"/></svg>
         </div>
-        <h3>층류/난류 해석</h3>
-        <div class="analysis-sub">Laminar & Turbulent</div>
-        <p>레이놀즈 수에 따른 층류 및 난류 유동 특성을 정밀하게 예측합니다.</p>
+        <h3 data-i18n="f2_h3">층류/난류 해석</h3>
+        <div class="analysis-sub">Laminar &amp; Turbulent</div>
+        <p data-i18n="f2_p">레이놀즈 수에 따른 층류 및 난류 유동 특성을 정밀하게 예측합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-2">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4c0 2-2 3-2 8h-4c0-5-2-6-2-8a4 4 0 0 1 4-4z"/><path d="M10 17h4"/><path d="M11 20h2"/></svg>
         </div>
-        <h3>열전달 해석</h3>
+        <h3 data-i18n="f3_h3">열전달 해석</h3>
         <div class="analysis-sub">Heat Transfer</div>
-        <p>유체와 고체 사이의 열전달(대류, 전도, 복사)을 복합적으로 분석합니다.</p>
+        <p data-i18n="f3_p">유체와 고체 사이의 열전달(대류, 전도, 복사)을 복합적으로 분석합니다.</p>
       </div>
 
       <div class="analysis-card reveal">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12a4 4 0 0 1 8 0"/><path d="M12 8v8"/></svg>
         </div>
-        <h3>회전체 해석</h3>
+        <h3 data-i18n="f4_h3">회전체 해석</h3>
         <div class="analysis-sub">Rotating Components</div>
-        <p>팬, 펌프, 임펠러 등 회전 기계의 유동 성능을 평가합니다.</p>
+        <p data-i18n="f4_p">팬, 펌프, 임펠러 등 회전 기계의 유동 성능을 평가합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-1">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
         </div>
-        <h3>전자 냉각</h3>
+        <h3 data-i18n="f5_h3">전자 냉각</h3>
         <div class="analysis-sub">Electronic Cooling</div>
-        <p>PCB, 히트싱크, 히트파이프 등 전자 부품의 발열과 냉각 성능을 해석합니다.</p>
+        <p data-i18n="f5_p">PCB, 히트싱크, 히트파이프 등 전자 부품의 발열과 냉각 성능을 해석합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-2">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3>HVAC 시뮬레이션</h3>
+        <h3 data-i18n="f6_h3">HVAC 시뮬레이션</h3>
         <div class="analysis-sub">HVAC Module</div>
-        <p>실내 공조, 환기, 열 쾌적성 등 건물 환경의 유동·열 특성을 시뮬레이션합니다.</p>
+        <p data-i18n="f6_p">실내 공조, 환기, 열 쾌적성 등 건물 환경의 유동·열 특성을 시뮬레이션합니다.</p>
       </div>
 
       <div class="analysis-card reveal">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
         </div>
-        <h3>압축성 유동</h3>
+        <h3 data-i18n="f7_h3">압축성 유동</h3>
         <div class="analysis-sub">Compressible Flow</div>
-        <p>초음속/천음속 유동 및 충격파가 포함된 압축성 유동을 해석합니다.</p>
+        <p data-i18n="f7_p">초음속/천음속 유동 및 충격파가 포함된 압축성 유동을 해석합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-1">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2"/><path d="M2 12c0-2.8 1.2-5.3 3-7"/><path d="M12 6v6l4 4"/></svg>
         </div>
-        <h3>비정상 유동 / 자유 표면</h3>
-        <div class="analysis-sub">Transient & Free Surface</div>
-        <p>시간에 따른 유동 변화와 자유 수면 거동을 해석합니다.</p>
+        <h3 data-i18n="f8_h3">비정상 유동 / 자유 표면</h3>
+        <div class="analysis-sub">Transient &amp; Free Surface</div>
+        <p data-i18n="f8_p">시간에 따른 유동 변화와 자유 수면 거동을 해석합니다.</p>
       </div>
 
       <div class="analysis-card reveal reveal-delay-2">
         <div class="analysis-icon">
           <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 17l4-8 4 4 4-8"/></svg>
         </div>
-        <h3>파라미터 최적화</h3>
+        <h3 data-i18n="f9_h3">파라미터 최적화</h3>
         <div class="analysis-sub">Parameter Optimization</div>
-        <p>설계 변수의 자동 탐색을 통해 유동 성능 목표를 달성하는 최적 조건을 도출합니다.</p>
+        <p data-i18n="f9_p">설계 변수의 자동 탐색을 통해 유동 성능 목표를 달성하는 최적 조건을 도출합니다.</p>
       </div>
 
     </div>
@@ -526,9 +540,9 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="cta-orb cta-orb-1"></div>
   <div class="cta-orb cta-orb-2"></div>
   <div class="container reveal">
-    <h2>시뮬레이션이 필요하신가요?</h2>
-    <p>구조/유동 해석 의뢰 및 기술 상담을 도와드립니다.</p>
-    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn-cta">문의하기</a>
+    <h2 data-i18n="cta_h2">시뮬레이션이 필요하신가요?</h2>
+    <p data-i18n="cta_p">구조/유동 해석 의뢰 및 기술 상담을 도와드립니다.</p>
+    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn-cta" data-i18n="cta_btn">문의하기</a>
   </div>
 </section>
 
@@ -645,6 +659,125 @@ window.addEventListener('scroll', () => {
   }
   draw();
 })();
+</script>
+
+<!-- ── i18n ── -->
+<script>
+const T = {
+  ko: {
+    nav_structural:'구조 해석', nav_flow:'유동 해석', nav_contact:'문의',
+    hero_h1:'설계의 안전성을<br><span class="text-gradient-blue">시뮬레이션으로 검증합니다</span>',
+    hero_sub:'구조 해석과 유동 해석을 통해 설계 단계에서 문제를 발견하고,<br>시행착오를 줄여 최적의 설계를 도출합니다.',
+    hero_cta1:'구조 해석', hero_cta2:'유동 해석',
+    structural_h2:'구조 해석',
+    structural_sub:'정적 해석부터 피로 해석까지, 설계의 구조적 안전성을 다각도로 검증합니다.',
+    s1_h3:'정적 해석', s1_p:'정적 하중 조건에서의 응력, 변형, 변위를 계산하여 구조물의 안전성을 평가합니다.',
+    s2_h3:'비선형 해석', s2_p:'대변형, 재료 비선형, 접촉 조건 등 선형으로 풀 수 없는 복잡한 거동을 해석합니다.',
+    s3_h3:'좌굴 해석', s3_p:'압축 하중에 의한 좌굴 모드와 임계 하중을 예측하여 구조적 불안정성을 사전에 방지합니다.',
+    s4_h3:'고유진동 주파수', s4_p:'구조물의 고유 진동수와 모드 형상을 분석하여 공진 회피 설계에 활용합니다.',
+    s5_h3:'충격 해석', s5_p:'낙하, 충돌 등 순간적인 충격 하중에 대한 구조물의 동적 응답을 평가합니다.',
+    s6_h3:'하모닉 응답 해석', s6_p:'주기적 가진에 대한 정상 상태 응답을 주파수 영역에서 분석합니다.',
+    s7_h3:'랜덤 진동 해석', s7_p:'PSD 기반의 랜덤 가진 조건에서 구조물의 통계적 응답(RMS)을 예측합니다.',
+    s8_h3:'내진 해석', s8_p:'지진 응답 스펙트럼(RS)을 적용하여 구조물의 내진 안전성을 검증합니다.',
+    s9_h3:'피로 해석', s9_p:'반복 하중에 의한 피로 수명과 손상도를 예측하여 장기 신뢰성을 확보합니다.',
+    s10_h3:'열 해석', s10_p:'전도, 대류, 복사에 의한 온도 분포와 열응력을 분석합니다.',
+    s11_h3:'모션 해석', s11_p:'기구 메커니즘의 운동학/동역학 시뮬레이션으로 힘, 속도, 가속도를 분석합니다.',
+    s12_h3:'위상 최적화', s12_p:'하중과 구속 조건을 만족하는 최적의 형상을 자동으로 도출합니다.',
+    flow_h2:'유동 해석',
+    flow_sub:'내부/외부 유동, 열전달, 전자 냉각까지 — 유체 거동을 정밀하게 예측합니다.',
+    f1_h3:'내부/외부 유동', f1_p:'배관, 밸브 등 내부 유동과 차량, 건물 등 외부 유동 특성을 분석합니다.',
+    f2_h3:'층류/난류 해석', f2_p:'레이놀즈 수에 따른 층류 및 난류 유동 특성을 정밀하게 예측합니다.',
+    f3_h3:'열전달 해석', f3_p:'유체와 고체 사이의 열전달(대류, 전도, 복사)을 복합적으로 분석합니다.',
+    f4_h3:'회전체 해석', f4_p:'팬, 펌프, 임펠러 등 회전 기계의 유동 성능을 평가합니다.',
+    f5_h3:'전자 냉각', f5_p:'PCB, 히트싱크, 히트파이프 등 전자 부품의 발열과 냉각 성능을 해석합니다.',
+    f6_h3:'HVAC 시뮬레이션', f6_p:'실내 공조, 환기, 열 쾌적성 등 건물 환경의 유동·열 특성을 시뮬레이션합니다.',
+    f7_h3:'압축성 유동', f7_p:'초음속/천음속 유동 및 충격파가 포함된 압축성 유동을 해석합니다.',
+    f8_h3:'비정상 유동 / 자유 표면', f8_p:'시간에 따른 유동 변화와 자유 수면 거동을 해석합니다.',
+    f9_h3:'파라미터 최적화', f9_p:'설계 변수의 자동 탐색을 통해 유동 성능 목표를 달성하는 최적 조건을 도출합니다.',
+    cta_h2:'시뮬레이션이 필요하신가요?',
+    cta_p:'구조/유동 해석 의뢰 및 기술 상담을 도와드립니다.',
+    cta_btn:'문의하기'
+  },
+  en: {
+    nav_structural:'Structural', nav_flow:'Flow', nav_contact:'Contact',
+    hero_h1:'Validate Your Design\'s Safety<br><span class="text-gradient-blue">with Simulation.</span>',
+    hero_sub:'Identify design issues early through structural and flow analysis,<br>minimizing trial and error to reach the optimal design.',
+    hero_cta1:'Structural Analysis', hero_cta2:'Flow Analysis',
+    structural_h2:'Structural Analysis',
+    structural_sub:'From static to fatigue analysis, verify structural integrity from every angle.',
+    s1_h3:'Static Analysis', s1_p:'Calculates stress, deformation, and displacement under static load conditions to evaluate structural safety.',
+    s2_h3:'Nonlinear Analysis', s2_p:'Analyzes complex behavior — large deformations, material nonlinearity, and contact conditions — that cannot be solved linearly.',
+    s3_h3:'Buckling Analysis', s3_p:'Predicts buckling modes and critical loads from compressive forces to prevent structural instability in advance.',
+    s4_h3:'Natural Frequency', s4_p:'Analyzes natural frequencies and mode shapes of a structure for use in resonance avoidance design.',
+    s5_h3:'Impact &amp; Shock Analysis', s5_p:'Evaluates the dynamic response of structures under instantaneous shock loads such as drop or impact events.',
+    s6_h3:'Harmonic Response', s6_p:'Analyzes the steady-state response to periodic excitation in the frequency domain.',
+    s7_h3:'Random Vibration', s7_p:'Predicts the statistical response (RMS) of structures under PSD-based random excitation conditions.',
+    s8_h3:'Seismic Analysis', s8_p:'Verifies the seismic safety of structures using earthquake response spectra (RS).',
+    s9_h3:'Fatigue Analysis', s9_p:'Predicts fatigue life and damage under cyclic loading to ensure long-term reliability.',
+    s10_h3:'Thermal Analysis', s10_p:'Analyzes temperature distribution and thermal stress caused by conduction, convection, and radiation.',
+    s11_h3:'Motion Analysis', s11_p:'Performs kinematic/dynamic simulation of mechanisms to analyze forces, velocities, and accelerations.',
+    s12_h3:'Topology Optimization', s12_p:'Automatically derives the optimal shape that satisfies load and constraint conditions.',
+    flow_h2:'Flow Analysis',
+    flow_sub:'From internal/external flow to heat transfer and electronics cooling — precise fluid prediction.',
+    f1_h3:'Internal &amp; External Flow', f1_p:'Analyzes internal flow characteristics of pipes and valves, as well as external flow around vehicles and buildings.',
+    f2_h3:'Laminar &amp; Turbulent', f2_p:'Precisely predicts laminar and turbulent flow characteristics based on the Reynolds number.',
+    f3_h3:'Heat Transfer', f3_p:'Comprehensively analyzes heat transfer between fluids and solids (convection, conduction, radiation).',
+    f4_h3:'Rotating Components', f4_p:'Evaluates the flow performance of rotating machinery such as fans, pumps, and impellers.',
+    f5_h3:'Electronic Cooling', f5_p:'Analyzes heat generation and cooling performance of electronic components such as PCBs, heat sinks, and heat pipes.',
+    f6_h3:'HVAC Simulation', f6_p:'Simulates flow and thermal characteristics of indoor environments — HVAC, ventilation, and thermal comfort.',
+    f7_h3:'Compressible Flow', f7_p:'Analyzes compressible flow including supersonic/transonic flow and shock waves.',
+    f8_h3:'Transient &amp; Free Surface', f8_p:'Analyzes time-dependent flow changes and free surface behavior.',
+    f9_h3:'Parameter Optimization', f9_p:'Automatically explores design variables to find optimal conditions that meet flow performance targets.',
+    cta_h2:'Need Simulation Services?',
+    cta_p:'We\'re here to help with your structural/flow analysis needs and technical consultation.',
+    cta_btn:'Contact Us'
+  },
+  zh: {
+    nav_structural:'结构分析', nav_flow:'流动分析', nav_contact:'联系',
+    hero_h1:'通过仿真验证<br><span class="text-gradient-blue">设计的安全性。</span>',
+    hero_sub:'通过结构分析和流动分析，在设计阶段发现问题，<br>减少试错，得出最优设计。',
+    hero_cta1:'结构分析', hero_cta2:'流动分析',
+    structural_h2:'结构分析',
+    structural_sub:'从静力分析到疲劳分析，全面验证设计的结构安全性。',
+    s1_h3:'静力分析', s1_p:'计算静态载荷条件下的应力、变形和位移，评估结构安全性。',
+    s2_h3:'非线性分析', s2_p:'分析大变形、材料非线性、接触条件等无法用线性方法求解的复杂行为。',
+    s3_h3:'屈曲分析', s3_p:'预测压缩载荷引起的屈曲模态和临界载荷，提前防止结构失稳。',
+    s4_h3:'固有振动频率', s4_p:'分析结构的固有频率和模态振型，用于共振回避设计。',
+    s5_h3:'冲击分析', s5_p:'评估结构在跌落、碰撞等瞬间冲击载荷下的动态响应。',
+    s6_h3:'谐波响应分析', s6_p:'在频域中分析周期性激励的稳态响应。',
+    s7_h3:'随机振动分析', s7_p:'预测基于PSD的随机激励条件下结构的统计响应（RMS）。',
+    s8_h3:'抗震分析', s8_p:'应用地震响应谱（RS）验证结构的抗震安全性。',
+    s9_h3:'疲劳分析', s9_p:'预测循环载荷下的疲劳寿命和损伤度，确保长期可靠性。',
+    s10_h3:'热分析', s10_p:'分析由传导、对流、辐射引起的温度分布和热应力。',
+    s11_h3:'运动分析', s11_p:'通过机构运动学/动力学仿真分析力、速度和加速度。',
+    s12_h3:'拓扑优化', s12_p:'自动推导出满足载荷和约束条件的最优形状。',
+    flow_h2:'流动分析',
+    flow_sub:'从内部/外部流动到热传导、电子冷却——精确预测流体行为。',
+    f1_h3:'内部/外部流动', f1_p:'分析管道、阀门等内部流动特性以及车辆、建筑物等外部流动特性。',
+    f2_h3:'层流/湍流分析', f2_p:'根据雷诺数精确预测层流和湍流流动特性。',
+    f3_h3:'热传导分析', f3_p:'综合分析流体与固体之间的热传递（对流、传导、辐射）。',
+    f4_h3:'旋转部件分析', f4_p:'评估风扇、泵、叶轮等旋转机械的流动性能。',
+    f5_h3:'电子冷却', f5_p:'分析PCB、散热器、热管等电子部件的发热和冷却性能。',
+    f6_h3:'暖通空调仿真', f6_p:'仿真室内空调、通风、热舒适性等建筑环境的流动和热特性。',
+    f7_h3:'可压缩流动', f7_p:'分析包含超音速/跨音速流动和冲击波的可压缩流动。',
+    f8_h3:'非稳态流动/自由液面', f8_p:'分析随时间变化的流动特性和自由液面行为。',
+    f9_h3:'参数优化', f9_p:'通过自动探索设计变量，推导出达到流动性能目标的最优条件。',
+    cta_h2:'需要仿真服务？',
+    cta_p:'我们提供结构/流动分析委托及技术咨询服务。',
+    cta_btn:'联系我们'
+  }
+};
+
+let curLang = 'ko';
+function setLang(lang) {
+  curLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('#langToggle button').forEach(b => b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+}
 </script>
 
 <!-- ── Floating Risk Diagnosis ── -->

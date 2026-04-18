@@ -137,7 +137,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   background:linear-gradient(135deg,var(--blue-400) 0%,var(--blue-500) 50%,var(--blue-200) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--slate-4);max-width:860px;margin:0 auto 48px;line-height:1.85;word-break:keep-all}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--slate-4);max-width:860px;margin:0 auto 48px;line-height:1.85;word-break:keep-all;min-height:4em}
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .hero-stats{display:flex;justify-content:center;gap:64px;margin-top:72px;padding-top:48px;border-top:1px solid rgba(255,255,255,.08)}
 .hero-stat-num{font-size:2rem;font-weight:800;color:var(--blue-400);line-height:1}
@@ -148,7 +148,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:14px 32px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;
   cursor:pointer;border:none;transition:all .3s cubic-bezier(.4,0,.2,1);
-  letter-spacing:0em;
+  letter-spacing:0em;min-width:160px;
 }
 .btn-primary{
   background:linear-gradient(135deg,var(--blue),var(--blue-d));color:var(--white);
@@ -208,16 +208,16 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 .product-card.valentis .product-icon{background:rgba(6,182,212,.08);color:#06b6d4}
 .product-card.linkspace .product-icon{background:rgba(6,182,212,.08);color:#06b6d4}
 .product-card h3{font-size:1.4rem;font-weight:800;margin-bottom:2px;letter-spacing:0em}
-.product-card .product-tagline{font-size:.88rem;font-weight:600;margin-bottom:16px}
+.product-card .product-tagline{font-size:.88rem;font-weight:600;margin-bottom:16px;min-height:2.8em}
 .product-card.simulation .product-tagline{color:var(--blue)}
 .product-card.valentis .product-tagline{color:#06b6d4}
 .product-card.linkspace .product-tagline{color:#06b6d4}
 .product-card p{font-size:.92rem;color:var(--slate-6);line-height:1.8;margin-bottom:24px;word-break:keep-all}
 .product-features li{
-  display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--slate-7);
+  display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:var(--slate-7);
 }
 .product-features li .check{
-  width:18px;height:18px;border-radius:6px;flex-shrink:0;
+  width:18px;height:18px;border-radius:6px;flex-shrink:0;margin-top:3px;
   display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--white);
 }
 .product-card.simulation .check{background:linear-gradient(135deg,var(--blue-500),var(--blue))}
@@ -265,7 +265,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 
 /* ── Section: About ── */
 .section-about{padding:120px 0 180px;background:var(--white)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
 .about-content h2{text-align:left;margin-bottom:24px}
 .about-content p{font-size:.95rem;color:var(--slate-6);line-height:1.85;margin-bottom:20px;word-break:keep-all}
 .about-values{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -306,7 +306,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 .contact-orb-2{width:450px;height:450px;bottom:-120px;left:-100px;background:radial-gradient(circle,rgba(59,130,246,.5),transparent 70%);opacity:.7
 }
 .section-contact h2{color:var(--white)}
-.section-contact .subtitle{color:var(--slate-4)}
+.section-contact .subtitle{color:var(--slate-4);min-height:3.6em}
 .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
 .contact-card{
   text-align:center;padding:40px 28px;border-radius:var(--radius);
@@ -396,6 +396,17 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   .footer{height:auto;padding:24px 0}
   .footer .container{flex-direction:column;gap:16px;text-align:center}
 }
+
+/* ── Lang Toggle ── */
+.lang-toggle{display:flex;border:1px solid #4a5568;border-radius:6px;overflow:hidden;flex-shrink:0}
+.lang-toggle button{
+  background:transparent;border:none;color:#94a3b8;padding:4px 8px;
+  font-size:11px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.5px;
+}
+.lang-toggle button:hover{color:#e2e8f0}
+.lang-toggle button.active{background:#2563eb;color:#fff}
+:lang(ko) p,:lang(ko) li,:lang(ko) h1,:lang(ko) h2,:lang(ko) h3{word-break:keep-all}
+@media(max-width:768px){.lang-toggle{display:none}}
 </style>
 </head>
 <body>
@@ -406,7 +417,7 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
     <a href="#" class="nav-logo">Verus<span>Lab</span></a>
     <ul class="nav-links" id="navLinks">
       <li class="nav-dropdown">
-        <a href="#products">Products</a>
+        <a href="#products">Solutions</a>
         <ul class="nav-dropdown-menu">
           <li><a href="/simulation/">Simulation</a></li>
           <li><a href="/valentis/">Valentis</a></li>
@@ -417,6 +428,11 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="lang-toggle" id="langToggle">
+      <button onclick="setLang('ko')" class="active">KO</button>
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('zh')">ZH</button>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -431,16 +447,16 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="hero-network"><canvas id="heroNetwork"></canvas></div>
   <div class="container">
     <div class="badge badge-blue hero-fade hero-fade-1" style="margin-bottom:24px;border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08);text-transform:none">WEBS System Korea R&amp;D Lab</div>
-    <h1 class="hero-fade hero-fade-2">
+    <h1 class="hero-fade hero-fade-2" data-i18n="hero_h1">
       엔지니어링의 복잡함을<br>
       <span class="text-gradient">소프트웨어로 풀어냅니다</span>
     </h1>
-    <p class="hero-sub hero-fade hero-fade-3">
+    <p class="hero-sub hero-fade hero-fade-3" data-i18n="hero_sub">
       VerusLab은 웹스시스템코리아의 연구소로, 엔지니어링 현장의 실제 문제를 소프트웨어로 풀어냅니다.
     </p>
     <div class="hero-actions hero-fade hero-fade-4">
-      <a href="#products" class="btn btn-primary">제품 살펴보기</a>
-      <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn btn-outline-light">문의하기</a>
+      <a href="#products" class="btn btn-primary" data-i18n="hero_cta1">솔루션 살펴보기</a>
+      <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn btn-outline-light" data-i18n="hero_cta2">문의하기</a>
     </div>
   </div>
   <div class="section-wave"><svg viewBox="0 0 1440 56" preserveAspectRatio="none"><path d="M0,56 C480,0 960,0 1440,56 Z" fill="#ffffff"/></svg></div>
@@ -450,9 +466,9 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 <section class="section-products" id="products">
   <div class="container">
     <div class="text-center">
-      <div class="badge badge-blue">PRODUCTS</div>
-      <h2 style="margin-top:16px">현장을 위한 솔루션</h2>
-      <p class="subtitle">엔지니어링과 비즈니스, 두 영역의 핵심 과제를 해결합니다.</p>
+      <div class="badge badge-blue" data-i18n="products_badge">SOLUTIONS</div>
+      <h2 style="margin-top:16px" data-i18n="products_h2">현장을 위한 솔루션</h2>
+      <p class="subtitle" data-i18n="products_sub">엔지니어링과 비즈니스, 두 영역의 핵심 과제를 해결합니다.</p>
     </div>
     <div class="products-grid">
 
@@ -462,18 +478,18 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
         </div>
         <h3>Simulation</h3>
-        <div class="product-tagline">SOLIDWORKS 기반 구조 · 유동 해석</div>
-        <p>설계 단계에서 구조적 안전성과 유동 특성을 검증하여, 시행착오를 줄이고 최적의 설계를 도출합니다.</p>
+        <div class="product-tagline" data-i18n="sim_tagline">SOLIDWORKS 기반 구조 · 유동 해석</div>
+        <p data-i18n="sim_desc">설계 단계에서 구조적 안전성과 유동 특성을 검증하여, 시행착오를 줄이고 최적의 설계를 도출합니다.</p>
         <ul class="product-features">
-          <li><span class="check">&#10003;</span>정적 · 비선형 · 좌굴 · 피로 해석</li>
-          <li><span class="check">&#10003;</span>열 해석 · 모션 시뮬레이션</li>
-          <li><span class="check">&#10003;</span>파라미터 스터디 · 위상 최적화</li>
-          <li><span class="check">&#10003;</span>충격 · 하모닉 응답 · 랜덤 진동 · 내진 해석</li>
-          <li><span class="check">&#10003;</span>내부/외부 열유동 해석 (CFD)</li>
-          <li><span class="check">&#10003;</span>전자 냉각 · HVAC 시뮬레이션</li>
+          <li><span class="check">&#10003;</span><span data-i18n="sim_li1">정적 · 비선형 · 좌굴 · 피로 해석</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="sim_li2">열 해석 · 모션 시뮬레이션</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="sim_li3">파라미터 스터디 · 위상 최적화</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="sim_li4">충격 · 하모닉 응답 · 랜덤 진동 · 내진 해석</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="sim_li5">내부/외부 열유동 해석 (CFD)</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="sim_li6">전자 냉각 · HVAC 시뮬레이션</span></li>
         </ul>
         <a href="/simulation/" class="product-link">
-          자세히 보기
+          <span data-i18n="link_more">자세히 보기</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
@@ -484,18 +500,18 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <h3>Valentis</h3>
-        <div class="product-tagline">계산부터 의사결정까지, 하나로</div>
-        <p>진동/충격/내진 하중 정의, DOE, 메타모델,<br>신뢰성 분석, 파레토 최적화를<br>하나의 웹 플랫폼에서 수행합니다.</p>
+        <div class="product-tagline" data-i18n="val_tagline">계산부터 의사결정까지, 하나로</div>
+        <p data-i18n="val_desc">진동/충격/내진 하중 정의, DOE, 메타모델,<br>신뢰성 분석, 파레토 최적화를<br>하나의 웹 플랫폼에서 수행합니다.</p>
         <ul class="product-features">
-          <li><span class="check">&#10003;</span>웹 기반 — 설치 없이 브라우저에서</li>
-          <li><span class="check">&#10003;</span>재료물성치 데이터베이스</li>
-          <li><span class="check">&#10003;</span>규격 기반 진동/충격/내진 하중 DB 제공</li>
-          <li><span class="check">&#10003;</span>파라미터 스터디를 위한 시나리오 자동 생성</li>
-          <li><span class="check">&#10003;</span>민감도 &amp; 신뢰성 분석 &amp; 파레토 최적화</li>
-          <li><span class="check">&#10003;</span>메타모델 기반 응답 예측</li>
+          <li><span class="check">&#10003;</span><span data-i18n="val_li1">웹 기반 — 설치 없이 브라우저에서</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="val_li2">재료물성치 데이터베이스</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="val_li3">규격 기반 진동/충격/내진 하중 DB 제공</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="val_li4">파라미터 스터디를 위한 시나리오 자동 생성</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="val_li5">민감도 &amp; 신뢰성 분석 &amp; 파레토 최적화</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="val_li6">메타모델 기반 응답 예측</span></li>
         </ul>
         <a href="/valentis/" class="product-link">
-          자세히 보기
+          <span data-i18n="link_more">자세히 보기</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
@@ -507,18 +523,18 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         </div>
         <h3>Linkspace</h3>
         <div class="product-tagline">Connect. Align. Grow.</div>
-        <p>고객사 관리, 영업 파이프라인, 마케팅, 기술지원까지 — B2B 영업의 전 과정을 하나의 CRM에서 관리합니다.</p>
+        <p data-i18n="link_desc">고객사 관리, 영업 파이프라인, 마케팅, 기술지원까지 — B2B 영업의 전 과정을 하나의 CRM에서 관리합니다.</p>
         <ul class="product-features">
-          <li><span class="check">&#10003;</span>고객사 &amp; 담당자 통합 관리</li>
-          <li><span class="check">&#10003;</span>영업 파이프라인 &amp; 활동 추적</li>
-          <li><span class="check">&#10003;</span>마케팅 &amp; 리드 관리</li>
-          <li><span class="check">&#10003;</span>기술지원 &amp; 교육 관리</li>
-          <li><span class="check">&#10003;</span>프로젝트 관리</li>
-          <li><span class="check">&#10003;</span>AI 기반 교육보고서 자동 작성</li>
-          <li><span class="check">&#10003;</span>AI 기반 영업 &amp; 마케팅 전략 수립</li>
+          <li><span class="check">&#10003;</span><span data-i18n="link_li1">고객사 &amp; 담당자 통합 관리</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="link_li2">영업 파이프라인 &amp; 활동 추적</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="link_li3">마케팅 &amp; 리드 관리</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="link_li4">기술지원 &amp; 교육 관리</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="link_li5">프로젝트 관리</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="link_li6">AI 기반 교육보고서 자동 작성</span></li>
+          <li><span class="check">&#10003;</span><span data-i18n="link_li7">AI 기반 영업 &amp; 마케팅 전략 수립</span></li>
         </ul>
         <a href="/linkspace/" class="product-link">
-          자세히 보기
+          <span data-i18n="link_more">자세히 보기</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
@@ -532,8 +548,8 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="container">
     <div class="text-center">
       <div class="badge badge-blue">NEWS</div>
-      <h2 style="margin-top:16px">새로운 소식</h2>
-      <p class="subtitle">VerusLab의 최신 소식과 이벤트를 확인하세요.</p>
+      <h2 style="margin-top:16px" data-i18n="news_h2">새로운 소식</h2>
+      <p class="subtitle" data-i18n="news_sub">VerusLab의 최신 소식과 이벤트를 확인하세요.</p>
     </div>
     <div class="news-grid">
 
@@ -548,16 +564,16 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
       <div class="news-card reveal reveal-delay-1" style="--news-accent:#3b82f6;cursor:pointer" onclick="document.getElementById('releaseOverlay').classList.add('active')">
         <div class="news-date">2026.04.01</div>
         <span class="news-badge" style="background:rgba(59,130,246,.1);color:#3b82f6">RELEASE</span>
-        <h3>Valentis v1.0.0 출시</h3>
-        <p>파라미터 스터디 웹 플랫폼 Valentis의 첫 번째 버전이 출시되었습니다.</p>
-        <span class="news-link">자세히 보기 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+        <h3 data-i18n="release_card_title">Valentis v1.0.0 출시</h3>
+        <p data-i18n="release_card_desc">파라미터 스터디 웹 플랫폼 Valentis의 첫 번째 버전이 출시되었습니다.</p>
+        <span class="news-link"><span data-i18n="link_more">자세히 보기</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
       </div>
 
       <div class="news-card reveal reveal-delay-2" style="--news-accent:#06b6d4">
         <div class="news-date">Coming Soon</div>
         <span class="news-badge" style="background:rgba(6,182,212,.1);color:#06b6d4">UPCOMING</span>
-        <h3>Valentis SaaS 출시 예정</h3>
-        <p>설치 없이 브라우저에서 바로 사용할 수 있는 클라우드 버전이 준비 중입니다.</p>
+        <h3 data-i18n="upcoming_title">Valentis SaaS 출시 예정</h3>
+        <p data-i18n="upcoming_desc">설치 없이 브라우저에서 바로 사용할 수 있는 클라우드 버전이 준비 중입니다.</p>
       </div>
 
     </div>
@@ -570,12 +586,12 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
     <div class="about-grid">
       <div class="about-content reveal">
         <div class="badge badge-blue" style="margin-bottom:16px">ABOUT US</div>
-        <h2>엔지니어가 만드는<br>엔지니어링 소프트웨어</h2>
-        <p>
+        <h2 data-i18n="about_h2">엔지니어가 만드는<br>엔지니어링 소프트웨어</h2>
+        <p data-i18n="about_p1">
           VerusLab은 엔지니어링 현장의 경험을 바탕으로 소프트웨어를 개발합니다.<br>
           복잡한 해석 워크플로우를 단순화하고, 흩어진 비즈니스 데이터를 하나로 연결합니다.
         </p>
-        <p>
+        <p data-i18n="about_p2">
           우리는 "진짜 쓸 수 있는 도구"를 만듭니다.<br>
           현장에서 시작해 현장으로 돌아가는 솔루션, 그것이 VerusLab의 방향입니다.
         </p>
@@ -585,29 +601,29 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
           <div class="about-value-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
           </div>
-          <h4>정밀한 분석</h4>
-          <p>검증된 알고리즘과 표준 기반의 정확한 엔지니어링 계산</p>
+          <h4 data-i18n="av1_title">정밀한 분석</h4>
+          <p data-i18n="av1_desc">검증된 알고리즘과 표준 기반의 정확한 엔지니어링 계산</p>
         </div>
         <div class="about-value" style="--value-accent:#f59e0b;--value-bg:rgba(245,158,11,.08);--value-glow:#f59e0b">
           <div class="about-value-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
           </div>
-          <h4>실용적 설계</h4>
-          <p>현장 엔지니어가 바로 쓸 수 있는 직관적인 인터페이스</p>
+          <h4 data-i18n="av2_title">실용적 설계</h4>
+          <p data-i18n="av2_desc">현장 엔지니어가 바로 쓸 수 있는 직관적인 인터페이스</p>
         </div>
         <div class="about-value" style="--value-accent:#06b6d4;--value-bg:rgba(6,182,212,.08);--value-glow:#06b6d4">
           <div class="about-value-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
           </div>
-          <h4>웹 기반 플랫폼</h4>
-          <p>설치 없이 브라우저에서, 어디서든 접근 가능</p>
+          <h4 data-i18n="av3_title">웹 기반 플랫폼</h4>
+          <p data-i18n="av3_desc">설치 없이 브라우저에서, 어디서든 접근 가능</p>
         </div>
         <div class="about-value" style="--value-accent:#10b981;--value-bg:rgba(16,185,129,.08);--value-glow:#10b981">
           <div class="about-value-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
           </div>
-          <h4>지속적 발전</h4>
-          <p>고객 피드백 기반의 빠른 업데이트와 기능 확장</p>
+          <h4 data-i18n="av4_title">지속적 발전</h4>
+          <p data-i18n="av4_desc">고객 피드백 기반의 빠른 업데이트와 기능 확장</p>
         </div>
       </div>
     </div>
@@ -622,8 +638,8 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="container" style="position:relative;z-index:1">
     <div class="text-center">
       <div class="badge badge-blue" style="border-color:rgba(96,165,250,.25);color:var(--blue-400);background:rgba(96,165,250,.08)">CONTACT</div>
-      <h2 style="margin-top:16px">함께 이야기해요</h2>
-      <p class="subtitle">제품 문의, 기술 상담, 파트너십 — 무엇이든 편하게 연락 주세요.</p>
+      <h2 style="margin-top:16px" data-i18n="contact_h2">함께 이야기해요</h2>
+      <p class="subtitle" data-i18n="contact_sub">제품 문의, 기술 상담, 파트너십 — 무엇이든 편하게 연락 주세요.</p>
     </div>
     <div class="contact-grid">
       <div class="contact-card reveal">
@@ -1117,16 +1133,16 @@ countEls.forEach(el => countObserver.observe(el));
         <span class="release-badge">INITIAL</span>
         <span class="release-date">2026-04-01</span>
       </div>
-      <div class="release-subtitle">최초 릴리스</div>
+      <div class="release-subtitle" data-i18n="release_subtitle">최초 릴리스</div>
       <ul class="release-list">
         <li><strong>Dynamic Load Definition</strong>
           <ul class="release-sublist">
             <li>Shock, Harmonic, Random PSD, RMS/PSD, Response Spectrum</li>
-            <li>Vibration/Shock 프리셋 — MIL-STD-810H / MIL-STD-167-1A / NAVMAT P-9492 / IEC 61373</li>
-            <li>Seismic 프리셋 — UBC-97 / KDS 41 / ASCE 7-16 / Eurocode 8</li>
+            <li><span data-i18n="release_preset_vib">Vibration/Shock 프리셋</span> — MIL-STD-810H / MIL-STD-167-1A / NAVMAT P-9492 / IEC 61373</li>
+            <li><span data-i18n="release_preset_sei">Seismic 프리셋</span> — UBC-97 / KDS 41 / ASCE 7-16 / Eurocode 8</li>
           </ul>
         </li>
-        <li><strong>Dynamic Characterization</strong> — Mass Participation 분석</li>
+        <li><strong>Dynamic Characterization</strong> — <span data-i18n="release_mass">Mass Participation 분석</span></li>
         <li><strong>Analysis Intelligence</strong>
           <ul class="release-sublist">
             <li>Scenario, Data Transposition, Sensitivity</li>
@@ -1135,8 +1151,8 @@ countEls.forEach(el => countObserver.observe(el));
         </li>
         <li><strong>Material Property</strong>
           <ul class="release-sublist">
-            <li>Solid 데이터베이스 (798종)</li>
-            <li>Fluid 데이터베이스 (83종 — Gas/Liquid/Solid)</li>
+            <li data-i18n="release_solid_db">Solid 데이터베이스 (798종)</li>
+            <li data-i18n="release_fluid_db">Fluid 데이터베이스 (83종 — Gas/Liquid/Solid)</li>
           </ul>
         </li>
         <li><strong>Data Tools</strong> — Curve Digitizer</li>
@@ -1154,6 +1170,146 @@ countEls.forEach(el => countObserver.observe(el));
     o.classList.remove('active');
   }});
 })();
+</script>
+
+<!-- ── i18n ── -->
+<script>
+const T = {
+  ko: {
+    hero_h1:'엔지니어링의 복잡함을<br><span class="text-gradient">소프트웨어로 풀어냅니다</span>',
+    hero_sub:'VerusLab은 웹스시스템코리아의 연구소로, 엔지니어링 현장의 실제 문제를 소프트웨어로 풀어냅니다.',
+    hero_cta1:'솔루션 살펴보기', hero_cta2:'문의하기',
+    products_badge:'SOLUTIONS', products_h2:'현장을 위한 솔루션',
+    products_sub:'엔지니어링과 비즈니스, 두 영역의 핵심 과제를 해결합니다.',
+    sim_tagline:'SOLIDWORKS 기반 구조 · 유동 해석',
+    sim_desc:'설계 단계에서 구조적 안전성과 유동 특성을 검증하여, 시행착오를 줄이고 최적의 설계를 도출합니다.',
+    sim_li1:'정적 · 비선형 · 좌굴 · 피로 해석', sim_li2:'열 해석 · 모션 시뮬레이션',
+    sim_li3:'파라미터 스터디 · 위상 최적화', sim_li4:'충격 · 하모닉 응답 · 랜덤 진동 · 내진 해석',
+    sim_li5:'내부/외부 열유동 해석 (CFD)', sim_li6:'전자 냉각 · HVAC 시뮬레이션',
+    val_tagline:'계산부터 의사결정까지, 하나로',
+    val_desc:'진동/충격/내진 하중 정의, DOE, 메타모델,<br>신뢰성 분석, 파레토 최적화를<br>하나의 웹 플랫폼에서 수행합니다.',
+    val_li1:'웹 기반 — 설치 없이 브라우저에서', val_li2:'재료물성치 데이터베이스',
+    val_li3:'규격 기반 진동/충격/내진 하중 DB 제공', val_li4:'파라미터 스터디를 위한 시나리오 자동 생성',
+    val_li5:'민감도 &amp; 신뢰성 분석 &amp; 파레토 최적화', val_li6:'메타모델 기반 응답 예측',
+    link_desc:'고객사 관리, 영업 파이프라인, 마케팅, 기술지원까지 — B2B 영업의 전 과정을 하나의 CRM에서 관리합니다.',
+    link_li1:'고객사 &amp; 담당자 통합 관리', link_li2:'영업 파이프라인 &amp; 활동 추적',
+    link_li3:'마케팅 &amp; 리드 관리', link_li4:'기술지원 &amp; 교육 관리',
+    link_li5:'프로젝트 관리', link_li6:'AI 기반 교육보고서 자동 작성',
+    link_li7:'AI 기반 영업 &amp; 마케팅 전략 수립',
+    link_more:'자세히 보기',
+    news_h2:'새로운 소식', news_sub:'VerusLab의 최신 소식과 이벤트를 확인하세요.',
+    release_card_title:'Valentis v1.0.0 출시',
+    release_card_desc:'파라미터 스터디 웹 플랫폼 Valentis의 첫 번째 버전이 출시되었습니다.',
+    upcoming_title:'Valentis SaaS 출시 예정',
+    upcoming_desc:'설치 없이 브라우저에서 바로 사용할 수 있는 클라우드 버전이 준비 중입니다.',
+    about_h2:'엔지니어가 만드는<br>엔지니어링 소프트웨어',
+    about_p1:'VerusLab은 엔지니어링 현장의 경험을 바탕으로 소프트웨어를 개발합니다.<br>복잡한 해석 워크플로우를 단순화하고, 흩어진 비즈니스 데이터를 하나로 연결합니다.',
+    about_p2:'우리는 "진짜 쓸 수 있는 도구"를 만듭니다.<br>현장에서 시작해 현장으로 돌아가는 솔루션, 그것이 VerusLab의 방향입니다.',
+    av1_title:'정밀한 분석', av1_desc:'검증된 알고리즘과 표준 기반의 정확한 엔지니어링 계산',
+    av2_title:'실용적 설계', av2_desc:'현장 엔지니어가 바로 쓸 수 있는 직관적인 인터페이스',
+    av3_title:'웹 기반 플랫폼', av3_desc:'설치 없이 브라우저에서, 어디서든 접근 가능',
+    av4_title:'지속적 발전', av4_desc:'고객 피드백 기반의 빠른 업데이트와 기능 확장',
+    contact_h2:'함께 이야기해요',
+    contact_sub:'제품 문의, 기술 상담, 파트너십 — 무엇이든 편하게 연락 주세요.',
+    release_subtitle:'최초 릴리스',
+    release_preset_vib:'Vibration/Shock 프리셋', release_preset_sei:'Seismic 프리셋',
+    release_mass:'Mass Participation 분석',
+    release_solid_db:'Solid 데이터베이스 (798종)', release_fluid_db:'Fluid 데이터베이스 (83종 — Gas/Liquid/Solid)'
+  },
+  en: {
+    hero_h1:'Engineering complexity,<br><span class="text-gradient">solved in software.</span>',
+    hero_sub:'VerusLab is the R&amp;D lab of WEBS System Korea, turning real engineering challenges into software solutions.',
+    hero_cta1:'Explore Solutions', hero_cta2:'Contact Us',
+    products_badge:'SOLUTIONS', products_h2:'Solutions for the Field',
+    products_sub:'Solving core challenges in both engineering and business.',
+    sim_tagline:'Structural &amp; Flow Analysis on SOLIDWORKS',
+    sim_desc:'Validate structural integrity and fluid behavior during the design phase to reduce trial and error and reach optimal designs.',
+    sim_li1:'Static · Nonlinear · Buckling · Fatigue', sim_li2:'Thermal · Motion Simulation',
+    sim_li3:'Parameter Study · Topology Optimization', sim_li4:'Shock · Harmonic · Random Vibration · Seismic',
+    sim_li5:'Internal/External CFD Analysis', sim_li6:'Electronics Cooling · HVAC Simulation',
+    val_tagline:'From Calculation to Decision, All in One',
+    val_desc:'Load definition, DOE, meta-modeling,<br>reliability analysis, and Pareto optimization —<br>all in one web platform.',
+    val_li1:'Web-based — no installation required', val_li2:'Material Property Database',
+    val_li3:'Standard-based vibration/shock/seismic load DB', val_li4:'Automatic scenario generation for parameter studies',
+    val_li5:'Sensitivity &amp; Reliability Analysis &amp; Pareto Optimization', val_li6:'Meta-model based response prediction',
+    link_desc:'Manage clients, sales pipeline, marketing, and tech support — all B2B operations in one CRM.',
+    link_li1:'Client &amp; Contact Management', link_li2:'Sales Pipeline &amp; Activity Tracking',
+    link_li3:'Marketing &amp; Lead Management', link_li4:'Tech Support &amp; Training Management',
+    link_li5:'Project Management', link_li6:'AI-powered Training Report Generation',
+    link_li7:'AI-powered Sales &amp; Marketing Strategy',
+    link_more:'Learn More',
+    news_h2:'Latest News', news_sub:'Stay updated with the latest from VerusLab.',
+    release_card_title:'Valentis v1.0.0 Released',
+    release_card_desc:'The first version of Valentis, the web platform for parameter studies, is now available.',
+    upcoming_title:'Valentis SaaS — Coming Soon',
+    upcoming_desc:'A cloud version you can use directly in your browser — no installation needed — is in development.',
+    about_h2:'Engineering Software<br>Built by Engineers',
+    about_p1:'VerusLab builds software rooted in real engineering experience.<br>We simplify complex simulation workflows and unify scattered business data.',
+    about_p2:'We build tools that are truly usable.<br>Solutions that start from the field and return to the field — that\'s the direction of VerusLab.',
+    av1_title:'Precise Analysis', av1_desc:'Accurate engineering calculations based on validated algorithms and standards',
+    av2_title:'Practical Design', av2_desc:'Intuitive interfaces that field engineers can use right away',
+    av3_title:'Web-Based Platform', av3_desc:'Browser-based, no installation, accessible from anywhere',
+    av4_title:'Continuous Improvement', av4_desc:'Fast updates and feature expansions driven by customer feedback',
+    contact_h2:'Let\'s Talk',
+    contact_sub:'Product inquiries, technical consultation, partnerships — feel free to reach out for anything.',
+    release_subtitle:'Initial Release',
+    release_preset_vib:'Vibration/Shock Presets', release_preset_sei:'Seismic Presets',
+    release_mass:'Mass Participation Analysis',
+    release_solid_db:'Solid Database (798 types)', release_fluid_db:'Fluid Database (83 types — Gas/Liquid/Solid)'
+  },
+  zh: {
+    hero_h1:'将工程的复杂性<br><span class="text-gradient">用软件来解决。</span>',
+    hero_sub:'VerusLab是WEBS System Korea的研发实验室，将工程现场的实际问题转化为软件解决方案。',
+    hero_cta1:'探索解决方案', hero_cta2:'联系我们',
+    products_badge:'SOLUTIONS', products_h2:'面向现场的解决方案',
+    products_sub:'解决工程与业务两大领域的核心难题。',
+    sim_tagline:'基于SOLIDWORKS的结构与流动分析',
+    sim_desc:'在设计阶段验证结构安全性和流动特性，减少试错，得出最优设计。',
+    sim_li1:'静力·非线性·屈曲·疲劳分析', sim_li2:'热分析·运动仿真',
+    sim_li3:'参数研究·拓扑优化', sim_li4:'冲击·谐波响应·随机振动·抗震分析',
+    sim_li5:'内部/外部热流分析（CFD）', sim_li6:'电子冷却·暖通空调仿真',
+    val_tagline:'从计算到决策，一站式平台',
+    val_desc:'振动/冲击/抗震载荷定义、DOE、元模型、<br>可靠性分析、Pareto优化，<br>全部在一个Web平台中完成。',
+    val_li1:'基于Web — 无需安装，浏览器直接使用', val_li2:'材料属性数据库',
+    val_li3:'基于规范的振动/冲击/抗震载荷数据库', val_li4:'参数研究的场景自动生成',
+    val_li5:'灵敏度分析 &amp; 可靠性分析 &amp; Pareto优化', val_li6:'基于元模型的响应预测',
+    link_desc:'客户管理、销售管道、营销、技术支持——B2B销售全流程，尽在一个CRM。',
+    link_li1:'客户 &amp; 联系人综合管理', link_li2:'销售管道 &amp; 活动追踪',
+    link_li3:'营销 &amp; 线索管理', link_li4:'技术支持 &amp; 培训管理',
+    link_li5:'项目管理', link_li6:'AI驱动的培训报告自动生成',
+    link_li7:'AI驱动的销售 &amp; 营销策略制定',
+    link_more:'了解更多',
+    news_h2:'最新动态', news_sub:'了解VerusLab的最新资讯与活动。',
+    release_card_title:'Valentis v1.0.0 正式发布',
+    release_card_desc:'参数研究Web平台Valentis的第一个版本正式发布。',
+    upcoming_title:'Valentis SaaS 即将发布',
+    upcoming_desc:'无需安装，直接在浏览器中使用的云端版本正在开发中。',
+    about_h2:'由工程师打造的<br>工程软件',
+    about_p1:'VerusLab基于工程现场经验开发软件。<br>简化复杂的仿真工作流程，将分散的业务数据整合为一体。',
+    about_p2:'我们打造"真正好用的工具"。<br>从现场出发、回归现场的解决方案，这就是VerusLab的方向。',
+    av1_title:'精准分析', av1_desc:'基于验证算法和标准的精确工程计算',
+    av2_title:'实用设计', av2_desc:'现场工程师可即刻上手的直观界面',
+    av3_title:'基于Web的平台', av3_desc:'无需安装，浏览器访问，随处可用',
+    av4_title:'持续发展', av4_desc:'基于客户反馈的快速更新与功能扩展',
+    contact_h2:'欢迎联系我们',
+    contact_sub:'产品咨询、技术支持、合作洽谈——欢迎随时联系我们。',
+    release_subtitle:'初始版本',
+    release_preset_vib:'振动/冲击预设', release_preset_sei:'抗震预设',
+    release_mass:'质量参与率分析',
+    release_solid_db:'固体数据库（798种）', release_fluid_db:'流体数据库（83种 — 气体/液体/固体）'
+  }
+};
+
+let curLang = 'ko';
+function setLang(lang) {
+  curLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('#langToggle button').forEach(b => b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase()));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang] && T[lang][key]) el.innerHTML = T[lang][key];
+  });
+}
 </script>
 </body>
 </html>

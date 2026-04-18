@@ -254,6 +254,15 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   .footer{height:auto;padding:24px 0}
   .footer .container{flex-direction:column;gap:16px;text-align:center}
 }
+.lang-toggle{display:flex;border:1px solid #4a5568;border-radius:6px;overflow:hidden;flex-shrink:0}
+.lang-toggle button{
+  background:transparent;border:none;color:#94a3b8;padding:4px 8px;
+  font-size:11px;font-weight:600;cursor:pointer;transition:.15s;letter-spacing:.5px;
+}
+.lang-toggle button:hover{color:#e2e8f0}
+.lang-toggle button.active{background:#2563eb;color:#fff}
+:lang(ko) p,:lang(ko) li,:lang(ko) h1,:lang(ko) h2,:lang(ko) h3{word-break:keep-all}
+@media(max-width:768px){.lang-toggle{display:none}}
 </style>
 </head>
 <body>
@@ -270,6 +279,11 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
       <li><a href="#ai">AI</a></li>
       <li><a href="#cta">Contact</a></li>
     </ul>
+    <div class="lang-toggle" id="langToggle">
+      <button onclick="setLang('ko')" class="active">KO</button>
+      <button onclick="setLang('en')">EN</button>
+      <button onclick="setLang('zh')">ZH</button>
+    </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -284,17 +298,17 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   <div class="container">
     <div class="hero-text">
       <div class="badge badge-acc hero-fade hero-fade-1" style="margin-bottom:24px">B2B CRM PLATFORM</div>
-      <h1 class="hero-fade hero-fade-2">
+      <h1 class="hero-fade hero-fade-2" data-i18n="hero_h1">
         Connect. Align. Grow.<br>
         <span class="accent">비즈니스를 하나로</span>
       </h1>
-      <p class="hero-fade hero-fade-3">
+      <p class="hero-fade hero-fade-3" data-i18n="hero_sub">
         고객사 관리부터 영업, 마케팅, 기술지원, 프로젝트까지 —<br>
         B2B 비즈니스의 모든 흐름을 하나의 플랫폼에서 관리합니다.
       </p>
       <div class="hero-actions hero-fade hero-fade-4">
-        <a href="#features" class="btn btn-primary">기능 살펴보기</a>
-        <a href="#cta" class="btn btn-outline-light">문의하기</a>
+        <a href="#features" class="btn btn-primary" data-i18n="hero_cta1">기능 살펴보기</a>
+        <a href="#cta" class="btn btn-outline-light" data-i18n="hero_cta2">문의하기</a>
       </div>
     </div>
     <div class="hero-visual hero-fade hero-fade-5">
@@ -309,39 +323,39 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
           <div class="hc-stats">
             <div class="hc-stat">
               <div class="hc-stat-num">127</div>
-              <div class="hc-stat-label">고객사</div>
+              <div class="hc-stat-label" data-i18n="hc_clients">고객사</div>
             </div>
             <div class="hc-stat">
               <div class="hc-stat-num">34</div>
-              <div class="hc-stat-label">진행 중 딜</div>
+              <div class="hc-stat-label" data-i18n="hc_deals">진행 중 딜</div>
             </div>
             <div class="hc-stat">
               <div class="hc-stat-num">89%</div>
-              <div class="hc-stat-label">목표 달성률</div>
+              <div class="hc-stat-label" data-i18n="hc_goal">목표 달성률</div>
             </div>
           </div>
           <div class="hc-pipeline">
-            <div class="hc-pipe-step">리드</div>
-            <div class="hc-pipe-step active">미팅</div>
-            <div class="hc-pipe-step">제안</div>
-            <div class="hc-pipe-step">협상</div>
-            <div class="hc-pipe-step">수주</div>
+            <div class="hc-pipe-step" data-i18n="pipe_lead">리드</div>
+            <div class="hc-pipe-step active" data-i18n="pipe_meeting">미팅</div>
+            <div class="hc-pipe-step" data-i18n="pipe_proposal">제안</div>
+            <div class="hc-pipe-step" data-i18n="pipe_nego">협상</div>
+            <div class="hc-pipe-step" data-i18n="pipe_won">수주</div>
           </div>
           <ul class="hc-list">
             <li>
               <div class="hc-avatar" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">A</div>
-              <div class="hc-list-name">A사 — 연간 계약</div>
-              <div class="hc-list-tag" style="background:rgba(79,142,247,.15);color:#4f8ef7">수주</div>
+              <div class="hc-list-name" data-i18n="hc_deal1">A사 — 연간 계약</div>
+              <div class="hc-list-tag" style="background:rgba(79,142,247,.15);color:#4f8ef7" data-i18n="pipe_won">수주</div>
             </li>
             <li>
               <div class="hc-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">B</div>
-              <div class="hc-list-name">B사 — 솔루션 제안</div>
-              <div class="hc-list-tag" style="background:rgba(245,158,11,.15);color:#fbbf24">협상</div>
+              <div class="hc-list-name" data-i18n="hc_deal2">B사 — 솔루션 제안</div>
+              <div class="hc-list-tag" style="background:rgba(245,158,11,.15);color:#fbbf24" data-i18n="pipe_nego">협상</div>
             </li>
             <li>
               <div class="hc-avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">C</div>
-              <div class="hc-list-name">C사 — 기술 검토</div>
-              <div class="hc-list-tag" style="background:rgba(96,165,250,.15);color:#60a5fa">미팅</div>
+              <div class="hc-list-name" data-i18n="hc_deal3">C사 — 기술 검토</div>
+              <div class="hc-list-tag" style="background:rgba(96,165,250,.15);color:#60a5fa" data-i18n="pipe_meeting">미팅</div>
             </li>
           </ul>
         </div>
@@ -355,51 +369,51 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   <div class="container">
     <div class="text-center">
       <div class="badge badge-acc">FEATURES</div>
-      <h2 style="margin-top:16px">B2B 비즈니스의 모든 것</h2>
-      <p class="subtitle">흩어진 업무를 하나로 연결합니다.</p>
+      <h2 style="margin-top:16px" data-i18n="features_h2">B2B 비즈니스의 모든 것</h2>
+      <p class="subtitle" data-i18n="features_sub">흩어진 업무를 하나로 연결합니다.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card reveal" style="--feat-accent:#3b82f6;--feat-bg:rgba(59,130,246,.08);--feat-glow:#3b82f6">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3>고객사 & 담당자 관리</h3>
-        <p>고객사 정보, 담당자 연락처, 거래 이력을 한곳에서 통합 관리합니다.</p>
+        <h3 data-i18n="f1_h3">고객사 &amp; 담당자 관리</h3>
+        <p data-i18n="f1_p">고객사 정보, 담당자 연락처, 거래 이력을 한곳에서 통합 관리합니다.</p>
       </div>
       <div class="feature-card reveal reveal-delay-1" style="--feat-accent:#f59e0b;--feat-bg:rgba(245,158,11,.08);--feat-glow:#f59e0b">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
-        <h3>영업 파이프라인</h3>
-        <p>리드부터 수주까지, 영업 기회의 전체 흐름을 시각적으로 추적합니다.</p>
+        <h3 data-i18n="f2_h3">영업 파이프라인</h3>
+        <p data-i18n="f2_p">리드부터 수주까지, 영업 기회의 전체 흐름을 시각적으로 추적합니다.</p>
       </div>
       <div class="feature-card reveal reveal-delay-2" style="--feat-accent:#06b6d4;--feat-bg:rgba(6,182,212,.08);--feat-glow:#06b6d4">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
         </div>
-        <h3>마케팅 & 리드</h3>
-        <p>마케팅 캠페인 관리와 리드 추적으로 잠재 고객을 놓치지 않습니다.</p>
+        <h3 data-i18n="f3_h3">마케팅 & 리드</h3>
+        <p data-i18n="f3_p">마케팅 캠페인 관리와 리드 추적으로 잠재 고객을 놓치지 않습니다.</p>
       </div>
       <div class="feature-card reveal reveal-delay-3" style="--feat-accent:#10b981;--feat-bg:rgba(16,185,129,.08);--feat-glow:#10b981">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </div>
-        <h3>기술지원 & 교육</h3>
-        <p>고객 문의 대응, 교육 이력 관리를 체계적으로 수행합니다.</p>
+        <h3 data-i18n="f4_h3">기술지원 & 교육</h3>
+        <p data-i18n="f4_p">고객 문의 대응, 교육 이력 관리를 체계적으로 수행합니다.</p>
       </div>
       <div class="feature-card reveal reveal-delay-4" style="--feat-accent:#8b5cf6;--feat-bg:rgba(139,92,246,.08);--feat-glow:#8b5cf6">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="6" y="6" width="8" height="2" rx="1"/><rect x="9" y="11" width="9" height="2" rx="1"/><rect x="4" y="16" width="6" height="2" rx="1"/></svg>
         </div>
-        <h3>프로젝트 관리</h3>
-        <p>영업과 연결된 프로젝트를 생성하고 진행 상태를 관리합니다.</p>
+        <h3 data-i18n="f5_h3">프로젝트 관리</h3>
+        <p data-i18n="f5_p">영업과 연결된 프로젝트를 생성하고 진행 상태를 관리합니다.</p>
       </div>
       <div class="feature-card reveal reveal-delay-5" style="--feat-accent:#f43f5e;--feat-bg:rgba(244,63,94,.08);--feat-glow:#f43f5e">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h3>캘린더 & 활동 기록</h3>
-        <p>일정, 미팅, 영업 활동을 캘린더로 관리하고 이력을 자동 기록합니다.</p>
+        <h3 data-i18n="f6_h3">캘린더 & 활동 기록</h3>
+        <p data-i18n="f6_p">일정, 미팅, 영업 활동을 캘린더로 관리하고 이력을 자동 기록합니다.</p>
       </div>
     </div>
   </div>
@@ -410,23 +424,23 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   <div class="container">
     <div class="text-center">
       <div class="badge badge-acc" style="margin-bottom:16px">AI-POWERED</div>
-      <h2>AI가 영업을 돕습니다</h2>
-      <p class="subtitle">반복적인 작업은 AI에게, 핵심 판단은 사람에게.</p>
+      <h2 data-i18n="ai_h2">AI가 영업을 돕습니다</h2>
+      <p class="subtitle" data-i18n="ai_sub">반복적인 작업은 AI에게, 핵심 판단은 사람에게.</p>
     </div>
     <div class="ai-grid">
       <div class="ai-card reveal" style="--feat-accent:#f59e0b;--feat-bg:rgba(245,158,11,.1);--feat-glow:#f59e0b">
         <div class="ai-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
         </div>
-        <h3>교육보고서 자동 작성</h3>
-        <p>교육 내용과 참석 정보를 기반으로 보고서를 AI가 자동으로 생성합니다.</p>
+        <h3 data-i18n="ai1_h3">교육보고서 자동 작성</h3>
+        <p data-i18n="ai1_p">교육 내용과 참석 정보를 기반으로 보고서를 AI가 자동으로 생성합니다.</p>
       </div>
       <div class="ai-card reveal reveal-delay-1" style="--feat-accent:#06b6d4;--feat-bg:rgba(6,182,212,.1);--feat-glow:#06b6d4">
         <div class="ai-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <h3>영업 & 마케팅 전략 수립</h3>
-        <p>고객 데이터와 영업 이력을 분석하여 맞춤형 전략을 제안합니다.</p>
+        <h3 data-i18n="ai2_h3">영업 & 마케팅 전략 수립</h3>
+        <p data-i18n="ai2_p">고객 데이터와 영업 이력을 분석하여 맞춤형 전략을 제안합니다.</p>
       </div>
     </div>
   </div>
@@ -438,10 +452,10 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   <div class="cta-orb cta-orb-2"></div>
   <div class="container" style="position:relative;z-index:1">
     <div class="badge badge-acc" style="margin-bottom:24px;border-color:rgba(79,142,247,.25);color:var(--acc-400);background:rgba(79,142,247,.1)">GET STARTED</div>
-    <h2>Linkspace와 함께 시작하세요</h2>
-    <p>데모 요청, 기능 문의 등 편하게 연락해 주세요.</p>
-    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn btn-primary">문의하기</a>
-    <p style="margin-top:20px;font-size:.88rem;color:var(--slate-5)">또는 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a>으로 연락해 주세요</p>
+    <h2 data-i18n="cta_h2">Linkspace와 함께 시작하세요</h2>
+    <p data-i18n="cta_p">데모 요청, 기능 문의 등 편하게 연락해 주세요.</p>
+    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn btn-primary" data-i18n="cta_btn">문의하기</a>
+    <p style="margin-top:20px;font-size:.88rem;color:var(--slate-5)" data-i18n="cta_email">또는 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a>으로 연락해 주세요</p>
   </div>
 </section>
 
@@ -536,6 +550,83 @@ window.addEventListener('scroll',()=>{
 })();
 </script>
 
+<script>
+const T={
+  ko:{
+    hero_h1:'Connect. Align. Grow.<br><span class="accent">비즈니스를 하나로</span>',
+    hero_sub:'고객사 관리부터 영업, 마케팅, 기술지원, 프로젝트까지 —<br>B2B 비즈니스의 모든 흐름을 하나의 플랫폼에서 관리합니다.',
+    hero_cta1:'기능 살펴보기',hero_cta2:'문의하기',
+    hc_clients:'고객사',hc_deals:'진행 중 딜',hc_goal:'목표 달성률',
+    pipe_lead:'리드',pipe_meeting:'미팅',pipe_proposal:'제안',pipe_nego:'협상',pipe_won:'수주',
+    hc_deal1:'A사 — 연간 계약',hc_deal2:'B사 — 솔루션 제안',hc_deal3:'C사 — 기술 검토',
+    features_h2:'B2B 비즈니스의 모든 것',features_sub:'흩어진 업무를 하나로 연결합니다.',
+    f1_h3:'고객사 &amp; 담당자 관리',f1_p:'고객사 정보, 담당자 연락처, 거래 이력을 한곳에서 통합 관리합니다.',
+    f2_h3:'영업 파이프라인',f2_p:'리드부터 수주까지, 영업 기회의 전체 흐름을 시각적으로 추적합니다.',
+    f3_h3:'마케팅 &amp; 리드',f3_p:'마케팅 캠페인 관리와 리드 추적으로 잠재 고객을 놓치지 않습니다.',
+    f4_h3:'기술지원 &amp; 교육',f4_p:'고객 문의 대응, 교육 이력 관리를 체계적으로 수행합니다.',
+    f5_h3:'프로젝트 관리',f5_p:'영업과 연결된 프로젝트를 생성하고 진행 상태를 관리합니다.',
+    f6_h3:'캘린더 &amp; 활동 기록',f6_p:'일정, 미팅, 영업 활동을 캘린더로 관리하고 이력을 자동 기록합니다.',
+    ai_h2:'AI가 영업을 돕습니다',ai_sub:'반복적인 작업은 AI에게, 핵심 판단은 사람에게.',
+    ai1_h3:'교육보고서 자동 작성',ai1_p:'교육 내용과 참석 정보를 기반으로 보고서를 AI가 자동으로 생성합니다.',
+    ai2_h3:'영업 &amp; 마케팅 전략 수립',ai2_p:'고객 데이터와 영업 이력을 분석하여 맞춤형 전략을 제안합니다.',
+    cta_h2:'Linkspace와 함께 시작하세요',cta_p:'데모 요청, 기능 문의 등 편하게 연락해 주세요.',
+    cta_btn:'문의하기',
+    cta_email:'또는 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a>으로 연락해 주세요',
+  },
+  en:{
+    hero_h1:'Connect. Align. Grow.<br><span class="accent">All in One Platform</span>',
+    hero_sub:'From accounts and sales to marketing, support, and projects —<br>manage every aspect of your B2B business in one platform.',
+    hero_cta1:'Explore Features',hero_cta2:'Contact Us',
+    hc_clients:'Clients',hc_deals:'Active Deals',hc_goal:'Goal Achieved',
+    pipe_lead:'Lead',pipe_meeting:'Meeting',pipe_proposal:'Proposal',pipe_nego:'Negotiation',pipe_won:'Won',
+    hc_deal1:'Co. A — Annual Contract',hc_deal2:'Co. B — Solution Proposal',hc_deal3:'Co. C — Technical Review',
+    features_h2:'Everything for B2B Business',features_sub:'Connect all your scattered workflows in one place.',
+    f1_h3:'Account &amp; Contact Management',f1_p:'Centrally manage account info, contact details, and transaction history.',
+    f2_h3:'Sales Pipeline',f2_p:'Visually track the full flow of sales opportunities from lead to close.',
+    f3_h3:'Marketing &amp; Leads',f3_p:'Never miss a prospect with campaign management and lead tracking.',
+    f4_h3:'Support &amp; Training',f4_p:'Systematically handle customer inquiries and training history.',
+    f5_h3:'Project Management',f5_p:'Create sales-linked projects and track their progress.',
+    f6_h3:'Calendar &amp; Activity Log',f6_p:'Manage schedules, meetings, and sales activities while auto-logging history.',
+    ai_h2:'AI-Powered Sales',ai_sub:'Let AI handle the routine — keep the key decisions human.',
+    ai1_h3:'Auto Report Generation',ai1_p:'AI automatically generates reports based on training content and attendance data.',
+    ai2_h3:'Sales &amp; Marketing Strategy',ai2_p:'Analyzes customer data and sales history to suggest tailored strategies.',
+    cta_h2:'Get Started with Linkspace',cta_p:'Feel free to reach out for a demo or feature inquiry.',
+    cta_btn:'Contact Us',
+    cta_email:'or reach us at <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a>',
+  },
+  zh:{
+    hero_h1:'Connect. Align. Grow.<br><span class="accent">业务整合，一站管理</span>',
+    hero_sub:'从客户管理到销售、市场、技术支持与项目 —<br>在一个平台上掌控 B2B 业务的全流程。',
+    hero_cta1:'探索功能',hero_cta2:'联系我们',
+    hc_clients:'客户',hc_deals:'进行中商机',hc_goal:'目标达成率',
+    pipe_lead:'线索',pipe_meeting:'会议',pipe_proposal:'提案',pipe_nego:'谈判',pipe_won:'成交',
+    hc_deal1:'A公司 — 年度合同',hc_deal2:'B公司 — 解决方案提案',hc_deal3:'C公司 — 技术评审',
+    features_h2:'B2B 业务全覆盖',features_sub:'将分散的业务流程整合为一体。',
+    f1_h3:'客户与联系人管理',f1_p:'集中管理客户信息、联系人及交易历史记录。',
+    f2_h3:'销售管道',f2_p:'从线索到成交，可视化追踪整个销售机会流程。',
+    f3_h3:'市场营销与线索',f3_p:'通过活动管理与线索追踪，不遗漏任何潜在客户。',
+    f4_h3:'技术支持与培训',f4_p:'系统化处理客户咨询与培训历史。',
+    f5_h3:'项目管理',f5_p:'创建与销售关联的项目并管理其进展状态。',
+    f6_h3:'日历与活动记录',f6_p:'通过日历管理日程、会议及销售活动，并自动记录历史。',
+    ai_h2:'AI 赋能销售',ai_sub:'让 AI 处理重复工作，将核心判断留给人类。',
+    ai1_h3:'自动生成教育报告',ai1_p:'AI 根据培训内容与参与信息自动生成报告。',
+    ai2_h3:'销售与营销策略制定',ai2_p:'分析客户数据与销售历史，提供定制化策略建议。',
+    cta_h2:'立即开始使用 Linkspace',cta_p:'欢迎联系我们进行演示或功能咨询。',
+    cta_btn:'联系我们',
+    cta_email:'或发送邮件至 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a>',
+  }
+};
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(T[lang][key]!==undefined)el.innerHTML=T[lang][key];
+  });
+  document.querySelectorAll('#langToggle button').forEach(btn=>{
+    btn.classList.toggle('active',btn.textContent===lang.toUpperCase());
+  });
+}
+</script>
 <!-- ── Floating Risk Diagnosis ── -->
 <style>
 .floating-diagnosis{
