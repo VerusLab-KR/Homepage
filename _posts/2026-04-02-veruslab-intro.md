@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "현장에서 시작된 질문 — VerusLab을 소개합니다"
-date: 2026-04-18
+date: 2026-04-02
 category: VerusLab
 description: "웹스시스템코리아 30년의 현장 경험에서 시작된 VerusLab 소개. 엔지니어링 현장에서 반복되는 문제들, 그리고 그것을 소프트웨어로 해결하기 위해 탄생한 VerusLab의 이야기."
 ---
