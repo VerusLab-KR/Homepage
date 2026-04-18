@@ -130,7 +130,7 @@ img{max-width:100%;display:block}
 .view-btn svg{display:block}
 
 /* List view */
-.blog-list{display:flex;flex-direction:column;margin-top:32px;border-top:1px solid var(--slate-2)}
+.blog-list{display:flex;flex-direction:column;margin-top:clamp(16px,2vw,40px);border-top:1px solid var(--slate-2)}
 .blog-list-item{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--slate-2);cursor:pointer;transition:background .15s}
 .blog-list-item:hover .list-title{color:var(--blue-500)}
 .list-date{font-size:.78rem;color:var(--slate-5);white-space:nowrap;width:80px;flex-shrink:0}
