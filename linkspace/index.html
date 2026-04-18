@@ -254,6 +254,13 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   .footer{height:auto;padding:24px 0}
   .footer .container{flex-direction:column;gap:16px;text-align:center}
 }
+.btn-cta{
+  background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;padding:16px 40px;
+  font-size:1rem;font-weight:700;border-radius:var(--radius-sm);
+  box-shadow:0 4px 16px rgba(30,58,138,.3),0 1px 3px rgba(30,58,138,.15);border:none;cursor:pointer;
+  transition:all .3s cubic-bezier(.4,0,.2,1);letter-spacing:0em;
+}
+.btn-cta:hover{transform:translateY(-3px);background:linear-gradient(135deg,#1e3a8a,#172554);box-shadow:0 8px 28px rgba(30,58,138,.4)}
 .lang-toggle{display:flex;border:1px solid #4a5568;border-radius:6px;overflow:hidden;flex-shrink:0}
 .lang-toggle button{
   background:transparent;border:none;color:#94a3b8;padding:4px 8px;
@@ -454,7 +461,7 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
     <div class="badge badge-acc" style="margin-bottom:24px;border-color:rgba(79,142,247,.25);color:var(--acc-400);background:rgba(79,142,247,.1)">GET STARTED</div>
     <h2 data-i18n="cta_h2">Linkspace와 함께 시작하세요</h2>
     <p data-i18n="cta_p">데모 요청, 기능 문의 등 편하게 연락해 주세요.</p>
-    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn btn-primary" data-i18n="cta_btn">문의하기</a>
+    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn-cta" data-i18n="cta_btn">문의하기</a>
     <p style="margin-top:20px;font-size:.88rem;color:var(--slate-5)" data-i18n="cta_email">또는 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a>으로 연락해 주세요</p>
   </div>
 </section>
@@ -575,7 +582,7 @@ const T={
   },
   en:{
     hero_h1:'Connect. Align. Grow.<br><span class="accent">All in One Platform</span>',
-    hero_sub:'From accounts and sales to marketing, support, and projects —<br>manage every aspect of your B2B business in one platform.',
+    hero_sub:'From accounts and sales to marketing, tech. support, and projects — manage every aspect of your B2B business in one platform.',
     hero_cta1:'Explore Features',hero_cta2:'Contact Us',
     hc_clients:'Clients',hc_deals:'Active Deals',hc_goal:'Goal Achieved',
     pipe_lead:'Lead',pipe_meeting:'Meeting',pipe_proposal:'Proposal',pipe_nego:'Negotiation',pipe_won:'Won',
@@ -596,7 +603,7 @@ const T={
   },
   zh:{
     hero_h1:'Connect. Align. Grow.<br><span class="accent">业务整合，一站管理</span>',
-    hero_sub:'从客户管理到销售、市场、技术支持与项目 —<br>在一个平台上掌控 B2B 业务的全流程。',
+    hero_sub:'从客户管理到销售、市场、技术支持与项目 — 在一个平台上掌控 B2B 业务的全流程。',
     hero_cta1:'探索功能',hero_cta2:'联系我们',
     hc_clients:'客户',hc_deals:'进行中商机',hc_goal:'目标达成率',
     pipe_lead:'线索',pipe_meeting:'会议',pipe_proposal:'提案',pipe_nego:'谈判',pipe_won:'成交',
