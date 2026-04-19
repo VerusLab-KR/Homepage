@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "엑셀로 해석 결과를 정리하고 있다면"
+title: "엑셀로 구조해석·FEA 결과를 정리하고 있다면"
 date: 2026-04-12
 category: Valentis
-description: "해석이 끝난 뒤 엑셀로 결과를 정리하는 방식이 왜 한계에 부딪히는지, 그리고 Valentis가 이 과정을 어떻게 다르게 접근하는지에 대한 이야기."
+description: "SOLIDWORKS Simulation, Ansys 등 FEA 구조해석이 끝난 뒤 엑셀로 결과를 정리하는 방식이 왜 한계에 부딪히는지, 그리고 Valentis가 이 과정을 어떻게 다르게 접근하는지에 대한 이야기."
 ---
 
 ## 해석이 끝난 뒤
 
-해석 실행 버튼을 누르고, 결과가 나왔다.
+SOLIDWORKS Simulation, Ansys 등 FEA 구조해석 실행 버튼을 누르고, 결과가 나왔다.
 
 그 다음에 하는 일은 대부분 비슷하다.
 
@@ -74,7 +74,7 @@ Valentis는 해석 결과 정리를 단순한 "정리"가 아니라,
 
 **해석 데이터 불러오기 (Data Transposition)**
 여러 해석 케이스의 입력값과 출력값을 하나의 테이블로 구성한다.
-SOLIDWORKS Simulation, SOLIDWORKS Flow Simulation, 일반 CSV/XLSX 형식의 결과를 그대로 불러올 수 있으며,
+SOLIDWORKS Simulation, SOLIDWORKS Flow Simulation, Ansys, Nastran 등 일반 CSV/XLSX 형식의 결과를 그대로 불러올 수 있으며,
 조건과 결과가 연결된 상태로 유지된다.
 
 **분석 및 최적화 (Analysis Intelligence)**
