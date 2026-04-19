@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -555,28 +557,15 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
     </div>
     <div class="news-grid">
 
-      <div class="news-card reveal" style="--news-accent:#f59e0b;cursor:pointer" onclick="document.getElementById('seminarOverlay').classList.add('active')">
-        <div class="news-date">2026.04.23 (목) 14:00</div>
-        <span class="news-badge" style="background:rgba(245,158,11,.1);color:#f59e0b">EVENT</span>
-        <h3>2026 SOLIDWORKS Simulation Road Show</h3>
-        <p>AI 시대 설계 가속화를 위한 SOLIDWORKS MODSIM 해석 실무 세미나에 초대합니다.</p>
-        <span class="news-link">자세히 보기 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      {% for item in site.data.news %}
+      <div class="news-card reveal {{ item.delay }}" style="--news-accent:{{ item.accent }}{% if item.modal %};cursor:pointer{% endif %}"{% if item.modal %} onclick="document.getElementById('{{ item.modal }}').classList.add('active')"{% endif %}>
+        <div class="news-date">{{ item.date }}</div>
+        <span class="news-badge" style="background:{{ item.badge_bg }};color:{{ item.badge_color }}">{{ item.badge }}</span>
+        <h3{% if item.title_i18n %} data-i18n="{{ item.title_i18n }}"{% endif %}>{{ item.title }}</h3>
+        <p{% if item.desc_i18n %} data-i18n="{{ item.desc_i18n }}"{% endif %}>{{ item.desc }}</p>
+        {% if item.modal %}<span class="news-link"><span data-i18n="link_more">자세히 보기</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>{% endif %}
       </div>
-
-      <div class="news-card reveal reveal-delay-1" style="--news-accent:#3b82f6;cursor:pointer" onclick="document.getElementById('releaseOverlay').classList.add('active')">
-        <div class="news-date">2026.04.01</div>
-        <span class="news-badge" style="background:rgba(59,130,246,.1);color:#3b82f6">RELEASE</span>
-        <h3 data-i18n="release_card_title">Valentis v1.0.0 출시</h3>
-        <p data-i18n="release_card_desc">파라미터 스터디 웹 플랫폼 Valentis의 첫 번째 버전이 출시되었습니다.</p>
-        <span class="news-link"><span data-i18n="link_more">자세히 보기</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </div>
-
-      <div class="news-card reveal reveal-delay-2" style="--news-accent:#06b6d4">
-        <div class="news-date">Coming Soon</div>
-        <span class="news-badge" style="background:rgba(6,182,212,.1);color:#06b6d4">UPCOMING</span>
-        <h3 data-i18n="upcoming_title">Valentis SaaS 출시 예정</h3>
-        <p data-i18n="upcoming_desc">설치 없이 브라우저에서 바로 사용할 수 있는 클라우드 버전이 준비 중입니다.</p>
-      </div>
+      {% endfor %}
 
     </div>
   </div>
