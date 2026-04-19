@@ -33,7 +33,7 @@
   --shadow-xl:0 20px 60px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06);
   --transition:.3s cubic-bezier(.4,0,.2,1);
 }
-html{scroll-behavior:smooth;scroll-padding-top:80px;font-size:16px;overflow-y:scroll}
+html{scroll-behavior:smooth;scroll-padding-top:108px;font-size:16px;overflow-y:scroll}
 body{
   font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;
@@ -60,30 +60,7 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .reveal-delay-4{transition-delay:.4s}
 .reveal-delay-5{transition-delay:.5s}
 
-/* Navbar */
-.navbar{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  background:rgba(15,23,42,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(255,255,255,.06);transition:all .4s cubic-bezier(.4,0,.2,1);
-}
-.navbar.scrolled{background:rgba(15,23,42,.95);box-shadow:0 2px 16px rgba(0,0,0,.25)}
-.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-home{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;color:#64748b;transition:.3s;margin-right:12px}
-.nav-home:hover{color:#fff;background:rgba(255,255,255,.08)}
-.nav-home svg{width:16px;height:16px}
-.nav-logo{font-family:'Exo 2','Inter',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:.02em;color:#fff;text-rendering:geometricPrecision;transition:text-shadow .3s}
-.nav-logo:hover{text-shadow:0 0 12px rgba(96,165,250,.5),0 0 24px rgba(96,165,250,.2)}
-.nav-logo span{color:var(--acc-400)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:.84rem;font-weight:500;color:var(--slate-4);transition:var(--transition);position:relative}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
-  background:var(--acc-400);border-radius:1px;transition:width .3s cubic-bezier(.4,0,.2,1);
-}
-.nav-links a:hover,.nav-links a.active{color:var(--acc-400)}
-.nav-links a:hover::after,.nav-links a.active::after{width:100%}
-.hamburger{display:none;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger span{display:block;width:20px;height:1.5px;background:var(--slate-4);margin:5px 0;transition:all .3s;border-radius:1px}
+/* Navbar + Subnav → _includes/navbar-main.html */
 
 /* Hero */
 .hero{
@@ -229,18 +206,6 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   .hero-visual{margin-top:48px}
   .features-grid{grid-template-columns:1fr}
   .ai-grid{grid-template-columns:1fr}
-  .nav-links{
-    display:none;position:absolute;top:64px;left:0;right:0;
-    background:#1a1f2e;flex-direction:column;align-items:center;
-    padding:24px 0;gap:20px;
-    box-shadow:0 8px 24px rgba(0,0,0,.3);
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .nav-links.open{display:flex}
-  .hamburger{display:block}
-  .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-  .hamburger.active span:nth-child(2){opacity:0}
-  .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 }
 @media(max-width:600px){
   .hero-card{max-width:100%}
@@ -264,26 +229,14 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
+{% include navbar-main.html %}
+<nav class="subnav" id="subnav">
   <div class="container">
-    <div style="display:flex;align-items:center">
-      <a href="/" class="nav-home" title="VerusLab Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></a>
-      <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Link<span>space</span></a>
-    </div>
-    <ul class="nav-links" id="navLinks">
+    <ul class="subnav-links">
       <li><a href="#features">Features</a></li>
       <li><a href="#ai">AI</a></li>
       <li><a href="#cta">Contact</a></li>
     </ul>
-    <div class="lang-toggle" id="langToggle">
-      <button onclick="setLang('ko')" class="active">KO</button>
-      <button onclick="setLang('en')">EN</button>
-      <button onclick="setLang('zh')">ZH</button>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 
@@ -476,14 +429,16 @@ const reveals=document.querySelectorAll('.reveal');
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.15});
 reveals.forEach(el=>observer.observe(el));
 
-const sections=document.querySelectorAll('section[id]');
+/* ── Subnav ── */
+const subnav=document.getElementById('subnav');
+new IntersectionObserver(([e])=>subnav.classList.toggle('visible',!e.isIntersecting),{threshold:0}).observe(document.getElementById('hero'));
+const subnavAnchors=subnav.querySelectorAll('a[href^="#"]');
+const spySections=[...subnavAnchors].map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
 window.addEventListener('scroll',()=>{
-  const y=window.scrollY+120;
-  sections.forEach(s=>{
-    const link=document.querySelector(`.nav-links a[href="#${s.id}"]`);
-    if(link)link.classList.toggle('active',y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight);
-  });
-});
+  const top=window.scrollY+120;let currentId='';
+  spySections.forEach(s=>{if(s.offsetTop<=top)currentId=s.id});
+  subnavAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+currentId));
+},{passive:true});
 
 /* ── Hero Node Network ── */
 (function(){
