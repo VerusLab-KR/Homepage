@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linkspace Color Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;color:#fff;font-family:'Inter',sans-serif;padding:48px 24px}
+h1{text-align:center;font-size:1rem;color:#94a3b8;margin-bottom:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.desc{text-align:center;font-size:.8rem;color:#64748b;margin-bottom:48px}
+.grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.card{
+  border-radius:16px;overflow:hidden;
+  background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.06);
+  transition:all .3s;cursor:pointer;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.15)}
+.card.selected{border-color:var(--accent);box-shadow:0 0 24px var(--glow)}
+/* Mock navbar */
+.mock-nav{display:flex;align-items:center;padding:12px 20px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.06)}
+.mock-nav-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
+.mock-nav-logo span{color:var(--accent)}
+.mock-nav-links{margin-left:auto;display:flex;gap:16px;font-size:.7rem;color:#64748b}
+/* Mock hero */
+.mock-hero{padding:28px 24px;position:relative;overflow:hidden}
+.mock-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:var(--accent);opacity:.08;filter:blur(60px)}
+.mock-badge{display:inline-block;padding:4px 12px;border-radius:14px;font-size:.6rem;font-weight:700;letter-spacing:.04em;margin-bottom:12px;background:var(--badge-bg);color:var(--accent);border:1px solid var(--badge-border)}
+.mock-h1{font-size:1.3rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+.mock-h1 .acc{color:var(--accent)}
+.mock-p{font-size:.75rem;color:#94a3b8;margin-bottom:16px;line-height:1.6}
+.mock-btn{display:inline-block;padding:8px 20px;border-radius:8px;font-size:.75rem;font-weight:600;color:#fff;background:var(--btn-bg)}
+/* Mock features */
+.mock-features{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 24px 24px}
+.mock-feat{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)}
+.mock-feat-icon{width:28px;height:28px;border-radius:8px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;background:var(--icon-bg);color:var(--accent);font-size:.7rem}
+.mock-feat h4{font-size:.65rem;font-weight:700;color:#e2e8f0;margin-bottom:2px}
+.mock-feat p{font-size:.55rem;color:#64748b;line-height:1.5}
+/* Info bar */
+.info-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:rgba(0,0,0,.2);border-top:1px solid rgba(255,255,255,.06)}
+.color-name{font-size:.85rem;font-weight:700;color:var(--accent)}
+.color-hex{font-size:.7rem;color:#64748b;font-family:monospace}
+.color-desc{font-size:.7rem;color:#94a3b8}
+</style>
+</head>
+<body>
+
+<h1>Linkspace Color Theme Preview</h1>
+<div class="desc">카드를 클릭하면 선택됩니다. VerusLab 홈은 딥블루(#1d4ed8) 계열입니다.</div>
+
+<div class="grid">
+
+  <!-- 1. Sky Blue (현재 Linkspace 앱 색상) -->
+  <div class="card" style="--accent:#4f8ef7;--glow:rgba(79,142,247,.3);--badge-bg:rgba(79,142,247,.1);--badge-border:rgba(79,142,247,.2);--btn-bg:linear-gradient(135deg,#4f8ef7,#2563eb);--icon-bg:rgba(79,142,247,.12)" onclick="select(this)">
+    <div class="mock-nav"><div class="mock-nav-logo">Link<span>space</span></div><div class="mock-nav-links"><span>Features</span><span>AI</span><span>Contact</span></div></div>
+    <div class="mock-hero">
+      <div class="mock-badge">B2B CRM PLATFORM</div>
+      <div class="mock-h1">Connect. Align. Grow.<br><span class="acc">비즈니스를 하나로</span></div>
+      <div class="mock-p">고객사 관리부터 영업, 마케팅까지</div>
+      <div class="mock-btn" style="background:linear-gradient(135deg,#4f8ef7,#2563eb)">기능 살펴보기</div>
+    </div>
+    <div class="mock-features">
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>고객사</h4><p>통합 관리</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>파이프라인</h4><p>영업 추적</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>AI</h4><p>전략 수립</p></div>
+    </div>
+    <div class="info-bar"><div><div class="color-name">Sky Blue</div><div class="color-desc">현재 Linkspace 앱 색상</div></div><div class="color-hex">#4f8ef7</div></div>
+  </div>
+
+  <!-- 2. Violet -->
+  <div class="card" style="--accent:#8b5cf6;--glow:rgba(139,92,246,.3);--badge-bg:rgba(139,92,246,.1);--badge-border:rgba(139,92,246,.2);--btn-bg:linear-gradient(135deg,#8b5cf6,#6d28d9);--icon-bg:rgba(139,92,246,.12)" onclick="select(this)">
+    <div class="mock-nav"><div class="mock-nav-logo">Link<span>space</span></div><div class="mock-nav-links"><span>Features</span><span>AI</span><span>Contact</span></div></div>
+    <div class="mock-hero">
+      <div class="mock-badge">B2B CRM PLATFORM</div>
+      <div class="mock-h1">Connect. Align. Grow.<br><span class="acc">비즈니스를 하나로</span></div>
+      <div class="mock-p">고객사 관리부터 영업, 마케팅까지</div>
+      <div class="mock-btn" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">기능 살펴보기</div>
+    </div>
+    <div class="mock-features">
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>고객사</h4><p>통합 관리</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>파이프라인</h4><p>영업 추적</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>AI</h4><p>전략 수립</p></div>
+    </div>
+    <div class="info-bar"><div><div class="color-name">Violet</div><div class="color-desc">프리미엄, SaaS, 차별화</div></div><div class="color-hex">#8b5cf6</div></div>
+  </div>
+
+  <!-- 3. Indigo -->
+  <div class="card" style="--accent:#818cf8;--glow:rgba(129,140,248,.3);--badge-bg:rgba(129,140,248,.1);--badge-border:rgba(129,140,248,.2);--btn-bg:linear-gradient(135deg,#818cf8,#4f46e5);--icon-bg:rgba(129,140,248,.12)" onclick="select(this)">
+    <div class="mock-nav"><div class="mock-nav-logo">Link<span>space</span></div><div class="mock-nav-links"><span>Features</span><span>AI</span><span>Contact</span></div></div>
+    <div class="mock-hero">
+      <div class="mock-badge">B2B CRM PLATFORM</div>
+      <div class="mock-h1">Connect. Align. Grow.<br><span class="acc">비즈니스를 하나로</span></div>
+      <div class="mock-p">고객사 관리부터 영업, 마케팅까지</div>
+      <div class="mock-btn" style="background:linear-gradient(135deg,#818cf8,#4f46e5)">기능 살펴보기</div>
+    </div>
+    <div class="mock-features">
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>고객사</h4><p>통합 관리</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>파이프라인</h4><p>영업 추적</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>AI</h4><p>전략 수립</p></div>
+    </div>
+    <div class="info-bar"><div><div class="color-name">Indigo</div><div class="color-desc">블루 근접, 전문적</div></div><div class="color-hex">#818cf8</div></div>
+  </div>
+
+  <!-- 4. Cyan -->
+  <div class="card" style="--accent:#22d3ee;--glow:rgba(34,211,238,.3);--badge-bg:rgba(34,211,238,.1);--badge-border:rgba(34,211,238,.2);--btn-bg:linear-gradient(135deg,#22d3ee,#0891b2);--icon-bg:rgba(34,211,238,.12)" onclick="select(this)">
+    <div class="mock-nav"><div class="mock-nav-logo">Link<span>space</span></div><div class="mock-nav-links"><span>Features</span><span>AI</span><span>Contact</span></div></div>
+    <div class="mock-hero">
+      <div class="mock-badge">B2B CRM PLATFORM</div>
+      <div class="mock-h1">Connect. Align. Grow.<br><span class="acc">비즈니스를 하나로</span></div>
+      <div class="mock-p">고객사 관리부터 영업, 마케팅까지</div>
+      <div class="mock-btn" style="background:linear-gradient(135deg,#22d3ee,#0891b2)">기능 살펴보기</div>
+    </div>
+    <div class="mock-features">
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>고객사</h4><p>통합 관리</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>파이프라인</h4><p>영업 추적</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>AI</h4><p>전략 수립</p></div>
+    </div>
+    <div class="info-bar"><div><div class="color-name">Cyan</div><div class="color-desc">소통, 신뢰, 시원한</div></div><div class="color-hex">#22d3ee</div></div>
+  </div>
+
+  <!-- 5. Amber -->
+  <div class="card" style="--accent:#fbbf24;--glow:rgba(251,191,36,.3);--badge-bg:rgba(251,191,36,.1);--badge-border:rgba(251,191,36,.2);--btn-bg:linear-gradient(135deg,#f59e0b,#d97706);--icon-bg:rgba(251,191,36,.12)" onclick="select(this)">
+    <div class="mock-nav"><div class="mock-nav-logo">Link<span>space</span></div><div class="mock-nav-links"><span>Features</span><span>AI</span><span>Contact</span></div></div>
+    <div class="mock-hero">
+      <div class="mock-badge">B2B CRM PLATFORM</div>
+      <div class="mock-h1">Connect. Align. Grow.<br><span class="acc">비즈니스를 하나로</span></div>
+      <div class="mock-p">고객사 관리부터 영업, 마케팅까지</div>
+      <div class="mock-btn" style="background:linear-gradient(135deg,#f59e0b,#d97706)">기능 살펴보기</div>
+    </div>
+    <div class="mock-features">
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>고객사</h4><p>통합 관리</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>파이프라인</h4><p>영업 추적</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>AI</h4><p>전략 수립</p></div>
+    </div>
+    <div class="info-bar"><div><div class="color-name">Amber</div><div class="color-desc">에너지, 활동적, HubSpot</div></div><div class="color-hex">#fbbf24</div></div>
+  </div>
+
+  <!-- 6. Rose -->
+  <div class="card" style="--accent:#fb7185;--glow:rgba(251,113,133,.3);--badge-bg:rgba(251,113,133,.1);--badge-border:rgba(251,113,133,.2);--btn-bg:linear-gradient(135deg,#fb7185,#e11d48);--icon-bg:rgba(251,113,133,.12)" onclick="select(this)">
+    <div class="mock-nav"><div class="mock-nav-logo">Link<span>space</span></div><div class="mock-nav-links"><span>Features</span><span>AI</span><span>Contact</span></div></div>
+    <div class="mock-hero">
+      <div class="mock-badge">B2B CRM PLATFORM</div>
+      <div class="mock-h1">Connect. Align. Grow.<br><span class="acc">비즈니스를 하나로</span></div>
+      <div class="mock-p">고객사 관리부터 영업, 마케팅까지</div>
+      <div class="mock-btn" style="background:linear-gradient(135deg,#fb7185,#e11d48)">기능 살펴보기</div>
+    </div>
+    <div class="mock-features">
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>고객사</h4><p>통합 관리</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>파이프라인</h4><p>영업 추적</p></div>
+      <div class="mock-feat"><div class="mock-feat-icon">&#9679;</div><h4>AI</h4><p>전략 수립</p></div>
+    </div>
+    <div class="info-bar"><div><div class="color-name">Rose</div><div class="color-desc">따뜻한, 관계, 친근한</div></div><div class="color-hex">#fb7185</div></div>
+  </div>
+
+</div>
+
+<script>
+function select(el){
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+</script>
+</body>
+</html>

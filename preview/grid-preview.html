@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Background Pattern Preview</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;background:#1e293b;padding:40px 24px 60px}
+h2{text-align:center;color:#fff;padding:20px 0 6px;font-size:1.1rem;font-weight:600}
+.label{text-align:center;color:#94a3b8;font-size:.75rem;margin-bottom:8px}
+
+.demo{margin:0 auto 48px;max-width:1200px;border-radius:16px;overflow:hidden;height:320px;position:relative;
+  background:linear-gradient(160deg,#0f172a 0%,#0e1629 50%,#0c1222 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.demo span{color:#94a3b8;font-size:.85rem;font-weight:500;position:relative;z-index:2}
+
+/* Orbs (shared) */
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.orb-1{width:400px;height:400px;top:-120px;right:-80px;background:radial-gradient(circle,rgba(79,142,247,.5),transparent 70%);opacity:.6}
+.orb-2{width:300px;height:300px;bottom:-100px;left:-60px;background:radial-gradient(circle,rgba(59,130,246,.4),transparent 70%);opacity:.5}
+
+/* 0. Current - Square Grid */
+.pattern-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+
+/* 1. Dot Grid */
+.pattern-dot{position:absolute;inset:0;background-image:
+  radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;
+}
+
+/* 2. Hexagonal */
+.pattern-hex{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pattern-hex svg{width:100%;height:100%;opacity:.04}
+
+/* 3. Concentric Circles */
+.pattern-circle{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
+.pattern-circle::before{
+  content:'';width:800px;height:800px;border-radius:50%;
+  background:repeating-radial-gradient(circle at center,transparent 0px,transparent 58px,rgba(255,255,255,.03) 59px,rgba(255,255,255,.03) 60px);
+}
+
+/* 4. Diagonal Lines */
+.pattern-diag{position:absolute;inset:0;background:repeating-linear-gradient(
+  -45deg,transparent,transparent 40px,rgba(255,255,255,.025) 40px,rgba(255,255,255,.025) 41px);
+  pointer-events:none;
+}
+
+/* 5. Node Network */
+.pattern-node{position:absolute;inset:0;pointer-events:none}
+.pattern-node canvas{width:100%;height:100%}
+
+/* 6. Data Flow */
+.pattern-flow{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pattern-flow svg{width:100%;height:100%;opacity:.06}
+
+/* 7. Scatter / Constellation */
+.pattern-scatter{position:absolute;inset:0;pointer-events:none}
+.pattern-scatter canvas{width:100%;height:100%}
+
+hr{border:none;border-top:1px solid rgba(255,255,255,.08);margin:32px auto;max-width:1200px}
+</style>
+</head>
+<body>
+
+<!-- 0. Current -->
+<h2>0. Square Grid (current)</h2>
+<p class="label">현재 적용된 사각 격자</p>
+<div class="demo">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-grid"></div>
+  <span>VerusLab Hero</span>
+</div>
+
+<hr>
+
+<!-- 1. Dot Grid -->
+<h2>1. Dot Grid</h2>
+<p class="label">점 패턴 — 클린하고 모던</p>
+<div class="demo">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-dot"></div>
+  <span>VerusLab Hero</span>
+</div>
+
+<hr>
+
+<!-- 2. Hexagonal -->
+<h2>2. Hexagonal Grid</h2>
+<p class="label">육각형 — 테크/사이언스</p>
+<div class="demo">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-hex">
+    <svg viewBox="0 0 200 173.2" preserveAspectRatio="none">
+      <defs>
+        <pattern id="hex" width="28" height="48.5" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
+          <polygon points="14,2 26,10 26,26 14,34 2,26 2,10" fill="none" stroke="rgba(255,255,255,1)" stroke-width=".5"/>
+          <polygon points="0,18 0,34 14,42 14,50" fill="none" stroke="rgba(255,255,255,1)" stroke-width=".5"/>
+          <polygon points="28,18 28,34 14,42 14,50" fill="none" stroke="rgba(255,255,255,1)" stroke-width=".5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#hex)"/>
+    </svg>
+  </div>
+  <span>VerusLab Hero</span>
+</div>
+
+<hr>
+
+<!-- 3. Concentric Circles -->
+<h2>3. Concentric Circles</h2>
+<p class="label">동심원 — SF/레이더 느낌</p>
+<div class="demo">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-circle"></div>
+  <span>VerusLab Hero</span>
+</div>
+
+<hr>
+
+<!-- 4. Diagonal Lines -->
+<h2>4. Diagonal Lines</h2>
+<p class="label">사선 패턴 — 날카롭고 다이나믹</p>
+<div class="demo">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-diag"></div>
+  <span>VerusLab Hero</span>
+</div>
+
+<hr>
+
+<!-- 5. Node Network -->
+<h2>5. Node Network</h2>
+<p class="label">점+선 네트워크 — AI/신경망 느낌</p>
+<div class="demo" id="demo-node">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-node"><canvas id="nodeCanvas"></canvas></div>
+  <span>VerusLab Hero</span>
+</div>
+
+<hr>
+
+<!-- 6. Data Flow -->
+<h2>6. Data Flow</h2>
+<p class="label">흐르는 곡선 — 데이터 스트림</p>
+<div class="demo">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-flow">
+    <svg viewBox="0 0 1200 320" preserveAspectRatio="none">
+      <path d="M0,160 Q200,80 400,160 T800,160 T1200,160" fill="none" stroke="rgba(255,255,255,1)" stroke-width="1"/>
+      <path d="M0,200 Q300,100 600,200 T1200,200" fill="none" stroke="rgba(255,255,255,1)" stroke-width=".8"/>
+      <path d="M0,120 Q250,200 500,120 T1000,120 T1200,140" fill="none" stroke="rgba(255,255,255,1)" stroke-width=".6"/>
+      <path d="M0,240 Q200,180 400,240 T800,220 T1200,260" fill="none" stroke="rgba(255,255,255,1)" stroke-width=".5"/>
+      <path d="M0,80 Q300,40 600,100 T1200,60" fill="none" stroke="rgba(255,255,255,1)" stroke-width=".5"/>
+    </svg>
+  </div>
+  <span>VerusLab Hero</span>
+</div>
+
+<hr>
+
+<!-- 7. Constellation -->
+<h2>7. Constellation</h2>
+<p class="label">별자리/산점도 — 데이터 분석 느낌</p>
+<div class="demo" id="demo-scatter">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="pattern-scatter"><canvas id="scatterCanvas"></canvas></div>
+  <span>VerusLab Hero</span>
+</div>
+
+<script>
+// Node Network
+(function(){
+  const c = document.getElementById('nodeCanvas');
+  const parent = document.getElementById('demo-node');
+  c.width = parent.offsetWidth * 2;
+  c.height = parent.offsetHeight * 2;
+  c.style.width = parent.offsetWidth + 'px';
+  c.style.height = parent.offsetHeight + 'px';
+  const ctx = c.getContext('2d');
+  const nodes = [];
+  const count = 60;
+  for(let i=0;i<count;i++){
+    nodes.push({x:Math.random()*c.width, y:Math.random()*c.height, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3});
+  }
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    // lines
+    for(let i=0;i<count;i++){
+      for(let j=i+1;j<count;j++){
+        const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<200){
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x,nodes[i].y);
+          ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.strokeStyle='rgba(255,255,255,'+(0.06*(1-dist/200))+')';
+          ctx.lineWidth=1;
+          ctx.stroke();
+        }
+      }
+    }
+    // dots
+    nodes.forEach(n=>{
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,2.5,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,.08)';
+      ctx.fill();
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<0||n.x>c.width)n.vx*=-1;
+      if(n.y<0||n.y>c.height)n.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Constellation
+(function(){
+  const c = document.getElementById('scatterCanvas');
+  const parent = document.getElementById('demo-scatter');
+  c.width = parent.offsetWidth * 2;
+  c.height = parent.offsetHeight * 2;
+  c.style.width = parent.offsetWidth + 'px';
+  c.style.height = parent.offsetHeight + 'px';
+  const ctx = c.getContext('2d');
+  const points = [];
+  const count = 80;
+  for(let i=0;i<count;i++){
+    points.push({x:Math.random()*c.width, y:Math.random()*c.height, r:Math.random()*2+1});
+  }
+  // static connections
+  const lines = [];
+  for(let i=0;i<count;i++){
+    for(let j=i+1;j<count;j++){
+      const dx=points[i].x-points[j].x, dy=points[i].y-points[j].y;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<160 && Math.random()>.5){
+        lines.push([i,j,dist]);
+      }
+    }
+  }
+  // draw
+  lines.forEach(([i,j,dist])=>{
+    ctx.beginPath();
+    ctx.moveTo(points[i].x,points[i].y);
+    ctx.lineTo(points[j].x,points[j].y);
+    ctx.strokeStyle='rgba(96,165,250,'+(0.08*(1-dist/160))+')';
+    ctx.lineWidth=.8;
+    ctx.stroke();
+  });
+  points.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle='rgba(96,165,250,'+(Math.random()*.08+.04)+')';
+    ctx.fill();
+  });
+})();
+</script>
+</body>
+</html>

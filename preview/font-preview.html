@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerusLab Logo Font Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Space+Grotesk:wght@700&family=Syne:wght@700;800&family=Orbitron:wght@700;800&family=Rajdhani:wght@700&family=Exo+2:wght@700;800&family=Chakra+Petch:wght@700&family=Michroma&family=Audiowide&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f172a;color:#fff;font-family:'Inter',sans-serif;padding:48px 24px}
+h1{text-align:center;font-size:1rem;color:#94a3b8;margin-bottom:48px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.grid{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.card{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:32px 40px;border-radius:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  transition:all .3s;cursor:pointer;
+}
+.card:hover{background:rgba(255,255,255,.08);border-color:rgba(96,165,250,.3);transform:translateX(4px)}
+.logo{font-size:2.2rem;letter-spacing:-.02em}
+.logo .highlight{color:#60a5fa}
+.meta{text-align:right}
+.font-name{font-size:.85rem;color:#60a5fa;font-weight:600;margin-bottom:4px}
+.font-desc{font-size:.75rem;color:#64748b}
+.divider{text-align:center;color:#334155;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:16px 0}
+
+/* Navbar preview */
+.nav-preview{
+  max-width:900px;margin:48px auto 0;padding:20px 32px;
+  border-radius:14px;background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+.nav-preview h3{font-size:.75rem;color:#64748b;margin-bottom:16px;letter-spacing:.05em;text-transform:uppercase}
+.nav-mock{display:flex;align-items:center;gap:32px;padding:12px 0}
+.nav-mock .home{font-size:1rem;letter-spacing:-.02em;opacity:.6;transition:.3s}
+.nav-mock .home:hover{opacity:1}
+.nav-mock .sep{color:#334155;font-size:.8rem}
+.nav-mock .product{font-size:1.2rem;letter-spacing:-.02em}
+.nav-mock .links{margin-left:auto;display:flex;gap:24px;font-size:.78rem;color:#64748b;font-family:'Inter',sans-serif}
+</style>
+</head>
+<body>
+
+<h1>VerusLab Logo Font Preview</h1>
+
+<div class="grid">
+
+  <div class="card" onclick="selectFont('Inter')">
+    <div class="logo" style="font-family:'Inter'">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Inter (현재)</div>
+      <div class="font-desc">깔끔, 심플, 무난</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Space Grotesk')">
+    <div class="logo" style="font-family:'Space Grotesk'">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Space Grotesk</div>
+      <div class="font-desc">기하학적, 테크, 현대적</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Syne')">
+    <div class="logo" style="font-family:'Syne';font-weight:800">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Syne</div>
+      <div class="font-desc">볼드, 개성 있음 (Linkspace 사용 중)</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Orbitron')">
+    <div class="logo" style="font-family:'Orbitron'">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Orbitron</div>
+      <div class="font-desc">SF, 항공우주, 미래지향</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Rajdhani')">
+    <div class="logo" style="font-family:'Rajdhani';font-size:2.5rem">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Rajdhani</div>
+      <div class="font-desc">산업적, 공학적, 경량</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Exo 2')">
+    <div class="logo" style="font-family:'Exo 2';font-weight:800">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Exo 2</div>
+      <div class="font-desc">테크, 세련, 균형</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Chakra Petch')">
+    <div class="logo" style="font-family:'Chakra Petch'">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Chakra Petch</div>
+      <div class="font-desc">각진 테크, 코딩 느낌</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Michroma')">
+    <div class="logo" style="font-family:'Michroma';font-size:1.8rem">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Michroma</div>
+      <div class="font-desc">와이드, 미래적, 강렬</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Audiowide')">
+    <div class="logo" style="font-family:'Audiowide'">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Audiowide</div>
+      <div class="font-desc">둥근 테크, 친근 + 모던</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="selectFont('Russo One')">
+    <div class="logo" style="font-family:'Russo One'">Verus<span class="highlight">Lab</span></div>
+    <div class="meta">
+      <div class="font-name">Russo One</div>
+      <div class="font-desc">굵직, 강인, 산업적</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navbar 적용 미리보기 -->
+<div class="nav-preview" id="navPreview" style="display:none">
+  <h3>Navbar 적용 미리보기</h3>
+  <div class="nav-mock">
+    <div class="home" id="previewHome">Verus<span style="color:#60a5fa">Lab</span></div>
+    <div class="sep">/</div>
+    <div class="product" id="previewProduct"><span style="color:#60a5fa">V</span>alentis™</div>
+    <div class="links">
+      <span>Why Valentis</span>
+      <span>Features</span>
+      <span>Demo</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function selectFont(name) {
+  const preview = document.getElementById('navPreview');
+  const home = document.getElementById('previewHome');
+  preview.style.display = 'block';
+  home.style.fontFamily = name;
+  home.style.fontWeight = '700';
+  preview.scrollIntoView({behavior:'smooth', block:'center'});
+}
+</script>
+</body>
+</html>

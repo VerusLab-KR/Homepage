@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Favicon Preview</title>
+<style>
+body{font-family:'Inter',sans-serif;background:#1e293b;color:#fff;padding:40px;display:flex;flex-direction:column;gap:40px;align-items:center}
+h1{font-size:1.5rem;font-weight:700;margin-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:32px}
+.item{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.item span{font-size:.75rem;color:#94a3b8}
+.preview{display:flex;gap:16px;align-items:center}
+.size-32 svg{width:32px;height:32px}
+.size-20 svg{width:20px;height:20px}
+.size-16 svg{width:16px;height:16px}
+.tab-mock{display:flex;align-items:center;gap:8px;background:#334155;border-radius:8px 8px 0 0;padding:8px 16px;margin-top:8px}
+.tab-mock svg{width:16px;height:16px}
+.tab-mock span{font-size:.72rem;color:#cbd5e1}
+</style>
+</head>
+<body>
+<h1>Favicon Options</h1>
+
+<div class="grid">
+
+  <!-- A. 로고 V (블루 배경) -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#2d5a9b"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#2d5a9b"/></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#2d5a9b"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#2d5a9b"/></svg>
+      </div>
+    </div>
+    <span>A. 3.png 스타일</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#2d5a9b"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#2d5a9b"/></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- B. 같은 형태 + VerusLab 블루 -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#1d4ed8"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#1d4ed8"/></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#1d4ed8"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#1d4ed8"/></svg>
+      </div>
+    </div>
+    <span>B. VerusLab 블루</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#1d4ed8"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#1d4ed8"/></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- C. 같은 형태 + 다크 -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#0f172a"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#0f172a"/></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#0f172a"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#0f172a"/></svg>
+      </div>
+    </div>
+    <span>C. 다크 배경</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#0f172a"/><path d="M3 6L13 6L13 8L16 14L19 8L19 6L29 6L16 28Z" fill="white"/><path d="M13 6L16 11L19 6Z" fill="#0f172a"/></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- 1. VL (현재) -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><text x="5" y="24" font-size="22" font-weight="bold" fill="white" font-family="sans-serif">VL</text></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><text x="5" y="24" font-size="22" font-weight="bold" fill="white" font-family="sans-serif">VL</text></svg>
+      </div>
+    </div>
+    <span>1. VL 텍스트 (현재)</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><text x="5" y="24" font-size="22" font-weight="bold" fill="white" font-family="sans-serif">VL</text></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- 2. V 한글자 -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><text x="7" y="25" font-size="24" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><text x="7" y="25" font-size="24" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      </div>
+    </div>
+    <span>2. V 심플</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><text x="7" y="25" font-size="24" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- 3. 기하학적 V (쉐브론) -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><path d="M8 9L16 23L24 9" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><path d="M8 9L16 23L24 9" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </div>
+    </div>
+    <span>3. 기하학적 V (쉐브론)</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><path d="M8 9L16 23L24 9" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- 4. 육각형 + V -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><polygon points="16,3 27,9.5 27,22.5 16,29 5,22.5 5,9.5" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><text x="9" y="23" font-size="18" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><polygon points="16,3 27,9.5 27,22.5 16,29 5,22.5 5,9.5" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><text x="9" y="23" font-size="18" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      </div>
+    </div>
+    <span>4. 육각형 + V</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><polygon points="16,3 27,9.5 27,22.5 16,29 5,22.5 5,9.5" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><text x="9" y="23" font-size="18" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- 5. 삼각형 V (솔리드) -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><path d="M7 8L16 25L25 8" fill="white" opacity=".9"/></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><path d="M7 8L16 25L25 8" fill="white" opacity=".9"/></svg>
+      </div>
+    </div>
+    <span>5. 삼각형 V (솔리드)</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#1d4ed8"/><path d="M7 8L16 25L25 8" fill="white" opacity=".9"/></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+  <!-- 6. 그라데이션 V -->
+  <div class="item">
+    <div class="preview">
+      <div class="size-32">
+        <svg viewBox="0 0 32 32"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="url(#g1)"/><text x="7" y="25" font-size="24" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      </div>
+      <div class="size-16">
+        <svg viewBox="0 0 32 32"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="url(#g2)"/><text x="7" y="25" font-size="24" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      </div>
+    </div>
+    <span>6. 그라데이션 V</span>
+    <div class="tab-mock">
+      <svg viewBox="0 0 32 32"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60a5fa"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs><rect width="32" height="32" rx="6" fill="url(#g3)"/><text x="7" y="25" font-size="24" font-weight="800" fill="white" font-family="sans-serif">V</text></svg>
+      <span>VerusLab</span>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
