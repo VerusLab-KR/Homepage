@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "팀이 다른 구조해석 재료 값을 쓰고 있었다 — CAE 협업 표준화의 필요성"
+display_title: "팀이 다른 구조해석 재료 값을 쓰고 있었다<br>— CAE 협업 표준화의 필요성"
 date: 2026-04-19
 category: Valentis
 description: "같은 FEA 구조해석 프로젝트에서 팀원마다 서로 다른 재료물성치를 사용하는 문제. SOLIDWORKS 등 CAE 툴이 재료 라이브러리를 개인 환경에 종속시키는 구조적 이유와, 팀 단위 CAE 협업 표준화가 필요한 이유."
