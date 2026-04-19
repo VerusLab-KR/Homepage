@@ -1,6 +1,7 @@
 ---
 layout: post
 title: '"이 해석에 어떤 재료 값을 썼지?" — 추적이 안 되는 문제'
+display_title: '"이 해석에 어떤 재료 값을 썼지?"<br>— 추적이 안 되는 문제'
 date: 2026-04-17
 category: Valentis
 description: "해석 결과는 있지만 당시 사용된 재료 값은 남아있지 않다. 재료 데이터 추적이 왜 어려운지, 그리고 Valentis가 리비전과 타임스탬프로 이 문제를 어떻게 해결하는지."
