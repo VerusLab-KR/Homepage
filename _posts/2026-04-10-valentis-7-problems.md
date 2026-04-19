@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Valentis가 다루는 7가지 문제"
-date: 2026-04-19
+date: 2026-04-10
 category: Valentis
 description: "CAE 엔지니어가 현장에서 반복적으로 마주치는 7가지 미해결 문제. 재료 이력 소실, 규격 하중 수작업, 그래프 데이터 추출, 질량참여율 계산, 민감도 분석, 반복 최적화, 신뢰성 평가까지."
 ---
