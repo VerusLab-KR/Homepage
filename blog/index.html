@@ -121,12 +121,18 @@ img{max-width:100%;display:block}
 .card-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--blue-500);margin-top:4px;transition:gap .2s}
 .card-link:hover{gap:10px}
 
+/* Controls bar */
+.blog-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cat-filter{display:flex;gap:8px;flex-wrap:wrap}
+.cat-btn{background:none;border:1px solid var(--slate-2);border-radius:20px;padding:5px 14px;font-size:.78rem;font-weight:600;color:var(--slate-5);cursor:pointer;transition:all .2s}
+.cat-btn:hover{border-color:var(--blue-400);color:var(--blue-500)}
+.cat-btn.active{background:var(--blue-500);border-color:var(--blue-500);color:#fff}
+
 /* View toggle */
-.hero-view-controls{position:absolute;bottom:28px;left:0;right:0;display:flex;justify-content:flex-end;padding-right:max(24px,calc(50% - 636px));z-index:2}
-.view-toggle{display:flex;border:1px solid rgba(255,255,255,.2);border-radius:8px;overflow:hidden}
-.view-btn{background:none;border:none;cursor:pointer;padding:7px 10px;color:rgba(255,255,255,.45);transition:all .2s;display:flex;align-items:center}
-.view-btn:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.08)}
-.view-btn.active{color:#fff;background:rgba(255,255,255,.15)}
+.view-toggle{display:flex;border:1px solid var(--slate-2);border-radius:8px;overflow:hidden}
+.view-btn{background:none;border:none;cursor:pointer;padding:7px 10px;color:var(--slate-5);transition:all .2s;display:flex;align-items:center}
+.view-btn:hover{color:var(--slate-8);background:var(--slate-1)}
+.view-btn.active{color:var(--blue-500);background:var(--slate-1)}
 .view-btn svg{display:block}
 
 /* List view */
@@ -205,24 +211,32 @@ img{max-width:100%;display:block}
     <h1 class="hero-fade hero-fade-2">엔지니어링 이야기</h1>
     <p class="hero-fade hero-fade-3">현장에서 발견한 문제들, 그리고 소프트웨어로 풀어가는 방식을 기록합니다.</p>
   </div>
-  <div class="hero-view-controls">
-    <div class="view-toggle">
-      <button class="view-btn active" id="btnCard" aria-label="카드 보기" onclick="setView('card')">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
-      </button>
-      <button class="view-btn" id="btnList" aria-label="리스트 보기" onclick="setView('list')">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="4" x2="15" y2="4"/><line x1="1" y1="8" x2="15" y2="8"/><line x1="1" y1="12" x2="15" y2="12"/></svg>
-      </button>
-    </div>
-  </div>
 </header>
 
 <section class="blog-section">
   <div class="container">
     {% if site.posts.size > 0 %}
+    {% assign categories = site.posts | map: "category" | uniq | sort %}
+    <div class="blog-controls">
+      <div class="cat-filter">
+        <button class="cat-btn active" data-cat="all">전체 ({{ site.posts | size }})</button>
+        {% for cat in categories %}
+        {% assign cat_count = site.posts | where: "category", cat | size %}
+        <button class="cat-btn" data-cat="{{ cat }}">{{ cat }} ({{ cat_count }})</button>
+        {% endfor %}
+      </div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btnCard" aria-label="카드 보기" onclick="setView('card')">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+        </button>
+        <button class="view-btn" id="btnList" aria-label="리스트 보기" onclick="setView('list')">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="4" x2="15" y2="4"/><line x1="1" y1="8" x2="15" y2="8"/><line x1="1" y1="12" x2="15" y2="12"/></svg>
+        </button>
+      </div>
+    </div>
     <div class="blog-grid" id="cardView">
       {% for post in site.posts %}
-      <article class="blog-card" onclick="location.href='{{ post.url }}'">
+      <article class="blog-card" data-category="{{ post.category }}" onclick="location.href='{{ post.url }}'">
         <div class="card-top">
           {% if post.category %}<span class="card-category">{{ post.category }}</span>{% endif %}
           <span class="card-date">{{ post.date | date: "%Y.%m.%d" }}</span>
@@ -240,7 +254,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="blog-list" id="listView" style="display:none">
       {% for post in site.posts %}
-      <div class="blog-list-item" onclick="location.href='{{ post.url }}'">
+      <div class="blog-list-item" data-category="{{ post.category }}" onclick="location.href='{{ post.url }}'">
         <span class="list-date">{{ post.date | date: "%Y.%m.%d" }}</span>
         {% if post.category %}<span class="list-category">{{ post.category }}</span>{% endif %}
         <span class="list-title">{{ post.title }}</span>
@@ -321,7 +335,8 @@ img{max-width:100%;display:block}
 </script>
 
 <script>
-/* View toggle */
+let currentCat = 'all';
+
 function setView(v) {
   const card = document.getElementById('cardView');
   const list = document.getElementById('listView');
@@ -339,6 +354,22 @@ function setView(v) {
   }
   localStorage.setItem('blogView', v);
 }
+
+function filterCat(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === cat);
+  });
+  document.querySelectorAll('.blog-card, .blog-list-item').forEach(el => {
+    const match = cat === 'all' || el.dataset.category === cat;
+    el.style.display = match ? '' : 'none';
+  });
+}
+
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => filterCat(btn.dataset.cat));
+});
+
 (function(){
   const saved = localStorage.getItem('blogView');
   if (saved === 'list') setView('list');
