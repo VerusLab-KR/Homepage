@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "CAE·FEA 해석 툴은 해석만 한다 — Valentis를 만든 이유"
+display_title: "CAE·FEA 해석 툴은 해석만 한다<br>— Valentis를 만든 이유"
 date: 2026-04-07
 category: Valentis
 description: "SOLIDWORKS Simulation, Ansys 등 CAE·FEA 툴이 해석만 하는 이유, 그리고 구조해석·진동해석 전후의 반복 작업을 자동화하기 위해 Valentis가 만들어진 배경. 하중 계산, 데이터 추출, 결과 분석까지 Valentis가 채우는 빈칸."
