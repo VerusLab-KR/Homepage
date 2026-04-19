@@ -26,7 +26,8 @@
 /* ── Subnav ── */
 .subnav{position:fixed;top:64px;left:0;right:0;z-index:850;background:rgba(15,23,42,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06);transform:translateY(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
 .subnav.visible{transform:translateY(0)}
-.subnav .container{display:flex;align-items:center;height:44px}
+.subnav .container{display:flex;align-items:center;height:44px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.subnav .container::-webkit-scrollbar{display:none}
 .subnav-links{display:flex;list-style:none}
 .subnav-links a{font-size:.82rem;font-weight:500;color:#94a3b8;padding:0 16px;height:44px;display:flex;align-items:center;position:relative;transition:.2s;white-space:nowrap}
 .subnav-links a:hover,.subnav-links a.active{color:#60a5fa}
