@@ -150,6 +150,17 @@ img{max-width:100%;display:block}
 .blog-empty{text-align:center;padding:80px 0;color:var(--slate-5)}
 
 /* Footer → _includes/footer.html */
+.btn-top{
+  position:fixed;bottom:32px;right:32px;z-index:800;
+  width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;
+  background:#1a1f2e;color:#94a3b8;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.btn-top.visible{opacity:1;pointer-events:all}
+.btn-top:hover{background:var(--blue);color:#fff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,78,216,.3)}
+@media(max-width:768px){.btn-top{bottom:120px;right:20px}}
 </style>
 </head>
 <body>
@@ -351,7 +362,10 @@ document.querySelectorAll('.cat-btn').forEach(btn => {
 })();
 
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 30));
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 30);
+  document.getElementById('btnTop').classList.toggle('visible', window.scrollY > 400);
+});
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
@@ -363,6 +377,8 @@ mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => 
   mobileMenu.classList.remove('open');
 }));
 </script>
+
+<button class="btn-top" id="btnTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Top">&#9650;</button>
 
 <!-- ── Floating Risk Diagnosis ── -->
 <style>
