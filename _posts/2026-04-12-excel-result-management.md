@@ -74,7 +74,7 @@ Valentis는 해석 결과 정리를 단순한 "정리"가 아니라,
 
 **해석 데이터 불러오기 (Data Transposition)**
 여러 해석 케이스의 입력값과 출력값을 하나의 테이블로 구성한다.
-SOLIDWORKS Simulation, SOLIDWORKS Flow Simulation, 또는 CSV 형식의 결과를 그대로 불러올 수 있으며,
+SOLIDWORKS Simulation, SOLIDWORKS Flow Simulation, 일반 CSV/XLSX 형식의 결과를 그대로 불러올 수 있으며,
 조건과 결과가 연결된 상태로 유지된다.
 
 **분석 및 최적화 (Analysis Intelligence)**
