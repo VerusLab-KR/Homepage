@@ -5,6 +5,8 @@ permalink: /blog/:title/
 markdown: kramdown
 kramdown:
   input: GFM
+plugins:
+  - jekyll-sitemap
 exclude:
   - devlog/
   - preview/
