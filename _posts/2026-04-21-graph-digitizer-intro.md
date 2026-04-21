@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "PDF 그래프에서 숫자를 뽑아야 할 때"
-date: 2026-04-21
+date: 2026-04-21 10:00:00
 category: Valentis
 description: "논문·규격서의 그래프에서 수치 데이터를 추출해야 할 때 — 눈대중, 자로 재기, AutoCAD 재현의 한계와 그래프 디지타이저가 제공하는 자동화 방식."
 ---
