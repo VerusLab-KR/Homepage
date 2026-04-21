@@ -147,11 +147,12 @@ img{max-width:100%;display:block}
 @media(max-width:600px){.list-date{display:none}.blog-list{margin-top:40px}}
 
 /* Search */
-.search-wrap{margin-bottom:16px;position:relative;display:inline-flex;align-items:center;width:100%;max-width:360px}
-.search-wrap svg{position:absolute;left:12px;color:var(--slate-4);pointer-events:none;flex-shrink:0}
-.search-input{width:100%;padding:9px 14px 9px 38px;border:1px solid var(--slate-2);border-radius:10px;font-size:.88rem;font-family:inherit;background:var(--white);color:var(--slate-8);outline:none;transition:border-color .2s,box-shadow .2s}
-.search-input:focus{border-color:var(--blue-400);box-shadow:0 0 0 3px rgba(96,165,250,.15)}
+.search-wrap{position:relative;display:inline-flex;align-items:center;flex-shrink:0}
+.search-wrap svg{position:absolute;left:10px;color:var(--slate-4);pointer-events:none;flex-shrink:0}
+.search-input{width:200px;padding:7px 12px 7px 34px;border:1px solid var(--slate-2);border-radius:8px;font-size:.83rem;font-family:inherit;background:var(--white);color:var(--slate-8);outline:none;transition:border-color .2s,box-shadow .2s,width .2s}
+.search-input:focus{border-color:var(--blue-400);box-shadow:0 0 0 3px rgba(96,165,250,.15);width:260px}
 .search-input::placeholder{color:var(--slate-4)}
+@media(max-width:600px){.search-input{width:140px}.search-input:focus{width:180px}}
 
 /* Empty state */
 .blog-empty{text-align:center;padding:80px 0;color:var(--slate-5)}
@@ -225,10 +226,6 @@ img{max-width:100%;display:block}
   <div class="container">
     {% if site.posts.size > 0 %}
     {% assign categories = site.posts | map: "category" | uniq | sort %}
-    <div class="search-wrap">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input class="search-input" id="searchInput" type="search" placeholder="포스트 검색..." autocomplete="off">
-    </div>
     <div class="blog-controls">
       <div class="cat-filter">
         <button class="cat-btn active" data-cat="all">전체 ({{ site.posts | size }})</button>
@@ -236,6 +233,10 @@ img{max-width:100%;display:block}
         {% assign cat_count = site.posts | where: "category", cat | size %}
         <button class="cat-btn" data-cat="{{ cat }}">{{ cat }} ({{ cat_count }})</button>
         {% endfor %}
+      </div>
+      <div class="search-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" id="searchInput" type="search" placeholder="검색..." autocomplete="off">
       </div>
       <div class="view-toggle">
         <button class="view-btn active" id="btnCard" aria-label="카드 보기" onclick="setView('card')">
