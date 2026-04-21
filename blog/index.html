@@ -146,8 +146,16 @@ img{max-width:100%;display:block}
 .blog-list-item:hover .list-arrow{transform:translateX(3px);color:var(--blue-400)}
 @media(max-width:600px){.list-date{display:none}.blog-list{margin-top:40px}}
 
+/* Search */
+.search-wrap{margin-bottom:16px;position:relative;display:inline-flex;align-items:center;width:100%;max-width:360px}
+.search-wrap svg{position:absolute;left:12px;color:var(--slate-4);pointer-events:none;flex-shrink:0}
+.search-input{width:100%;padding:9px 14px 9px 38px;border:1px solid var(--slate-2);border-radius:10px;font-size:.88rem;font-family:inherit;background:var(--white);color:var(--slate-8);outline:none;transition:border-color .2s,box-shadow .2s}
+.search-input:focus{border-color:var(--blue-400);box-shadow:0 0 0 3px rgba(96,165,250,.15)}
+.search-input::placeholder{color:var(--slate-4)}
+
 /* Empty state */
 .blog-empty{text-align:center;padding:80px 0;color:var(--slate-5)}
+.no-results{display:none;text-align:center;padding:60px 0;color:var(--slate-5);font-size:.9rem}
 
 /* Footer → _includes/footer.html */
 .btn-top{
@@ -217,6 +225,10 @@ img{max-width:100%;display:block}
   <div class="container">
     {% if site.posts.size > 0 %}
     {% assign categories = site.posts | map: "category" | uniq | sort %}
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="포스트 검색..." autocomplete="off">
+    </div>
     <div class="blog-controls">
       <div class="cat-filter">
         <button class="cat-btn active" data-cat="all">전체 ({{ site.posts | size }})</button>
@@ -236,7 +248,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="blog-grid" id="cardView">
       {% for post in site.posts %}
-      <article class="blog-card" data-category="{{ post.category }}" onclick="location.href='{{ post.url }}'">
+      <article class="blog-card" data-category="{{ post.category }}" data-search="{{ post.title }} {{ post.description }}" onclick="location.href='{{ post.url }}'">
         <div class="card-top">
           {% if post.category %}<span class="card-category">{{ post.category }}</span>{% endif %}
           <span class="card-date">{{ post.date | date: "%Y.%m.%d" }}</span>
@@ -254,7 +266,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="blog-list" id="listView" style="display:none">
       {% for post in site.posts %}
-      <div class="blog-list-item" data-category="{{ post.category }}" onclick="location.href='{{ post.url }}'">
+      <div class="blog-list-item" data-category="{{ post.category }}" data-search="{{ post.title }} {{ post.description }}" onclick="location.href='{{ post.url }}'">
         <span class="list-date">{{ post.date | date: "%Y.%m.%d" }}</span>
         {% if post.category %}<span class="list-category">{{ post.category }}</span>{% endif %}
         <span class="list-title">{{ post.title }}</span>
@@ -262,6 +274,7 @@ img{max-width:100%;display:block}
       </div>
       {% endfor %}
     </div>
+    <div class="no-results" id="noResults">검색 결과가 없습니다.</div>
     {% else %}
     <div class="blog-empty">
       <p>준비 중입니다.</p>
@@ -341,20 +354,34 @@ function setView(v) {
   localStorage.setItem('blogView', v);
 }
 
+function applyFilter() {
+  const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+  let visible = 0;
+  document.querySelectorAll('.blog-card, .blog-list-item').forEach(el => {
+    const catMatch = currentCat === 'all' || el.dataset.category === currentCat;
+    const searchMatch = !q || (el.dataset.search || '').toLowerCase().includes(q);
+    const show = catMatch && searchMatch;
+    el.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  const noResults = document.getElementById('noResults');
+  if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+}
+
 function filterCat(cat) {
   currentCat = cat;
   document.querySelectorAll('.cat-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.cat === cat);
   });
-  document.querySelectorAll('.blog-card, .blog-list-item').forEach(el => {
-    const match = cat === 'all' || el.dataset.category === cat;
-    el.style.display = match ? '' : 'none';
-  });
+  applyFilter();
 }
 
 document.querySelectorAll('.cat-btn').forEach(btn => {
   btn.addEventListener('click', () => filterCat(btn.dataset.cat));
 });
+
+const searchInput = document.getElementById('searchInput');
+if (searchInput) searchInput.addEventListener('input', applyFilter);
 
 (function(){
   const saved = localStorage.getItem('blogView');
