@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Valentis Material Property — 리비전 기반 재료물성치 관리"
+display_title: "Valentis Material Property<br>— 리비전 기반 재료물성치 관리"
 date: 2026-04-20
 category: Valentis
 description: "CAE 재료물성치를 리비전 단위로 관리하는 Valentis Material Property. 내장 재료 DB, 수정 이력 누적, Base/Rev 비교, 변경 로그까지 — 재료 데이터를 관리 가능한 자산으로 만드는 방법."
