@@ -129,10 +129,8 @@ img{max-width:100%;display:block}
 .cat-btn.active{color:var(--blue-500);font-weight:700;border-bottom-color:var(--blue-500)}
 
 /* Per-page selector */
-.per-page{display:flex;border:1px solid var(--slate-2);border-radius:8px;overflow:hidden}
-.pp-btn{background:none;border:none;cursor:pointer;padding:7px 11px;font-size:.78rem;font-weight:600;color:var(--slate-5);transition:all .2s;white-space:nowrap}
-.pp-btn:hover{color:var(--slate-8);background:var(--slate-1)}
-.pp-btn.active{color:var(--blue-500);background:var(--slate-1)}
+.per-page-select{background:var(--slate-0);border:1px solid var(--slate-2);border-radius:8px;padding:6px 10px;font-size:.78rem;font-weight:600;color:var(--slate-6);cursor:pointer;outline:none;transition:border-color .2s}
+.per-page-select:hover,.per-page-select:focus{border-color:var(--blue-400);color:var(--slate-8)}
 
 /* View toggle */
 .view-toggle{display:flex;border:1px solid var(--slate-2);border-radius:8px;overflow:hidden}
@@ -245,11 +243,11 @@ img{max-width:100%;display:block}
         <input class="search-input" id="searchInput" type="search" placeholder="검색..." autocomplete="off">
       </div>
       <div style="display:flex;align-items:center;gap:8px">
-        <div class="per-page">
-          <button class="pp-btn active" data-pp="10" onclick="setPerPage(10)">10</button>
-          <button class="pp-btn" data-pp="20" onclick="setPerPage(20)">20</button>
-          <button class="pp-btn" data-pp="0" onclick="setPerPage(0)">전체</button>
-        </div>
+        <select class="per-page-select" id="perPageSelect" onchange="setPerPage(parseInt(this.value))">
+          <option value="10">10개</option>
+          <option value="20">20개</option>
+          <option value="0">전체</option>
+        </select>
       <div class="view-toggle">
         <button class="view-btn active" id="btnCard" aria-label="카드 보기" onclick="setView('card')">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
@@ -353,9 +351,8 @@ let currentPerPage = 10;
 
 function setPerPage(n) {
   currentPerPage = n;
-  document.querySelectorAll('.pp-btn').forEach(btn => {
-    btn.classList.toggle('active', parseInt(btn.dataset.pp) === n);
-  });
+  const sel = document.getElementById('perPageSelect');
+  if (sel) sel.value = n;
   localStorage.setItem('blogPerPage', n);
   applyFilter();
 }
@@ -380,17 +377,25 @@ function setView(v) {
 
 function applyFilter() {
   const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
-  let visible = 0;
-  document.querySelectorAll('.blog-card, .blog-list-item').forEach(el => {
+  let visibleCards = 0, visibleList = 0, totalVisible = 0;
+  document.querySelectorAll('.blog-card').forEach(el => {
     const catMatch = currentCat === 'all' || el.dataset.category === currentCat;
     const searchMatch = !q || (el.dataset.search || '').toLowerCase().includes(q);
-    const withinLimit = currentPerPage === 0 || visible < currentPerPage;
+    const withinLimit = currentPerPage === 0 || visibleCards < currentPerPage;
     const show = catMatch && searchMatch && withinLimit;
     el.style.display = show ? '' : 'none';
-    if (catMatch && searchMatch) visible++;
+    if (catMatch && searchMatch) { visibleCards++; totalVisible++; }
+  });
+  document.querySelectorAll('.blog-list-item').forEach(el => {
+    const catMatch = currentCat === 'all' || el.dataset.category === currentCat;
+    const searchMatch = !q || (el.dataset.search || '').toLowerCase().includes(q);
+    const withinLimit = currentPerPage === 0 || visibleList < currentPerPage;
+    const show = catMatch && searchMatch && withinLimit;
+    el.style.display = show ? '' : 'none';
+    if (catMatch && searchMatch) visibleList++;
   });
   const noResults = document.getElementById('noResults');
-  if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+  if (noResults) noResults.style.display = totalVisible === 0 ? 'block' : 'none';
 }
 
 function filterCat(cat) {
