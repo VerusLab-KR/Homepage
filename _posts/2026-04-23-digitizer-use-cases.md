@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "재료 특성 곡선, 시험 데이터 — 디지타이저가 필요한 상황들"
+display_title: "재료 특성 곡선, 시험 데이터 —<br>디지타이저가 필요한 상황들"
 date: 2026-04-23 11:00:00
 category: Valentis
 description: "응력-변형률 곡선, S-N 피로 곡선, PSD/SRS 규격 곡선, 공급사 데이터시트 — 그래프로만 제공되는 데이터를 수치화해야 하는 반복 상황과 Curve Digitizer가 이를 처리하는 방식."
