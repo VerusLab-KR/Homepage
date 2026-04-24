@@ -148,10 +148,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 @media(max-width:900px){.course-grid{grid-template-columns:1fr}}
 @media(max-width:700px){
   .course-card{padding:32px 24px}
-  .schedule-table th:nth-child(4),.schedule-table td:nth-child(4){display:none}
-}
-@media(max-width:500px){
-  .schedule-table th:nth-child(3),.schedule-table td:nth-child(3){display:none}
+  .text-gradient{background:none;-webkit-text-fill-color:var(--blue-400)}
 }
 </style>
 
@@ -236,7 +233,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
       <h2>2026년 교육 일정</h2>
       <p class="subtitle">오프라인 교육으로 진행되며 회당 최대 10명 소규모로 운영됩니다.</p>
     </div>
-    <div class="reveal">
+    <div class="reveal" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
       <table class="schedule-table">
         <thead>
           <tr>
