@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "3점으로 그래프를 데이터로 — Curve Data Extractor"
+display_title: "3점으로 그래프를 데이터로<br>— Curve Data Extractor"
 date: 2026-04-23 10:00:00
 category: Valentis
 description: "그래프 이미지에서 수치 데이터를 추출하는 Valentis Curve Data Extractor — 3점 캘리브레이션으로 좌표계를 설정하고 커브를 따라 클릭하면 CSV로 내보낼 수 있다."
