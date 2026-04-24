@@ -113,21 +113,19 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 /* Schedule */
 .schedule-table{width:100%;border-collapse:collapse;margin-top:16px}
 .schedule-table th{text-align:left;padding:12px 20px;font-size:.8rem;font-weight:700;color:var(--slate-5);border-bottom:2px solid var(--slate-2);background:var(--slate-0);letter-spacing:.04em}
-.schedule-table td{padding:16px 20px;border-bottom:1px solid var(--slate-2);font-size:.92rem;color:var(--slate-7);vertical-align:middle}
-.schedule-table tr:last-child td{border-bottom:none}
+.schedule-table td{padding:14px 20px;border-bottom:1px solid var(--slate-2);font-size:.92rem;color:var(--slate-7);vertical-align:middle}
+.schedule-table tbody tr:last-child td{border-bottom:none}
 .schedule-table tr:hover td{background:var(--slate-0)}
-.sched-date{font-weight:700;color:var(--slate-8);white-space:nowrap}
-.sched-badge{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 10px;border-radius:8px;white-space:nowrap}
-.sched-badge.structural{background:rgba(245,158,11,.1);color:var(--amber)}
-.sched-badge.fluid{background:rgba(29,78,216,.07);color:var(--blue)}
-.sched-duration{color:var(--slate-5);font-size:.85rem;white-space:nowrap}
-.sched-seats{color:var(--slate-5);font-size:.85rem;white-space:nowrap}
-.btn-apply{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:.82rem;font-weight:700;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap}
-.btn-apply.active{background:linear-gradient(135deg,var(--amber),var(--amber-d));color:var(--white);box-shadow:0 2px 8px rgba(245,158,11,.3)}
-.btn-apply.active:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(245,158,11,.4)}
-.btn-apply.fluid-active{background:linear-gradient(135deg,var(--blue-500),var(--blue));color:var(--white);box-shadow:0 2px 8px rgba(29,78,216,.2)}
-.btn-apply.fluid-active:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3)}
-.btn-apply.pending{background:var(--slate-1);color:var(--slate-5);cursor:default}
+.course-name-cell{font-weight:700;color:var(--slate-8);border-right:1px solid var(--slate-2);background:var(--slate-0)!important;vertical-align:middle!important;text-align:center;white-space:nowrap;padding:16px 24px!important}
+.course-group-end td{border-bottom:2px solid var(--slate-2)!important}
+.sched-session{font-weight:600;color:var(--slate-6);white-space:nowrap}
+.sched-date{font-weight:600;color:var(--slate-8);white-space:nowrap}
+.sched-location{color:var(--slate-5);font-size:.85rem;white-space:nowrap}
+.btn-apply{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;font-size:.82rem;font-weight:700;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;text-decoration:none}
+.btn-apply.open{background:linear-gradient(135deg,var(--blue-500),var(--blue));color:var(--white);box-shadow:0 2px 8px rgba(29,78,216,.2)}
+.btn-apply.open:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3)}
+.btn-apply.ended{background:var(--slate-1);color:var(--slate-4);cursor:default;font-weight:500}
+.btn-apply.soon{background:var(--slate-1);color:var(--slate-5);cursor:default}
 
 /* CTA */
 .cta-section{background:linear-gradient(180deg,var(--slate-9) 0%,#0c1222 100%);color:var(--slate-3);text-align:center;padding:100px 0;position:relative;overflow:hidden}
@@ -169,7 +167,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
     <h1>엔지니어를 위한 <span class="text-gradient">해석 교육</span></h1>
     <p>SOLIDWORKS 구조해석·유동해석 전문 오프라인 교육.<br>설계 현장에서 바로 적용할 수 있는 실전 중심 커리큘럼.</p>
     <div class="hero-actions">
-      <a href="#schedule" class="btn btn-primary">2026년 5월 교육 일정 보기</a>
+      <a href="#schedule" class="btn btn-primary">2026년 교육 일정 보기</a>
       <a href="/#contact" class="btn btn-outline">교육 문의</a>
     </div>
     <div class="hero-stats">
@@ -232,70 +230,98 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 <section class="section section-alt" id="schedule">
   <div class="container">
     <div class="text-center">
-      <h2>2026년 5월 교육 일정</h2>
-      <p class="subtitle">서울 교육장에서 진행되는 오프라인 교육입니다. 회당 최대 10명 소규모로 운영됩니다.</p>
+      <h2>2026년 교육 일정</h2>
+      <p class="subtitle">오프라인 교육으로 진행되며 회당 최대 10명 소규모로 운영됩니다.</p>
     </div>
     <div class="reveal">
       <table class="schedule-table">
         <thead>
           <tr>
-            <th>날짜</th>
             <th>과정</th>
-            <th>기간</th>
-            <th>정원</th>
+            <th>차수</th>
+            <th>날짜</th>
+            <th>장소</th>
             <th>신청</th>
           </tr>
         </thead>
         <tbody>
+          <!-- 구조해석 기본교육 -->
           <tr>
-            <td class="sched-date">5월 12–13일</td>
-            <td>
-              <span class="sched-badge structural">구조해석</span><br>
-              <span style="font-weight:600;margin-top:4px;display:inline-block">기본교육</span>
-            </td>
-            <td class="sched-duration">2일</td>
-            <td class="sched-seats">10명</td>
-            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=127&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply active">신청하기</a></td>
+            <td class="course-name-cell" rowspan="4">구조해석<br>기본교육</td>
+            <td class="sched-session">1차</td>
+            <td class="sched-date">2/3 – 2/4</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply ended">종료</span></td>
           </tr>
           <tr>
-            <td class="sched-date">5월 14일</td>
-            <td>
-              <span class="sched-badge structural">구조해석</span><br>
-              <span style="font-weight:600;margin-top:4px;display:inline-block">최적화 해석</span>
-            </td>
-            <td class="sched-duration">1일</td>
-            <td class="sched-seats">10명</td>
-            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=143&utm_source=veruslab&utm_medium=education&utm_campaign=fea-optimization" target="_blank" class="btn-apply active">신청하기</a></td>
+            <td class="sched-session">2차</td>
+            <td class="sched-date">5/12 – 5/13</td>
+            <td class="sched-location">서울</td>
+            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=127&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
-            <td class="sched-date">5월 15일</td>
-            <td>
-              <span class="sched-badge structural">구조해석</span><br>
-              <span style="font-weight:600;margin-top:4px;display:inline-block">진동/충격해석</span>
-            </td>
-            <td class="sched-duration">1일</td>
-            <td class="sched-seats">10명</td>
-            <td><span class="btn-apply pending">일정 확인 중</span></td>
+            <td class="sched-session">3차</td>
+            <td class="sched-date">9/15 – 9/16</td>
+            <td class="sched-location">창원</td>
+            <td><span class="btn-apply soon">추후 공개</span></td>
+          </tr>
+          <tr class="course-group-end">
+            <td class="sched-session">4차</td>
+            <td class="sched-date">10/13 – 10/14</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply soon">추후 공개</span></td>
+          </tr>
+          <!-- 구조해석 최적화 -->
+          <tr>
+            <td class="course-name-cell" rowspan="4">구조해석<br>최적화 해석</td>
+            <td class="sched-session">1차</td>
+            <td class="sched-date">2/5</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply ended">종료</span></td>
           </tr>
           <tr>
-            <td class="sched-date">5월 19일</td>
-            <td>
-              <span class="sched-badge fluid">유동해석</span><br>
-              <span style="font-weight:600;margin-top:4px;display:inline-block">기본 (기류)</span>
-            </td>
-            <td class="sched-duration">1일</td>
-            <td class="sched-seats">10명</td>
-            <td><span class="btn-apply pending">일정 확인 중</span></td>
+            <td class="sched-session">2차</td>
+            <td class="sched-date">5/14</td>
+            <td class="sched-location">서울</td>
+            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=143&utm_source=veruslab&utm_medium=education&utm_campaign=fea-optimization" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
-            <td class="sched-date">5월 20일</td>
-            <td>
-              <span class="sched-badge fluid">유동해석</span><br>
-              <span style="font-weight:600;margin-top:4px;display:inline-block">기본 (열유동)</span>
-            </td>
-            <td class="sched-duration">1일</td>
-            <td class="sched-seats">10명</td>
-            <td><span class="btn-apply pending">일정 확인 중</span></td>
+            <td class="sched-session">3차</td>
+            <td class="sched-date">7/3</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply soon">추후 공개</span></td>
+          </tr>
+          <tr class="course-group-end">
+            <td class="sched-session">4차</td>
+            <td class="sched-date">10/15</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply soon">추후 공개</span></td>
+          </tr>
+          <!-- 구조해석 진동/충격 -->
+          <tr>
+            <td class="course-name-cell" rowspan="4">구조해석<br>진동/충격해석</td>
+            <td class="sched-session">1차</td>
+            <td class="sched-date">2/6</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply ended">종료</span></td>
+          </tr>
+          <tr>
+            <td class="sched-session">2차</td>
+            <td class="sched-date">5/15</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply soon">추후 공개</span></td>
+          </tr>
+          <tr>
+            <td class="sched-session">3차</td>
+            <td class="sched-date">7/2</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply soon">추후 공개</span></td>
+          </tr>
+          <tr>
+            <td class="sched-session">4차</td>
+            <td class="sched-date">10/16</td>
+            <td class="sched-location">서울</td>
+            <td><span class="btn-apply soon">추후 공개</span></td>
           </tr>
         </tbody>
       </table>
