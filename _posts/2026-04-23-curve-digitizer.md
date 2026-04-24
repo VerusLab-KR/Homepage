@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "3점으로 그래프를 데이터로 — Curve Digitizer"
+title: "3점으로 그래프를 데이터로 — Curve Data Extractor"
 date: 2026-04-23 10:00:00
 category: Valentis
-description: "그래프 이미지에서 수치 데이터를 추출하는 Valentis Curve Digitizer — 3점 캘리브레이션으로 좌표계를 설정하고 커브를 따라 클릭하면 CSV로 내보낼 수 있다."
+description: "그래프 이미지에서 수치 데이터를 추출하는 Valentis Curve Data Extractor — 3점 캘리브레이션으로 좌표계를 설정하고 커브를 따라 클릭하면 CSV로 내보낼 수 있다."
 ---
 
 ## 이미지에서 수치로
 
 이전 편에서 살펴본 문제는 단순하다. 그래프는 있지만 수치 데이터가 없다.
 
-Valentis의 Curve Digitizer는 이 과정을 브라우저에서 바로 처리한다. 별도의 설치 없이 이미지를 불러오고 기준점 3개를 지정하면 좌표계가 설정된다.
+Valentis의 Curve Data Extractor는 이 과정을 브라우저에서 바로 처리한다. 별도의 설치 없이 이미지를 불러오고 기준점 3개를 지정하면 좌표계가 설정된다.
 
 ---
 
