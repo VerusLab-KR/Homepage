@@ -2,7 +2,7 @@
 layout: post
 title: "SOLIDWORKS Simulation이란 무엇인가 — FEA의 기초"
 display_title: "SOLIDWORKS Simulation이란 무엇인가<br>— FEA의 기초"
-date: 2026-04-24 10:00:00
+date: 2026-04-03 10:00:00
 category: Structural
 description: "SOLIDWORKS Simulation의 핵심 엔진인 FEA(유한요소해석)의 개념과, 정적·동적·피로·열해석 등 지원하는 해석 유형을 설계자 관점에서 정리한다."
 ---
