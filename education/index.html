@@ -55,15 +55,17 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 
 /* Hero */
 .hero{
-  min-height:min(80vh,700px);display:flex;align-items:center;
+  min-height:min(100vh,900px);display:flex;align-items:center;
   background:linear-gradient(160deg,var(--slate-9) 0%,#0e1629 50%,#0c1222 100%);
   padding-top:64px;position:relative;overflow:hidden;
 }
 .hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
-.hero-bg-orb-1{width:600px;height:600px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(245,158,11,.5),transparent 70%);opacity:.5;animation:orbFloat1 16s ease-in-out infinite}
-.hero-bg-orb-2{width:450px;height:450px;bottom:-120px;left:-80px;background:radial-gradient(circle,rgba(29,78,216,.6),transparent 70%);opacity:.6;animation:orbFloat2 20s ease-in-out infinite}
-@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,25px)}}
-@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-20px)}}
+.hero-bg-orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(245,158,11,.7),transparent 70%);opacity:.75;animation:orbFloat1 14s ease-in-out infinite}
+.hero-bg-orb-2{width:500px;height:500px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(30,58,138,.7),transparent 70%);opacity:.8;animation:orbFloat2 18s ease-in-out infinite}
+.hero-bg-orb-3{width:300px;height:300px;top:40%;left:50%;background:radial-gradient(circle,rgba(245,158,11,.4),transparent 70%);opacity:.6;animation:orbFloat3 12s ease-in-out infinite}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,-35px)}}
 .hero-network{position:absolute;inset:0;pointer-events:none}
 .hero-network canvas{width:100%;height:100%}
 .hero .container{position:relative;z-index:1;text-align:center}
@@ -160,6 +162,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 <section class="hero">
   <div class="hero-bg-orb hero-bg-orb-1"></div>
   <div class="hero-bg-orb hero-bg-orb-2"></div>
+  <div class="hero-bg-orb hero-bg-orb-3"></div>
   <div class="hero-network"><canvas id="heroNetwork"></canvas></div>
   <div class="container">
     <div class="badge badge-amber">Engineering Education</div>
@@ -374,7 +377,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         const dist=Math.sqrt(dx*dx+dy*dy);
         if(dist<130){
           ctx.beginPath();
-          ctx.strokeStyle=`rgba(245,158,11,${(1-dist/130)*.12})`;
+          ctx.strokeStyle=`rgba(96,165,250,${(1-dist/130)*.12})`;
           ctx.lineWidth=.6;
           ctx.moveTo(nodes[i].x,nodes[i].y);
           ctx.lineTo(nodes[j].x,nodes[j].y);
@@ -385,7 +388,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     nodes.forEach(n => {
       ctx.beginPath();
       ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(245,158,11,.25)';
+      ctx.fillStyle='rgba(96,165,250,.2)';
       ctx.fill();
     });
     raf = requestAnimationFrame(draw);
