@@ -52,14 +52,14 @@
     <a href="/" class="nav-logo">Verus<span>Lab</span></a>
     <ul class="nav-links" id="navLinks">
       <li class="nav-dropdown">
-        <a href="/#products" class="active">Solutions</a>
+        <a href="/#products" {% if page.url contains '/simulation/' or page.url contains '/valentis/' or page.url contains '/linkspace/' %}class="active"{% endif %}>Solutions</a>
         <ul class="nav-dropdown-menu">
           <li><a href="/simulation/">Simulation</a></li>
           <li><a href="/valentis/">Valentis</a></li>
           <li><a href="/linkspace/">Linkspace</a></li>
         </ul>
       </li>
-      <li><a href="/education/">Education</a></li>
+      <li><a href="/education/" {% if page.url contains '/education/' %}class="active"{% endif %}>Education</a></li>
       <li><a href="/#news">News</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/#about">About</a></li>
