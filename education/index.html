@@ -1,0 +1,397 @@
+---
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KRD3N7JX3C"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KRD3N7JX3C');</script>
+<meta name="description" content="VerusLab 해석 교육 — SOLIDWORKS 구조해석·유동해석 오프라인 교육. 설계 현장에서 바로 적용할 수 있는 실전 중심 커리큘럼.">
+<meta property="og:title" content="해석 교육 — SOLIDWORKS 구조·유동해석 | VerusLab">
+<meta property="og:description" content="SOLIDWORKS 구조해석·유동해석 전문 오프라인 교육. 현장 엔지니어를 위한 실전 커리큘럼.">
+<meta property="og:type" content="website">
+<title>해석 교육 — SOLIDWORKS 구조·유동해석 | VerusLab</title>
+<link rel="icon" type="image/x-icon" href="/logo/veruslab_3.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Exo+2:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue-50:#eff6ff;--blue-200:#bfdbfe;
+  --blue-400:#60a5fa;--blue-500:#3b82f6;--blue-600:#2563eb;
+  --blue:#1d4ed8;--blue-d:#1e3a8a;
+  --amber:#f59e0b;--amber-d:#d97706;
+  --slate-9:#0f172a;--slate-8:#1e293b;--slate-7:#334155;
+  --slate-6:#475569;--slate-5:#64748b;--slate-4:#94a3b8;--slate-3:#cbd5e1;
+  --slate-2:#e2e8f0;--slate-1:#f1f5f9;--slate-0:#f8fafc;
+  --white:#ffffff;
+  --radius:14px;--radius-sm:10px;
+  --shadow-lg:0 10px 40px rgba(0,0,0,.08),0 2px 6px rgba(0,0,0,.04);
+  --shadow-xl:0 20px 60px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.06);
+  --transition:.3s cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:64px;font-size:16px;overflow-y:scroll}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--slate-8);line-height:1.7;background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+@media(min-width:1024px){.container{max-width:1320px}}
+.section{padding:100px 0}
+.section-alt{background:var(--slate-0)}
+.text-center{text-align:center}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bottom:16px;letter-spacing:0em}
+.subtitle{font-size:clamp(1rem,1.8vw,1.1rem);color:var(--slate-5);max-width:700px;margin:0 auto 56px;line-height:1.8}
+.badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:.75rem;font-weight:700;letter-spacing:.04em;margin-bottom:20px}
+.badge-blue{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.12)}
+.badge-amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.2)}
+
+/* Animations */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+
+/* Hero */
+.hero{
+  min-height:min(80vh,700px);display:flex;align-items:center;
+  background:linear-gradient(160deg,var(--slate-9) 0%,#0e1629 50%,#0c1222 100%);
+  padding-top:64px;position:relative;overflow:hidden;
+}
+.hero-bg-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.hero-bg-orb-1{width:600px;height:600px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(245,158,11,.5),transparent 70%);opacity:.5;animation:orbFloat1 16s ease-in-out infinite}
+.hero-bg-orb-2{width:450px;height:450px;bottom:-120px;left:-80px;background:radial-gradient(circle,rgba(29,78,216,.6),transparent 70%);opacity:.6;animation:orbFloat2 20s ease-in-out infinite}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,25px)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-20px)}}
+.hero-network{position:absolute;inset:0;pointer-events:none}
+.hero-network canvas{width:100%;height:100%}
+.hero .container{position:relative;z-index:1;text-align:center}
+.hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.2;letter-spacing:0;word-break:keep-all;color:var(--white);margin-bottom:24px}
+.text-gradient{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 50%,#fde68a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,2vw,1.15rem);color:var(--slate-4);margin:0 auto 48px;max-width:700px;line-height:1.85;word-break:keep-all}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 28px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);letter-spacing:0}
+.btn-primary{background:linear-gradient(135deg,var(--amber),var(--amber-d));color:var(--white);box-shadow:0 4px 16px rgba(245,158,11,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,11,.4)}
+.btn-outline{background:transparent;color:var(--blue-400);border:1.5px solid rgba(96,165,250,.3)}
+.btn-outline:hover{border-color:rgba(96,165,250,.6);background:rgba(96,165,250,.08);transform:translateY(-2px)}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.07)}
+.stat-item{text-align:center}
+.stat-num{font-size:1.8rem;font-weight:800;color:var(--white);line-height:1}
+.stat-label{font-size:.8rem;color:var(--slate-5);margin-top:4px}
+
+/* Course Cards */
+.course-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:16px}
+.course-card{background:var(--white);border:1px solid var(--slate-2);border-radius:var(--radius);padding:48px 40px;position:relative;overflow:hidden;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.course-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.course-card::after{content:'';position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;opacity:0;filter:blur(60px);transition:opacity .4s}
+.course-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-xl);border-color:transparent}
+.course-card:hover::before{transform:scaleX(1)}
+.course-card:hover::after{opacity:.12}
+.course-card.structural::before{background:linear-gradient(90deg,#fbbf24,var(--amber))}
+.course-card.structural::after{background:var(--amber)}
+.course-card.fluid::before{background:linear-gradient(90deg,var(--blue-400),var(--blue))}
+.course-card.fluid::after{background:var(--blue)}
+.course-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:24px}
+.course-card.structural .course-icon{background:rgba(245,158,11,.1);color:var(--amber)}
+.course-card.fluid .course-icon{background:rgba(29,78,216,.08);color:var(--blue)}
+.course-card h3{font-size:1.4rem;font-weight:800;margin-bottom:8px;letter-spacing:0}
+.course-card.structural h3{color:var(--slate-8)}
+.course-card.fluid h3{color:var(--slate-8)}
+.course-tagline{font-size:.88rem;font-weight:600;margin-bottom:16px}
+.course-card.structural .course-tagline{color:var(--amber)}
+.course-card.fluid .course-tagline{color:var(--blue)}
+.course-card p{font-size:.92rem;color:var(--slate-6);line-height:1.8;margin-bottom:24px;word-break:keep-all}
+.course-tags{display:flex;gap:8px;flex-wrap:wrap}
+.course-tag{font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:8px;letter-spacing:.02em}
+.course-card.structural .course-tag{background:rgba(245,158,11,.1);color:var(--amber)}
+.course-card.fluid .course-tag{background:rgba(29,78,216,.07);color:var(--blue)}
+
+/* Schedule */
+.schedule-table{width:100%;border-collapse:collapse;margin-top:16px}
+.schedule-table th{text-align:left;padding:12px 20px;font-size:.8rem;font-weight:700;color:var(--slate-5);border-bottom:2px solid var(--slate-2);background:var(--slate-0);letter-spacing:.04em}
+.schedule-table td{padding:16px 20px;border-bottom:1px solid var(--slate-2);font-size:.92rem;color:var(--slate-7);vertical-align:middle}
+.schedule-table tr:last-child td{border-bottom:none}
+.schedule-table tr:hover td{background:var(--slate-0)}
+.sched-date{font-weight:700;color:var(--slate-8);white-space:nowrap}
+.sched-badge{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 10px;border-radius:8px;white-space:nowrap}
+.sched-badge.structural{background:rgba(245,158,11,.1);color:var(--amber)}
+.sched-badge.fluid{background:rgba(29,78,216,.07);color:var(--blue)}
+.sched-duration{color:var(--slate-5);font-size:.85rem;white-space:nowrap}
+.sched-seats{color:var(--slate-5);font-size:.85rem;white-space:nowrap}
+.btn-apply{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:.82rem;font-weight:700;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap}
+.btn-apply.active{background:linear-gradient(135deg,var(--amber),var(--amber-d));color:var(--white);box-shadow:0 2px 8px rgba(245,158,11,.3)}
+.btn-apply.active:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(245,158,11,.4)}
+.btn-apply.fluid-active{background:linear-gradient(135deg,var(--blue-500),var(--blue));color:var(--white);box-shadow:0 2px 8px rgba(29,78,216,.2)}
+.btn-apply.fluid-active:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3)}
+.btn-apply.pending{background:var(--slate-1);color:var(--slate-5);cursor:default}
+
+/* CTA */
+.cta-section{background:linear-gradient(180deg,var(--slate-9) 0%,#0c1222 100%);color:var(--slate-3);text-align:center;padding:100px 0;position:relative;overflow:hidden}
+.cta-orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.cta-orb-1{width:400px;height:400px;top:-100px;right:-80px;background:radial-gradient(circle,rgba(245,158,11,.4),transparent 70%);opacity:.4}
+.cta-orb-2{width:400px;height:400px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(59,130,246,.4),transparent 70%);opacity:.5}
+.cta-section .container{position:relative}
+.cta-section h2{color:var(--white);margin-bottom:16px}
+.cta-section p{color:var(--slate-4);font-size:1.05rem;margin-bottom:40px}
+.btn-cta{background:linear-gradient(135deg,var(--amber),var(--amber-d));color:var(--white);padding:16px 40px;font-size:1rem;font-weight:700;border-radius:var(--radius-sm);box-shadow:0 4px 16px rgba(245,158,11,.3);border:none;cursor:pointer;transition:var(--transition);letter-spacing:0}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(245,158,11,.4)}
+
+/* Top Button */
+.btn-top{position:fixed;bottom:32px;right:32px;z-index:800;width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;background:#1a1f2e;color:#94a3b8;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.2);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.btn-top.visible{opacity:1;pointer-events:auto}
+.btn-top:hover{background:#2d3748;color:#e2e8f0;transform:translateY(-2px)}
+
+/* Responsive */
+@media(max-width:900px){.course-grid{grid-template-columns:1fr}}
+@media(max-width:700px){
+  .course-card{padding:32px 24px}
+  .schedule-table th:nth-child(4),.schedule-table td:nth-child(4){display:none}
+}
+@media(max-width:500px){
+  .schedule-table th:nth-child(3),.schedule-table td:nth-child(3){display:none}
+}
+</style>
+
+{% include navbar-main.html %}
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg-orb hero-bg-orb-1"></div>
+  <div class="hero-bg-orb hero-bg-orb-2"></div>
+  <div class="hero-network"><canvas id="heroNetwork"></canvas></div>
+  <div class="container">
+    <div class="badge badge-amber">Engineering Education</div>
+    <h1>엔지니어를 위한<br><span class="text-gradient">해석 교육</span></h1>
+    <p>SOLIDWORKS 구조해석·유동해석 전문 오프라인 교육.<br>설계 현장에서 바로 적용할 수 있는 실전 중심 커리큘럼.</p>
+    <div class="hero-actions">
+      <a href="#schedule" class="btn btn-primary">2026년 5월 교육 일정 보기</a>
+      <a href="/#contact" class="btn btn-outline">교육 문의</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">교육 과정</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">5월 교육 횟수</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10</div>
+        <div class="stat-label">회당 최대 인원</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 교육 과정 -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <h2>교육 과정</h2>
+      <p class="subtitle">현장 엔지니어의 실무 역량 향상을 위한 해석 전문 교육입니다.</p>
+    </div>
+    <div class="course-grid">
+      <div class="course-card structural reveal">
+        <div class="course-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <h3>구조해석 교육</h3>
+        <div class="course-tagline">SOLIDWORKS Simulation</div>
+        <p>정적해석부터 동적·진동·피로해석까지, 구조 안전성 검토에 필요한 해석 기법을 단계적으로 습득합니다. 기본 과정과 심화(최적화, 진동/충격) 과정으로 구성됩니다.</p>
+        <div class="course-tags">
+          <span class="course-tag">정적해석</span>
+          <span class="course-tag">진동/충격해석</span>
+          <span class="course-tag">피로해석</span>
+          <span class="course-tag">최적화</span>
+        </div>
+      </div>
+      <div class="course-card fluid reveal reveal-delay-1">
+        <div class="course-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <h3>유동해석 교육</h3>
+        <div class="course-tagline">SOLIDWORKS Flow Simulation</div>
+        <p>기류 및 열유동 해석의 기본 개념과 실습을 중심으로 진행됩니다. 냉각 설계, HVAC, 열관리 등 유동 시뮬레이션의 실전 활용법을 다룹니다.</p>
+        <div class="course-tags">
+          <span class="course-tag">기류해석</span>
+          <span class="course-tag">열유동해석</span>
+          <span class="course-tag">냉각 설계</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 교육 일정 -->
+<section class="section section-alt" id="schedule">
+  <div class="container">
+    <div class="text-center">
+      <h2>2026년 5월 교육 일정</h2>
+      <p class="subtitle">서울 교육장에서 진행되는 오프라인 교육입니다. 회당 최대 10명 소규모로 운영됩니다.</p>
+    </div>
+    <div class="reveal">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>날짜</th>
+            <th>과정</th>
+            <th>기간</th>
+            <th>정원</th>
+            <th>신청</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-date">5월 12–13일</td>
+            <td>
+              <span class="sched-badge structural">구조해석</span><br>
+              <span style="font-weight:600;margin-top:4px;display:inline-block">기본교육</span>
+            </td>
+            <td class="sched-duration">2일</td>
+            <td class="sched-seats">10명</td>
+            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=127&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply active">신청하기</a></td>
+          </tr>
+          <tr>
+            <td class="sched-date">5월 14일</td>
+            <td>
+              <span class="sched-badge structural">구조해석</span><br>
+              <span style="font-weight:600;margin-top:4px;display:inline-block">최적화 해석</span>
+            </td>
+            <td class="sched-duration">1일</td>
+            <td class="sched-seats">10명</td>
+            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=143&utm_source=veruslab&utm_medium=education&utm_campaign=fea-optimization" target="_blank" class="btn-apply active">신청하기</a></td>
+          </tr>
+          <tr>
+            <td class="sched-date">5월 15일</td>
+            <td>
+              <span class="sched-badge structural">구조해석</span><br>
+              <span style="font-weight:600;margin-top:4px;display:inline-block">진동/충격해석</span>
+            </td>
+            <td class="sched-duration">1일</td>
+            <td class="sched-seats">10명</td>
+            <td><span class="btn-apply pending">일정 확인 중</span></td>
+          </tr>
+          <tr>
+            <td class="sched-date">5월 19일</td>
+            <td>
+              <span class="sched-badge fluid">유동해석</span><br>
+              <span style="font-weight:600;margin-top:4px;display:inline-block">기본 (기류)</span>
+            </td>
+            <td class="sched-duration">1일</td>
+            <td class="sched-seats">10명</td>
+            <td><span class="btn-apply pending">일정 확인 중</span></td>
+          </tr>
+          <tr>
+            <td class="sched-date">5월 20일</td>
+            <td>
+              <span class="sched-badge fluid">유동해석</span><br>
+              <span style="font-weight:600;margin-top:4px;display:inline-block">기본 (열유동)</span>
+            </td>
+            <td class="sched-duration">1일</td>
+            <td class="sched-seats">10명</td>
+            <td><span class="btn-apply pending">일정 확인 중</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-orb cta-orb-1"></div>
+  <div class="cta-orb cta-orb-2"></div>
+  <div class="container">
+    <h2>교육 관련 문의</h2>
+    <p>커리큘럼, 일정, 단체 교육 등 궁금한 점은 언제든지 문의해 주세요.</p>
+    <a href="/#contact" class="btn-cta">문의하기</a>
+  </div>
+</section>
+
+{% include footer.html %}
+
+<button class="btn-top" id="btnTop" aria-label="맨 위로">↑</button>
+
+<script>
+/* Navbar scroll */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+  document.getElementById('btnTop').classList.toggle('visible', window.scrollY > 400);
+}, {passive:true});
+
+/* Top button */
+document.getElementById('btnTop').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+/* Hamburger */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navLinks.classList.remove('open');
+}));
+
+/* Reveal */
+const observer = new IntersectionObserver(entries => entries.forEach(e => {
+  if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+}), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* Node network */
+(function(){
+  const canvas = document.getElementById('heroNetwork');
+  const ctx = canvas.getContext('2d');
+  let nodes = [], W, H, raf;
+  function resize(){
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  function init(){
+    resize();
+    nodes = Array.from({length:55}, () => ({
+      x: Math.random()*W, y: Math.random()*H,
+      vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4,
+      r: Math.random()*2+1
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if(n.x<0||n.x>W) n.vx*=-1;
+      if(n.y<0||n.y>H) n.vy*=-1;
+    });
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<130){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(245,158,11,${(1-dist/130)*.12})`;
+          ctx.lineWidth=.6;
+          ctx.moveTo(nodes[i].x,nodes[i].y);
+          ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(245,158,11,.25)';
+      ctx.fill();
+    });
+    raf = requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { cancelAnimationFrame(raf); init(); draw(); }, {passive:true});
+  init(); draw();
+})();
+</script>
+</html>
