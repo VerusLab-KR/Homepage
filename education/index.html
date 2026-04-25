@@ -159,7 +159,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 /* Top Button */
 .btn-top{position:fixed;bottom:32px;right:32px;z-index:800;width:40px;height:40px;border-radius:10px;border:none;cursor:pointer;background:#1a1f2e;color:#94a3b8;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.2);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1)}
 .btn-top.visible{opacity:1;pointer-events:auto}
-.btn-top:hover{background:#2d3748;color:#e2e8f0;transform:translateY(-2px)}
+.btn-top:hover{background:var(--blue);color:#fff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,78,216,.3)}
 
 /* Responsive */
 @media(max-width:900px){.course-grid{grid-template-columns:1fr}}
@@ -262,7 +262,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
         </colgroup>
         <thead>
           <tr>
-            <th>과정</th>
+            <th style="text-align:center">과정</th>
             <th>차수</th>
             <th>날짜</th>
             <th>장소</th>
@@ -369,7 +369,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
         </colgroup>
         <thead>
           <tr>
-            <th>과정</th>
+            <th style="text-align:center">과정</th>
             <th>차수</th>
             <th>날짜</th>
             <th>장소</th>
@@ -463,7 +463,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 
 {% include footer.html %}
 
-<button class="btn-top" id="btnTop" aria-label="맨 위로">↑</button>
+<button class="btn-top" id="btnTop" aria-label="맨 위로">&#9650;</button>
 
 <script>
 /* Navbar scroll */
