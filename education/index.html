@@ -112,17 +112,20 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .course-card.fluid .course-tag{background:rgba(29,78,216,.07);color:var(--blue)}
 
 /* Schedule */
-.schedule-table{width:100%;border-collapse:collapse;margin-top:16px}
-.schedule-table th{text-align:left;padding:12px 20px;font-size:.8rem;font-weight:700;color:var(--slate-5);border-bottom:2px solid var(--slate-2);background:var(--slate-0);letter-spacing:.04em}
+.schedule-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--slate-2);box-shadow:0 2px 16px rgba(0,0,0,.05);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.schedule-table{width:100%;border-collapse:collapse}
+.schedule-table th{text-align:left;padding:12px 20px;font-size:.76rem;font-weight:700;color:var(--slate-5);border-bottom:2px solid var(--slate-2);background:var(--slate-1);letter-spacing:.06em;text-transform:uppercase}
 .schedule-table td{padding:14px 20px;border-bottom:1px solid var(--slate-2);font-size:.92rem;color:var(--slate-7);vertical-align:middle}
-.schedule-table tbody tr:last-child td{border-bottom:2px solid var(--slate-2)}
-.schedule-table tr:hover td{background:var(--slate-0)}
+.schedule-table tbody tr:last-child td{border-bottom:none}
+.schedule-table tr:hover td{background:var(--blue-50)}
 .course-name-cell{font-weight:700;color:var(--slate-8);border-right:1px solid var(--slate-2);border-bottom:2px solid var(--slate-2)!important;background:var(--slate-0)!important;vertical-align:middle!important;text-align:center;white-space:nowrap;padding:16px 24px!important}
+.schedule-table.structural .course-name-cell{border-left:3px solid var(--amber)}
+.schedule-table.fluid .course-name-cell{border-left:3px solid var(--blue)}
 .course-group-end td{border-bottom:2px solid var(--slate-2)!important}
-.sched-group-title{font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:32px 0 8px;padding-left:10px;border-left:3px solid var(--slate-3)}
-.sched-group-title.structural{color:var(--amber-d);border-left-color:var(--amber)}
-.sched-group-title.fluid{color:var(--blue);border-left-color:var(--blue)}
-.sched-note{font-size:.8rem;color:var(--slate-5);margin-top:8px}
+.sched-group-title{display:inline-flex;align-items:center;font-size:.8rem;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;margin:36px 0 10px}
+.sched-group-title.structural{background:rgba(245,158,11,.1);color:var(--amber-d);border:1px solid rgba(245,158,11,.2)}
+.sched-group-title.fluid{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.15)}
+.sched-note{font-size:.8rem;color:var(--slate-5);margin-top:10px;padding:0 2px}
 .sched-session{font-weight:600;color:var(--slate-6);white-space:nowrap}
 .sched-date{font-weight:600;color:var(--slate-8);white-space:nowrap}
 .sched-location{color:var(--slate-5);font-size:.85rem;white-space:nowrap}
@@ -130,6 +133,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .btn-apply.open{background:linear-gradient(135deg,var(--blue-500),var(--blue));color:var(--white);box-shadow:0 2px 8px rgba(29,78,216,.2)}
 .btn-apply.open:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3)}
 .btn-apply.ended{background:var(--slate-1);color:var(--slate-4);cursor:default;font-weight:500}
+.btn-apply.closed{background:rgba(245,158,11,.1);color:var(--amber-d);cursor:default;font-weight:600;border:1px solid rgba(245,158,11,.2)}
 .btn-apply.soon{background:var(--slate-1);color:var(--slate-5);cursor:default}
 
 /* CTA */
@@ -246,8 +250,8 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
       <p class="subtitle">오프라인 교육으로 진행되며 소규모로 운영됩니다.</p>
     </div>
     <p class="sched-group-title structural reveal">구조해석</p>
-    <div class="reveal" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
-      <table class="schedule-table">
+    <div class="schedule-wrap reveal">
+      <table class="schedule-table structural">
         <thead>
           <tr>
             <th>과정</th>
@@ -346,8 +350,8 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
       </table>
     </div>
     <p class="sched-group-title fluid reveal">유동해석</p>
-    <div class="reveal" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
-      <table class="schedule-table">
+    <div class="schedule-wrap reveal">
+      <table class="schedule-table fluid">
         <thead>
           <tr>
             <th>과정</th>
@@ -370,7 +374,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="sched-session">2차</td>
             <td class="sched-date">5/19</td>
             <td class="sched-location">서울</td>
-            <td><span class="btn-apply ended">마감</span></td>
+            <td><span class="btn-apply closed">마감</span></td>
           </tr>
           <tr class="course-group-end">
             <td class="sched-session">5차</td>
@@ -380,7 +384,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
           </tr>
           <!-- 창원 합반 -->
           <tr>
-            <td class="course-name-cell" rowspan="2">기류·열유동<br>합반 (창원)</td>
+            <td class="course-name-cell" rowspan="2">기류·열유동<br>통합과정</td>
             <td class="sched-session">3차</td>
             <td class="sched-date">6/25 – 6/26</td>
             <td class="sched-location">창원</td>
@@ -404,7 +408,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="sched-session">2차</td>
             <td class="sched-date">5/20</td>
             <td class="sched-location">서울</td>
-            <td><span class="btn-apply ended">마감</span></td>
+            <td><span class="btn-apply closed">마감</span></td>
           </tr>
           <tr>
             <td class="sched-session">5차</td>
@@ -414,8 +418,8 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
           </tr>
         </tbody>
       </table>
-      <p class="sched-note">* 창원 3·4차는 기류·열유동 합반으로 진행됩니다.</p>
     </div>
+    <p class="sched-note">* 창원 3·4차는 기류·열유동 통합과정으로 진행됩니다.</p>
     <div class="venue-grid reveal">
       <div class="venue-card">
         <div class="venue-name">서울 교육장</div>
