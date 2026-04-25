@@ -544,12 +544,12 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
     <div class="news-grid">
 
       {% for item in site.data.news %}
-      <div class="news-card reveal {{ item.delay }}" style="--news-accent:{{ item.accent }}{% if item.modal %};cursor:pointer{% endif %}"{% if item.modal %} onclick="document.getElementById('{{ item.modal }}').classList.add('active')"{% endif %}>
+      <div class="news-card reveal {{ item.delay }}" style="--news-accent:{{ item.accent }}{% if item.modal or item.url %};cursor:pointer{% endif %}"{% if item.modal %} onclick="document.getElementById('{{ item.modal }}').classList.add('active')"{% elsif item.url %} onclick="location.href='{{ item.url }}'"{% endif %}>
         <div class="news-date">{{ item.date }}</div>
         <span class="news-badge" style="background:{{ item.badge_bg }};color:{{ item.badge_color }}">{{ item.badge }}</span>
         <h3{% if item.title_i18n %} data-i18n="{{ item.title_i18n }}"{% endif %}>{{ item.title }}</h3>
         <p{% if item.desc_i18n %} data-i18n="{{ item.desc_i18n }}"{% endif %}>{{ item.desc }}</p>
-        {% if item.modal %}<span class="news-link"><span data-i18n="link_more">자세히 보기</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>{% endif %}
+        {% if item.modal or item.url %}<span class="news-link"><span data-i18n="link_more">자세히 보기</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>{% endif %}
       </div>
       {% endfor %}
 
