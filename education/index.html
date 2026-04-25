@@ -127,10 +127,11 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .sched-group-title.structural{background:rgba(245,158,11,.1);color:var(--amber-d);border:1px solid rgba(245,158,11,.2)}
 .sched-group-title.fluid{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.15);margin-top:44px}
 .sched-note{font-size:.8rem;color:var(--slate-5);margin-top:10px;padding:0 2px}
-.sched-session{font-size:.85rem;color:var(--slate-6);white-space:nowrap}
+.sched-session{font-size:.85rem;color:var(--slate-6);white-space:nowrap;text-align:center}
 .sched-date{font-size:.85rem;color:var(--slate-8);white-space:nowrap}
-.sched-location{white-space:nowrap}
+.sched-location{white-space:nowrap;text-align:center}
 .sched-location span{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);color:#06b6d4;font-size:.78rem;font-weight:600}
+.sched-location.changwon span{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2);color:#10b981}
 .btn-apply{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;font-size:.82rem;font-weight:700;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;text-decoration:none}
 .btn-apply.open{background:linear-gradient(135deg,var(--blue-500),var(--blue));color:var(--white);box-shadow:0 2px 8px rgba(29,78,216,.2)}
 .btn-apply.open:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3)}
@@ -275,9 +276,9 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
         <thead>
           <tr>
             <th style="text-align:center">과정</th>
-            <th>차수</th>
+            <th style="text-align:center">차수</th>
             <th>날짜</th>
-            <th>장소</th>
+            <th style="text-align:center">장소</th>
             <th>신청</th>
           </tr>
         </thead>
@@ -299,13 +300,13 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
           <tr>
             <td class="sched-session">3차</td>
             <td class="sched-date">6/23 – 6/24</td>
-            <td class="sched-location"><span>창원</span></td>
+            <td class="sched-location changwon"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=135&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">4차</td>
             <td class="sched-date">9/15 – 9/16</td>
-            <td class="sched-location"><span>창원</span></td>
+            <td class="sched-location changwon"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=136&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr class="course-group-end">
@@ -382,9 +383,9 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
         <thead>
           <tr>
             <th style="text-align:center">과정</th>
-            <th>차수</th>
+            <th style="text-align:center">차수</th>
             <th>날짜</th>
-            <th>장소</th>
+            <th style="text-align:center">장소</th>
             <th>신청</th>
           </tr>
         </thead>
@@ -434,13 +435,13 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="course-name-cell last-group" rowspan="2">기류·열유동<br>통합과정</td>
             <td class="sched-session">3차</td>
             <td class="sched-date">6/25 – 6/26</td>
-            <td class="sched-location"><span>창원</span></td>
+            <td class="sched-location changwon"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=137&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">4차</td>
             <td class="sched-date">9/17 – 9/18</td>
-            <td class="sched-location"><span>창원</span></td>
+            <td class="sched-location changwon"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=138&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
         </tbody>
