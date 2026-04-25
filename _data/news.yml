@@ -22,9 +22,9 @@
 
 - date: "2026.05"
   badge: "EDUCATION"
-  badge_bg: "rgba(245,158,11,.1)"
-  badge_color: "#d97706"
-  accent: "#f59e0b"
+  badge_bg: "rgba(59,130,246,.1)"
+  badge_color: "#3b82f6"
+  accent: "#3b82f6"
   title: "5월 교육 일정 오픈"
   desc: "구조해석·유동해석 오프라인 교육 5월 일정이 오픈되었습니다. 소규모 집중 과정으로 진행됩니다."
   url: "/education/"
