@@ -125,11 +125,12 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .last-group{border-bottom:none!important}
 .sched-group-title{display:inline-flex;align-items:center;font-size:.8rem;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;margin:20px 0 10px}
 .sched-group-title.structural{background:rgba(245,158,11,.1);color:var(--amber-d);border:1px solid rgba(245,158,11,.2)}
-.sched-group-title.fluid{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.15)}
+.sched-group-title.fluid{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.15);margin-top:44px}
 .sched-note{font-size:.8rem;color:var(--slate-5);margin-top:10px;padding:0 2px}
 .sched-session{font-size:.85rem;color:var(--slate-6);white-space:nowrap}
 .sched-date{font-size:.85rem;color:var(--slate-8);white-space:nowrap}
-.sched-location{color:var(--slate-5);font-size:.85rem;white-space:nowrap}
+.sched-location{white-space:nowrap}
+.sched-location span{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);color:#06b6d4;font-size:.78rem;font-weight:600}
 .btn-apply{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;font-size:.82rem;font-weight:700;cursor:pointer;border:none;transition:var(--transition);white-space:nowrap;text-decoration:none}
 .btn-apply.open{background:linear-gradient(135deg,var(--blue-500),var(--blue));color:var(--white);box-shadow:0 2px 8px rgba(29,78,216,.2)}
 .btn-apply.open:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(29,78,216,.3)}
@@ -275,31 +276,31 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="course-name-cell" rowspan="5">구조해석<br>기본교육</td>
             <td class="sched-session">1차</td>
             <td class="sched-date">2/3 – 2/4</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><span class="btn-apply ended">종료</span></td>
           </tr>
           <tr>
             <td class="sched-session">2차</td>
             <td class="sched-date">5/12 – 5/13</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=127&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">3차</td>
             <td class="sched-date">6/23 – 6/24</td>
-            <td class="sched-location">창원</td>
+            <td class="sched-location"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=135&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">4차</td>
             <td class="sched-date">9/15 – 9/16</td>
-            <td class="sched-location">창원</td>
+            <td class="sched-location"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=136&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr class="course-group-end">
             <td class="sched-session">5차</td>
             <td class="sched-date">10/13 – 10/14</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=128&utm_source=veruslab&utm_medium=education&utm_campaign=fea-basic" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <!-- 구조해석 최적화 -->
@@ -307,25 +308,25 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="course-name-cell" rowspan="4">구조해석<br>최적화 해석</td>
             <td class="sched-session">1차</td>
             <td class="sched-date">2/5</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><span class="btn-apply ended">종료</span></td>
           </tr>
           <tr>
             <td class="sched-session">2차</td>
             <td class="sched-date">5/14</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=143&utm_source=veruslab&utm_medium=education&utm_campaign=fea-optimization" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">3차</td>
             <td class="sched-date">7/3</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=144&utm_source=veruslab&utm_medium=education&utm_campaign=fea-optimization" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr class="course-group-end">
             <td class="sched-session">4차</td>
             <td class="sched-date">10/15</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=145&utm_source=veruslab&utm_medium=education&utm_campaign=fea-optimization" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <!-- 구조해석 진동/충격 -->
@@ -333,25 +334,25 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="course-name-cell last-group" rowspan="4">구조해석<br>진동/충격 해석</td>
             <td class="sched-session">1차</td>
             <td class="sched-date">2/6</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><span class="btn-apply ended">종료</span></td>
           </tr>
           <tr>
             <td class="sched-session">2차</td>
             <td class="sched-date">5/15</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=147&utm_source=veruslab&utm_medium=education&utm_campaign=fea-vibration" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">3차</td>
             <td class="sched-date">7/2</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=148&utm_source=veruslab&utm_medium=education&utm_campaign=fea-vibration" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">4차</td>
             <td class="sched-date">10/16</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=149&utm_source=veruslab&utm_medium=education&utm_campaign=fea-vibration" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
         </tbody>
@@ -382,19 +383,19 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="course-name-cell" rowspan="3">기본교육<br>기류</td>
             <td class="sched-session">1차</td>
             <td class="sched-date">2/12</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><span class="btn-apply ended">종료</span></td>
           </tr>
           <tr>
             <td class="sched-session">2차</td>
             <td class="sched-date">5/19</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><span class="btn-apply closed">마감</span></td>
           </tr>
           <tr class="course-group-end">
             <td class="sched-session">5차</td>
             <td class="sched-date">10/20</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=132&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-airflow" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <!-- 열유동 (서울 단독) -->
@@ -402,19 +403,19 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="course-name-cell" rowspan="3">기본교육<br>열유동</td>
             <td class="sched-session">1차</td>
             <td class="sched-date">2/13</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><span class="btn-apply ended">종료</span></td>
           </tr>
           <tr>
             <td class="sched-session">2차</td>
             <td class="sched-date">5/20</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><span class="btn-apply closed">마감</span></td>
           </tr>
           <tr class="course-group-end">
             <td class="sched-session">5차</td>
             <td class="sched-date">10/21</td>
-            <td class="sched-location">서울</td>
+            <td class="sched-location"><span>서울</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=141&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-thermal" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <!-- 창원 통합과정 -->
@@ -422,13 +423,13 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="course-name-cell last-group" rowspan="2">기류·열유동<br>통합과정</td>
             <td class="sched-session">3차</td>
             <td class="sched-date">6/25 – 6/26</td>
-            <td class="sched-location">창원</td>
+            <td class="sched-location"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=137&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
           <tr>
             <td class="sched-session">4차</td>
             <td class="sched-date">9/17 – 9/18</td>
-            <td class="sched-location">창원</td>
+            <td class="sched-location"><span>창원</span></td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=138&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
         </tbody>
