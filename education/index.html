@@ -112,7 +112,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .course-card.fluid .course-tag{background:rgba(29,78,216,.07);color:var(--blue)}
 
 /* Schedule */
-.schedule-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--slate-2);box-shadow:0 2px 16px rgba(0,0,0,.05);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.schedule-wrap{border-radius:var(--radius);overflow:hidden;border:1px solid var(--slate-2);box-shadow:0 2px 16px rgba(0,0,0,.05);overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--white)}
 .schedule-table{width:100%;border-collapse:collapse}
 .schedule-table th{text-align:left;padding:12px 20px;font-size:.76rem;font-weight:700;color:var(--slate-5);border-bottom:2px solid var(--slate-2);background:var(--slate-1);letter-spacing:.06em;text-transform:uppercase}
 .schedule-table td{padding:14px 20px;border-bottom:1px solid var(--slate-2);font-size:.92rem;color:var(--slate-7);vertical-align:middle}
@@ -122,6 +122,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .schedule-table.structural .course-name-cell{border-left:3px solid var(--amber)}
 .schedule-table.fluid .course-name-cell{border-left:3px solid var(--blue)}
 .course-group-end td{border-bottom:2px solid var(--slate-2)!important}
+.last-group{border-bottom:none!important}
 .sched-group-title{display:inline-flex;align-items:center;font-size:.8rem;font-weight:700;letter-spacing:.04em;padding:5px 14px;border-radius:20px;margin:36px 0 10px}
 .sched-group-title.structural{background:rgba(245,158,11,.1);color:var(--amber-d);border:1px solid rgba(245,158,11,.2)}
 .sched-group-title.fluid{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.15)}
@@ -322,7 +323,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
           </tr>
           <!-- 구조해석 진동/충격 -->
           <tr>
-            <td class="course-name-cell" rowspan="4">구조해석<br>진동/충격 해석</td>
+            <td class="course-name-cell last-group" rowspan="4">구조해석<br>진동/충격 해석</td>
             <td class="sched-session">1차</td>
             <td class="sched-date">2/6</td>
             <td class="sched-location">서울</td>
@@ -382,20 +383,6 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="sched-location">서울</td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=132&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-airflow" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
-          <!-- 창원 합반 -->
-          <tr>
-            <td class="course-name-cell" rowspan="2">기류·열유동<br>통합과정</td>
-            <td class="sched-session">3차</td>
-            <td class="sched-date">6/25 – 6/26</td>
-            <td class="sched-location">창원</td>
-            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=137&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
-          </tr>
-          <tr class="course-group-end">
-            <td class="sched-session">4차</td>
-            <td class="sched-date">9/17 – 9/18</td>
-            <td class="sched-location">창원</td>
-            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=138&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
-          </tr>
           <!-- 열유동 (서울 단독) -->
           <tr>
             <td class="course-name-cell" rowspan="3">기본교육<br>열유동</td>
@@ -410,11 +397,25 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
             <td class="sched-location">서울</td>
             <td><span class="btn-apply closed">마감</span></td>
           </tr>
-          <tr>
+          <tr class="course-group-end">
             <td class="sched-session">5차</td>
             <td class="sched-date">10/21</td>
             <td class="sched-location">서울</td>
             <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=141&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-thermal" target="_blank" class="btn-apply open">신청하기</a></td>
+          </tr>
+          <!-- 창원 통합과정 -->
+          <tr>
+            <td class="course-name-cell last-group" rowspan="2">기류·열유동<br>통합과정</td>
+            <td class="sched-session">3차</td>
+            <td class="sched-date">6/25 – 6/26</td>
+            <td class="sched-location">창원</td>
+            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=137&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
+          </tr>
+          <tr>
+            <td class="sched-session">4차</td>
+            <td class="sched-date">9/17 – 9/18</td>
+            <td class="sched-location">창원</td>
+            <td><a href="https://www.websco.co.kr/bbs/application.php?bo_table=offline&wr_id=138&utm_source=veruslab&utm_medium=education&utm_campaign=cfd-changwon" target="_blank" class="btn-apply open">신청하기</a></td>
           </tr>
         </tbody>
       </table>
