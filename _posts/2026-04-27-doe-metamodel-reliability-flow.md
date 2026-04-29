@@ -171,8 +171,10 @@ Valentis의 Analysis Intelligence 모듈은 이 과정을 하나의 워크플로
 - **Scenario:** LHS, Monte Carlo, Taguchi, CCD 기반 케이스 자동 생성
 - **Data Transposition:** 해석 결과를 입력–출력 테이블로 정리
 - **Sensitivity Analysis:** 영향도 정량화 (Pearson / Spearman)
+- **Design Explorer:** 제약조건 필터링 + 목적함수 가중합으로 최적 설계 순위 결정
 - **Meta Model:** 다양한 모델 구축 및 적응형 샘플링
 - **Reliability Analysis:** Monte Carlo 기반 Pf, β 계산
+- **Pareto Optimizer:** 두 목적함수를 동시에 최적화하는 파레토 프론트 도출
 
 별도의 최적화 소프트웨어나 통계 전문 지식 없이도
 CAE 결과 데이터만 있으면 시작할 수 있다.
