@@ -132,6 +132,11 @@ img{max-width:100%;display:block}
 .post-nav-title:hover{color:var(--blue)}
 @media(max-width:600px){.post-nav-links{flex-direction:column;gap:20px}.post-nav-next{align-items:flex-start;text-align:left;max-width:100%}.post-nav-prev{max-width:100%}}
 
+/* Top Button */
+.btn-top{position:fixed;bottom:32px;right:32px;z-index:800;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#2563eb,#1e3a8a);color:#fff;font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(29,78,216,.3);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.btn-top.visible{opacity:1;pointer-events:all}
+.btn-top:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(29,78,216,.45)}
+
 /* Footer → _includes/footer.html */
 </style>
 </head>
@@ -257,6 +262,8 @@ img{max-width:100%;display:block}
 
 {% include footer.html %}
 
+<button class="btn-top" id="btnTop" aria-label="맨 위로">&#9650;</button>
+
 <script>
 (function(){
   const c = document.getElementById('heroNetwork');
@@ -311,6 +318,10 @@ if (activeCat && document.querySelector('#navCategory .post-nav-title')) {
   document.getElementById('navGlobal').style.display = 'none';
   document.getElementById('navCategory').style.display = 'flex';
 }
+
+const btnTop = document.getElementById('btnTop');
+btnTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 400), {passive:true});
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 30));
