@@ -238,13 +238,13 @@ img{max-width:100%;display:block}
   <div class="post-nav-prev">
     {% if cat_prev %}
     <span class="post-nav-label">← 이전 글</span>
-    <a href="{{ cat_prev.url }}" class="post-nav-title">{{ cat_prev.title }}</a>
+    <a href="{{ cat_prev.url }}?cat={{ page.category | url_encode }}" class="post-nav-title">{{ cat_prev.title }}</a>
     {% endif %}
   </div>
   <div class="post-nav-next">
     {% if cat_next %}
     <span class="post-nav-label">다음 글 →</span>
-    <a href="{{ cat_next.url }}" class="post-nav-title">{{ cat_next.title }}</a>
+    <a href="{{ cat_next.url }}?cat={{ page.category | url_encode }}" class="post-nav-title">{{ cat_next.title }}</a>
     {% endif %}
   </div>
 </div>
