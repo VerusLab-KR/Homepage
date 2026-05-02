@@ -184,6 +184,72 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
   .schedule-table{min-width:560px}
   .sched-date{padding-left:16px!important}
 }
+
+/* Curriculum Button */
+.btn-curriculum{
+  display:block;margin:10px auto 0;padding:5px 12px;
+  border-radius:6px;font-size:.72rem;font-weight:600;
+  background:rgba(245,158,11,.1);color:var(--amber-d);
+  border:1px solid rgba(245,158,11,.25);cursor:pointer;
+  transition:var(--transition);font-family:inherit;
+  line-height:1.4;
+}
+.btn-curriculum:hover{background:rgba(245,158,11,.2);transform:translateY(-1px)}
+.btn-curriculum.fluid{background:rgba(29,78,216,.07);color:var(--blue);border-color:rgba(29,78,216,.2)}
+.btn-curriculum.fluid:hover{background:rgba(29,78,216,.12)}
+
+/* Curriculum Modal */
+.curriculum-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  z-index:10001;display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:all .3s ease;
+}
+.curriculum-overlay.active{opacity:1;visibility:visible}
+.curriculum-modal{
+  background:#fff;border-radius:16px;
+  width:95%;max-width:900px;max-height:85vh;
+  position:relative;overflow:hidden;display:flex;flex-direction:column;
+  transform:translateY(20px);transition:transform .3s ease;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
+.curriculum-overlay.active .curriculum-modal{transform:translateY(0)}
+.curriculum-modal-header{
+  padding:24px 32px 20px;border-bottom:1px solid var(--slate-2);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  flex-shrink:0;background:var(--slate-0);
+}
+.curriculum-modal-title{font-size:1.1rem;font-weight:800;color:var(--slate-8)}
+.curriculum-modal-subtitle{font-size:.8rem;font-weight:600;margin-top:4px}
+.curriculum-modal-subtitle.structural{color:var(--amber)}
+.curriculum-modal-subtitle.fluid{color:var(--blue)}
+.curriculum-modal-close{
+  width:32px;height:32px;border-radius:50%;border:none;flex-shrink:0;
+  background:var(--slate-2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:background .2s;
+}
+.curriculum-modal-close:hover{background:var(--slate-3)}
+.curriculum-modal-body{padding:24px 32px;overflow-y:auto}
+.curriculum-sections{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.curriculum-section{background:var(--slate-0);border-radius:10px;padding:16px 18px}
+.curriculum-section-title{
+  font-size:.78rem;font-weight:700;color:var(--amber-d);
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid rgba(245,158,11,.2);
+}
+.curriculum-section-title.fluid{color:var(--blue);border-bottom-color:rgba(29,78,216,.15)}
+.curriculum-topics{list-style:none;padding:0;margin:0}
+.curriculum-topics li{
+  font-size:.78rem;color:var(--slate-6);line-height:1.65;
+  padding:2px 0 2px 14px;position:relative;
+}
+.curriculum-topics li::before{content:'·';position:absolute;left:0;color:var(--amber);font-weight:700}
+.curriculum-topics li.fluid::before{color:var(--blue)}
+@media(max-width:600px){
+  .curriculum-sections{grid-template-columns:1fr}
+  .curriculum-modal-header{padding:20px 20px 16px}
+  .curriculum-modal-body{padding:16px 20px}
+}
 </style>
 
 {% include navbar-main.html %}
@@ -289,7 +355,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
         <tbody>
           <!-- 구조해석 기본교육 -->
           <tr>
-            <td class="course-name-cell" rowspan="5">구조해석<br>기본교육</td>
+            <td class="course-name-cell" rowspan="5">구조해석<br>기본교육<button class="btn-curriculum" data-course="fea-basic">커리큘럼 보기</button></td>
             <td class="sched-session">1차</td>
             <td class="sched-date">2/3 – 2/4</td>
             <td class="sched-location"><span>서울</span></td>
@@ -486,6 +552,38 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 
 {% include footer.html %}
 
+<!-- Curriculum hidden data -->
+{% for course in site.data.education_curricula %}
+<div id="curriculum-{{ course.id }}" style="display:none" data-name="{{ course.name }}" data-subtitle="{{ course.subtitle }}" data-type="{{ course.type }}">
+  {% for section in course.sections %}
+  <div class="curriculum-section">
+    <div class="curriculum-section-title {% if course.type == 'fluid' %}fluid{% endif %}">{{ section.title }}</div>
+    <ul class="curriculum-topics">
+      {% for topic in section.topics %}<li {% if course.type == 'fluid' %}class="fluid"{% endif %}>{{ topic }}</li>{% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</div>
+{% endfor %}
+
+<!-- Curriculum Modal -->
+<div class="curriculum-overlay" id="curriculumOverlay">
+  <div class="curriculum-modal">
+    <div class="curriculum-modal-header">
+      <div>
+        <div class="curriculum-modal-title" id="curriculumTitle"></div>
+        <div class="curriculum-modal-subtitle" id="curriculumSubtitle"></div>
+      </div>
+      <button class="curriculum-modal-close" id="curriculumClose" aria-label="닫기">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="curriculum-modal-body">
+      <div class="curriculum-sections" id="curriculumSections"></div>
+    </div>
+  </div>
+</div>
+
 <button class="btn-top" id="btnTop" aria-label="맨 위로">&#9650;</button>
 
 <!-- ── Floating Risk Diagnosis ── -->
@@ -563,6 +661,29 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 </script>
 
 <script>
+/* Curriculum modal */
+(function(){
+  const overlay = document.getElementById('curriculumOverlay');
+  const close = document.getElementById('curriculumClose');
+  document.querySelectorAll('.btn-curriculum').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.course;
+      const data = document.getElementById('curriculum-' + id);
+      if(!data) return;
+      const type = data.dataset.type;
+      document.getElementById('curriculumTitle').textContent = data.dataset.name;
+      const sub = document.getElementById('curriculumSubtitle');
+      sub.textContent = data.dataset.subtitle;
+      sub.className = 'curriculum-modal-subtitle ' + type;
+      document.getElementById('curriculumSections').innerHTML = data.innerHTML;
+      overlay.classList.add('active');
+    });
+  });
+  close.addEventListener('click', () => overlay.classList.remove('active'));
+  overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('active'); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') overlay.classList.remove('active'); });
+})();
+
 /* Navbar scroll */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {

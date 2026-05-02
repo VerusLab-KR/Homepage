@@ -1,0 +1,65 @@
+- id: fea-basic
+  name: 구조해석 기본교육
+  subtitle: SOLIDWORKS Simulation
+  type: structural
+  sections:
+    - title: FEA 개요 및 소개
+      topics:
+        - 구조 해석 배경 및 소개
+        - SOLIDWORKS Simulation 제품 소개
+    - title: SOLIDWORKS Simulation Study 작성
+      topics:
+        - SOLIDWORKS Simulation 환경 및 기본 설정 소개
+        - Simulation 파일 관리 및 방법 소개
+    - title: 구조 해석 절차
+      topics:
+        - 파트 해석을 통한 Case Study
+        - 솔리드 요소를 사용하여 구조 해석 작성
+        - Meshing 작성 소개
+        - Mesh Quality 소개 및 컨트롤 사용법 확인
+        - 메시 수렴성 소개
+        - 변위 및 응력 결과에 미치는 메시 방법
+        - Post-processing 절차
+        - 결과 수렴성의 소개
+    - title: 파트 & 어셈블리 구조 해석
+      topics:
+        - 부품 간의 Contact 기능 소개 및 정의
+        - 대칭 조건의 이해
+        - 원형 좌표계를 사용하여 결과 산출 (배관 & 파이프 관련 응력 확인 방법)
+        - 다양한 접촉 조건과 커넥터를 사용하여 복합한 솔리드 메시 어셈블리 해석
+        - 호환 및 비호환 메시의 이해
+    - title: Shell 요소 부품 해석
+      topics:
+        - Shell 모델의 정의
+        - Shell 파트의 구조 해석 수행 및 결과 확인 방법
+        - Shell 모델에 대한 응력 정의 및 확인 방법
+        - 원격 하중/질량 사용법
+    - title: 빔 요소 해석
+      topics:
+        - 빔 요소의 정의
+        - 빔 요소를 사용하여 용접구조물 모델 해석
+    - title: 솔리드, 빔, 쉘 혼합 모델 해석
+      topics:
+        - 솔리드, 빔, 쉘 요소를 사용한 메시 및 접촉 적용 방법
+        - 혼합 요소 어셈블리의 결과 확인 방법
+        - 원형 좌표계를 사용하여 결과 산출 (배관 & 파이프 관련 응력 확인 방법)
+        - 다양한 접촉 조건과 커넥터를 사용하여 복합한 어셈블리 해석
+    - title: 최적화 해석
+      topics:
+        - 파라미터의 최적화 해석 정의
+        - 위상 최적화 해석 소개
+    - title: 좌굴 및 모달 해석 기본 소개
+      topics:
+        - 좌굴 및 모달 해석의 이해
+        - 좌굴 해석 Load Factor 개념
+        - 선형 vs 비선형 좌굴 해석 비교
+        - Mass Participation Factor 개념
+    - title: 열전달 해석 기본 소개
+      topics:
+        - 열전달 해석의 이해
+        - 열 응력 해석의 이해
+        - 열 전달 (구조) 해석 vs 열 유동 해석의 비교
+    - title: 비선형 해석 기본 소개
+      topics:
+        - 선형 및 비선형 해석의 비교
+        - 비선형 해석의 종류와 예제 소개
