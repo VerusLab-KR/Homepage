@@ -235,7 +235,8 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .curriculum-group-label{display:inline-flex;align-items:center;font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:4px 12px;border-radius:20px;margin-bottom:12px}
 .curriculum-group-label.fluid{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.15)}
 .curriculum-group-label.structural{background:rgba(30,58,138,.07);color:var(--blue-d);border:1px solid rgba(30,58,138,.2)}
-.curriculum-group-sections{counter-reset:section-num}
+.curriculum-group-sections{columns:2;gap:16px;counter-reset:section-num}
+.curriculum-groups-grid .curriculum-group-sections{columns:1;gap:0}
 .curriculum-section{background:var(--slate-0);border-radius:10px;padding:16px 18px;break-inside:avoid;counter-increment:section-num;margin-bottom:16px}
 .curriculum-section:last-child{margin-bottom:0}
 .curriculum-section-title{
@@ -254,6 +255,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .curriculum-topics li.fluid::before{color:var(--blue)}
 @media(max-width:600px){
   .curriculum-groups-grid{grid-template-columns:1fr}
+  .curriculum-group-sections{columns:1}
   .curriculum-modal-header{padding:20px 20px 16px}
   .curriculum-modal-body{padding:16px 20px}
 }
