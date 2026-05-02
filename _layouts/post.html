@@ -204,18 +204,31 @@ img{max-width:100%;display:block}
   VerusLab (베루스랩) — 웹스시스템코리아 R&amp;D 연구소
 </div>
 
-{% if page.previous or page.next %}
+{% assign cat_posts = site.posts | where: "category", page.category %}
+{% for post in cat_posts %}
+  {% if post.url == page.url %}
+    {% unless forloop.first %}
+      {% assign cat_next = cat_posts[forloop.index0 | minus: 1] %}
+    {% endunless %}
+    {% assign prev_idx = forloop.index0 | plus: 1 %}
+    {% if prev_idx < cat_posts.size %}
+      {% assign cat_prev = cat_posts[prev_idx] %}
+    {% endif %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% if cat_prev or cat_next %}
 <div class="post-nav-links">
   <div class="post-nav-prev">
-    {% if page.previous %}
+    {% if cat_prev %}
     <span class="post-nav-label">← 이전 글</span>
-    <a href="{{ page.previous.url }}" class="post-nav-title">{{ page.previous.display_title | default: page.previous.title }}</a>
+    <a href="{{ cat_prev.url }}" class="post-nav-title">{{ cat_prev.display_title | default: cat_prev.title }}</a>
     {% endif %}
   </div>
   <div class="post-nav-next">
-    {% if page.next %}
+    {% if cat_next %}
     <span class="post-nav-label">다음 글 →</span>
-    <a href="{{ page.next.url }}" class="post-nav-title">{{ page.next.display_title | default: page.next.title }}</a>
+    <a href="{{ cat_next.url }}" class="post-nav-title">{{ cat_next.display_title | default: cat_next.title }}</a>
     {% endif %}
   </div>
 </div>
