@@ -208,7 +208,8 @@ img{max-width:100%;display:block}
 {% for post in cat_posts %}
   {% if post.url == page.url %}
     {% unless forloop.first %}
-      {% assign cat_next = cat_posts[forloop.index0 | minus: 1] %}
+      {% assign next_idx = forloop.index0 | minus: 1 %}
+      {% assign cat_next = cat_posts[next_idx] %}
     {% endunless %}
     {% assign prev_idx = forloop.index0 | plus: 1 %}
     {% if prev_idx < cat_posts.size %}
