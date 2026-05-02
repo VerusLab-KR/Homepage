@@ -305,8 +305,9 @@ img{max-width:100%;display:block}
 </script>
 
 <script>
-const cat = new URLSearchParams(location.search).get('cat');
-if (cat) {
+const catParam = new URLSearchParams(location.search).get('cat');
+const activeCat = catParam || sessionStorage.getItem('postNavCat');
+if (activeCat && document.querySelector('#navCategory .post-nav-title')) {
   document.getElementById('navGlobal').style.display = 'none';
   document.getElementById('navCategory').style.display = 'flex';
 }
