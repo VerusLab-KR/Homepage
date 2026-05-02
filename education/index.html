@@ -230,7 +230,13 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 }
 .curriculum-modal-close:hover{background:var(--slate-3)}
 .curriculum-modal-body{padding:24px 32px;overflow-y:auto}
-.curriculum-sections{columns:2;gap:16px;counter-reset:section-num}
+.curriculum-sections{display:block}
+.curriculum-group{margin-bottom:24px}
+.curriculum-group:last-child{margin-bottom:0}
+.curriculum-group-label{display:inline-flex;align-items:center;font-size:.72rem;font-weight:700;letter-spacing:.05em;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.curriculum-group-label.fluid{background:rgba(29,78,216,.07);color:var(--blue);border:1px solid rgba(29,78,216,.15)}
+.curriculum-group-label.structural{background:rgba(30,58,138,.07);color:var(--blue-d);border:1px solid rgba(30,58,138,.2)}
+.curriculum-group-sections{columns:2;gap:16px;counter-reset:section-num}
 .curriculum-section{background:var(--slate-0);border-radius:10px;padding:16px 18px;break-inside:avoid;counter-increment:section-num;margin-bottom:16px}
 .curriculum-section:last-child{margin-bottom:0}
 .curriculum-section-title{
@@ -248,7 +254,7 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 .curriculum-topics li::before{content:'·';position:absolute;left:0;color:var(--blue-d);font-weight:700}
 .curriculum-topics li.fluid::before{color:var(--blue)}
 @media(max-width:600px){
-  .curriculum-sections{columns:1}
+  .curriculum-group-sections{columns:1}
   .curriculum-modal-header{padding:20px 20px 16px}
   .curriculum-modal-body{padding:16px 20px}
 }
@@ -557,14 +563,34 @@ h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;margin-bot
 <!-- Curriculum hidden data -->
 {% for course in site.data.education_curricula %}
 <div id="curriculum-{{ course.id }}" style="display:none" data-name="{{ course.name }}" data-subtitle="{{ course.subtitle }}" data-type="{{ course.type }}">
-  {% for section in course.sections %}
-  <div class="curriculum-section">
-    <div class="curriculum-section-title {% if course.type == 'fluid' %}fluid{% endif %}">{{ section.title }}</div>
-    <ul class="curriculum-topics">
-      {% for topic in section.topics %}<li {% if course.type == 'fluid' %}class="fluid"{% endif %}>{{ topic }}</li>{% endfor %}
-    </ul>
-  </div>
-  {% endfor %}
+  {% if course.groups %}
+    {% for group in course.groups %}
+    <div class="curriculum-group">
+      <div class="curriculum-group-label {{ course.type }}">{{ group.label }}</div>
+      <div class="curriculum-group-sections">
+        {% for section in group.sections %}
+        <div class="curriculum-section">
+          <div class="curriculum-section-title {% if course.type == 'fluid' %}fluid{% endif %}">{{ section.title }}</div>
+          <ul class="curriculum-topics">
+            {% for topic in section.topics %}<li {% if course.type == 'fluid' %}class="fluid"{% endif %}>{{ topic }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="curriculum-group-sections">
+      {% for section in course.sections %}
+      <div class="curriculum-section">
+        <div class="curriculum-section-title {% if course.type == 'fluid' %}fluid{% endif %}">{{ section.title }}</div>
+        <ul class="curriculum-topics">
+          {% for topic in section.topics %}<li {% if course.type == 'fluid' %}class="fluid"{% endif %}>{{ topic }}</li>{% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>
 {% endfor %}
 

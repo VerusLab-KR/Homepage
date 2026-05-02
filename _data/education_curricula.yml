@@ -2,50 +2,54 @@
   name: 유동해석 기본교육 — 기류·열유동 통합
   subtitle: SOLIDWORKS Flow Simulation
   type: fluid
-  sections:
-    - title: "[기류] 매니폴드 기류해석 프로젝트 작성"
-      topics:
-        - 해석 조건 마법사(Wizard) 사용법
-        - 결과 플롯 작성 및 내보내기
-    - title: "[기류] 메시 작성 (유체 메시 기준)"
-      topics:
-        - 최적화 옵션 및 로컬 메시 설정 방법
-    - title: "[기류] 다공성 매체(Porous Media)"
-      topics:
-        - 촉매 변환 장치의 사례 확인
-    - title: "[기류] 회전 참조 프레임(Rotating Simulation)"
-      topics:
-        - 팬 회전 유동 궤적 사례
-    - title: "[기류] 자유표면 해석"
-      topics:
-        - 자유표면 기능을 사용한 2 Phase 유동해석
-    - title: "[기류] 입자 스터디(Particle Study)"
-      topics:
-        - 송풍기 내부 입자 스터디 사례
-    - title: "[기류] FEA 하중 전달"
-      topics:
-        - 유압에 의한 구조물 응력/변형률 확인
-    - title: "[열유동] 열 전달 해석(Heat Transfer)"
-      topics:
-        - 전자 인클로저 내부 열 전달 해석 사례
-        - 팬 커브(Fan Curve) / 다공판(Perforated Plate)
-        - 열 소스(Heat Source) 및 고체 재질 설정
-    - title: "[열유동] 메시 작성 (유체/고체 메시 기준)"
-      topics:
-        - 최적화 옵션 및 로컬 메시 설정 방법
-        - 수동 메시 설정 방법
-    - title: "[열유동] 외부 비정상 해석(Transient Heat Case)"
-      topics:
-        - 전자 장치 냉각의 사례
-        - 시간대 별 해석조건 설정 및 적용
-    - title: "[열유동] 복합 열 전달"
-      topics:
-        - 가열된 냉각판 열 전달 해석 사례
-        - 다중 유체가 있는 열 교환기 사례
-    - title: "[열유동] 파라미터 스터디"
-      topics:
-        - Goal 최적화 설계 스터디
-        - 다중 변수를 이용한 설계 시나리오 스터디
+  groups:
+    - label: 기류해석
+      sections:
+        - title: 매니폴드 기류해석 프로젝트 작성
+          topics:
+            - 해석 조건 마법사(Wizard) 사용법
+            - 결과 플롯 작성 및 내보내기
+        - title: 메시 작성 (유체 메시 기준)
+          topics:
+            - 최적화 옵션 및 로컬 메시 설정 방법
+        - title: 다공성 매체(Porous Media)
+          topics:
+            - 촉매 변환 장치의 사례 확인
+        - title: 회전 참조 프레임(Rotating Simulation)
+          topics:
+            - 팬 회전 유동 궤적 사례
+        - title: 자유표면 해석
+          topics:
+            - 자유표면 기능을 사용한 2 Phase 유동해석
+        - title: 입자 스터디(Particle Study)
+          topics:
+            - 송풍기 내부 입자 스터디 사례
+        - title: FEA 하중 전달
+          topics:
+            - 유압에 의한 구조물 응력/변형률 확인
+    - label: 열유동 해석
+      sections:
+        - title: 열 전달 해석(Heat Transfer)
+          topics:
+            - 전자 인클로저 내부 열 전달 해석 사례
+            - 팬 커브(Fan Curve) / 다공판(Perforated Plate)
+            - 열 소스(Heat Source) 및 고체 재질 설정
+        - title: 메시 작성 (유체/고체 메시 기준)
+          topics:
+            - 최적화 옵션 및 로컬 메시 설정 방법
+            - 수동 메시 설정 방법
+        - title: 외부 비정상 해석(Transient Heat Case)
+          topics:
+            - 전자 장치 냉각의 사례
+            - 시간대 별 해석조건 설정 및 적용
+        - title: 복합 열 전달
+          topics:
+            - 가열된 냉각판 열 전달 해석 사례
+            - 다중 유체가 있는 열 교환기 사례
+        - title: 파라미터 스터디
+          topics:
+            - Goal 최적화 설계 스터디
+            - 다중 변수를 이용한 설계 시나리오 스터디
 
 - id: cfd-airflow
   name: 유동해석 기본교육 — 기류
