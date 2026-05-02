@@ -278,7 +278,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="blog-grid" id="cardView">
       {% for post in site.posts %}
-      <article class="blog-card" data-category="{{ post.category }}" data-search="{{ post.title }} {{ post.description }}" onclick="location.href='{{ post.url }}'">
+      <article class="blog-card" data-category="{{ post.category }}" data-search="{{ post.title }} {{ post.description }}" onclick="goPost('{{ post.url }}')">
         <div class="card-top">
           {% if post.category %}<span class="card-category">{{ post.category }}</span>{% endif %}
           <span class="card-date">{{ post.date | date: "%Y.%m.%d" }}</span>
@@ -296,7 +296,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="blog-list" id="listView" style="display:none">
       {% for post in site.posts %}
-      <div class="blog-list-item" data-category="{{ post.category }}" data-search="{{ post.title }} {{ post.description }}" onclick="location.href='{{ post.url }}'">
+      <div class="blog-list-item" data-category="{{ post.category }}" data-search="{{ post.title }} {{ post.description }}" onclick="goPost('{{ post.url }}')">
         <span class="list-date">{{ post.date | date: "%Y.%m.%d" }}</span>
         {% if post.category %}<span class="list-category">{{ post.category }}</span>{% endif %}
         <span class="list-title">{{ post.title }}</span>
@@ -445,6 +445,10 @@ function goPage(n) {
   currentPage = n;
   applyFilter();
   document.getElementById('cardView').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function goPost(url) {
+  location.href = currentCat !== 'all' ? url + '?cat=' + encodeURIComponent(currentCat) : url;
 }
 
 function filterCat(cat) {

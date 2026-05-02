@@ -217,22 +217,36 @@ img{max-width:100%;display:block}
     {% break %}
   {% endif %}
 {% endfor %}
-{% if cat_prev or cat_next %}
-<div class="post-nav-links">
+
+<div class="post-nav-links" id="navGlobal">
+  <div class="post-nav-prev">
+    {% if page.previous %}
+    <span class="post-nav-label">← 이전 글</span>
+    <a href="{{ page.previous.url }}" class="post-nav-title">{{ page.previous.title }}</a>
+    {% endif %}
+  </div>
+  <div class="post-nav-next">
+    {% if page.next %}
+    <span class="post-nav-label">다음 글 →</span>
+    <a href="{{ page.next.url }}" class="post-nav-title">{{ page.next.title }}</a>
+    {% endif %}
+  </div>
+</div>
+
+<div class="post-nav-links" id="navCategory" style="display:none">
   <div class="post-nav-prev">
     {% if cat_prev %}
     <span class="post-nav-label">← 이전 글</span>
-    <a href="{{ cat_prev.url }}" class="post-nav-title">{{ cat_prev.display_title | default: cat_prev.title }}</a>
+    <a href="{{ cat_prev.url }}" class="post-nav-title">{{ cat_prev.title }}</a>
     {% endif %}
   </div>
   <div class="post-nav-next">
     {% if cat_next %}
     <span class="post-nav-label">다음 글 →</span>
-    <a href="{{ cat_next.url }}" class="post-nav-title">{{ cat_next.display_title | default: cat_next.title }}</a>
+    <a href="{{ cat_next.url }}" class="post-nav-title">{{ cat_next.title }}</a>
     {% endif %}
   </div>
 </div>
-{% endif %}
 <div class="post-nav">
   <a href="/blog/" class="post-nav-back">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -290,6 +304,12 @@ img{max-width:100%;display:block}
 </script>
 
 <script>
+const cat = new URLSearchParams(location.search).get('cat');
+if (cat) {
+  document.getElementById('navGlobal').style.display = 'none';
+  document.getElementById('navCategory').style.display = 'flex';
+}
+
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 30));
 const hamburger = document.getElementById('hamburger');
