@@ -124,6 +124,13 @@ img{max-width:100%;display:block}
 .post-nav-top{padding:36px 24px 0;border-top:none;text-align:right}
 .post-nav-back{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--blue-500);transition:gap .2s}
 .post-nav-back:hover{gap:12px}
+.post-nav-links{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;max-width:800px;margin:0 auto;padding:28px 24px 24px;border-top:1px solid var(--slate-2)}
+.post-nav-prev{display:flex;flex-direction:column;gap:5px;max-width:46%}
+.post-nav-next{display:flex;flex-direction:column;align-items:flex-end;gap:5px;max-width:46%;text-align:right}
+.post-nav-label{font-size:.72rem;font-weight:600;color:var(--slate-4);letter-spacing:.04em}
+.post-nav-title{font-size:.88rem;font-weight:600;color:var(--blue-500);line-height:1.45;word-break:keep-all;transition:color .2s}
+.post-nav-title:hover{color:var(--blue)}
+@media(max-width:600px){.post-nav-links{flex-direction:column;gap:20px}.post-nav-next{align-items:flex-start;text-align:left;max-width:100%}.post-nav-prev{max-width:100%}}
 
 /* Footer → _includes/footer.html */
 </style>
@@ -197,6 +204,22 @@ img{max-width:100%;display:block}
   VerusLab (베루스랩) — 웹스시스템코리아 R&amp;D 연구소
 </div>
 
+{% if page.previous or page.next %}
+<div class="post-nav-links">
+  <div class="post-nav-prev">
+    {% if page.previous %}
+    <span class="post-nav-label">← 이전 글</span>
+    <a href="{{ page.previous.url }}" class="post-nav-title">{{ page.previous.display_title | default: page.previous.title }}</a>
+    {% endif %}
+  </div>
+  <div class="post-nav-next">
+    {% if page.next %}
+    <span class="post-nav-label">다음 글 →</span>
+    <a href="{{ page.next.url }}" class="post-nav-title">{{ page.next.display_title | default: page.next.title }}</a>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
 <div class="post-nav">
   <a href="/blog/" class="post-nav-back">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
