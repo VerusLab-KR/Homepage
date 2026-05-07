@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "실험계획법(DOE)이란 무엇인가 — 해석 케이스를 체계적으로 설계하는 법"
+display_title: "실험계획법(DOE)이란 무엇인가<br>— 해석 케이스를 체계적으로 설계하는 법"
 date: 2026-04-28 10:00:00
 category: Valentis
 description: "LHS, Monte Carlo, Full Factorial, Taguchi, CCD — 5가지 DOE 방법의 차이와 CAE 파라미터 스터디에서의 올바른 선택 기준을 정리한다."
