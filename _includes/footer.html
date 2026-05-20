@@ -39,17 +39,17 @@
 
 <style>
 .ch-launcher{
-  position:fixed;bottom:128px;right:32px;z-index:900;
+  position:fixed;bottom:84px;right:32px;z-index:900;
   width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
-  background:linear-gradient(135deg,#2563eb,#1e3a8a);color:#fff;
+  background:#F5C400;color:#3a3a3a;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(29,78,216,.3);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
   transition:all .3s cubic-bezier(.4,0,.2,1);
 }
-.ch-launcher:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(29,78,216,.45)}
+.ch-launcher:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.3)}
 .ch-launcher svg{width:20px;height:20px}
 .btn-top svg{width:20px;height:20px}
-@media(max-width:768px){.ch-launcher{bottom:116px;right:20px}}
+@media(max-width:768px){.ch-launcher{bottom:72px;right:20px}}
 </style>
 <button class="ch-launcher" id="btnChannelTalk" aria-label="실시간 문의" onclick="ChannelIO('showMessenger')">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
