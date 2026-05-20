@@ -50,6 +50,16 @@
 .ch-launcher svg{width:20px;height:20px}
 .btn-top svg{width:20px;height:20px}
 @media(max-width:768px){.ch-launcher{bottom:72px;right:20px}}
+
+/* Channel Talk messenger — kill the light halo at rounded corners.
+   The iframe's default white render surface bleeds outside the dark
+   messenger's border-radius; color-scheme:dark + transparent bg fixes it. */
+iframe[name*="ch-plugin"],
+iframe[id*="ch-plugin"],
+iframe[src*="channel.io"]{
+  background:transparent !important;
+  color-scheme:dark !important;
+}
 </style>
 <button class="ch-launcher" id="btnChannelTalk" aria-label="실시간 문의" onclick="ChannelIO('showMessenger')">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
