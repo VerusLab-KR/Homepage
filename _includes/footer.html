@@ -37,9 +37,27 @@
   </div>
 </footer>
 
+<style>
+.ch-launcher{
+  position:fixed;bottom:144px;right:32px;z-index:900;
+  width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#2563eb,#1e3a8a);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(29,78,216,.3);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.ch-launcher:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(29,78,216,.45)}
+.ch-launcher svg{width:20px;height:20px}
+@media(max-width:768px){.ch-launcher{bottom:124px;right:20px}}
+</style>
+<button class="ch-launcher" id="btnChannelTalk" aria-label="실시간 문의" onclick="ChannelIO('showMessenger')">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+
 <script>
   window.channelPluginSettings = {
-    "pluginKey": "43c29035-8ca6-4791-a44d-b8736f879e42"
+    "pluginKey": "43c29035-8ca6-4791-a44d-b8736f879e42",
+    "hideChannelButtonOnBoot": true
   };
   (function() {
     var w = window;
