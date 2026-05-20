@@ -51,13 +51,11 @@
 .btn-top svg{width:20px;height:20px}
 @media(max-width:768px){.ch-launcher{bottom:72px;right:20px}}
 
-/* Channel Talk messenger — kill the faint light outline at modal rounded corners.
-   Messenger renders inline (not iframe) using styled-components classes that
-   share a `ch-front` infix. Strip borders/outlines on those wrappers so the
-   thin light edge at the rounded corners doesn't show against the dark page. */
-[class*="ch-front"]{
-  border-color:transparent !important;
-  outline-color:transparent !important;
+/* Channel Talk messenger — kill the faint white halo at rounded corners.
+   `.ch-desk-messenger` has an inset 8%-alpha white box-shadow that shows
+   as a thin light line along the modal edge against a dark page. */
+.ch-desk-messenger{
+  box-shadow:none !important;
 }
 </style>
 <button class="ch-launcher" id="btnChannelTalk" aria-label="실시간 문의" onclick="ChannelIO('showMessenger')">
