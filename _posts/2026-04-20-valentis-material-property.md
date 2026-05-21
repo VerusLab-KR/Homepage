@@ -15,6 +15,16 @@ description: "CAE 재료물성치를 리비전 단위로 관리하는 Valentis M
 
 Valentis Material Property는 이 구조를 제공한다.
 
+<figure>
+  <div class="video-embed">
+    <iframe src="https://www.youtube.com/embed/1f-IRzJrFs0"
+            title="Valentis Material Property 데모"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+  </div>
+  <figcaption>Valentis Material Property 데모 — 내장 재료 DB 탐색부터 리비전 생성, Base/Rev 비교, 변경 로그까지의 전체 흐름.</figcaption>
+</figure>
+
 ---
 
 ## 내장 재료 데이터베이스
