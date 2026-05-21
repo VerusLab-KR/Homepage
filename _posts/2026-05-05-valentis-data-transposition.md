@@ -11,6 +11,11 @@ description: "Valentis 데이터 변환이 지원하는 세 가지 파일 형식
 
 이번 글에서는 Valentis의 데이터 변환(Data Transposition) 기능이 어떤 파일 형식을 지원하고, 불러온 데이터를 어떻게 입력-출력 구조로 구성하는지 구체적으로 살펴본다.
 
+<figure>
+  <img src="/assets/blog/2026-05-05-valentis-data-transposition/valentis_data%20transposition.jpeg" alt="Valentis 데이터 변환 메인 화면">
+  <figcaption>Valentis 데이터 변환 메인 화면 — 좌측 Load File에서 SWX Sim / SWX Flow / Generic 포맷을 선택하면, 우측 테이블에 케이스별 값과 INPUT·OUTPUT 배지가 정리된다.</figcaption>
+</figure>
+
 ---
 
 ## 지원하는 파일 형식 3가지
