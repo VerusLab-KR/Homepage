@@ -13,6 +13,16 @@ description: "그래프 이미지에서 수치 데이터를 추출하는 Valenti
 
 Valentis의 Curve Data Extractor는 이 과정을 브라우저에서 바로 처리한다. 별도의 설치 없이 이미지를 불러오고 기준점 3개를 지정하면 좌표계가 설정된다.
 
+<figure>
+  <div class="video-embed">
+    <iframe src="https://www.youtube.com/embed/wL1Yz9co8f8"
+            title="Curve Data Extractor 데모"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+  </div>
+  <figcaption>Curve Data Extractor 데모 — 이미지 불러오기부터 3점 캘리브레이션, 데이터 포인트 선택, CSV 내보내기까지의 전체 흐름.</figcaption>
+</figure>
+
 ---
 
 ## 사용 흐름
