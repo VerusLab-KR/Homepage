@@ -100,6 +100,11 @@ LHS와 Monte Carlo에서는 샘플링 품질 평가도 함께 제공된다.
 
 **Cat × Num 박스플롯** — 범주형 변수의 각 카테고리별로 수치형 변수의 분포를 박스플롯으로 표시한다.
 
+<figure>
+  <img src="/assets/blog/2026-04-30-valentis-scenario-lhs/valentis_scenario_2.jpeg" alt="Valentis 시나리오 — 범주형 파라미터 시각화 화면">
+  <figcaption>범주형 파라미터 시각화 — 좌측 두 컬럼은 Cat × Cat 히트맵으로 조합별 케이스 수를, 우측 두 컬럼은 Cat × Num 박스플롯으로 각 카테고리별 수치형 변수 분포를 보여준다.</figcaption>
+</figure>
+
 ---
 
 ## 3단계: 내보내기
