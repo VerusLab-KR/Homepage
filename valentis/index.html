@@ -440,6 +440,56 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 @media(max-width:900px){.pilot-cards-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.pilot-product-card{padding:36px 28px}}
 
+/* Pilot — Fit criteria */
+.pilot-subhead{font-size:1.1rem;font-weight:800;color:var(--slate-8);margin:0 0 24px;text-align:center;letter-spacing:0}
+.pilot-fit{margin-top:64px}
+.pilot-fit-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:920px;margin:0 auto}
+.pilot-fit-list li{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:20px 24px;background:var(--slate-0);
+  border:1px solid var(--slate-2);border-radius:12px;
+  font-size:.92rem;color:var(--slate-7);line-height:1.65;word-break:keep-all;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.pilot-fit-list li:hover{border-color:var(--blue-200);background:var(--white);transform:translateY(-2px);box-shadow:var(--shadow)}
+.pilot-fit-ico{
+  width:28px;height:28px;border-radius:8px;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;color:var(--blue);
+  background:rgba(29,78,216,.08);
+}
+.pilot-fit-ico svg{width:16px;height:16px}
+@media(max-width:700px){.pilot-fit-list{grid-template-columns:1fr}}
+
+/* Pilot — Process flow */
+.pilot-process{margin-top:64px}
+.pilot-process-steps{
+  list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:10px;align-items:stretch;
+}
+.pilot-process-steps li{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 20px;background:var(--white);
+  border:1px solid var(--slate-2);border-radius:50px;
+  font-size:.88rem;font-weight:600;color:var(--slate-8);
+  position:relative;transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.pilot-process-steps li:hover{border-color:var(--blue-200);transform:translateY(-2px);box-shadow:var(--shadow)}
+.ppstep-num{
+  width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue-500),var(--blue));
+  color:var(--white);font-size:.75rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.pilot-process-steps li:not(:last-child)::after{
+  content:'→';color:var(--slate-4);font-weight:700;font-size:1rem;
+  margin-left:4px;
+}
+@media(max-width:600px){
+  .pilot-process-steps{flex-direction:column;align-items:stretch;gap:8px}
+  .pilot-process-steps li{justify-content:flex-start}
+  .pilot-process-steps li:not(:last-child)::after{display:none}
+}
+
 /* ── CTA ── */
 .cta-section{
   background:linear-gradient(180deg,var(--slate-9) 0%,#0c1222 100%);
@@ -1344,8 +1394,8 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   <div class="container">
     <div class="text-center reveal">
       <div class="badge badge-blue">Early Adopter Program</div>
-      <h2 style="margin-top:18px">선착순 <span class="text-gradient">5개사 한정</span> 파일럿 파트너 모집</h2>
-      <p class="subtitle">Valentis를 자사 워크플로우에 정식 도입할 초기 파트너 5개사를 찾고 있습니다.<br>도입 비용은 받지 않습니다 — 대신 케이스 스터디와 피드백을 함께 만들어 갑니다.</p>
+      <h2 style="margin-top:18px"><span class="text-gradient">5개사 한정</span> Valentis 파일럿 파트너 모집</h2>
+      <p class="subtitle">Valentis를 실제 설계·해석 업무에 적용해 볼 초기 파일럿 파트너 5개사를 모집합니다.<br>선정된 기업에는 파일럿 기간 동안 라이선스 비용 없이 Valentis를 제공하며,<br>적용 결과를 바탕으로 개선 피드백과 케이스 스터디를 함께 만들어 갑니다.</p>
     </div>
 
     <div class="pilot-cards-grid">
@@ -1358,7 +1408,7 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         <div class="pilot-tagline">선정된 파트너에게 드리는 것</div>
         <p>정식 도입을 검토하시는 동안, 부담 없이 충분히 써보실 수 있도록 지원합니다.</p>
         <ul class="pilot-features">
-          <li><span class="pilot-check">&#10003;</span><span><strong>6개월 풀기능 무료</strong> — 전 모듈 무제한, 라이선스 비용 없음</span></li>
+          <li><span class="pilot-check">&#10003;</span><span><strong>6개월 파일럿 라이선스 제공</strong> — Valentis 전 모듈 사용 가능, 라이선스 비용 없음</span></li>
           <li><span class="pilot-check">&#10003;</span><span><strong>1:1 온보딩 &amp; 우선 기술 지원</strong> — 직접 채널로 즉시 답변</span></li>
           <li><span class="pilot-check">&#10003;</span><span><strong>정식 출시 후 파트너 가격</strong> — 일반 단가 대비 할인 우대</span></li>
           <li><span class="pilot-check">&#10003;</span><span><strong>신규 기능 우선 베타</strong> — 일반 출시 전 우선 사용</span></li>
@@ -1371,15 +1421,52 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         <div class="pilot-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3>함께 해주실 것</h3>
+        <h3>파트너 협력 항목</h3>
         <div class="pilot-tagline">파트너로서 협조 부탁드리는 항목</div>
         <p>최소한의 협조만 부탁드립니다. 세부 사항은 선정 후 함께 협의합니다.</p>
         <ul class="pilot-features">
-          <li><span class="pilot-check">&#10003;</span><span><strong>실제 프로젝트 적용</strong> — 6개월 내 최소 1~2건의 실제 업무에 활용</span></li>
-          <li><span class="pilot-check">&#10003;</span><span><strong>피드백 공유</strong> — 사용 경험·개선점을 편한 방식으로 (이메일·폼·통화 등)</span></li>
-          <li><span class="pilot-check">&#10003;</span><span><strong>케이스 스터디 공개 동의</strong> — 회사명·이미지·결과 (범위 협의 가능)</span></li>
+          <li><span class="pilot-check">&#10003;</span><span><strong>실제 업무 적용</strong> — 파일럿 기간 내 1~2건 설계·해석 업무에 Valentis 적용</span></li>
+          <li><span class="pilot-check">&#10003;</span><span><strong>사용 피드백 공유</strong> — 적용 과정에서의 개선 의견 및 기능 요청 공유</span></li>
+          <li><span class="pilot-check">&#10003;</span><span><strong>케이스 스터디 협의</strong> — 공개 범위는 회사명, 이미지, 결과 수치 등을 사전 협의 후 결정</span></li>
         </ul>
       </div>
+    </div>
+
+    <!-- Fit criteria -->
+    <div class="pilot-fit reveal">
+      <h3 class="pilot-subhead">이런 기업에 적합합니다</h3>
+      <ul class="pilot-fit-list">
+        <li>
+          <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span>반복적인 구조해석·열유동해석을 수행하는 기업</span>
+        </li>
+        <li>
+          <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span>설계 변수 검토와 해석 자동화가 필요한 기업</span>
+        </li>
+        <li>
+          <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span>SOLIDWORKS Simulation 기반 업무를 고도화하려는 기업</span>
+        </li>
+        <li>
+          <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span>해석 결과를 데이터 기반으로 재사용하고 싶은 기업</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Process flow -->
+    <div class="pilot-process reveal">
+      <h3 class="pilot-subhead">파일럿 진행 프로세스</h3>
+      <ol class="pilot-process-steps">
+        <li><span class="ppstep-num">1</span><span>신청</span></li>
+        <li><span class="ppstep-num">2</span><span>사전 미팅</span></li>
+        <li><span class="ppstep-num">3</span><span>적합성 검토</span></li>
+        <li><span class="ppstep-num">4</span><span>파일럿 선정</span></li>
+        <li><span class="ppstep-num">5</span><span>온보딩</span></li>
+        <li><span class="ppstep-num">6</span><span>실무 적용</span></li>
+        <li><span class="ppstep-num">7</span><span>피드백 · 케이스 스터디 정리</span></li>
+      </ol>
     </div>
 
     <div class="pilot-cta reveal">
