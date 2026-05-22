@@ -246,7 +246,29 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
 
 /* ── Section: News ── */
 .section-news{padding:120px 0;background:var(--slate-0)}
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:16px}
+.news-slider{position:relative;margin-top:16px}
+.news-track{
+  display:flex;gap:24px;
+  overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding:8px 4px;margin:-8px -4px;
+}
+.news-track::-webkit-scrollbar{display:none}
+.news-track > .news-card{flex:0 0 calc((100% - 48px) / 3);scroll-snap-align:start}
+.news-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:var(--white);border:1px solid var(--slate-2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--slate-7);font-size:1.6rem;line-height:1;cursor:pointer;
+  box-shadow:var(--shadow-lg);z-index:10;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+  font-family:inherit;padding:0 0 3px 0;
+}
+.news-arrow:hover:not(:disabled){background:var(--blue);color:var(--white);border-color:var(--blue);transform:translateY(-50%) scale(1.06)}
+.news-arrow:disabled{opacity:0;pointer-events:none}
+.news-arrow-prev{left:-22px}
+.news-arrow-next{right:-22px}
 .news-card{
   background:var(--white);border:1px solid var(--slate-2);border-radius:var(--radius);
   padding:32px 28px;transition:all .4s cubic-bezier(.4,0,.2,1);
@@ -354,9 +376,18 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
   .products-grid{grid-template-columns:1fr 1fr}
   .products-grid .product-card:first-child{grid-column:1 / -1}
 }
+@media(max-width:1024px){
+  .news-track > .news-card{flex:0 0 calc((100% - 24px) / 2)}
+  .news-arrow-prev{left:-12px}
+  .news-arrow-next{right:-12px}
+}
+@media(max-width:768px){
+  .news-track > .news-card{flex:0 0 88%}
+  .news-track{gap:16px}
+  .news-arrow{display:none}
+}
 @media(max-width:900px){
   .products-grid{grid-template-columns:1fr}
-  .news-grid{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr;gap:48px}
   .contact-grid{grid-template-columns:1fr;max-width:400px}
   .hero-stats{gap:32px;flex-wrap:wrap}
@@ -548,18 +579,22 @@ h3{font-size:1.15rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
       <h2 style="margin-top:16px" data-i18n="news_h2">새로운 소식</h2>
       <p class="subtitle" data-i18n="news_sub">VerusLab의 최신 소식과 이벤트를 확인하세요.</p>
     </div>
-    <div class="news-grid">
+    <div class="news-slider">
+      <button class="news-arrow news-arrow-prev" id="newsPrev" aria-label="이전 뉴스">‹</button>
+      <div class="news-track" id="newsTrack">
 
-      {% for item in site.data.news %}
-      <div class="news-card reveal {{ item.delay }}" style="--news-accent:{{ item.accent }}{% if item.modal or item.url %};cursor:pointer{% endif %}"{% if item.modal %} onclick="document.getElementById('{{ item.modal }}').classList.add('active')"{% elsif item.url %} onclick="location.href='{{ item.url }}'"{% endif %}>
-        <div class="news-date">{{ item.date }}</div>
-        <span class="news-badge" style="background:{{ item.badge_bg }};color:{{ item.badge_color }}">{{ item.badge }}</span>
-        <h3{% if item.title_i18n %} data-i18n="{{ item.title_i18n }}"{% endif %}>{{ item.title }}</h3>
-        <p{% if item.desc_i18n %} data-i18n="{{ item.desc_i18n }}"{% endif %}>{{ item.desc }}</p>
-        {% if item.modal or item.url %}<span class="news-link"><span data-i18n="link_more">자세히 보기</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>{% endif %}
+        {% for item in site.data.news limit:9 %}
+        <div class="news-card reveal {{ item.delay }}" style="--news-accent:{{ item.accent }}{% if item.modal or item.url %};cursor:pointer{% endif %}"{% if item.modal %} onclick="document.getElementById('{{ item.modal }}').classList.add('active')"{% elsif item.url %} onclick="location.href='{{ item.url }}'"{% endif %}>
+          <div class="news-date">{{ item.date }}</div>
+          <span class="news-badge" style="background:{{ item.badge_bg }};color:{{ item.badge_color }}">{{ item.badge }}</span>
+          <h3{% if item.title_i18n %} data-i18n="{{ item.title_i18n }}"{% endif %}>{{ item.title }}</h3>
+          <p{% if item.desc_i18n %} data-i18n="{{ item.desc_i18n }}"{% endif %}>{{ item.desc }}</p>
+          {% if item.modal or item.url %}<span class="news-link"><span data-i18n="link_more">자세히 보기</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>{% endif %}
+        </div>
+        {% endfor %}
+
       </div>
-      {% endfor %}
-
+      <button class="news-arrow news-arrow-next" id="newsNext" aria-label="다음 뉴스">›</button>
     </div>
   </div>
 </section>
@@ -700,6 +735,36 @@ const featObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.3 });
 featureLists.forEach(el => featObserver.observe(el));
+
+/* ── News slider ── */
+(function(){
+  const track = document.getElementById('newsTrack');
+  const prev = document.getElementById('newsPrev');
+  const next = document.getElementById('newsNext');
+  if(!track || !prev || !next) return;
+
+  function step(){
+    const card = track.querySelector('.news-card');
+    if(!card) return 0;
+    const gap = parseInt(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 24;
+    return card.offsetWidth + gap;
+  }
+  function updateArrows(){
+    const max = track.scrollWidth - track.clientWidth;
+    if(max <= 1){
+      prev.style.display = 'none';
+      next.style.display = 'none';
+      return;
+    }
+    prev.disabled = track.scrollLeft <= 1;
+    next.disabled = track.scrollLeft >= max - 1;
+  }
+  prev.addEventListener('click', () => track.scrollBy({left: -step(), behavior:'smooth'}));
+  next.addEventListener('click', () => track.scrollBy({left:  step(), behavior:'smooth'}));
+  track.addEventListener('scroll', updateArrows, {passive:true});
+  window.addEventListener('resize', updateArrows, {passive:true});
+  updateArrows();
+})();
 
 /* ── Active nav link ── */
 const sections = document.querySelectorAll('section[id]');

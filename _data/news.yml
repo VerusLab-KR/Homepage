@@ -1,3 +1,13 @@
+- date: "2026.05.22"
+  badge: "PROGRAM"
+  badge_bg: "rgba(6,182,212,.1)"
+  badge_color: "#06b6d4"
+  accent: "#06b6d4"
+  title: "Valentis Early Adopter 파일럿 모집"
+  desc: "Valentis를 실제 설계·해석 업무에 적용해 볼 초기 파트너 5개사를 모집합니다. 라이선스 비용 없이 6개월 동안 전 모듈을 사용하실 수 있습니다."
+  url: "/valentis/#pilot"
+  delay: ""
+
 - date: "2026.04.23 (목) 14:00"
   badge: "EVENT"
   badge_bg: "rgba(245,158,11,.1)"
@@ -6,7 +16,7 @@
   title: "2026 SOLIDWORKS Simulation Road Show"
   desc: "AI 시대 설계 가속화를 위한 SOLIDWORKS MODSIM 해석 실무 세미나에 초대합니다."
   modal: "seminarOverlay"
-  delay: ""
+  delay: "reveal-delay-1"
 
 - date: "2026.04.01"
   badge: "RELEASE"
@@ -18,7 +28,7 @@
   desc: "파라미터 스터디 웹 플랫폼 Valentis의 첫 번째 버전이 출시되었습니다."
   desc_i18n: "release_card_desc"
   modal: "releaseOverlay"
-  delay: "reveal-delay-1"
+  delay: "reveal-delay-2"
 
 - date: "2026.05"
   badge: "EDUCATION"
@@ -28,4 +38,4 @@
   title: "5월 교육 일정 오픈"
   desc: "구조해석·유동해석 오프라인 교육 5월 일정이 오픈되었습니다. 소규모 집중 과정으로 진행됩니다."
   url: "/education/"
-  delay: "reveal-delay-2"
+  delay: "reveal-delay-3"
