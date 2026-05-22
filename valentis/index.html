@@ -739,7 +739,7 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         <div class="problem-num">04</div>
         <div class="problem-icon"><svg viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M21 3l-7 7"/><path d="M3 3l7 7"/><path d="M16 21h5v-5"/><path d="M8 21H3v-5"/><path d="M21 21l-7-7"/><path d="M3 21l7-7"/></svg></div>
         <h3 data-i18n="prob4_title">"같은 데이터, 다른 결론"</h3>
-        <p data-i18n="prob4_desc">동일한 해석 결과를 놓고도 분석하는 사람에 따라 결론이 달라집니다. 표준화된 프로세스가 없으면 분석 품질은 경험에 의존할 수밖에 없습니다.</p>
+        <p data-i18n="prob4_desc">동일한 해석 결과를 놓고도 분석하는 사람에 따라 결론이 달라집니다. 감과 경험에 의존한 설계 사양 결정은, 데이터 기반의 체계적 판단으로 전환되어야 합니다.</p>
       </div>
     </div>
   </div>
@@ -1438,6 +1438,10 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
       <ul class="pilot-fit-list">
         <li>
           <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span><strong>감과 경험이 아닌 데이터 기반으로 설계 사양을 결정</strong>하려는 기업</span>
+        </li>
+        <li>
+          <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
           <span>반복적인 구조해석·열유동해석을 수행하는 기업</span>
         </li>
         <li>
@@ -1446,11 +1450,15 @@ h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;letter-spacing:0em}
         </li>
         <li>
           <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          <span>SOLIDWORKS Simulation 기반 업무를 고도화하려는 기업</span>
+          <span>Simulation 기반 업무를 고도화하려는 기업</span>
         </li>
         <li>
           <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
           <span>해석 결과를 데이터 기반으로 재사용하고 싶은 기업</span>
+        </li>
+        <li>
+          <span class="pilot-fit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span>신뢰성·최적화 분석으로 설계 안정성을 확보하려는 기업</span>
         </li>
       </ul>
     </div>
@@ -1514,7 +1522,7 @@ const T = {
     prob1_title:'"또 Excel로 하중 계산..."', prob1_desc:'매 프로젝트마다 하중 조건을 Excel로 다시 만들고, 핸드북에서 물성치를 찾고, 결과를 다른 툴로 옮기는 반복 작업에 소중한 시간을 빼앗기고 있습니다.',
     prob2_title:'"g랑 m/s² 또 헷갈렸네..."', prob2_desc:'단위 변환 실수 한 번이 수일간의 해석을 무의미하게 만듭니다. 수식 오입력, 데이터 복사 실수 — 사람이기에 피할 수 없는 오류들이 해석 품질을 위협합니다.',
     prob3_title:'"데이터를 또 옮겨야 해..."', prob3_desc:'하중 정의, DOE, 후처리, 최적화를 각각 다른 소프트웨어에서 수행하다 보면, 정작 분석보다 데이터를 옮기고 포맷을 맞추는 데 더 많은 시간이 걸립니다.',
-    prob4_title:'"같은 데이터, 다른 결론"', prob4_desc:'동일한 해석 결과를 놓고도 분석하는 사람에 따라 결론이 달라집니다. 표준화된 프로세스가 없으면 분석 품질은 경험에 의존할 수밖에 없습니다.',
+    prob4_title:'"같은 데이터, 다른 결론"', prob4_desc:'동일한 해석 결과를 놓고도 분석하는 사람에 따라 결론이 달라집니다. 감과 경험에 의존한 설계 사양 결정은, 데이터 기반의 체계적 판단으로 전환되어야 합니다.',
     values_badge:'Valentis를 쓰면', values_title:'당신의 업무가 이렇게 달라집니다',
     val1_title:'준비 시간 단축', val1_desc:'반복적인 하중 생성, 물성치 검색, 데이터 정리를 자동화하여 분석과 판단에 집중할 수 있습니다.',
     val2_title:'입력 오류 제거', val2_desc:'검증된 수식과 자동 단위 변환으로, 단위 혼동이나 수식 실수로 해석을 다시 돌리는 일이 사라집니다.',
@@ -1562,7 +1570,7 @@ const T = {
     prob1_title:'"Building load cases in Excel, again..."', prob1_desc:'Every project, you rebuild load conditions in Excel, search handbooks for material properties, and transfer results to other tools — precious time consumed by repetitive, unproductive work.',
     prob2_title:'"Mixed up g and m/s² again..."', prob2_desc:'One unit conversion mistake can invalidate days of analysis. Formula typos, copy-paste errors — inevitable human mistakes that threaten analysis quality.',
     prob3_title:'"Moving this data to that program..."', prob3_desc:'When load definition, DOE, post-processing, and optimization each require different software, you end up spending more time on data transfer and format conversion than on actual analysis.',
-    prob4_title:'"Same data, different conclusions"', prob4_desc:'Different engineers draw different conclusions from the same simulation results. Without a standardized process, analysis quality inevitably depends on individual experience.',
+    prob4_title:'"Same data, different conclusions"', prob4_desc:'Different engineers draw different conclusions from the same simulation results. Design decisions driven by intuition and experience must shift to systematic, data-driven judgment.',
     values_badge:'With Valentis', values_title:'Here\'s how your work changes',
     val1_title:'Automated Prep', val1_desc:'Automate repetitive load generation, material lookup, and data wrangling so you can focus on analysis and judgment.',
     val2_title:'Zero Input Errors', val2_desc:'Validated formulas and automatic unit conversion eliminate the costly mistakes that force you to re-run analyses.',
@@ -1610,7 +1618,7 @@ const T = {
     prob1_title:'"又要用Excel算载荷…"', prob1_desc:'每个项目都要用Excel重新创建载荷条件、在手册中查找材料属性、将结果转移到其他工具——宝贵的时间被重复性工作消耗。',
     prob2_title:'"g和m/s²又搞混了…"', prob2_desc:'一次单位换算错误就能让数天的分析前功尽弃。公式输入错误、数据复制失误——人为错误不可避免，却威胁着分析质量。',
     prob3_title:'"数据又要搬到那个软件…"', prob3_desc:'载荷定义、DOE、后处理、优化分别在不同软件中进行，结果花在数据迁移和格式转换上的时间比分析本身还多。',
-    prob4_title:'"同样的数据，不同的结论"', prob4_desc:'面对相同的仿真结果，不同工程师得出不同结论。没有标准化流程，分析质量只能依赖个人经验。',
+    prob4_title:'"同样的数据，不同的结论"', prob4_desc:'面对相同的仿真结果，不同工程师得出不同结论。依赖直觉和经验的设计决策，必须转向基于数据的系统化判断。',
     values_badge:'使用Valentis后', values_title:'您的工作将发生这样的变化',
     val1_title:'缩短准备时间', val1_desc:'自动化重复性的载荷生成、材料查找和数据整理，让您专注于分析与判断。',
     val2_title:'消除输入错误', val2_desc:'经过验证的公式和自动单位转换，消除因单位混淆或公式错误而重新计算的困扰。',
