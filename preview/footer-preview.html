@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Footer Preview</title>
+<style>
+  body{margin:0;background:#0b1220;font-family:'Pretendard',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .note{color:#475569;font-size:.8rem;padding:24px;text-align:center}
+</style>
+</head>
+<body>
+<p class="note">↓ footer.html 미리보기 (Jekyll include 없이 마크업만 그대로 복사). 데스크탑/모바일은 창 너비를 600px 이하로 줄여서 확인하세요.</p>
+
+<!-- ===== _includes/footer.html 의 렌더 결과와 동일 ===== -->
+<style>
+.footer{height:64px;display:flex;align-items:center;background:#0f172a;border-top:1px solid rgba(255,255,255,.05)}
+.footer .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.footer-copy{font-size:.78rem;color:#94a3b8}
+.footer-biz{font-size:.7rem;color:#818ea3;margin-top:4px}
+.footer-biz span{white-space:nowrap}
+.footer-biz .footer-biz-sep{margin:0 8px;opacity:.5}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:.78rem;color:#94a3b8;transition:.3s cubic-bezier(.4,0,.2,1);text-decoration:none}
+.footer-links a:hover{color:#60a5fa}
+.footer-social{display:flex;gap:16px;list-style:none}
+.footer-social a{color:#94a3b8;transition:.3s cubic-bezier(.4,0,.2,1)}
+.footer-social a:hover{color:#60a5fa}
+.footer-social svg{width:18px;height:18px;vertical-align:middle}
+.footer-copy-br{display:none}
+@media(max-width:600px){.footer{height:auto;padding:24px 0;display:block}.footer .container{flex-direction:column;gap:16px;text-align:center;display:flex}.footer-copy-br{display:inline}}
+</style>
+<footer class="footer">
+  <div class="container">
+    <div>
+      <div class="footer-copy">&copy; WEBS System Korea | VerusLab(베루스랩).<br class="footer-copy-br"> All rights reserved.</div>
+      <div class="footer-biz"><span>사업자등록번호 119-86-25124</span><span class="footer-biz-sep">·</span><span>통신판매신고번호 2017-서울금천-1386</span></div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#">VerusLab</a></li>
+      <li><a href="#">Simulation</a></li>
+      <li><a href="#">Valentis</a></li>
+      <li><a href="#">Linkspace</a></li>
+    </ul>
+    <ul class="footer-social">
+      <li><a href="#" title="WEBS System Korea"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a></li>
+      <li><a href="#" title="Blog"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><rect x="2" y="2" width="20" height="20" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><text x="12" y="18.5" text-anchor="middle" font-size="18" font-weight="800" font-family="Arial Rounded MT Bold,sans-serif" fill="currentColor">b</text></svg></a></li>
+      <li><a href="#" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"/></svg></a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>
