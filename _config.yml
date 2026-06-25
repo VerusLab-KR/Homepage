@@ -2,6 +2,7 @@ title: VerusLab
 url: "https://verus-lab.kr"
 baseurl: ""
 permalink: /blog/:title/
+timezone: Asia/Seoul
 markdown: kramdown
 kramdown:
   input: GFM
