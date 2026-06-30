@@ -18,7 +18,7 @@ description: "Valentis 시나리오 기능으로 LHS 기반 해석 케이스를 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
   </div>
-  <figcaption>Valentis 시나리오 메인 화면 — 좌측에서 파라미터 정의 · LHS 샘플 수 설정 · 내보내기까지 한 흐름으로 이어지고, 우측에 산점 매트릭스와 품질 평가(균등성·다양성)가 자동 생성된다.</figcaption>
+  <figcaption>Valentis 시나리오 메인 화면 — 좌측에서 파라미터 정의 · LHS 샘플 수 설정 · 내보내기까지 한 흐름으로 이어지고,<br>우측에 산점 매트릭스와 품질 평가(균등성·다양성)가 자동 생성된다.</figcaption>
 </figure>
 
 ---
