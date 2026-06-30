@@ -12,6 +12,16 @@ description: "Valentis 시나리오 기능으로 LHS 기반 해석 케이스를 
 이번 글에서는 Valentis의 시나리오 기능을 통해, LHS 기반 해석 케이스를 실제로 어떻게 생성하고 내보내는지 구체적으로 살펴본다.
 
 <figure>
+  <div class="video-embed">
+    <iframe src="https://www.youtube.com/embed/dXDy50baM7o"
+            title="Valentis 시나리오 데모"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+  </div>
+  <figcaption>Valentis 시나리오 데모 — 파라미터 정의부터 LHS 케이스 생성, 품질 평가, CAE 도구 내보내기까지의 전체 흐름.</figcaption>
+</figure>
+
+<figure>
   <img src="/assets/blog/2026-04-30-valentis-scenario-lhs/valentis_scenario.jpeg" alt="Valentis 시나리오 메인 화면">
   <figcaption>Valentis 시나리오 메인 화면 — 좌측에서 파라미터 정의 · LHS 샘플 수 설정 · 내보내기까지 한 흐름으로 이어지고, 우측에 산점 매트릭스와 품질 평가(균등성·다양성)가 자동 생성된다.</figcaption>
 </figure>
