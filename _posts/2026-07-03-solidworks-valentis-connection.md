@@ -3,7 +3,7 @@ layout: post
 title: "해석 결과를 데이터로 — SOLIDWORKS + Valentis 연결"
 display_title: "해석 결과를 데이터로<br>— SOLIDWORKS + Valentis 연결"
 date: 2026-07-03 10:00:00
-category: Valentis
+category: Structural
 description: "한 번의 해석은 설계 공간의 점 하나일 뿐이다. SOLIDWORKS Design Study 결과를 Valentis의 데이터 변환으로 입력–출력 데이터로 구조화하고, 민감도부터 파레토까지 설계 의사결정으로 연결하는 흐름을 정리한다."
 ---
 
