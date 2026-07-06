@@ -4,10 +4,10 @@ title: "Kriging, 다항식, 머신러닝 — 어떤 메타모델을 선택할까
 display_title: "Kriging, 다항식, 머신러닝<br>— 어떤 메타모델을 선택할까"
 date: 2026-05-25 10:00:00
 category: Valentis
-description: "만능 메타모델은 없다. Kriging·Polynomial(RSM)·Linear·Random Forest·Gradient Boosting·Neural Network 여섯 모델의 가정과 강점을 비교하고, 학습 R²가 아닌 교차검증 CoP로 데이터에 맞는 모델을 선택하는 기준."
+description: "만능 메타모델은 없다. Kriging·Polynomial(RSM)·Linear·Random Forest·Gradient Boosting·Neural Network 여섯 모델의 가정과 강점을 비교하고, 학습 R²가 아닌 교차검증 CoP로 데이터에 맞는 모델을 선택하는 기준. 서로게이트 모델(Surrogate Model) 선택 가이드."
 ---
 
-시나리오 해석 30개를 마치고 메타모델을 학습시킨 엔지니어가 있다.
+시나리오 해석 30개를 마치고 메타모델(서로게이트 모델, Surrogate Model)을 학습시킨 엔지니어가 있다.
 
 처음 선택한 모델은 Kriging이었다. 학습 결과 R²가 거의 1.0으로 나왔다. “완벽하다”고 생각하고 그 모델로 최적점을 찾은 뒤 실제 해석으로 검증했더니, 예측값과 실제 결과가 4 °C 가까이 어긋나 있었다.
 
