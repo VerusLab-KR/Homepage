@@ -12,6 +12,11 @@ description: "Valentis Run All — 조건과 목표를 정의하고 한 번의 �
 이번 글에서는 그 다음 단계인 자동 분석 기능을 다룬다.
 조건과 목표를 정의한 뒤 Run All을 실행하면, 여러 분석이 순서대로 자동 수행되고 통합 보고서가 생성된다.
 
+<figure>
+  <img src="/assets/blog/2026-05-07-valentis-pipeline/1.jpg" alt="Valentis 원클릭 자동 분석(One-Click Analysis) 화면">
+  <figcaption>Valentis One-Click Analysis 화면 — 좌측에서 제약조건·목표(CON/OBJ)와 신뢰성·파레토 설정을 정의하고 Run All Analysis를 실행하면, Sensitivity·Design Explorer·Meta Model·Sobol·Adaptive Sampling·Reliability·Pareto 7단계가 순차적으로 완료된다. 우측 Parameter Study Results에는 케이스별 입력·출력 데이터가 정리된다.</figcaption>
+</figure>
+
 ---
 
 ## 왜 한 번에 실행해야 하는가
