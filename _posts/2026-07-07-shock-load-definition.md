@@ -2,7 +2,7 @@
 layout: post
 title: "충격 하중, 어떻게 정의하고 있나"
 date: 2026-07-07 10:00:00
-category: Structural
+category: Valentis
 description: "충격 하중(Shock Load)을 해석 입력으로 만들려면 크기·지속 시간·파형 세 값이 필요하다. 특히 놓치기 쉬운 파형이 구조물의 동적 응답을 어떻게 좌우하는지 살펴본다."
 ---
 
