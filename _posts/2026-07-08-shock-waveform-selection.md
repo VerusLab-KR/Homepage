@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Half-sine, Sawtooth, Trapezoidal — 어떤 충격 파형을 써야 하나"
-display_title: "Half-sine, Sawtooth, Trapezoidal —<br>어떤 충격 파형을 써야 하나"
+display_title: "Half-sine, Sawtooth, Trapezoidal<br>— 어떤 충격 파형을 써야 하나"
 date: 2026-07-08 10:00:00
 category: Valentis
 description: "충격 해석에서 half-sine, sawtooth, trapezoidal 세 파형을 언제 어떻게 골라야 하는지 정리한다. 파형은 곧 주파수 성분과 속도 변화량을 결정하는 선택이다."
