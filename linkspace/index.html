@@ -8,9 +8,9 @@
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KRD3N7JX3C"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KRD3N7JX3C');</script>
-<meta name="description" content="Linkspace — B2B CRM. 고객, 영업, 마케팅, 기술지원, 프로젝트를 하나의 플랫폼에서 관리합니다.">
-<meta property="og:title" content="Linkspace — B2B CRM Platform">
-<meta property="og:description" content="Connect. Align. Grow. B2B 영업의 전 과정을 하나로.">
+<meta name="description" content="지난달 만료된 라이선스, 반년째 연락 안 한 고객, 세 번 등록된 같은 회사 — 기억에 의존하던 일을 Linkspace가 대신 챙깁니다. B2B 영업을 위한 CRM.">
+<meta property="og:title" content="Linkspace — 놓치는 고객이 없도록">
+<meta property="og:description" content="지난달 만료된 라이선스, 반년째 연락 안 한 고객 — 기억에 의존하던 일을 Linkspace가 대신 챙깁니다.">
 <meta property="og:type" content="website">
 <title>Linkspace — B2B CRM Platform</title>
 <link rel="icon" type="image/x-icon" href="/logo/veruslab_3.ico">
@@ -47,9 +47,12 @@ a{color:inherit;text-decoration:none}
 h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.2;letter-spacing:0em;word-break:keep-all}
 h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;line-height:1.25;margin-bottom:16px;letter-spacing:0em}
 h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-.subtitle{font-size:clamp(1rem,1.8vw,1.1rem);color:var(--slate-5);max-width:600px;margin:0 auto 48px;line-height:1.8}
+.subtitle{font-size:clamp(1rem,1.8vw,1.1rem);color:var(--slate-5);max-width:640px;margin:0 auto 48px;line-height:1.8;word-break:keep-all}
 .badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .badge-acc{background:rgba(79,142,247,.1);color:var(--acc-500);border:1px solid rgba(79,142,247,.15)}
+.badge-amber{background:rgba(245,158,11,.08);color:#d97706;border:1px solid rgba(245,158,11,.15)}
+.section{padding:120px 0}
+.section-alt{background:var(--slate-0)}
 
 /* Animations */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
@@ -84,13 +87,21 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .hero-fade-3{animation-delay:.5s}
 .hero-fade-4{animation-delay:.7s}
 .hero-fade-5{animation-delay:.9s}
+.hero-fade-6{animation-delay:1.05s}
 .hero-text h1{color:var(--white);margin-bottom:24px}
 .hero-text h1 .accent{
   background:linear-gradient(135deg,var(--blue-400,#60a5fa) 0%,var(--acc-500,#3b82f6) 50%,var(--acc-200,#bfdbfe) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.hero-text p{font-size:clamp(1rem,2vw,1.15rem);color:var(--slate-4);max-width:500px;line-height:1.85;margin-bottom:40px;word-break:keep-all}
+.hero-text p{font-size:clamp(1rem,2vw,1.15rem);color:var(--slate-4);max-width:520px;line-height:1.85;margin-bottom:40px;word-break:keep-all}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-trust{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:28px;
+  font-size:.78rem;color:var(--slate-4);letter-spacing:.01em;
+}
+.hero-trust .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px rgba(34,197,94,.7);flex-shrink:0}
+.hero-trust .sep{color:var(--slate-6)}
+.hero-trust strong{color:var(--slate-3);font-weight:700}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:14px 32px;border-radius:var(--radius-sm);font-size:.92rem;font-weight:600;
@@ -129,6 +140,37 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .hc-list-name{flex:1;font-weight:500}
 .hc-list-tag{font-size:.5rem;padding:2px 8px;border-radius:10px;font-weight:600}
 
+/* Problems */
+.problems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;text-align:left}
+.problem-card{
+  background:var(--white);border-radius:var(--radius);padding:32px 28px;
+  border:1px solid var(--slate-2);box-shadow:0 2px 12px rgba(0,0,0,.05);
+  transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+}
+.problem-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:#f59e0b;transition:background .4s}
+.problem-card::after{
+  content:'';position:absolute;bottom:-40px;right:-40px;width:120px;height:120px;
+  border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.08),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.problem-card:hover{transform:translateY(-5px);box-shadow:0 8px 32px rgba(0,0,0,.08);border-color:rgba(245,158,11,.3)}
+.problem-card:hover::before{background:linear-gradient(180deg,#f59e0b,#ef4444)}
+.problem-card:hover::after{opacity:1}
+.problem-card:hover .problem-icon{transform:scale(1.08)}
+.problem-num{
+  position:absolute;top:20px;right:24px;font-size:3.5rem;font-weight:900;
+  color:rgba(245,158,11,.1);line-height:1;pointer-events:none;transition:color .4s;
+}
+.problem-card:hover .problem-num{color:rgba(245,158,11,.18)}
+.problem-icon{
+  width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);
+  color:#d97706;transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.problem-icon svg{width:22px;height:22px;stroke:#d97706;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.problem-card h3{font-size:1rem;margin-bottom:10px;color:var(--slate-8);position:relative}
+.problem-card p{font-size:.88rem;color:var(--slate-6);line-height:1.7;position:relative;overflow-wrap:break-word;word-break:keep-all}
+
 /* Features */
 .section-features{padding:120px 0;background:var(--white)}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:16px}
@@ -151,11 +193,144 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .feature-card h3{color:var(--slate-8)}
 .feature-card p{font-size:.88rem;color:var(--slate-6);line-height:1.75;word-break:keep-all}
 
+/* Difference — feature rows with live mockups */
+.section-diff{padding:120px 0;background:var(--slate-0)}
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding:72px 0}
+.feature-row:not(:last-child){border-bottom:1px solid var(--slate-2)}
+.feature-row.reverse .feature-content{order:2}
+.feature-row.reverse .feature-visual{order:1}
+.feature-content .badge{margin-bottom:18px}
+.feature-content h2{font-size:clamp(1.35rem,2.4vw,1.85rem)}
+.feature-content > p{color:var(--slate-6);margin-bottom:24px;line-height:1.85;font-size:.94rem;word-break:keep-all}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.feature-list li{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--slate-7);line-height:1.65;word-break:keep-all}
+.feature-check{
+  width:20px;height:20px;border-radius:6px;flex-shrink:0;margin-top:2px;
+  background:linear-gradient(135deg,var(--acc-500),var(--acc-dd));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-size:.62rem;font-weight:700;
+}
+.feature-visual{
+  background:linear-gradient(145deg,var(--slate-9),#0c1222);
+  border-radius:20px;padding:26px;min-height:340px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);
+  box-shadow:var(--shadow-lg);
+}
+.demo{width:100%;color:var(--slate-3)}
+.demo-bar{display:flex;align-items:center;gap:7px;margin-bottom:16px}
+.demo-bar .d{width:7px;height:7px;border-radius:50%}
+.demo-bar .t{margin-left:6px;font-size:.66rem;color:var(--slate-4);font-weight:500}
+.demo-sample{
+  margin-left:auto;flex-shrink:0;font-size:.53rem;font-weight:700;letter-spacing:.03em;
+  padding:2px 8px;border-radius:10px;white-space:nowrap;
+  background:rgba(148,163,184,.14);color:var(--slate-4);border:1px solid rgba(148,163,184,.18);
+}
+.demo-hint{font-size:.6rem;color:var(--slate-5);margin-top:14px;line-height:1.6;text-align:center;word-break:keep-all}
+
+/* Demo — chips + search */
+.demo-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.demo-chip{
+  font-size:.62rem;font-weight:600;padding:5px 11px;border-radius:20px;cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--slate-4);
+  transition:all .2s;font-family:inherit;
+}
+.demo-chip:hover{border-color:rgba(79,142,247,.45);color:var(--acc-400)}
+.demo-chip.on{background:rgba(79,142,247,.16);border-color:rgba(79,142,247,.4);color:var(--acc-400)}
+.demo-search{
+  display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);margin-bottom:12px;
+}
+.demo-search svg{width:13px;height:13px;stroke:var(--slate-4);fill:none;stroke-width:2;flex-shrink:0}
+.demo-search input{
+  flex:1;background:transparent;border:none;outline:none;color:var(--white);
+  font-size:.72rem;font-family:inherit;font-weight:500;min-width:0;
+}
+.demo-search input::placeholder{color:var(--slate-5)}
+.demo-rows{display:flex;flex-direction:column;gap:5px;min-height:152px}
+.demo-row{
+  display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:7px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);
+  animation:demoIn .32s cubic-bezier(.16,1,.3,1) both;
+}
+.demo-row.top{background:rgba(79,142,247,.1);border-color:rgba(79,142,247,.28)}
+@keyframes demoIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.demo-rank{
+  width:17px;height:17px;border-radius:5px;flex-shrink:0;font-size:.55rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.07);color:var(--slate-4);
+}
+.demo-row.top .demo-rank{background:var(--acc-600);color:#fff}
+.demo-name{flex:1;font-size:.7rem;font-weight:600;color:var(--slate-3);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.demo-row.top .demo-name{color:var(--white)}
+.demo-en{font-size:.56rem;color:var(--slate-5);font-weight:500;flex-shrink:0}
+.demo-tag{font-size:.53rem;font-weight:700;padding:2px 7px;border-radius:10px;flex-shrink:0;white-space:nowrap}
+.demo-empty{font-size:.66rem;color:var(--slate-5);text-align:center;padding:56px 0}
+
+/* Demo — license pdf */
+.demo-drop{
+  border:1.5px dashed rgba(255,255,255,.16);border-radius:10px;padding:18px 14px;
+  text-align:center;cursor:pointer;transition:all .25s;margin-bottom:12px;background:rgba(255,255,255,.02);
+}
+.demo-drop:hover{border-color:rgba(79,142,247,.5);background:rgba(79,142,247,.06)}
+.demo-drop .fn{font-size:.7rem;font-weight:600;color:var(--slate-3);display:flex;align-items:center;justify-content:center;gap:7px}
+.demo-drop .fn svg{width:15px;height:15px;stroke:#f43f5e;fill:none;stroke-width:2}
+.demo-drop .sub{font-size:.58rem;color:var(--slate-5);margin-top:5px}
+.demo-steps{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.demo-step{display:flex;align-items:center;gap:8px;font-size:.62rem;color:var(--slate-5);transition:color .25s}
+.demo-step .mk{
+  width:14px;height:14px;border-radius:50%;flex-shrink:0;font-size:.5rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  border:1.5px solid rgba(255,255,255,.14);color:transparent;transition:all .25s;
+}
+.demo-step.done{color:var(--slate-3)}
+.demo-step.done .mk{background:#10b981;border-color:#10b981;color:#fff}
+.demo-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:.58rem;color:var(--slate-5);margin-bottom:9px}
+.demo-meta strong{color:var(--slate-3);font-weight:700}
+.demo-table{width:100%;border-collapse:collapse;font-size:.58rem}
+.demo-table th{
+  text-align:left;font-weight:700;color:var(--slate-5);padding:5px 6px;font-size:.53rem;
+  border-bottom:1px solid rgba(255,255,255,.08);letter-spacing:.02em;
+}
+.demo-table td{padding:6px;color:var(--slate-3);border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+.demo-table tr{animation:demoIn .3s cubic-bezier(.16,1,.3,1) both}
+.demo-table tr.dup td{opacity:.45}
+.demo-table .pn{font-weight:600;color:var(--white)}
+.demo-table tr.dup .pn{color:var(--slate-4)}
+.demo-sn{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.53rem;color:var(--slate-4)}
+
+/* Demo — nurturing / insights */
+.demo-legend{
+  display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:11px;
+  font-size:.53rem;color:var(--slate-5);line-height:1.5;
+}
+.demo-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.demo-legend i{width:6px;height:6px;border-radius:2px;flex-shrink:0}
+.demo-sigs{display:flex;gap:4px;flex-shrink:0}
+.demo-sig-b{font-size:.5rem;font-weight:700;padding:2px 6px;border-radius:9px;white-space:nowrap}
+.demo-score{display:flex;align-items:center;gap:6px;flex-shrink:0;width:74px;justify-content:flex-end}
+.demo-score .bar{
+  width:42px;height:4px;border-radius:2px;overflow:hidden;
+  background:rgba(255,255,255,.09);display:block;flex-shrink:0;
+}
+.demo-score .bar i{display:block;height:100%;border-radius:2px;background:linear-gradient(90deg,var(--acc-500),var(--acc-200))}
+.demo-score b{font-size:.6rem;font-weight:800;color:var(--slate-3);min-width:17px;text-align:right}
+@media(max-width:600px){.demo-sigs{display:none}}
+
+/* Demo — tabs */
+.demo-tabs{display:flex;gap:5px;margin-bottom:12px}
+.demo-tab{
+  flex:1;text-align:center;font-size:.6rem;font-weight:600;padding:7px 4px;border-radius:7px;cursor:pointer;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:var(--slate-4);
+  transition:all .2s;font-family:inherit;word-break:keep-all;
+}
+.demo-tab:hover{color:var(--acc-400)}
+.demo-tab.on{background:rgba(79,142,247,.16);border-color:rgba(79,142,247,.38);color:var(--acc-400)}
 /* AI Section */
-.section-ai{padding:120px 0;background:var(--slate-0);position:relative;overflow:hidden;border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,var(--slate-2),transparent) 1}
+.section-ai{padding:120px 0;background:var(--white);position:relative;overflow:hidden}
 .section-ai h2{color:var(--slate-8)}
 .section-ai .subtitle{color:var(--slate-5)}
-.ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:800px;margin:0 auto}
+.ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:840px;margin:0 auto}
 .ai-card{
   padding:36px 28px;border-radius:var(--radius);border:1px solid var(--slate-2);
   transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
@@ -175,6 +350,68 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 .ai-icon svg{width:22px;height:22px}
 .ai-card h3{color:var(--slate-8)}
 .ai-card p{font-size:.88rem;color:var(--slate-6);line-height:1.75;word-break:keep-all}
+
+/* Trust */
+.section-trust{padding:120px 0;background:var(--slate-0)}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:48px}
+.trust-card{
+  text-align:center;padding:36px 20px;border-radius:var(--radius);
+  background:var(--white);border:1px solid var(--slate-2);border-top:3px solid var(--acc-400);
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
+  transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+}
+.trust-card::after{
+  content:'';position:absolute;bottom:-50px;right:-50px;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.1) 0%,rgba(59,130,246,.04) 40%,transparent 70%);
+  opacity:0;transition:opacity .4s;
+}
+.trust-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(29,78,216,.1);border-color:var(--acc-200);border-top-color:var(--acc-600)}
+.trust-card:hover::after{opacity:1}
+.trust-num{
+  font-size:2.2rem;font-weight:900;margin-bottom:6px;line-height:1.1;
+  background:linear-gradient(135deg,var(--acc-500),var(--acc-dd));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.trust-card h3{font-size:.95rem;margin-bottom:8px;color:var(--slate-8)}
+.trust-card p{font-size:.84rem;color:var(--slate-6);line-height:1.65;word-break:keep-all}
+
+/* Infra & security */
+.sec-wrap{
+  margin-top:56px;padding:44px 40px;border-radius:20px;
+  background:linear-gradient(145deg,var(--slate-9),#0c1222);
+  border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow-lg);
+}
+.sec-head{text-align:center;margin-bottom:34px}
+.sec-head h3{font-size:clamp(1.1rem,2vw,1.4rem);color:var(--white);margin-bottom:10px;font-weight:700}
+.sec-head p{font-size:.88rem;color:var(--slate-4);line-height:1.7;word-break:keep-all;max-width:600px;margin:0 auto}
+.sec-flow{
+  display:flex;align-items:stretch;justify-content:center;gap:10px;
+  margin-bottom:34px;flex-wrap:wrap;
+}
+.sec-node{
+  flex:1 1 168px;max-width:230px;padding:16px 14px;border-radius:12px;text-align:center;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+}
+.sec-node-t{font-size:.78rem;font-weight:700;color:var(--acc-400);margin-bottom:6px}
+.sec-node-d{font-size:.66rem;color:var(--slate-4);line-height:1.6;word-break:keep-all}
+.sec-arrow{display:flex;align-items:center;color:var(--slate-6);font-size:.9rem;flex-shrink:0}
+.sec-list{
+  list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 32px;
+  border-top:1px solid rgba(255,255,255,.07);padding-top:28px;
+}
+.sec-list li{display:flex;align-items:flex-start;gap:10px;font-size:.83rem;color:var(--slate-4);line-height:1.6;word-break:keep-all}
+.sec-list b{color:var(--slate-3);font-weight:700}
+.sec-ck{
+  width:17px;height:17px;border-radius:5px;flex-shrink:0;margin-top:3px;
+  background:rgba(16,185,129,.16);color:#10b981;
+  display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:800;
+}
+@media(max-width:900px){
+  .sec-wrap{padding:32px 22px;margin-top:40px}
+  .sec-list{grid-template-columns:1fr;gap:12px}
+  .sec-arrow{display:none}
+  .sec-node{flex:1 1 100%;max-width:none}
+}
 
 /* CTA */
 .section-cta{
@@ -208,13 +445,21 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   .hero .container{grid-template-columns:1fr;text-align:center}
   .hero-text p{margin:0 auto 40px}
   .hero-actions{justify-content:center}
+  .hero-trust{justify-content:center}
   .hero-visual{margin-top:48px}
   .features-grid{grid-template-columns:1fr}
   .ai-grid{grid-template-columns:1fr}
+  .section,.section-features,.section-diff,.section-ai,.section-trust{padding:80px 0}
+  .feature-row{grid-template-columns:1fr;gap:36px;padding:48px 0}
+  .feature-row.reverse .feature-content{order:1}
+  .feature-row.reverse .feature-visual{order:2}
+  .feature-visual{min-height:0;padding:20px}
 }
 @media(max-width:600px){
   .hero-card{max-width:100%}
   .hero-text h1 .accent{background:none;-webkit-text-fill-color:var(--blue-400)}
+  .demo-en{display:none}
+  .demo-table th:nth-child(4),.demo-table td:nth-child(4){display:none}
 }
 .btn-cta{
   background:linear-gradient(135deg,#1d4ed8,#1e3a8a);color:#fff;padding:16px 40px;
@@ -239,9 +484,12 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
 <nav class="subnav" id="subnav">
   <div class="container">
     <ul class="subnav-links">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#ai">AI</a></li>
-      <li><a href="#cta">Contact</a></li>
+      <li><a href="#problems" data-i18n="nav_problems">Why</a></li>
+      <li><a href="#features" data-i18n="nav_features">Features</a></li>
+      <li><a href="#difference" data-i18n="nav_difference">차별점</a></li>
+      <li><a href="#ai" data-i18n="nav_ai">AI</a></li>
+      <li><a href="#trust" data-i18n="nav_trust">신뢰</a></li>
+      <li><a href="#cta" data-i18n="nav_contact">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -256,15 +504,20 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
       <div class="badge badge-acc hero-fade hero-fade-1" style="margin-bottom:24px">B2B CRM PLATFORM</div>
       <h1 class="hero-fade hero-fade-2" data-i18n="hero_h1">
         Connect. Align. Grow.<br>
-        <span class="accent">비즈니스를 하나로</span>
+        <span class="accent">놓치는 고객이 없도록</span>
       </h1>
       <p class="hero-fade hero-fade-3" data-i18n="hero_sub">
-        고객사 관리부터 영업, 마케팅, 기술지원, 프로젝트까지 —<br>
-        B2B 비즈니스의 모든 흐름을 하나의 플랫폼에서 관리합니다.
+        지난달 만료된 라이선스, 반년째 연락 못 한 고객,<br>
+        세 번 등록된 같은 회사 —<br>
+        기억에 의존하던 일을 Linkspace가 대신 챙깁니다.
       </p>
       <div class="hero-actions hero-fade hero-fade-4">
-        <a href="#features" class="btn btn-primary" data-i18n="hero_cta1">기능 살펴보기</a>
-        <a href="#cta" class="btn btn-outline-light" data-i18n="hero_cta2">문의하기</a>
+        <a href="#difference" class="btn btn-primary" data-i18n="hero_cta1">직접 만져 보기</a>
+        <a href="#cta" class="btn btn-outline-light" data-i18n="hero_cta2">데모 요청하기</a>
+      </div>
+      <div class="hero-trust hero-fade hero-fade-6">
+        <span class="dot"></span>
+        <span data-i18n="hero_trust">지금도 운영 중 · 고객사 <strong>7,000+</strong> 규모 <span class="sep">·</span> 한국어 / English</span>
       </div>
     </div>
     <div class="hero-visual hero-fade hero-fade-5">
@@ -320,56 +573,246 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   </div>
 </section>
 
+<!-- Problems -->
+<section class="section section-alt" id="problems">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge badge-amber" data-i18n="problems_badge">이런 경험, 있으시죠?</div>
+      <h2 style="margin-top:16px" data-i18n="problems_h2">CRM은 있는데,<br>정작 필요한 순간에 도움이 안 됩니다</h2>
+      <p class="subtitle" data-i18n="problems_sub">B2B 영업이 힘든 건 기능이 부족해서가 아닙니다.<br>매일 반복되는 작은 마찰이 쌓여서입니다.</p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card reveal">
+        <div class="problem-num">01</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></div>
+        <h3 data-i18n="prob1_h3">"같은 회사가 세 번 등록돼 있어요"</h3>
+        <p data-i18n="prob1_p">영업은 「가나다」, 경리는 「(주)가나다」, 해외팀은 「GANADA」라고 씁니다. 같은 회사인데 CRM에는 셋으로 남습니다. 그 고객과 얼마를 거래했는지, 아무도 정확히 답하지 못합니다.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-num">02</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg></div>
+        <h3 data-i18n="prob2_h3">"갱신 시점을 놓쳤어요"</h3>
+        <p data-i18n="prob2_p">만료일은 PDF 증서 안에, 엑셀 어딘가에, 메일함 깊은 곳에 있습니다. 지나고 나서 알게 되면 그때는 이미 고객이 다른 곳과 이야기를 시작한 뒤입니다.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-num">03</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="17" y1="8" x2="23" y2="14"/><line x1="23" y1="8" x2="17" y2="14"/></svg></div>
+        <h3 data-i18n="prob3_h3">"딜이 없는 고객은 잊혀져요"</h3>
+        <p data-i18n="prob3_p">이번 달 목표를 쫓다 보면 조용한 고객은 자연히 뒤로 밀립니다. 반년쯤 지나 연락해 보면, 이미 다른 회사 제품을 쓰고 있습니다.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-num">04</div>
+        <div class="problem-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v13H7l-3 3z"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="13" y2="13"/></svg></div>
+        <h3 data-i18n="prob4_h3">"다음에 뭘 팔지는 감으로 정해요"</h3>
+        <p data-i18n="prob4_p">누가 살 것 같은지는 오래 한 사람일수록 잘 압니다. 그런데 고객이 수천 곳이면 그 감이 닿는 건 늘 보던 몇 곳뿐입니다. 나머지는 그냥 지나갑니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Features -->
 <section class="section-features" id="features">
   <div class="container">
     <div class="text-center">
       <div class="badge badge-acc">FEATURES</div>
-      <h2 style="margin-top:16px" data-i18n="features_h2">B2B 비즈니스의 모든 것</h2>
-      <p class="subtitle" data-i18n="features_sub">흩어진 업무를 하나로 연결합니다.</p>
+      <h2 style="margin-top:16px" data-i18n="features_h2">매일 하는 일이,<br>매일 조금씩 가벼워집니다</h2>
+      <p class="subtitle" data-i18n="features_sub">고객사부터 회계까지 — 흩어져 있던 일이 한 화면 안에서 이어집니다.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card reveal" style="--feat-accent:#3b82f6;--feat-bg:rgba(59,130,246,.08);--feat-glow:#3b82f6">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3 data-i18n="f1_h3">고객사 &amp; 담당자 관리</h3>
-        <p data-i18n="f1_p">고객사 정보, 담당자 연락처, 거래 이력을 한곳에서 통합 관리합니다.</p>
+        <h3 data-i18n="f1_h3">어떻게 적든 찾아냅니다</h3>
+        <p data-i18n="f1_p">㈜를 붙이든 빼든, 영문으로 적든 그 회사가 첫 줄에 나옵니다. 같은 회사를 두 번 만들 일이 없습니다.</p>
       </div>
       <div class="feature-card reveal reveal-delay-1" style="--feat-accent:#f59e0b;--feat-bg:rgba(245,158,11,.08);--feat-glow:#f59e0b">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
-        <h3 data-i18n="f2_h3">영업 파이프라인</h3>
-        <p data-i18n="f2_p">리드부터 수주까지, 영업 기회의 전체 흐름을 시각적으로 추적합니다.</p>
+        <h3 data-i18n="f2_h3">이번 분기, 얼마나 들어올지 보입니다</h3>
+        <p data-i18n="f2_p">어느 딜이 어디까지 왔는지 한 화면에. 감으로 세던 예상 매출이 숫자로 바뀝니다.</p>
       </div>
-      <div class="feature-card reveal reveal-delay-2" style="--feat-accent:#06b6d4;--feat-bg:rgba(6,182,212,.08);--feat-glow:#06b6d4">
+      <div class="feature-card reveal reveal-delay-2" style="--feat-accent:#10b981;--feat-bg:rgba(16,185,129,.08);--feat-glow:#10b981">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 data-i18n="f3_h3">오늘 누구에게 전화할지 알려줍니다</h3>
+        <p data-i18n="f3_p">딜이 없어도 괜찮습니다. 만료 6개월 전, 3개월 전 — 연락할 때가 되면 목록에 뜹니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-3" style="--feat-accent:#8b5cf6;--feat-bg:rgba(139,92,246,.08);--feat-glow:#8b5cf6">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><path d="M5 20V9l5-4 5 4v11"/><path d="M15 20v-6l4-3v9"/></svg>
+        </div>
+        <h3 data-i18n="f4_h3">다음에 팔 것이 이미 정해져 있습니다</h3>
+        <p data-i18n="f4_p">설계는 쓰는데 해석은 안 쓰는 고객, 교육만 받고 아직 안 산 고객 — 가능성 높은 순서로 줄 세워 드립니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-4" style="--feat-accent:#06b6d4;--feat-bg:rgba(6,182,212,.08);--feat-glow:#06b6d4">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
         </div>
-        <h3 data-i18n="f3_h3">마케팅 & 리드</h3>
-        <p data-i18n="f3_p">마케팅 캠페인 관리와 리드 추적으로 잠재 고객을 놓치지 않습니다.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-3" style="--feat-accent:#10b981;--feat-bg:rgba(16,185,129,.08);--feat-glow:#10b981">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </div>
-        <h3 data-i18n="f4_h3">기술지원 & 교육</h3>
-        <p data-i18n="f4_p">고객 문의 대응, 교육 이력 관리를 체계적으로 수행합니다.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-4" style="--feat-accent:#8b5cf6;--feat-bg:rgba(139,92,246,.08);--feat-glow:#8b5cf6">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="6" y="6" width="8" height="2" rx="1"/><rect x="9" y="11" width="9" height="2" rx="1"/><rect x="4" y="16" width="6" height="2" rx="1"/></svg>
-        </div>
-        <h3 data-i18n="f5_h3">프로젝트 관리</h3>
-        <p data-i18n="f5_p">영업과 연결된 프로젝트를 생성하고 진행 상태를 관리합니다.</p>
+        <h3 data-i18n="f5_h3">세미나 참석자 명단이 곧 영업 기회로</h3>
+        <p data-i18n="f5_p">엑셀만 올리면 어느 고객사 사람인지, 어느 캠페인에서 왔는지 알아서 붙습니다.</p>
       </div>
       <div class="feature-card reveal reveal-delay-5" style="--feat-accent:#f43f5e;--feat-bg:rgba(244,63,94,.08);--feat-glow:#f43f5e">
         <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3 data-i18n="f6_h3">보고서 쓰느라 밤샐 일이 없습니다</h3>
+        <p data-i18n="f6_p">문의도 교육도 고객사에 그대로 쌓이고, 교육보고서 초안은 AI가 먼저 써 둡니다.</p>
+      </div>
+      <div class="feature-card reveal" style="--feat-accent:#0ea5e9;--feat-bg:rgba(14,165,233,.08);--feat-glow:#0ea5e9">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="6" y="6" width="8" height="2" rx="1"/><rect x="9" y="11" width="9" height="2" rx="1"/><rect x="4" y="16" width="6" height="2" rx="1"/></svg>
+        </div>
+        <h3 data-i18n="f7_h3">수주한 다음이 더 중요하니까</h3>
+        <p data-i18n="f7_p">계약이 끝이 아닙니다. 일정과 산출물, 주고받은 파일까지 그 고객 밑에 그대로 이어집니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-1" style="--feat-accent:#eab308;--feat-bg:rgba(234,179,8,.08);--feat-glow:#eab308">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 7h5a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-5"/><path d="M9 17H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <h3 data-i18n="f8_h3">누가 무엇을 언제까지 쓰는지</h3>
+        <p data-i18n="f8_p">고객사별 보유 현황과 만료일이 한눈에. 견적 낼 때 가격표를 따로 찾지 않아도 됩니다.</p>
+      </div>
+      <div class="feature-card reveal reveal-delay-2" style="--feat-accent:#64748b;--feat-bg:rgba(100,116,139,.08);--feat-glow:#64748b">
+        <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h3 data-i18n="f6_h3">캘린더 & 활동 기록</h3>
-        <p data-i18n="f6_p">일정, 미팅, 영업 활동을 캘린더로 관리하고 이력을 자동 기록합니다.</p>
+        <h3 data-i18n="f9_h3">숫자 뒤에 무슨 일이 있었는지</h3>
+        <p data-i18n="f9_p">매출과 수금은 물론, 누가 언제 무엇을 바꿨는지까지 남아 나중에 되짚을 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Difference -->
+<section class="section-diff" id="difference">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge badge-acc">WHAT MAKES IT DIFFERENT</div>
+      <h2 style="margin-top:16px" data-i18n="diff_h2">기능 목록이 아니라,<br>실제로 손이 덜 가는 지점</h2>
+      <p class="subtitle" data-i18n="diff_sub">말로 설명하는 것보다 직접 만져 보시는 게 빠릅니다.<br>아래 데모는 실제 Linkspace와 같은 규칙으로 동작합니다.</p>
+    </div>
+
+    <!-- ① Account matching -->
+    <div class="feature-row reveal">
+      <div class="feature-content">
+        <div class="badge badge-acc">ACCOUNT MATCHING</div>
+        <h2 data-i18n="d1_h2">이름을 어떻게 적든,<br>그 회사가 첫 줄에 나옵니다</h2>
+        <p data-i18n="d1_p">영업사원은 「가나다」라고 칩니다. 경리는 세금계산서에 「(주)가나다」라고 씁니다. 해외 담당자는 「GANADA」라고 부릅니다. 셋 다 같은 회사인데, 보통의 CRM에서는 세 개의 회사가 됩니다. Linkspace는 이 셋을 하나로 봅니다. 한 번 "이 표기도 그 회사"라고 알려주면, 다음부터는 알아서 기억합니다.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="d1_li1">㈜를 붙이든 빼든, 띄어쓰기가 달라도 같은 회사로 찾아냅니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d1_li2">찾던 회사가 스크롤 아래에 묻히지 않고 맨 위에 뜹니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d1_li3">비슷한 이름은 후보로만 보여줍니다 — 엉뚱한 회사에 실적이 붙는 일은 없습니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d1_li4">한 번 연결해 준 표기는 기억해 두었다가 다음부터 자동으로 맞춥니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d1_li5">엑셀을 올려도 이미 있는 고객사는 다시 만들지 않습니다</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="demo">
+          <div class="demo-bar">
+            <div class="d" style="background:#ef4444"></div><div class="d" style="background:#f59e0b"></div><div class="d" style="background:#22c55e"></div>
+            <div class="t" id="dm1-title">고객사 검색</div>
+            <span class="demo-sample" data-demo-sample></span>
+          </div>
+          <div class="demo-chips" id="dm1-chips"></div>
+          <div class="demo-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="dm1-input" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="demo-rows" id="dm1-rows"></div>
+          <div class="demo-hint" id="dm1-hint"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② License PDF -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-content">
+        <div class="badge badge-acc">LICENSE PDF</div>
+        <h2 data-i18n="d2_h2">증서를 옮겨 적던 30분이,<br>3초가 됩니다</h2>
+        <p data-i18n="d2_p">라이선스 증서를 열어 제품명과 시리얼 번호를 하나씩 손으로 옮겨 적어 보신 적 있으실 겁니다. 스무 줄쯤 넘어가면 눈이 흐려지고, 숫자 하나가 틀어지면 하필 갱신할 때 그 고객만 찾지 못합니다. 그냥 PDF를 올려 주세요.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="d2_li1">제품·시리얼·만료일·수량이 표로 정리돼 나옵니다 — 손으로 옮길 일이 없습니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d2_li2">고객사명과 발주번호도 증서에서 알아서 읽어 옵니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d2_li3">예전에 등록한 시리얼은 알아서 걸러 냅니다 — 같은 라이선스가 두 번 들어가지 않습니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d2_li4">원본 증서가 함께 보관되니, "어디에 그렇게 적혀 있었나"를 바로 꺼낼 수 있습니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d2_li5">여기서 읽은 만료일이 그대로 갱신 알림이 됩니다</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="demo">
+          <div class="demo-bar">
+            <div class="d" style="background:#ef4444"></div><div class="d" style="background:#f59e0b"></div><div class="d" style="background:#22c55e"></div>
+            <div class="t" id="dm2-title">라이선스 가져오기</div>
+            <span class="demo-sample" data-demo-sample></span>
+          </div>
+          <div class="demo-drop" id="dm2-drop">
+            <div class="fn">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>License_Certificate_2026.pdf</span>
+            </div>
+            <div class="sub" id="dm2-sub"></div>
+          </div>
+          <div class="demo-steps" id="dm2-steps"></div>
+          <div id="dm2-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ Nurturing -->
+    <div class="feature-row reveal">
+      <div class="feature-content">
+        <div class="badge badge-acc">NURTURING</div>
+        <h2 data-i18n="d3_h2">딜이 없는 고객도,<br>때가 되면 알려줍니다</h2>
+        <p data-i18n="d3_p">조용한 고객은 잘못한 게 없습니다. 그저 이번 달 목표에 안 걸려 있을 뿐입니다. Linkspace는 라이선스 만료일을 거꾸로 세어, 갱신 1년 전부터 "지금 연락할 때"를 매일 띄웁니다. 이미 만료된 고객도 잊지 않고 다시 꺼내 옵니다.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="d3_li1">만료 12개월 전부터 3개월 간격으로 연락할 시점이 잡힙니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d3_li2">지나쳤는데 아직 연락 못 한 고객은 따로 모아 보여줍니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d3_li3">시기마다 할 일이 다릅니다 — 1년 전은 안부, 3개월 전은 견적</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d3_li4">이미 만료된 고객은 재공략 대상으로 따로 관리합니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d3_li5">라이선스 만료일만 있으면 목록은 알아서 만들어집니다</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="demo">
+          <div class="demo-bar">
+            <div class="d" style="background:#ef4444"></div><div class="d" style="background:#f59e0b"></div><div class="d" style="background:#22c55e"></div>
+            <div class="t" id="dm3-title">너처링</div>
+            <span class="demo-sample" data-demo-sample></span>
+          </div>
+          <div class="demo-tabs" id="dm3-tabs"></div>
+          <div id="dm3-list"></div>
+          <div class="demo-hint" id="dm3-hint"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ Insights -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-content">
+        <div class="badge badge-acc">INSIGHTS</div>
+        <h2 data-i18n="d4_h2">다음에 팔 것을,<br>데이터가 골라 줍니다</h2>
+        <p data-i18n="d4_p">"이 고객은 살 것 같다"는 감은 대개 맞습니다. 문제는 고객이 수천 곳일 때 그 감을 전부에 쓸 수 없다는 겁니다. Linkspace는 설계 제품만 쓰는 고객 중에 해석 문의를 했거나 교육을 들은 곳을 찾아, 가능성이 높은 순서로 줄을 세웁니다.</p>
+        <ul class="feature-list">
+          <li><span class="feature-check">✓</span><span data-i18n="d4_li1">이미 보인 관심(문의·교육 이력)을 근거로 점수를 매깁니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d4_li2">왜 이 순위인지 신호가 함께 보입니다 — 짐작하지 않아도 됩니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d4_li3">이미 진행 중인 딜이 있으면 표시해 중복 접촉을 막습니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d4_li4">규모·구분이 함께 보여 누구부터 갈지 바로 정해집니다</span></li>
+          <li><span class="feature-check">✓</span><span data-i18n="d4_li5">따로 입력할 게 없습니다 — 쌓인 이력에서 알아서 뽑아냅니다</span></li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div class="demo">
+          <div class="demo-bar">
+            <div class="d" style="background:#ef4444"></div><div class="d" style="background:#f59e0b"></div><div class="d" style="background:#22c55e"></div>
+            <div class="t" id="dm4-title">인사이트</div>
+            <span class="demo-sample" data-demo-sample></span>
+          </div>
+          <div id="dm4-list"></div>
+          <div class="demo-hint" id="dm4-hint"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -380,24 +823,119 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   <div class="container">
     <div class="text-center">
       <div class="badge badge-acc" style="margin-bottom:16px">AI-POWERED</div>
-      <h2 data-i18n="ai_h2">AI가 영업을 돕습니다</h2>
-      <p class="subtitle" data-i18n="ai_sub">반복적인 작업은 AI에게, 핵심 판단은 사람에게.</p>
+      <h2 data-i18n="ai_h2">타이핑은 AI에게,<br>판단은 사람에게</h2>
+      <p class="subtitle" data-i18n="ai_sub">시간은 오래 걸리는데 티는 안 나는 일들 — 그건 넘기셔도 됩니다.</p>
     </div>
     <div class="ai-grid">
-      <div class="ai-card reveal" style="--feat-accent:#f59e0b;--feat-bg:rgba(245,158,11,.1);--feat-glow:#f59e0b">
-        <div class="ai-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <h3 data-i18n="ai1_h3">교육보고서 자동 작성</h3>
-        <p data-i18n="ai1_p">교육 내용과 참석 정보를 기반으로 보고서를 AI가 자동으로 생성합니다.</p>
-      </div>
-      <div class="ai-card reveal reveal-delay-1" style="--feat-accent:#06b6d4;--feat-bg:rgba(6,182,212,.1);--feat-glow:#06b6d4">
+      <div class="ai-card reveal" style="--feat-accent:#8b5cf6;--feat-bg:rgba(139,92,246,.1);--feat-glow:#8b5cf6">
         <div class="ai-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <h3 data-i18n="ai2_h3">영업 & 마케팅 전략 수립</h3>
-        <p data-i18n="ai2_p">고객 데이터와 영업 이력을 분석하여 맞춤형 전략을 제안합니다.</p>
+        <h3 data-i18n="ai1_h3">물어보면 답합니다</h3>
+        <p data-i18n="ai1_p">"작년에 교육받고 아직 안 산 고객" 같은 걸 그냥 물어보세요. 엑셀을 뒤질 필요가 없습니다.</p>
       </div>
+      <div class="ai-card reveal reveal-delay-1" style="--feat-accent:#f59e0b;--feat-bg:rgba(245,158,11,.1);--feat-glow:#f59e0b">
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3 data-i18n="ai2_h3">보고서가 이미 써져 있습니다</h3>
+        <p data-i18n="ai2_p">교육을 마치고 자리로 돌아오면 초안이 준비돼 있습니다. 읽고 다듬으면 끝입니다.</p>
+      </div>
+      <div class="ai-card reveal reveal-delay-2" style="--feat-accent:#06b6d4;--feat-bg:rgba(6,182,212,.1);--feat-glow:#06b6d4">
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20"/><polyline points="4 15 9 9 13 13 20 5"/></svg>
+        </div>
+        <h3 data-i18n="ai3_h3">다음에 뭘 할지 막막할 때</h3>
+        <p data-i18n="ai3_p">그동안 쌓인 고객 데이터를 근거로, 다음 수를 제안합니다.</p>
+      </div>
+      <div class="ai-card reveal reveal-delay-3" style="--feat-accent:#10b981;--feat-bg:rgba(16,185,129,.1);--feat-glow:#10b981">
+        <div class="ai-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3 data-i18n="ai4_h3">회사 데이터는 회사 안에</h3>
+        <p data-i18n="ai4_p">API 키는 서버 밖으로 나가지 않고, AI를 쓸 조직도 직접 정합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust -->
+<section class="section-trust" id="trust">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="badge badge-acc">WHY TRUST IT</div>
+      <h2 style="margin-top:16px" data-i18n="trust_h2">데모가 아니라,<br>매일 돌아가고 있는 시스템입니다</h2>
+      <p class="subtitle" data-i18n="trust_sub">저희도 같은 문제로 고생했습니다. Linkspace는 베루스랩이 자사 영업에 쓰려고 만들었고, 지금도 매일 씁니다.<br>이 페이지의 기능은 전부 "없어서 불편했던 것"들입니다.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <div class="trust-num">7,000+</div>
+        <h3 data-i18n="t1_h3">우리가 먼저 씁니다</h3>
+        <p data-i18n="t1_p">수천 개 고객사가 등록된 저희 영업 현장에서 매일 돌아갑니다.</p>
+      </div>
+      <div class="trust-card reveal reveal-delay-1">
+        <div class="trust-num" data-i18n="t2_num">격리</div>
+        <h3 data-i18n="t2_h3">우리 데이터는 우리만</h3>
+        <p data-i18n="t2_p">다른 회사가 우리 고객 목록을 볼 수 없습니다. 조회 자체가 자기 조직 안에서만 이뤄집니다.</p>
+      </div>
+      <div class="trust-card reveal reveal-delay-2">
+        <div class="trust-num" data-i18n="t3_num">매일</div>
+        <h3 data-i18n="t3_h3">잃어버릴 걱정 없이</h3>
+        <p data-i18n="t3_p">매일 밤 자동으로 백업하고, 백업 파일은 잠가서 보관합니다.</p>
+      </div>
+      <div class="trust-card reveal reveal-delay-3">
+        <div class="trust-num" data-i18n="t4_num">기록</div>
+        <h3 data-i18n="t4_h3">"이거 누가 지웠지?"에 답할 수 있게</h3>
+        <p data-i18n="t4_p">누가 언제 무엇을 바꿨는지 남습니다.</p>
+      </div>
+      <div class="trust-card reveal reveal-delay-4">
+        <div class="trust-num">KO·EN</div>
+        <h3 data-i18n="t5_h3">해외 담당자와 같은 화면</h3>
+        <p data-i18n="t5_p">버튼 하나로 화면 전체가 영어로 바뀝니다.</p>
+      </div>
+    </div>
+
+    <!-- Infra & security -->
+    <div class="sec-wrap reveal">
+      <div class="sec-head">
+        <h3 data-i18n="sec_h3">데이터가 어디에, 어떻게 놓여 있는지</h3>
+        <p data-i18n="sec_sub">고객 정보를 맡기기 전에 당연히 궁금한 것들입니다. 숨길 이유가 없어 그대로 적습니다.</p>
+      </div>
+
+      <div class="sec-flow">
+        <div class="sec-node">
+          <div class="sec-node-t" data-i18n="sec_n1_t">브라우저</div>
+          <div class="sec-node-d" data-i18n="sec_n1_d">HTTPS로만 접속</div>
+        </div>
+        <div class="sec-arrow">→</div>
+        <div class="sec-node">
+          <div class="sec-node-t" data-i18n="sec_n2_t">보안 관문</div>
+          <div class="sec-node-d" data-i18n="sec_n2_d">전 구간 암호화 · 공격 차단 · 서버 주소 비공개</div>
+        </div>
+        <div class="sec-arrow">→</div>
+        <div class="sec-node">
+          <div class="sec-node-t" data-i18n="sec_n3_t">앱 서버</div>
+          <div class="sec-node-d" data-i18n="sec_n3_d">국내 리전 · 조직별 격리 처리</div>
+        </div>
+        <div class="sec-arrow">→</div>
+        <div class="sec-node">
+          <div class="sec-node-t" data-i18n="sec_n4_t">데이터 · 백업</div>
+          <div class="sec-node-d" data-i18n="sec_n4_d">조직별 분리 저장 · 매일 백업 이중화</div>
+        </div>
+      </div>
+
+      <ul class="sec-list">
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l1"><b>데이터는 국내에 있습니다</b> — 서울 리전에서 운영되어 국외로 나가지 않습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l2"><b>서버 주소가 공개돼 있지 않습니다</b> — 모든 접속이 보안 관문을 거치고, 대량 공격은 입구에서 걸러집니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l3"><b>주고받는 내용은 전부 암호화</b> — 인증서도 자동 갱신되어 만료로 끊길 일이 없습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l4"><b>권한을 항목 단위로</b> — 조회·편집·엑셀 내려받기를 역할에 맞게 따로 줍니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l5"><b>개발·관리자·사용자 3단계 분리</b> — 자리에 없는 권한은 아예 닿지 않습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l6"><b>자리를 비우면 로그아웃</b> — 일정 시간 뒤 세션이 끊기고, 쓰는 중에는 자연히 연장됩니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l7"><b>첨부파일도 조직별로 따로</b> — 파일 저장 위치까지 분리돼 있습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l8"><b>매일 두 겹으로 백업</b> — 데이터 백업과 디스크 스냅샷을 각각 돌립니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l9"><b>서버는 열쇠로만 열립니다</b> — 비밀번호 접속을 막아 무작위 대입이 통하지 않습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l10"><b>관리 콘솔은 2차 인증 필수</b> — 최상위 권한 키는 아예 발급하지 않습니다</span></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -408,9 +946,9 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
   <div class="cta-orb cta-orb-2"></div>
   <div class="container" style="position:relative;z-index:1">
     <div class="badge badge-acc" style="margin-bottom:24px;border-color:rgba(79,142,247,.25);color:var(--acc-400);background:rgba(79,142,247,.1)">GET STARTED</div>
-    <h2 data-i18n="cta_h2">Linkspace와 함께 시작하세요</h2>
-    <p data-i18n="cta_p">데모 요청, 기능 문의 등 편하게 연락해 주세요.</p>
-    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn-cta" data-i18n="cta_btn">문의하기</a>
+    <h2 data-i18n="cta_h2">한 번 보시면 압니다</h2>
+    <p data-i18n="cta_p">15분이면 충분합니다. 지금 쓰시는 방식과 무엇이 다른지 직접 보여 드리겠습니다.</p>
+    <a href="https://forms.office.com/r/RVFMMfxUh7" target="_blank" class="btn-cta" data-i18n="cta_btn">데모 요청하기</a>
     <p style="margin-top:20px;font-size:.88rem;color:var(--slate-5)" data-i18n="cta_email">또는 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a> · <a href="tel:+82221387177" style="color:var(--acc-500);font-weight:600">+82 2-2138-7177</a>로 연락해 주세요</p>
   </div>
 </section>
@@ -493,69 +1031,633 @@ window.addEventListener('scroll',()=>{
 })();
 </script>
 
+<!-- ── Interactive demos ── -->
+<script>
+(function(){
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const lang=()=>{const l=document.documentElement.lang;return (l==='en'||l==='zh')?l:'ko';};
+
+  /* ── Demo labels ── */
+  const L={
+    ko:{
+      sample:'예시 데이터', sample_acc:'가나다중공업',
+      d1_title:'고객사 검색', d1_ph:'고객사명·영문명 검색...',
+      d1_hint:'표기가 달라도 같은 회사를 찾아냅니다. 위 표기를 눌러 보세요.',
+      d1_tags:{exact:'정확 일치',norm:'표기 차이',alias:'기억해 둔 표기',prefix:'앞부분 일치',part:'부분 일치'},
+      d1_empty:'검색 결과가 없습니다',
+      d2_title:'라이선스 가져오기', d2_sub:'클릭해서 올려 보기',
+      d2_sub_done:'다시 클릭하면 처음부터',
+      d2_steps:['증서 읽는 중 (3쪽)','항목 골라내는 중','예전에 등록한 것과 대조 중'],
+      d2_cust:'고객사', d2_po:'발주번호', d2_found:'찾음',
+      d2_found_n:n=>n+'건',
+      d2_th:['제품','시리얼','만료일','수량','유형'], d2_dup:'이미 있음',
+      d3_title:'너처링', d3_tabs:['진행 중','유지보수 종료'],
+      d3_hint:'라이선스 만료일만 있으면 이 목록은 알아서 만들어집니다.',
+      d3_exp:'만료', d3_expired:'만료됨', d3_ontime:'예정', d3_recap:'재공략',
+      d3_late:n=>n+'개월 지남',
+      d3_bands:[['D-12M','안부·근황'],['D-6M','갱신 예열'],['D-3M','견적·발주'],['D-Day','갱신 마감']],
+      d3_recap_note:'유지보수가 끝난 고객도 만료월 기준으로 다시 돌아옵니다.',
+      d4_title:'인사이트', d4_hint:'점수는 쌓인 이력에서 계산됩니다. 따로 입력할 것이 없습니다.',
+      d4_sup:n=>'문의 '+n, d4_trn:n=>'교육 '+n, d4_deal:'진행 중 딜',
+      d4_size:{'스타트업':'스타트업','중소기업':'중소기업','중견기업':'중견기업','대기업':'대기업','기관':'기관'}
+    },
+    en:{
+      sample:'Sample data', sample_acc:'GANADA Heavy Industries',
+      d1_title:'Account Search', d1_ph:'Search by name or English name...',
+      d1_hint:'Finds the same company however it is spelled. Try the chips above.',
+      d1_tags:{exact:'Exact',norm:'Spelled differently',alias:'Remembered',prefix:'Starts with',part:'Contains'},
+      d1_empty:'No matching accounts',
+      d2_title:'Import Licenses', d2_sub:'Click to upload',
+      d2_sub_done:'Click again to restart',
+      d2_steps:['Reading the certificate (3 pages)','Picking out the entries','Checking against what you already have'],
+      d2_cust:'Customer', d2_po:'PO', d2_found:'Found',
+      d2_found_n:n=>n+' items',
+      d2_th:['Product','Serial','Expires','Qty','Type'], d2_dup:'Already on file',
+      d3_title:'Nurturing', d3_tabs:['Active','Maintenance ended'],
+      d3_hint:'Give it an expiry date and this list builds itself.',
+      d3_exp:'Expires', d3_expired:'Expired', d3_ontime:'Scheduled', d3_recap:'Win back',
+      d3_late:n=>n+' mo overdue',
+      d3_bands:[['D-12M','Check in'],['D-6M','Warm up'],['D-3M','Quote'],['D-Day','Close']],
+      d3_recap_note:'Lapsed customers come back around on their expiry month.',
+      d4_title:'Insights', d4_hint:'Scores come from history already on file. Nothing to enter.',
+      d4_sup:n=>'Support '+n, d4_trn:n=>'Training '+n, d4_deal:'Open deal',
+      d4_size:{'스타트업':'Startup','중소기업':'Small','중견기업':'Mid-size','대기업':'Enterprise','기관':'Institution'}
+    },
+    zh:{
+      sample:'示例数据', sample_acc:'GANADA 重工',
+      d1_title:'客户搜索', d1_ph:'按名称或英文名搜索...',
+      d1_hint:'名称怎么写都能找到同一家公司。请点击上方标签试试。',
+      d1_tags:{exact:'完全一致',norm:'写法不同',alias:'已记住的写法',prefix:'开头一致',part:'包含'},
+      d1_empty:'没有匹配的客户',
+      d2_title:'导入许可证', d2_sub:'点击上传试试',
+      d2_sub_done:'再次点击可重新开始',
+      d2_steps:['正在读取证书（3 页）','正在挑出条目','正在与已有记录比对'],
+      d2_cust:'客户', d2_po:'采购单号', d2_found:'找到',
+      d2_found_n:n=>n+' 条',
+      d2_th:['产品','序列号','到期日','数量','类型'], d2_dup:'已存在',
+      d3_title:'客户培育', d3_tabs:['进行中','维保已结束'],
+      d3_hint:'只要有到期日，这份清单就会自动生成。',
+      d3_exp:'到期', d3_expired:'已到期', d3_ontime:'待联系', d3_recap:'再攻略',
+      d3_late:n=>'已逾期 '+n+' 个月',
+      d3_bands:[['D-12M','问候近况'],['D-6M','续约预热'],['D-3M','报价下单'],['D-Day','续约截止']],
+      d3_recap_note:'维保结束的客户也会按到期月再次回到清单。',
+      d4_title:'洞察分析', d4_hint:'分数由已积累的履历计算得出，无需另行输入。',
+      d4_sup:n=>'咨询 '+n, d4_trn:n=>'培训 '+n, d4_deal:'进行中商机',
+      d4_size:{'스타트업':'初创','중소기업':'中小','중견기업':'中坚','대기업':'大型','기관':'机构'}
+    }
+  };
+  const lb=()=>L[lang()];
+
+  /* ══ Demo 1 — account matching (same rules as the product) ══ */
+  // ⚠️ 공개 페이지다. 두 가지를 반드시 지킬 것:
+  //  ① 운영 DB의 실제 고객사명을 쓰지 말 것 — 실명이 뜨면 "이 회사들이 우리 고객"이라는 공표가 된다.
+  //  ② "그럴듯한" 이름도 짓지 말 것 — 한국 회사명은 소수 형태소 조합이라 그럴듯하면 대개 실재한다
+  //     (예: 한빛 → 한빛소프트·한빛은행 / 미래산업 → 코스피 상장사). 실존 여부는 확인할 방법도 없다.
+  //  ⇒ 「가나다」·「라마」·「바사」 같은 자리표시자만 쓴다. 사람 이름의 홍길동과 같은 위치.
+  const ACCOUNTS=[
+    {name:'(주)가나다',         ename:'GANADA',           aliases:['가나다기술']},
+    {name:'가나다중공업',       ename:'GANADA HEAVY',     aliases:[]},
+    {name:'새가나다산업(주)',   ename:'SAE GANADA',       aliases:[]},
+    {name:'주식회사 가나다소재',ename:'GANADA MATERIALS', aliases:[]},
+    {name:'라마정공',           ename:'RAMA',             aliases:[]},
+    {name:'바사정밀',           ename:'BASA PRECISION',   aliases:[]},
+    {name:'아자테크놀로지',     ename:'AJA TECH',         aliases:[]},
+    {name:'차카산업기계',       ename:'CHAKA MACHINERY',  aliases:[]}
+  ];
+  const CHIPS=['(주)가나다','가나다','GANADA','가나다 주식회사','가나다기술'];
+  const TAGC={exact:'#4f8ef7',norm:'#f59e0b',alias:'#10b981',prefix:'#8b5cf6',part:'#94a3b8'};
+
+  // 법인격 표기·공백·기호 제거 (제품의 _normAccName 과 같은 규칙)
+  function dNorm(s){
+    let t=String(s||'').toLowerCase();
+    t=t.replace(/㈜|\(주\)|\(유\)|\(재\)|\(사\)/g,'');
+    t=t.replace(/주식회사|유한회사|재단법인|사단법인|학교법인/g,'');
+    t=t.replace(/\b(co\.?,?\s*ltd\.?|co\.?|ltd\.?|inc\.?|corp\.?|corporation|company|llc|limited|gmbh)\b/g,'');
+    t=t.replace(/[\s.,\-_/&·'`()]+/g,'');
+    return t.trim();
+  }
+  // 0 정확 · 1 표기차/기억해 둔 표기 · 2 접두 · 3 부분 · -1 불일치
+  function dRank(a,q,nq){
+    const an=String(a.name||'').toLowerCase(), na=dNorm(a.name);
+    const en=a.ename?String(a.ename).toLowerCase():'', ne=en?dNorm(en):'';
+    const als=a.aliases||[];
+    if(q&&(an===q||(en&&en===q)))                              return {r:0,how:'exact'};
+    if(nq&&((na&&na===nq)||(ne&&ne===nq)))                     return {r:1,how:'norm'};
+    if(nq&&als.some(x=>dNorm(x)===nq))                         return {r:1,how:'alias'};
+    if((q&&(an.startsWith(q)||(en&&en.startsWith(q))))||(nq&&na&&na.startsWith(nq))) return {r:2,how:'prefix'};
+    if((q&&an.includes(q))||(nq&&na&&na.includes(nq))||(q&&en&&en.includes(q))||(nq&&als.some(x=>dNorm(x).includes(nq))))
+                                                               return {r:3,how:'part'};
+    return {r:-1,how:null};
+  }
+  function dm1Search(raw){
+    const s=String(raw||'').trim(), q=s.toLowerCase(), nq=dNorm(s);
+    if(!s) return ACCOUNTS.slice(0,4).map(a=>({a,how:'part'}));
+    const buckets=[[],[],[],[]];
+    ACCOUNTS.forEach(a=>{const {r,how}=dRank(a,q,nq); if(r>=0) buckets[r].push({a,how});});
+    const out=[];
+    buckets.forEach(b=>{
+      b.sort((x,y)=>x.a.name.length-y.a.name.length||x.a.name.localeCompare(y.a.name,'ko'));
+      b.forEach(it=>{ if(out.length<4) out.push(it); });
+    });
+    return out;
+  }
+  function dm1Render(raw){
+    const box=document.getElementById('dm1-rows'); if(!box) return;
+    const T=lb(), hits=dm1Search(raw);
+    if(!hits.length){ box.innerHTML='<div class="demo-empty">'+esc(T.d1_empty)+'</div>'; return; }
+    box.innerHTML=hits.map((it,i)=>{
+      const c=TAGC[it.how]||'#94a3b8';
+      return '<div class="demo-row'+(i===0&&raw?' top':'')+'" style="animation-delay:'+(i*0.04)+'s">'
+        +'<div class="demo-rank">'+(i+1)+'</div>'
+        +'<div class="demo-name">'+esc(it.a.name)+'</div>'
+        +(it.a.ename?'<div class="demo-en">'+esc(it.a.ename)+'</div>':'')
+        +'<div class="demo-tag" style="background:'+c+'22;color:'+c+'">'+esc(T.d1_tags[it.how]||'')+'</div>'
+        +'</div>';
+    }).join('');
+  }
+  function dm1Init(){
+    const T=lb();
+    const title=document.getElementById('dm1-title'), chips=document.getElementById('dm1-chips');
+    const inp=document.getElementById('dm1-input'), hint=document.getElementById('dm1-hint');
+    if(!inp) return;
+    title.textContent=T.d1_title;
+    inp.placeholder=T.d1_ph;
+    hint.textContent=T.d1_hint;
+    if(!chips.dataset.built){
+      chips.innerHTML=CHIPS.map(c=>'<button type="button" class="demo-chip" data-q="'+esc(c)+'">'+esc(c)+'</button>').join('');
+      chips.dataset.built='1';
+      chips.addEventListener('click',e=>{
+        const b=e.target.closest('.demo-chip'); if(!b) return;
+        inp.value=b.dataset.q;
+        chips.querySelectorAll('.demo-chip').forEach(x=>x.classList.toggle('on',x===b));
+        dm1Render(inp.value);
+      });
+      inp.addEventListener('input',()=>{
+        chips.querySelectorAll('.demo-chip').forEach(x=>x.classList.toggle('on',x.dataset.q===inp.value));
+        dm1Render(inp.value);
+      });
+      inp.value='가나다';
+      chips.querySelector('[data-q="가나다"]').classList.add('on');
+    }
+    dm1Render(inp.value);
+  }
+
+  /* ══ Demo 2 — license PDF parsing ══ */
+  // ⚠️ 시리얼·고객사·PO 전부 가공값. 실제 라이선스 증서의 값을 옮겨 오지 말 것.
+  const LIC=[
+    {ko:'SOLIDWORKS Simulation Premium', sn:'SAMPLE-0000-0001',   end:'2027-03-31', qty:2, type:'Desktop', dup:false},
+    {ko:'SOLIDWORKS Flow Simulation',    sn:'SAMPLE-0000-0002',   end:'2027-03-31', qty:1, type:'Desktop', dup:false},
+    {ko:'3DEXPERIENCE Structural Engineer', sn:'SAMPLE-3DX-0003', end:'2026-12-31', qty:5, type:'Cloud',   dup:false},
+    {ko:'SOLIDWORKS Premium',            sn:'SAMPLE-0000-0004',   end:'2027-03-31', qty:3, type:'Desktop', dup:true}
+  ];
+  let dm2Timers=[], dm2Busy=false;
+  function dm2Reset(){
+    dm2Timers.forEach(clearTimeout); dm2Timers=[]; dm2Busy=false;
+    const T=lb();
+    const steps=document.getElementById('dm2-steps'), res=document.getElementById('dm2-result');
+    const sub=document.getElementById('dm2-sub'), title=document.getElementById('dm2-title');
+    if(!steps) return;
+    title.textContent=T.d2_title;
+    sub.textContent=T.d2_sub;
+    steps.innerHTML=T.d2_steps.map(s=>'<div class="demo-step"><span class="mk">✓</span><span>'+esc(s)+'</span></div>').join('');
+    res.innerHTML='';
+  }
+  function dm2Run(){
+    if(dm2Busy){ dm2Reset(); return; }
+    dm2Busy=true;
+    const T=lb();
+    const steps=[...document.querySelectorAll('#dm2-steps .demo-step')];
+    const res=document.getElementById('dm2-result'), sub=document.getElementById('dm2-sub');
+    res.innerHTML='';
+    steps.forEach((el,i)=>dm2Timers.push(setTimeout(()=>el.classList.add('done'),320+i*380)));
+    dm2Timers.push(setTimeout(()=>{
+      const th=T.d2_th.map(h=>'<th>'+esc(h)+'</th>').join('');
+      res.innerHTML=
+        '<div class="demo-meta">'
+        +'<span>'+esc(T.d2_cust)+': <strong>'+esc(T.sample_acc)+'</strong></span>'
+        +'<span>'+esc(T.d2_po)+': <strong>PO-SAMPLE-0413</strong></span>'
+        +'<span>'+esc(T.d2_found)+': <strong>'+esc(T.d2_found_n(LIC.length))+'</strong></span>'
+        +'</div>'
+        +'<table class="demo-table"><thead><tr>'+th+'</tr></thead><tbody>'
+        +LIC.map((r,i)=>{
+          const tc=r.type==='Desktop'?'#4f8ef7':'#10b981';
+          return '<tr class="'+(r.dup?'dup':'')+'" style="animation-delay:'+(i*0.09)+'s">'
+            +'<td class="pn">'+esc(r.ko)+(r.dup?'<br><span style="color:#f43f5e;font-size:.5rem;font-weight:700">'+esc(T.d2_dup)+'</span>':'')+'</td>'
+            +'<td class="demo-sn">'+esc(r.sn)+'</td>'
+            +'<td style="text-align:center">'+esc(r.end)+'</td>'
+            +'<td style="text-align:center">'+r.qty+'</td>'
+            +'<td style="text-align:center"><span style="font-size:.5rem;font-weight:700;padding:2px 6px;border-radius:4px;background:'+tc+'22;color:'+tc+'">'+esc(r.type)+'</span></td>'
+            +'</tr>';
+        }).join('')
+        +'</tbody></table>';
+      sub.textContent=T.d2_sub_done;
+    },320+steps.length*380+180));
+  }
+  function dm2Init(){
+    const wasDone=!!document.querySelector('#dm2-result .demo-table');
+    dm2Reset();
+    const drop=document.getElementById('dm2-drop');
+    if(!drop) return;
+    if(!drop.dataset.built){
+      drop.dataset.built='1';
+      drop.addEventListener('click',dm2Run);
+      // 클릭 전 idle 상태가 빈 화면이라 뭘 해야 할지 알기 어렵다 → 화면에 들어오면 한 번 자동 재생
+      new IntersectionObserver((es,ob)=>{
+        if(es[0].isIntersecting){ ob.disconnect(); dm2Timers.push(setTimeout(dm2Run,260)); }
+      },{threshold:.4}).observe(drop.closest('.feature-visual')||drop);
+    }
+    else if(wasDone) dm2Run();   // 언어 전환 시 이미 펼쳐져 있었다면 새 언어로 다시 채운다
+  }
+
+  /* ══ Demo 3 — mail ══ */
+  let dm3Tab=0;
+  // 접촉 큐: 만료일 역산으로 「지금 연락할 때」를 뽑는다 (제품의 Ontime/Recapture 두 갈래)
+  const NURT={
+    ontime:[
+      {acc:'가나다중공업', exp:'2026-10-31', band:'D-3M',  late:2},
+      {acc:'라마정공',     exp:'2027-01-31', band:'D-6M',  late:0},
+      {acc:'바사정밀',     exp:'2026-08-31', band:'D-Day', late:0},
+      {acc:'아자테크놀로지',exp:'2027-07-31', band:'D-12M', late:0}
+    ],
+    recapture:[
+      {acc:'차카산업기계', exp:'2024-06-30', seg:'2년+'},
+      {acc:'새가나다산업(주)', exp:'2023-03-31', seg:'3년+'},
+      {acc:'주식회사 가나다소재', exp:'2025-11-30', seg:'1년+'}
+    ]
+  };
+  const BANDC={'D-Day':'#f43f5e','D-3M':'#f59e0b','D-6M':'#4f8ef7','D-12M':'#10b981'};
+  function dm3Render(){
+    const T=lb();
+    const tabs=document.getElementById('dm3-tabs'), list=document.getElementById('dm3-list');
+    const hint=document.getElementById('dm3-hint'), title=document.getElementById('dm3-title');
+    if(!list) return;
+    title.textContent=T.d3_title;
+    hint.textContent=T.d3_hint;
+    tabs.innerHTML=T.d3_tabs.map((x,i)=>'<button type="button" class="demo-tab'+(i===dm3Tab?' on':'')+'" data-i="'+i+'">'+esc(x)+'</button>').join('');
+    if(dm3Tab===0){
+      list.innerHTML='<div class="demo-rows">'+NURT.ontime.map((r,i)=>{
+        const c=BANDC[r.band]||'#94a3b8';
+        return '<div class="demo-row" style="animation-delay:'+(i*0.05)+'s">'
+          +'<div class="demo-tag" style="background:'+c+'22;color:'+c+';min-width:44px;text-align:center">'+esc(r.band)+'</div>'
+          +'<div class="demo-name">'+esc(r.acc)+'</div>'
+          +'<div class="demo-en">'+esc(T.d3_exp)+' '+esc(r.exp)+'</div>'
+          +(r.late?'<div class="demo-tag" style="background:#f43f5e22;color:#f43f5e">'+esc(T.d3_late(r.late))+'</div>'
+                  :'<div class="demo-tag" style="background:rgba(148,163,184,.14);color:#94a3b8">'+esc(T.d3_ontime)+'</div>')
+          +'</div>';
+      }).join('')+'</div>'
+      +'<div class="demo-legend">'+T.d3_bands.map(b=>'<span><i style="background:'+(BANDC[b[0]]||'#94a3b8')+'"></i>'+esc(b[0])+' · '+esc(b[1])+'</span>').join('')+'</div>';
+    } else {
+      list.innerHTML='<div class="demo-rows">'+NURT.recapture.map((r,i)=>
+        '<div class="demo-row" style="animation-delay:'+(i*0.05)+'s">'
+        +'<div class="demo-tag" style="background:#8b5cf622;color:#8b5cf6;min-width:44px;text-align:center">'+esc(r.seg)+'</div>'
+        +'<div class="demo-name">'+esc(r.acc)+'</div>'
+        +'<div class="demo-en">'+esc(T.d3_expired)+' '+esc(r.exp)+'</div>'
+        +'<div class="demo-tag" style="background:rgba(148,163,184,.14);color:#94a3b8">'+esc(T.d3_recap)+'</div>'
+        +'</div>').join('')+'</div>'
+      +'<div class="demo-legend"><span>'+esc(T.d3_recap_note)+'</span></div>';
+    }
+  }
+  function dm3Init(){
+    const tabs=document.getElementById('dm3-tabs');
+    if(tabs&&!tabs.dataset.built){
+      tabs.dataset.built='1';
+      tabs.addEventListener('click',e=>{
+        const b=e.target.closest('.demo-tab'); if(!b) return;
+        dm3Tab=parseInt(b.dataset.i,10)||0; dm3Render();
+      });
+    }
+    dm3Render();
+  }
+
+  /* ══ Demo 4 — insights (upsell candidates) ══ */
+  // 이미 보인 관심(기술지원 문의·교육 수강)을 신호로 점수화 — 제품의 업셀 후보 탭
+  const INS=[
+    {acc:'가나다중공업', type:'고객',   size:'중견기업', sup:4, trn:2, deal:false, score:86},
+    {acc:'라마정공',     type:'고객',   size:'중소기업', sup:2, trn:3, deal:false, score:74},
+    {acc:'바사정밀',     type:'가망',   size:'중소기업', sup:0, trn:2, deal:true,  score:61},
+    {acc:'아자테크놀로지',type:'고객',   size:'대기업',   sup:1, trn:1, deal:false, score:48}
+  ];
+  const SIZEC={'스타트업':'#c00000','중소기업':'#92d050','중견기업':'#ffc000','대기업':'#4e95d9','기관':'#7a8cb0'};
+  function dm4Render(){
+    const T=lb();
+    const list=document.getElementById('dm4-list'), title=document.getElementById('dm4-title');
+    const hint=document.getElementById('dm4-hint');
+    if(!list) return;
+    title.textContent=T.d4_title;
+    hint.textContent=T.d4_hint;
+    list.innerHTML='<div class="demo-rows">'+INS.map((r,i)=>{
+      const sc=SIZEC[r.size]||'#7a8cb0';
+      const sig=[];
+      if(r.sup) sig.push('<span class="demo-sig-b" style="background:#0ea5e922;color:#0ea5e9">'+esc(T.d4_sup(r.sup))+'</span>');
+      if(r.trn) sig.push('<span class="demo-sig-b" style="background:#e08e0b22;color:#e08e0b">'+esc(T.d4_trn(r.trn))+'</span>');
+      if(r.deal) sig.push('<span class="demo-sig-b" style="background:#2563eb22;color:#4f8ef7">'+esc(T.d4_deal)+'</span>');
+      return '<div class="demo-row'+(i===0?' top':'')+'" style="animation-delay:'+(i*0.05)+'s">'
+        +'<div class="demo-rank">'+(i+1)+'</div>'
+        +'<div class="demo-name">'+esc(r.acc)+'</div>'
+        +'<div class="demo-tag" style="background:'+sc+'22;color:'+sc+'">'+esc(T.d4_size[r.size])+'</div>'
+        +'<div class="demo-sigs">'+sig.join('')+'</div>'
+        +'<div class="demo-score"><span class="bar"><i style="width:'+r.score+'%"></i></span><b>'+r.score+'</b></div>'
+        +'</div>';
+    }).join('')+'</div>';
+  }
+  function dm4Init(){ dm4Render(); }
+
+  // 데모 데이터가 실제 고객 정보로 오해되지 않도록 「예시 데이터」를 항상 표기
+  function markSamples(){
+    const label=lb().sample;
+    document.querySelectorAll('[data-demo-sample]').forEach(el=>{ el.textContent=label; });
+  }
+
+  window.renderDemos=function(){ dm1Init(); dm2Init(); dm3Init(); dm4Init(); markSamples(); };
+  window.renderDemos();
+})();
+</script>
+
 <script>
 const T={
   ko:{
-    hero_h1:'Connect. Align. Grow.<br><span class="accent">비즈니스를 하나로</span>',
-    hero_sub:'고객사 관리부터 영업, 마케팅, 기술지원, 프로젝트까지 —<br>B2B 비즈니스의 모든 흐름을 하나의 플랫폼에서 관리합니다.',
-    hero_cta1:'기능 살펴보기',hero_cta2:'문의하기',
+    nav_problems:'Why',nav_features:'Features',nav_difference:'차별점',nav_ai:'AI',nav_trust:'신뢰',nav_contact:'Contact',
+    hero_h1:'Connect. Align. Grow.<br><span class="accent">놓치는 고객이 없도록</span>',
+    hero_sub:'지난달 만료된 라이선스, 반년째 연락 못 한 고객,<br>세 번 등록된 같은 회사 —<br>기억에 의존하던 일을 Linkspace가 대신 챙깁니다.',
+    hero_cta1:'직접 만져 보기',hero_cta2:'데모 요청하기',
+    hero_trust:'지금도 운영 중 · 고객사 <strong>7,000+</strong> 규모 <span class="sep">·</span> 한국어 / English',
     hc_clients:'고객사',hc_deals:'진행 중 딜',hc_goal:'목표 달성률',
     pipe_lead:'리드',pipe_meeting:'미팅',pipe_proposal:'제안',pipe_nego:'협상',pipe_won:'수주',
     hc_deal1:'A사 — 연간 계약',hc_deal2:'B사 — 솔루션 제안',hc_deal3:'C사 — 기술 검토',
-    features_h2:'B2B 비즈니스의 모든 것',features_sub:'흩어진 업무를 하나로 연결합니다.',
-    f1_h3:'고객사 &amp; 담당자 관리',f1_p:'고객사 정보, 담당자 연락처, 거래 이력을 한곳에서 통합 관리합니다.',
-    f2_h3:'영업 파이프라인',f2_p:'리드부터 수주까지, 영업 기회의 전체 흐름을 시각적으로 추적합니다.',
-    f3_h3:'마케팅 &amp; 리드',f3_p:'마케팅 캠페인 관리와 리드 추적으로 잠재 고객을 놓치지 않습니다.',
-    f4_h3:'기술지원 &amp; 교육',f4_p:'고객 문의 대응, 교육 이력 관리를 체계적으로 수행합니다.',
-    f5_h3:'프로젝트 관리',f5_p:'영업과 연결된 프로젝트를 생성하고 진행 상태를 관리합니다.',
-    f6_h3:'캘린더 &amp; 활동 기록',f6_p:'일정, 미팅, 영업 활동을 캘린더로 관리하고 이력을 자동 기록합니다.',
-    ai_h2:'AI가 영업을 돕습니다',ai_sub:'반복적인 작업은 AI에게, 핵심 판단은 사람에게.',
-    ai1_h3:'교육보고서 자동 작성',ai1_p:'교육 내용과 참석 정보를 기반으로 보고서를 AI가 자동으로 생성합니다.',
-    ai2_h3:'영업 &amp; 마케팅 전략 수립',ai2_p:'고객 데이터와 영업 이력을 분석하여 맞춤형 전략을 제안합니다.',
-    cta_h2:'Linkspace와 함께 시작하세요',cta_p:'데모 요청, 기능 문의 등 편하게 연락해 주세요.',
-    cta_btn:'문의하기',
+    problems_badge:'이런 경험, 있으시죠?',
+    problems_h2:'CRM은 있는데,<br>정작 필요한 순간에 도움이 안 됩니다',
+    problems_sub:'B2B 영업이 힘든 건 기능이 부족해서가 아닙니다.<br>매일 반복되는 작은 마찰이 쌓여서입니다.',
+    prob1_h3:'"같은 회사가 세 번 등록돼 있어요"',
+    prob1_p:'영업은 「가나다」, 경리는 「(주)가나다」, 해외팀은 「GANADA」라고 씁니다. 같은 회사인데 CRM에는 셋으로 남습니다. 그 고객과 얼마를 거래했는지, 아무도 정확히 답하지 못합니다.',
+    prob2_h3:'"갱신 시점을 놓쳤어요"',
+    prob2_p:'만료일은 PDF 증서 안에, 엑셀 어딘가에, 메일함 깊은 곳에 있습니다. 지나고 나서 알게 되면 그때는 이미 고객이 다른 곳과 이야기를 시작한 뒤입니다.',
+    prob3_h3:'"딜이 없는 고객은 잊혀져요"',
+    prob3_p:'이번 달 목표를 쫓다 보면 조용한 고객은 자연히 뒤로 밀립니다. 반년쯤 지나 연락해 보면, 이미 다른 회사 제품을 쓰고 있습니다.',
+    prob4_h3:'"다음에 뭘 팔지는 감으로 정해요"',
+    prob4_p:'누가 살 것 같은지는 오래 한 사람일수록 잘 압니다. 그런데 고객이 수천 곳이면 그 감이 닿는 건 늘 보던 몇 곳뿐입니다. 나머지는 그냥 지나갑니다.',
+    features_h2:'매일 하는 일이,<br>매일 조금씩 가벼워집니다',
+    features_sub:'고객사부터 회계까지 — 흩어져 있던 일이 한 화면 안에서 이어집니다.',
+    f1_h3:'어떻게 적든 찾아냅니다',f1_p:'㈜를 붙이든 빼든, 영문으로 적든 그 회사가 첫 줄에 나옵니다. 같은 회사를 두 번 만들 일이 없습니다.',
+    f2_h3:'이번 분기, 얼마나 들어올지 보입니다',f2_p:'어느 딜이 어디까지 왔는지 한 화면에. 감으로 세던 예상 매출이 숫자로 바뀝니다.',
+    f3_h3:'오늘 누구에게 전화할지 알려줍니다',f3_p:'딜이 없어도 괜찮습니다. 만료 6개월 전, 3개월 전 — 연락할 때가 되면 목록에 뜹니다.',
+    f4_h3:'다음에 팔 것이 이미 정해져 있습니다',f4_p:'설계는 쓰는데 해석은 안 쓰는 고객, 교육만 받고 아직 안 산 고객 — 가능성 높은 순서로 줄 세워 드립니다.',
+    f5_h3:'세미나 참석자 명단이 곧 영업 기회로',f5_p:'엑셀만 올리면 어느 고객사 사람인지, 어느 캠페인에서 왔는지 알아서 붙습니다.',
+    f6_h3:'보고서 쓰느라 밤샐 일이 없습니다',f6_p:'문의도 교육도 고객사에 그대로 쌓이고, 교육보고서 초안은 AI가 먼저 써 둡니다.',
+    f7_h3:'수주한 다음이 더 중요하니까',f7_p:'계약이 끝이 아닙니다. 일정과 산출물, 주고받은 파일까지 그 고객 밑에 그대로 이어집니다.',
+    f8_h3:'누가 무엇을 언제까지 쓰는지',f8_p:'고객사별 보유 현황과 만료일이 한눈에. 견적 낼 때 가격표를 따로 찾지 않아도 됩니다.',
+    f9_h3:'숫자 뒤에 무슨 일이 있었는지',f9_p:'매출과 수금은 물론, 누가 언제 무엇을 바꿨는지까지 남아 나중에 되짚을 수 있습니다.',
+    diff_h2:'기능 목록이 아니라,<br>실제로 손이 덜 가는 지점',
+    diff_sub:'말로 설명하는 것보다 직접 만져 보시는 게 빠릅니다.<br>아래 데모는 실제 Linkspace와 같은 규칙으로 동작합니다.',
+    d1_h2:'이름을 어떻게 적든,<br>그 회사가 첫 줄에 나옵니다',
+    d1_p:'영업사원은 「가나다」라고 칩니다. 경리는 세금계산서에 「(주)가나다」라고 씁니다. 해외 담당자는 「GANADA」라고 부릅니다. 셋 다 같은 회사인데, 보통의 CRM에서는 세 개의 회사가 됩니다. Linkspace는 이 셋을 하나로 봅니다. 한 번 "이 표기도 그 회사"라고 알려주면, 다음부터는 알아서 기억합니다.',
+    d1_li1:'㈜를 붙이든 빼든, 띄어쓰기가 달라도 같은 회사로 찾아냅니다',
+    d1_li2:'찾던 회사가 스크롤 아래에 묻히지 않고 맨 위에 뜹니다',
+    d1_li3:'비슷한 이름은 후보로만 보여줍니다 — 엉뚱한 회사에 실적이 붙는 일은 없습니다',
+    d1_li4:'한 번 연결해 준 표기는 기억해 두었다가 다음부터 자동으로 맞춥니다',
+    d1_li5:'엑셀을 올려도 이미 있는 고객사는 다시 만들지 않습니다',
+    d2_h2:'증서를 옮겨 적던 30분이,<br>3초가 됩니다',
+    d2_p:'라이선스 증서를 열어 제품명과 시리얼 번호를 하나씩 손으로 옮겨 적어 보신 적 있으실 겁니다. 스무 줄쯤 넘어가면 눈이 흐려지고, 숫자 하나가 틀어지면 하필 갱신할 때 그 고객만 찾지 못합니다. 그냥 PDF를 올려 주세요.',
+    d2_li1:'제품·시리얼·만료일·수량이 표로 정리돼 나옵니다 — 손으로 옮길 일이 없습니다',
+    d2_li2:'고객사명과 발주번호도 증서에서 알아서 읽어 옵니다',
+    d2_li3:'예전에 등록한 시리얼은 알아서 걸러 냅니다 — 같은 라이선스가 두 번 들어가지 않습니다',
+    d2_li4:'원본 증서가 함께 보관되니, "어디에 그렇게 적혀 있었나"를 바로 꺼낼 수 있습니다',
+    d2_li5:'여기서 읽은 만료일이 그대로 갱신 알림이 됩니다',
+    d3_h2:'딜이 없는 고객도,<br>때가 되면 알려줍니다',
+    d3_p:'조용한 고객은 잘못한 게 없습니다. 그저 이번 달 목표에 안 걸려 있을 뿐입니다. Linkspace는 라이선스 만료일을 거꾸로 세어, 갱신 1년 전부터 "지금 연락할 때"를 매일 띄웁니다. 이미 만료된 고객도 잊지 않고 다시 꺼내 옵니다.',
+    d3_li1:'만료 12개월 전부터 3개월 간격으로 연락할 시점이 잡힙니다',
+    d3_li2:'지나쳤는데 아직 연락 못 한 고객은 따로 모아 보여줍니다',
+    d3_li3:'시기마다 할 일이 다릅니다 — 1년 전은 안부, 3개월 전은 견적',
+    d3_li4:'이미 만료된 고객은 재공략 대상으로 따로 관리합니다',
+    d3_li5:'라이선스 만료일만 있으면 목록은 알아서 만들어집니다',
+    d4_h2:'다음에 팔 것을,<br>데이터가 골라 줍니다',
+    d4_p:'"이 고객은 살 것 같다"는 감은 대개 맞습니다. 문제는 고객이 수천 곳일 때 그 감을 전부에 쓸 수 없다는 겁니다. Linkspace는 설계 제품만 쓰는 고객 중에 해석 문의를 했거나 교육을 들은 곳을 찾아, 가능성이 높은 순서로 줄을 세웁니다.',
+    d4_li1:'이미 보인 관심(문의·교육 이력)을 근거로 점수를 매깁니다',
+    d4_li2:'왜 이 순위인지 신호가 함께 보입니다 — 짐작하지 않아도 됩니다',
+    d4_li3:'이미 진행 중인 딜이 있으면 표시해 중복 접촉을 막습니다',
+    d4_li4:'규모·구분이 함께 보여 누구부터 갈지 바로 정해집니다',
+    d4_li5:'따로 입력할 게 없습니다 — 쌓인 이력에서 알아서 뽑아냅니다',
+    ai_h2:'타이핑은 AI에게,<br>판단은 사람에게',
+    ai_sub:'시간은 오래 걸리는데 티는 안 나는 일들 — 그건 넘기셔도 됩니다.',
+    ai1_h3:'물어보면 답합니다',ai1_p:'"작년에 교육받고 아직 안 산 고객" 같은 걸 그냥 물어보세요. 엑셀을 뒤질 필요가 없습니다.',
+    ai2_h3:'보고서가 이미 써져 있습니다',ai2_p:'교육을 마치고 자리로 돌아오면 초안이 준비돼 있습니다. 읽고 다듬으면 끝입니다.',
+    ai3_h3:'다음에 뭘 할지 막막할 때',ai3_p:'그동안 쌓인 고객 데이터를 근거로, 다음 수를 제안합니다.',
+    ai4_h3:'회사 데이터는 회사 안에',ai4_p:'API 키는 서버 밖으로 나가지 않고, AI를 쓸 조직도 직접 정합니다.',
+    trust_h2:'데모가 아니라,<br>매일 돌아가고 있는 시스템입니다',
+    trust_sub:'저희도 같은 문제로 고생했습니다. Linkspace는 베루스랩이 자사 영업에 쓰려고 만들었고, 지금도 매일 씁니다.<br>이 페이지의 기능은 전부 "없어서 불편했던 것"들입니다.',
+    t1_h3:'우리가 먼저 씁니다',t1_p:'수천 개 고객사가 등록된 저희 영업 현장에서 매일 돌아갑니다.',
+    t2_num:'격리',t2_h3:'우리 데이터는 우리만',t2_p:'다른 회사가 우리 고객 목록을 볼 수 없습니다. 조회 자체가 자기 조직 안에서만 이뤄집니다.',
+    t3_num:'매일',t3_h3:'잃어버릴 걱정 없이',t3_p:'매일 밤 자동으로 백업하고, 백업 파일은 잠가서 보관합니다.',
+    t4_num:'기록',t4_h3:'"이거 누가 지웠지?"에 답할 수 있게',t4_p:'누가 언제 무엇을 바꿨는지 남습니다.',
+    t5_h3:'해외 담당자와 같은 화면',t5_p:'버튼 하나로 화면 전체가 영어로 바뀝니다.',
+    sec_h3:'데이터가 어디에, 어떻게 놓여 있는지',
+    sec_sub:'고객 정보를 맡기기 전에 당연히 궁금한 것들입니다. 숨길 이유가 없어 그대로 적습니다.',
+    sec_n1_t:'브라우저',sec_n1_d:'HTTPS로만 접속',
+    sec_n2_t:'보안 관문',sec_n2_d:'전 구간 암호화 · 공격 차단 · 서버 주소 비공개',
+    sec_n3_t:'앱 서버',sec_n3_d:'국내 리전 · 조직별 격리 처리',
+    sec_n4_t:'데이터 · 백업',sec_n4_d:'조직별 분리 저장 · 매일 백업 이중화',
+    sec_l1:'<b>데이터는 국내에 있습니다</b> — 서울 리전에서 운영되어 국외로 나가지 않습니다',
+    sec_l2:'<b>서버 주소가 공개돼 있지 않습니다</b> — 모든 접속이 보안 관문을 거치고, 대량 공격은 입구에서 걸러집니다',
+    sec_l3:'<b>주고받는 내용은 전부 암호화</b> — 인증서도 자동 갱신되어 만료로 끊길 일이 없습니다',
+    sec_l4:'<b>권한을 항목 단위로</b> — 조회·편집·엑셀 내려받기를 역할에 맞게 따로 줍니다',
+    sec_l5:'<b>개발·관리자·사용자 3단계 분리</b> — 자리에 없는 권한은 아예 닿지 않습니다',
+    sec_l6:'<b>자리를 비우면 로그아웃</b> — 일정 시간 뒤 세션이 끊기고, 쓰는 중에는 자연히 연장됩니다',
+    sec_l7:'<b>첨부파일도 조직별로 따로</b> — 파일 저장 위치까지 분리돼 있습니다',
+    sec_l8:'<b>매일 두 겹으로 백업</b> — 데이터 백업과 디스크 스냅샷을 각각 돌립니다',
+    sec_l9:'<b>서버는 열쇠로만 열립니다</b> — 비밀번호 접속을 막아 무작위 대입이 통하지 않습니다',
+    sec_l10:'<b>관리 콘솔은 2차 인증 필수</b> — 최상위 권한 키는 아예 발급하지 않습니다',
+    cta_h2:'한 번 보시면 압니다',
+    cta_p:'15분이면 충분합니다. 지금 쓰시는 방식과 무엇이 다른지 직접 보여 드리겠습니다.',
+    cta_btn:'데모 요청하기',
     cta_email:'또는 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a> · <a href="tel:+82221387177" style="color:var(--acc-500);font-weight:600">+82 2-2138-7177</a>로 연락해 주세요',
   },
   en:{
-    hero_h1:'Connect. Align. Grow.<br><span class="accent">All in One Platform</span>',
-    hero_sub:'From accounts and sales to marketing, tech. support, and projects — manage every aspect of your B2B business in one platform.',
-    hero_cta1:'Explore Features',hero_cta2:'Contact Us',
+    nav_problems:'Why',nav_features:'Features',nav_difference:'Difference',nav_ai:'AI',nav_trust:'Trust',nav_contact:'Contact',
+    hero_h1:'Connect. Align. Grow.<br><span class="accent">So no customer slips away</span>',
+    hero_sub:'The license that expired last month. The account nobody has called in six months. The same company entered three times.<br>Linkspace keeps track, so you don\'t have to remember.',
+    hero_cta1:'Try it yourself',hero_cta2:'Request a demo',
+    hero_trust:'Live in production · <strong>7,000+</strong> accounts <span class="sep">·</span> Korean / English',
     hc_clients:'Clients',hc_deals:'Active Deals',hc_goal:'Goal Achieved',
     pipe_lead:'Lead',pipe_meeting:'Meeting',pipe_proposal:'Proposal',pipe_nego:'Negotiation',pipe_won:'Won',
     hc_deal1:'Co. A — Annual Contract',hc_deal2:'Co. B — Solution Proposal',hc_deal3:'Co. C — Technical Review',
-    features_h2:'Everything for B2B Business',features_sub:'Connect all your scattered workflows in one place.',
-    f1_h3:'Account &amp; Contact Management',f1_p:'Centrally manage account info, contact details, and transaction history.',
-    f2_h3:'Sales Pipeline',f2_p:'Visually track the full flow of sales opportunities from lead to close.',
-    f3_h3:'Marketing &amp; Leads',f3_p:'Never miss a prospect with campaign management and lead tracking.',
-    f4_h3:'Support &amp; Training',f4_p:'Systematically handle customer inquiries and training history.',
-    f5_h3:'Project Management',f5_p:'Create sales-linked projects and track their progress.',
-    f6_h3:'Calendar &amp; Activity Log',f6_p:'Manage schedules, meetings, and sales activities while auto-logging history.',
-    ai_h2:'AI-Powered Sales',ai_sub:'Let AI handle the routine — keep the key decisions human.',
-    ai1_h3:'Auto Report Generation',ai1_p:'AI automatically generates reports based on training content and attendance data.',
-    ai2_h3:'Sales &amp; Marketing Strategy',ai2_p:'Analyzes customer data and sales history to suggest tailored strategies.',
-    cta_h2:'Get Started with Linkspace',cta_p:'Feel free to reach out for a demo or feature inquiry.',
-    cta_btn:'Contact Us',
+    problems_badge:'Sound familiar?',
+    problems_h2:'You have a CRM —<br>it just never helps when it matters',
+    problems_sub:'B2B sales doesn\'t get hard because a feature is missing.<br>It gets hard because the same small frictions repeat every single day.',
+    prob1_h3:'"The same company is in here three times"',
+    prob1_p:'Sales types "GANADA". Accounting invoices "GANADA Co., Ltd." The overseas team spells it differently again. One company, three records — and nobody can say for certain how much business you\'ve actually done with them.',
+    prob2_h3:'"We missed the renewal window"',
+    prob2_p:'The expiry date sits inside a PDF certificate, somewhere in a spreadsheet, buried in an inbox. By the time you notice it has passed, your customer is already talking to somebody else.',
+    prob3_h3:'"Accounts without a deal get forgotten"',
+    prob3_p:'Chasing this month\'s number pushes the quiet accounts to the back. Six months later you finally call — and they\'re already running someone else\'s product.',
+    prob4_h3:'"We pick the next sale on instinct"',
+    prob4_p:'The longer someone has been here, the better they read who is ready to buy. But with thousands of accounts, that instinct only ever reaches the same familiar few. The rest simply go by.',
+    features_h2:'The work you do every day,<br>a little lighter every day',
+    features_sub:'From accounts to accounting — scattered work finally connects on one screen.',
+    f1_h3:'Find it however it\'s spelled',f1_p:'Suffix or no suffix, English or Korean — the right company comes up first. You\'ll never create the same account twice.',
+    f2_h3:'See what\'s actually coming in',f2_p:'Every deal and where it stands, on one screen. The revenue you used to estimate by feel becomes a number.',
+    f3_h3:'Know who to call today',f3_p:'No open deal? Doesn\'t matter. Six months out, three months out — when it\'s time to reach out, they show up on the list.',
+    f4_h3:'Your next sale is already picked',f4_p:'Customers who design but never simulate. Who took the training but never bought. Ranked by how likely they are to say yes.',
+    f5_h3:'A seminar list becomes a pipeline',f5_p:'Upload the spreadsheet and it works out which company each person belongs to, and which campaign brought them in.',
+    f6_h3:'No more late nights writing reports',f6_p:'Inquiries and training pile up under the account, and AI has the report draft ready before you sit down.',
+    f7_h3:'Because winning isn\'t the end',f7_p:'The contract is the beginning. Schedule, deliverables and every file exchanged stay right under that customer.',
+    f8_h3:'Who uses what, until when',f8_p:'Holdings and expiry dates per account at a glance — and the price list right there when you quote.',
+    f9_h3:'The story behind the numbers',f9_p:'Revenue and collections, plus a record of who changed what and when, so you can retrace it later.',
+    diff_h2:'Not a feature list —<br>the places where the work gets lighter',
+    diff_sub:'Easier to try than to explain.<br>The demos below run on the same rules as the real Linkspace.',
+    d1_h2:'However it\'s spelled,<br>the right company comes up first',
+    d1_p:'Sales types "GANADA". Accounting writes "GANADA Co., Ltd." on the invoice. The overseas team calls it something else again. All the same company — and in most CRMs, three separate companies. Linkspace treats them as one. Tell it once that a spelling belongs to that account, and it remembers from then on.',
+    d1_li1:'Suffix or no suffix, extra spaces or not — it still finds the same company',
+    d1_li2:'The account you were looking for sits at the top, not buried below the scroll',
+    d1_li3:'Similar names are only ever suggested — revenue never lands on the wrong company',
+    d1_li4:'Link a spelling once and it\'s remembered, then matched automatically next time',
+    d1_li5:'Upload a spreadsheet and existing accounts are never recreated',
+    d2_h2:'Thirty minutes of retyping,<br>down to three seconds',
+    d2_p:'You\'ve probably copied product names and serial numbers out of a license certificate by hand. Around line twenty your eyes glaze over, and one wrong digit means that customer is the one you can\'t find at renewal time. Just upload the PDF instead.',
+    d2_li1:'Product, serial, expiry and quantity come back as a table — nothing to retype',
+    d2_li2:'The customer name and PO number are read off the certificate too',
+    d2_li3:'Serials you already registered are filtered out — no license enters twice',
+    d2_li4:'The original certificate is kept alongside, so "where did it say that?" takes one click',
+    d2_li5:'The expiry dates it reads become your renewal reminders',
+    d3_h2:'Even with no deal open,<br>you hear when it is time',
+    d3_p:'Quiet customers have done nothing wrong — they simply are not on this month\'s board. Linkspace counts backwards from the license expiry and, starting a year out, surfaces who to reach today. Customers who already lapsed are not forgotten either.',
+    d3_li1:'Contact points land every three months, starting twelve months before expiry',
+    d3_li2:'Anyone you passed and never called is collected in one place',
+    d3_li3:'Each stage asks for something different — a check-in at a year out, a quote at three months',
+    d3_li4:'Lapsed customers are tracked separately as win-back targets',
+    d3_li5:'Give it an expiry date and the list builds itself',
+    d4_h2:'What to sell next,<br>picked out by the data',
+    d4_p:'Your gut about who is ready to buy is usually right. The trouble is you cannot apply it to several thousand accounts. Linkspace finds the design-only customers who asked a simulation question or sat through a class, and lines them up by how likely they are to say yes.',
+    d4_li1:'Scored on interest they already showed — support questions and training attendance',
+    d4_li2:'The signals behind each rank are shown, so you are never guessing',
+    d4_li3:'Accounts with a deal already running are flagged, so nobody gets contacted twice',
+    d4_li4:'Size and segment sit right there, so who to call first is obvious',
+    d4_li5:'Nothing to fill in — it is drawn from history you already have',
+    ai_h2:'Leave the typing to AI,<br>keep the judgment',
+    ai_sub:'The work that eats hours and shows nothing for it — you can hand that over.',
+    ai1_h3:'Just ask',ai1_p:'Ask for "customers who trained last year and never bought." No spreadsheet digging required.',
+    ai2_h3:'The report is already written',ai2_p:'Get back from a training session and the draft is waiting. Read it, tidy it, done.',
+    ai3_h3:'When you\'re not sure what\'s next',ai3_p:'It reads the history you\'ve already accumulated and suggests the next move.',
+    ai4_h3:'Company data stays with the company',ai4_p:'API keys never leave the server, and you decide which organizations get AI at all.',
+    trust_h2:'Not a demo —<br>a system that runs every day',
+    trust_sub:'We had these problems first. VerusLab built Linkspace for its own sales team, and still uses it daily.<br>Every feature on this page started as something we were missing.',
+    t1_h3:'We use it first',t1_p:'Running every day across our own sales floor, with thousands of accounts on file.',
+    t2_num:'Isolated',t2_h3:'Your data stays yours',t2_p:'No other company can see your account list. Every query is confined to your own organization.',
+    t3_num:'Nightly',t3_h3:'Nothing to lose sleep over',t3_p:'Backed up automatically every night, and the backup files are kept locked.',
+    t4_num:'Audited',t4_h3:'An answer to "who deleted this?"',t4_p:'Who changed what, and when — it\'s all on the record.',
+    t5_h3:'Same screen as your overseas colleagues',t5_p:'One button switches the entire interface to English.',
+    sec_h3:'Where your data sits, and how it is held',
+    sec_sub:'Fair things to ask before handing over customer information. There is nothing to hide, so here it is.',
+    sec_n1_t:'Browser',sec_n1_d:'HTTPS only',
+    sec_n2_t:'Security edge',sec_n2_d:'End-to-end encryption · attack filtering · server address never exposed',
+    sec_n3_t:'App server',sec_n3_d:'Domestic region · per-organization isolation',
+    sec_n4_t:'Data · backup',sec_n4_d:'Separated per organization · duplicated nightly',
+    sec_l1:'<b>Your data stays in country</b> — it runs in the Seoul region and never leaves it',
+    sec_l2:'<b>The server address is not published</b> — every request passes the security edge, and floods are filtered at the door',
+    sec_l3:'<b>Everything in transit is encrypted</b> — certificates renew themselves, so nothing breaks on expiry',
+    sec_l4:'<b>Permissions down to the item</b> — viewing, editing and Excel export are granted separately by role',
+    sec_l5:'<b>Three tiers: developer, admin, user</b> — a permission you do not hold is simply out of reach',
+    sec_l6:'<b>Step away and you are logged out</b> — sessions expire on idle and extend naturally while you work',
+    sec_l7:'<b>Attachments are separated too</b> — files are stored apart per organization',
+    sec_l8:'<b>Backed up twice, every day</b> — a data backup and a disk snapshot run independently',
+    sec_l9:'<b>The server opens with a key only</b> — password login is disabled, so brute force gets nowhere',
+    sec_l10:'<b>Admin console requires 2FA</b> — and root-level keys are never issued at all',
+    cta_h2:'One look and you\'ll see it',
+    cta_p:'Fifteen minutes is all it takes. We\'ll show you exactly what\'s different from the way you work today.',
+    cta_btn:'Request a demo',
     cta_email:'or reach us at <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a> · <a href="tel:+82221387177" style="color:var(--acc-500);font-weight:600">+82 2-2138-7177</a>',
   },
   zh:{
-    hero_h1:'Connect. Align. Grow.<br><span class="accent">业务整合，一站管理</span>',
-    hero_sub:'从客户管理到销售、市场、技术支持与项目 — 在一个平台上掌控 B2B 业务的全流程。',
-    hero_cta1:'探索功能',hero_cta2:'联系我们',
+    nav_problems:'为什么',nav_features:'功能',nav_difference:'差异点',nav_ai:'AI',nav_trust:'为何可信',nav_contact:'联系',
+    hero_h1:'Connect. Align. Grow.<br><span class="accent">不再让客户悄悄流失</span>',
+    hero_sub:'上个月到期的许可证、半年没联系的客户、<br>被登记了三次的同一家公司 —<br>这些原本靠记性的事，交给 Linkspace 替您盯着。',
+    hero_cta1:'亲自试一试',hero_cta2:'预约演示',
+    hero_trust:'正在运行中 · 客户规模 <strong>7,000+</strong> <span class="sep">·</span> 韩语 / English',
     hc_clients:'客户',hc_deals:'进行中商机',hc_goal:'目标达成率',
     pipe_lead:'线索',pipe_meeting:'会议',pipe_proposal:'提案',pipe_nego:'谈判',pipe_won:'成交',
     hc_deal1:'A公司 — 年度合同',hc_deal2:'B公司 — 解决方案提案',hc_deal3:'C公司 — 技术评审',
-    features_h2:'B2B 业务全覆盖',features_sub:'将分散的业务流程整合为一体。',
-    f1_h3:'客户与联系人管理',f1_p:'集中管理客户信息、联系人及交易历史记录。',
-    f2_h3:'销售管道',f2_p:'从线索到成交，可视化追踪整个销售机会流程。',
-    f3_h3:'市场营销与线索',f3_p:'通过活动管理与线索追踪，不遗漏任何潜在客户。',
-    f4_h3:'技术支持与培训',f4_p:'系统化处理客户咨询与培训历史。',
-    f5_h3:'项目管理',f5_p:'创建与销售关联的项目并管理其进展状态。',
-    f6_h3:'日历与活动记录',f6_p:'通过日历管理日程、会议及销售活动，并自动记录历史。',
-    ai_h2:'AI 赋能销售',ai_sub:'让 AI 处理重复工作，将核心判断留给人类。',
-    ai1_h3:'自动生成教育报告',ai1_p:'AI 根据培训内容与参与信息自动生成报告。',
-    ai2_h3:'销售与营销策略制定',ai2_p:'分析客户数据与销售历史，提供定制化策略建议。',
-    cta_h2:'立即开始使用 Linkspace',cta_p:'欢迎联系我们进行演示或功能咨询。',
-    cta_btn:'联系我们',
+    problems_badge:'是不是很熟悉？',
+    problems_h2:'CRM 是有的，<br>可真正需要时却帮不上忙',
+    problems_sub:'B2B 销售之所以难，往往不是因为少了某个功能，<br>而是每天重复的那些小摩擦不断累积。',
+    prob1_h3:'"同一家公司被登记了三次"',
+    prob1_p:'销售写「가나다」，财务开票写「(주)가나다」，海外团队叫「GANADA」。明明是同一家公司，CRM 里却是三条记录 — 到底和这家做了多少生意，谁也说不准。',
+    prob2_h3:'"错过了续约时点"',
+    prob2_p:'到期日藏在 PDF 证书里、表格的某一行、邮箱的深处。等发现已经过期时，客户往往已经在和别家谈了。',
+    prob3_h3:'"没有商机的客户就被遗忘了"',
+    prob3_p:'忙着追这个月的指标，安静的客户自然被排到后面。半年后再联系，对方早已在用别家的产品。',
+    prob4_h3:'"下一单卖什么全凭直觉"',
+    prob4_p:'做得越久，越能看出谁快要下单。可客户有数千家时，这份直觉能顾到的永远只是常打交道的那几家，其余的就这么错过了。',
+    features_h2:'每天要做的事，<br>每天都轻一点',
+    features_sub:'从客户到会计 — 原本分散的工作，终于在同一个画面里连起来。',
+    f1_h3:'怎么写都能找到',f1_p:'带不带法人称谓、用中文还是英文 — 要找的公司都排在第一行。同一家公司不会再被建两次。',
+    f2_h3:'这个季度能进多少，看得见',f2_p:'哪个商机走到哪一步，一屏尽览。原本靠感觉估的营收，变成了数字。',
+    f3_h3:'今天该给谁打电话',f3_p:'没有商机也不要紧。到期前六个月、三个月 — 该联系的时候，名字自己会出现在清单上。',
+    f4_h3:'下一单卖什么，已经选好了',f4_p:'做设计却不做仿真的客户、只上过课却还没下单的客户 — 按成交可能性从高到低排好。',
+    f5_h3:'一份研讨会名单，就是一条管道',f5_p:'只要上传表格，谁是哪家公司的人、从哪个活动来的，都会自动对上。',
+    f6_h3:'不必再熬夜写报告',f6_p:'咨询和培训都会沉淀到客户名下，教育报告的初稿 AI 已经先写好了。',
+    f7_h3:'因为签下来才是开始',f7_p:'合同不是终点。日程、交付物、来往的每一个文件，都接在那家客户下面。',
+    f8_h3:'谁在用什么，用到什么时候',f8_p:'各客户的持有情况与到期日一目了然，报价时价目表就在手边。',
+    f9_h3:'数字背后发生过什么',f9_p:'营收与回款之外，谁在何时改了什么也都留有记录，日后可以回溯。',
+    diff_h2:'不是功能清单，<br>而是真正省下手工的地方',
+    diff_sub:'与其解释，不如直接上手。<br>下面的演示与真实 Linkspace 采用相同规则运行。',
+    d1_h2:'名称怎么写，<br>那家公司都排在第一行',
+    d1_p:'销售写「가나다」，财务开票写「(주)가나다」，海外团队又叫「GANADA」。都是同一家公司 — 在多数 CRM 里却成了三家。Linkspace 把它们当作同一家。只要告诉它一次"这个写法也是那家"，之后它就自己记住了。',
+    d1_li1:'带不带称谓、空格不同，都能找到同一家公司',
+    d1_li2:'要找的公司排在最上面，不会被埋在滚动条下方',
+    d1_li3:'相似名称只作为候选提示 — 业绩绝不会记到别家头上',
+    d1_li4:'连接过一次的写法会被记住，之后自动匹配',
+    d1_li5:'上传表格时，已存在的客户不会被重复创建',
+    d2_h2:'抄录证书的 30 分钟，<br>缩短成 3 秒',
+    d2_p:'照着许可证证书一条条抄产品名和序列号，想必您也做过。抄到第二十行眼睛就花了，而一个数字抄错，偏偏续约时就是找不到那家客户。直接把 PDF 传上来就好。',
+    d2_li1:'产品、序列号、到期日、数量直接变成表格 — 不用再手抄',
+    d2_li2:'证书上的客户名称与采购单号也会一并读出',
+    d2_li3:'已登记过的序列号会自动过滤 — 同一份许可证不会进两次',
+    d2_li4:'原始证书一并保存，日后"上面到底怎么写的"一点就能调出',
+    d2_li5:'读到的到期日直接变成续约提醒',
+    d3_h2:'即便没有商机，<br>到时候也会提醒您',
+    d3_p:'安静的客户并没有做错什么，只是没被列进这个月的指标而已。Linkspace 从许可证到期日倒推，提前一年开始每天推送"现在该联系了"。已经到期的客户也不会被遗忘。',
+    d3_li1:'从到期前 12 个月起，每隔 3 个月安排一次联系时点',
+    d3_li2:'已经错过却还没联系的客户，会单独汇总显示',
+    d3_li3:'不同时点要做的事不同 — 一年前是问候，三个月前是报价',
+    d3_li4:'已经到期的客户会作为再攻略对象单独管理',
+    d3_li5:'只要有到期日，清单就会自动生成',
+    d4_h2:'下一单卖什么，<br>由数据替您挑',
+    d4_p:'"这家客户应该会买"的直觉大多是对的。问题在于客户有数千家时，这份直觉无法用到每一家。Linkspace 会从只用设计产品的客户中找出咨询过仿真或听过培训的那些，按成交可能性排好队。',
+    d4_li1:'依据客户已经表现出的兴趣（咨询与培训履历）进行评分',
+    d4_li2:'排名背后的信号一并显示 — 不必靠猜',
+    d4_li3:'已有进行中商机的客户会被标出，避免重复接触',
+    d4_li4:'规模与分类就在旁边，先找谁一目了然',
+    d4_li5:'无需另行录入 — 直接从已有履历中提取',
+    ai_h2:'打字交给 AI，<br>判断留给自己',
+    ai_sub:'那些花时间却看不出成果的活儿 — 交出去就好。',
+    ai1_h3:'想问就问',ai1_p:'直接问"去年上过课但还没下单的客户"，不必再翻表格。',
+    ai2_h3:'报告已经写好了',ai2_p:'培训结束回到座位，初稿已经在等您。读一遍、改一改就完成了。',
+    ai3_h3:'不知道下一步做什么时',ai3_p:'基于已经积累的客户数据，给出下一步的建议。',
+    ai4_h3:'公司的数据留在公司',ai4_p:'API 密钥不会离开服务器，哪些组织可以使用 AI 也由您决定。',
+    trust_h2:'这不是演示，<br>而是每天都在运转的系统',
+    trust_sub:'这些问题我们先遇到过。Linkspace 是 VerusLab 为自家销售团队做的，至今每天都在用。<br>页面上的每一项功能，最初都是我们自己缺的东西。',
+    t1_h3:'我们自己先用',t1_p:'在登记了数千家客户的自家销售现场，每天都在运转。',
+    t2_num:'隔离',t2_h3:'您的数据只属于您',t2_p:'别的公司看不到您的客户名单。所有查询都只在本组织范围内进行。',
+    t3_num:'每日',t3_h3:'不必担心丢失',t3_p:'每晚自动备份，备份文件加锁保存。',
+    t4_num:'留痕',t4_h3:'能回答"这是谁删的"',t4_p:'谁在何时改了什么，全都有记录。',
+    t5_h3:'和海外同事看同一个画面',t5_p:'一个按钮，整个界面切换为英文。',
+    sec_h3:'数据放在哪里，又是怎么被保管的',
+    sec_sub:'把客户信息交出去之前，这些本就该问清楚。没有需要隐瞒的，如实写在这里。',
+    sec_n1_t:'浏览器',sec_n1_d:'仅通过 HTTPS 访问',
+    sec_n2_t:'安全关口',sec_n2_d:'全程加密 · 拦截攻击 · 服务器地址不公开',
+    sec_n3_t:'应用服务器',sec_n3_d:'国内区域 · 按组织隔离处理',
+    sec_n4_t:'数据 · 备份',sec_n4_d:'按组织分开存放 · 每日双重备份',
+    sec_l1:'<b>数据保存在国内</b> — 运行于首尔区域，不会流出境外',
+    sec_l2:'<b>服务器地址并不公开</b> — 所有访问都要经过安全关口，大流量攻击在入口就被拦下',
+    sec_l3:'<b>往来内容全程加密</b> — 证书自动续期，不会因过期而中断',
+    sec_l4:'<b>权限精确到项目</b> — 查看、编辑、导出 Excel 按角色分别授予',
+    sec_l5:'<b>开发·管理员·用户三级分离</b> — 不属于该角色的权限根本触及不到',
+    sec_l6:'<b>离开座位即自动登出</b> — 闲置一段时间后会话失效，使用中则自然延长',
+    sec_l7:'<b>附件同样按组织分开</b> — 连文件存放位置都是隔离的',
+    sec_l8:'<b>每天两重备份</b> — 数据备份与磁盘快照各自独立运行',
+    sec_l9:'<b>服务器只能用密钥打开</b> — 已禁用密码登录，暴力破解无从下手',
+    sec_l10:'<b>管理控制台强制二次认证</b> — 且从不签发最高权限密钥',
+    cta_h2:'看一次就明白了',
+    cta_p:'15 分钟就够。我们直接演示给您看，和您现在的做法差在哪里。',
+    cta_btn:'预约演示',
     cta_email:'或发送邮件至 <a href="mailto:webs@websco.co.kr" style="color:var(--acc-500);font-weight:600">webs@websco.co.kr</a> · <a href="tel:+82221387177" style="color:var(--acc-500);font-weight:600">+82 2-2138-7177</a>',
   }
 };
@@ -568,6 +1670,7 @@ function setLang(lang){
   document.querySelectorAll('#langToggle button').forEach(btn=>{
     btn.classList.toggle('active',btn.textContent===lang.toUpperCase());
   });
+  if(typeof window.renderDemos==='function') window.renderDemos();
 }
 </script>
 <!-- ── Floating Risk Diagnosis ── -->
