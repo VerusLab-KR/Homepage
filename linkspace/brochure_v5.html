@@ -163,6 +163,10 @@ body{
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
   padding:7mm 14mm 0;display:flex;flex-direction:column;
 }
+/* 이 밴드는 flex 세로 컨테이너라 배지가 직접 자식이 되면 align-items:stretch 로
+   폭 전체(182mm)까지 늘어난다. 다른 배지들은 블록 <div> 안에 들어 있어 내용 폭만
+   차지하는데 여기만 띠처럼 보였다. 늘어나지 않게 시작점에 붙인다. */
+.map > .badge{align-self:flex-start}
 .map h3{font-size:13pt;font-weight:800;line-height:1.32;letter-spacing:-.025em;color:#fff;margin-top:2.4mm}
 .map .s{font-size:7.6pt;color:#93a7c9;line-height:1.65;margin-top:1.8mm}
 .map-fig{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin-top:1mm}
