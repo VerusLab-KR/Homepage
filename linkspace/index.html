@@ -452,7 +452,8 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
    되고 뒤따르는 설명은 익명 항목이 되어, 넘칠 때 왼쪽 끝이 아니라 설명이 시작된
    자리 아래로 접힌다. 문구는 그대로 두고 배치만 바꾸는 방법이라 3개 언어에 함께 듣는다. */
 .sec-list li > span[data-i18n]{display:flex;align-items:flex-start;gap:.35em;min-width:0}
-.sec-list li > span[data-i18n] > b{flex:none}
+.sec-list li > span[data-i18n] > b,
+.sec-list li > span[data-i18n] > .sd{flex:none}
 .sec-list b{color:var(--slate-3);font-weight:700}
 .sec-ck{
   width:17px;height:17px;border-radius:5px;flex-shrink:0;margin-top:3px;
@@ -1242,16 +1243,16 @@ h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
       </div>
 
       <ul class="sec-list">
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l1"><b>고객 데이터는 국내에 보관합니다</b> — 서울 리전에 저장되며 일상적인 조회와 입력이 이 안에서 완결됩니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l2"><b>서버 주소는 공개하지 않습니다</b> — 모든 접속이 보안 관문을 거치며 대량 공격은 입구에서 차단됩니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l3"><b>전송 구간은 전부 암호화됩니다</b> — 인증서가 자동 갱신되어 만료로 중단될 일이 없습니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l4"><b>권한을 항목 단위로 부여합니다</b> — 조회 · 편집 · 엑셀 내려받기를 역할에 맞게 따로 설정합니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l5"><b>개발 · 관리자 · 사용자 3단계로 분리합니다</b> — 부여되지 않은 권한에는 접근할 수 없습니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l6"><b>일정 시간 미사용 시 로그아웃됩니다</b> — 사용 중에는 세션이 자동으로 연장됩니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l7"><b>첨부파일도 조직별로 분리합니다</b> — 파일 저장 위치까지 분리되어 있습니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l8"><b>매일 이중으로 백업합니다</b> — 데이터 백업과 디스크 스냅샷을 각각 수행합니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l9"><b>서버는 키로만 접속합니다</b> — 비밀번호 접속을 차단해 무작위 대입이 통하지 않습니다</span></li>
-        <li><span class="sec-ck">✓</span><span data-i18n="sec_l10"><b>관리 콘솔은 2차 인증이 필수입니다</b> — 최상위 권한 키는 발급하지 않습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l1"><b>고객 데이터는 국내에 보관합니다</b><span class="sd">—</span>서울 리전에 저장되며 일상적인 조회와 입력이 이 안에서 완결됩니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l2"><b>서버 주소는 공개하지 않습니다</b><span class="sd">—</span>모든 접속이 보안 관문을 거치며 대량 공격은 입구에서 차단됩니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l3"><b>전송 구간은 전부 암호화됩니다</b><span class="sd">—</span>인증서가 자동 갱신되어 만료로 중단될 일이 없습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l4"><b>권한을 항목 단위로 부여합니다</b><span class="sd">—</span>조회 · 편집 · 엑셀 내려받기를 역할에 맞게 따로 설정합니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l5"><b>개발 · 관리자 · 사용자 3단계로 분리합니다</b><span class="sd">—</span>부여되지 않은 권한에는 접근할 수 없습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l6"><b>일정 시간 미사용 시 로그아웃됩니다</b><span class="sd">—</span>사용 중에는 세션이 자동으로 연장됩니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l7"><b>첨부파일도 조직별로 분리합니다</b><span class="sd">—</span>파일 저장 위치까지 분리되어 있습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l8"><b>매일 이중으로 백업합니다</b><span class="sd">—</span>데이터 백업과 디스크 스냅샷을 각각 수행합니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l9"><b>서버는 키로만 접속합니다</b><span class="sd">—</span>비밀번호 접속을 차단해 무작위 대입이 통하지 않습니다</span></li>
+        <li><span class="sec-ck">✓</span><span data-i18n="sec_l10"><b>관리 콘솔은 2차 인증이 필수입니다</b><span class="sd">—</span>최상위 권한 키는 발급하지 않습니다</span></li>
       </ul>
     </div>
   </div>
@@ -2135,16 +2136,16 @@ const T={
     sec_n2_t:'보안 관문',sec_n2_d:'전 구간 암호화 · 공격 차단 · 서버 주소 비공개',
     sec_n3_t:'앱 서버',sec_n3_d:'국내 리전 · 조직별 격리 처리',
     sec_n4_t:'데이터 · 백업',sec_n4_d:'조직별 분리 저장 · 매일 백업 이중화',
-    sec_l1:'<b>고객 데이터는 국내에 보관합니다</b> — 서울 리전에 저장되며 일상적인 조회와 입력이 이 안에서 완결됩니다',
-    sec_l2:'<b>서버 주소는 공개하지 않습니다</b> — 모든 접속이 보안 관문을 거치며 대량 공격은 입구에서 차단됩니다',
-    sec_l3:'<b>전송 구간은 전부 암호화됩니다</b> — 인증서가 자동 갱신되어 만료로 중단될 일이 없습니다',
-    sec_l4:'<b>권한을 항목 단위로 부여합니다</b> — 조회 · 편집 · 엑셀 내려받기를 역할에 맞게 따로 설정합니다',
-    sec_l5:'<b>개발 · 관리자 · 사용자 3단계로 분리합니다</b> — 부여되지 않은 권한에는 접근할 수 없습니다',
-    sec_l6:'<b>일정 시간 미사용 시 로그아웃됩니다</b> — 사용 중에는 세션이 자동으로 연장됩니다',
-    sec_l7:'<b>첨부파일도 조직별로 분리합니다</b> — 파일 저장 위치까지 분리되어 있습니다',
-    sec_l8:'<b>매일 이중으로 백업합니다</b> — 데이터 백업과 디스크 스냅샷을 각각 수행합니다',
-    sec_l9:'<b>서버는 키로만 접속합니다</b> — 비밀번호 접속을 차단해 무작위 대입이 통하지 않습니다',
-    sec_l10:'<b>관리 콘솔은 2차 인증이 필수입니다</b> — 최상위 권한 키는 발급하지 않습니다',
+    sec_l1:'<b>고객 데이터는 국내에 보관합니다</b><span class="sd">—</span>서울 리전에 저장되며 일상적인 조회와 입력이 이 안에서 완결됩니다',
+    sec_l2:'<b>서버 주소는 공개하지 않습니다</b><span class="sd">—</span>모든 접속이 보안 관문을 거치며 대량 공격은 입구에서 차단됩니다',
+    sec_l3:'<b>전송 구간은 전부 암호화됩니다</b><span class="sd">—</span>인증서가 자동 갱신되어 만료로 중단될 일이 없습니다',
+    sec_l4:'<b>권한을 항목 단위로 부여합니다</b><span class="sd">—</span>조회 · 편집 · 엑셀 내려받기를 역할에 맞게 따로 설정합니다',
+    sec_l5:'<b>개발 · 관리자 · 사용자 3단계로 분리합니다</b><span class="sd">—</span>부여되지 않은 권한에는 접근할 수 없습니다',
+    sec_l6:'<b>일정 시간 미사용 시 로그아웃됩니다</b><span class="sd">—</span>사용 중에는 세션이 자동으로 연장됩니다',
+    sec_l7:'<b>첨부파일도 조직별로 분리합니다</b><span class="sd">—</span>파일 저장 위치까지 분리되어 있습니다',
+    sec_l8:'<b>매일 이중으로 백업합니다</b><span class="sd">—</span>데이터 백업과 디스크 스냅샷을 각각 수행합니다',
+    sec_l9:'<b>서버는 키로만 접속합니다</b><span class="sd">—</span>비밀번호 접속을 차단해 무작위 대입이 통하지 않습니다',
+    sec_l10:'<b>관리 콘솔은 2차 인증이 필수입니다</b><span class="sd">—</span>최상위 권한 키는 발급하지 않습니다',
     cta_h2:'15분 데모로 업무 방식이 어떻게 달라지는지 확인해 보세요',
     cta_p:'현재 사용하고 있는 고객 관리 방식과 Linkspace의 차이를 실제 화면을 통해 보여 드립니다.<br>고객 정보가 어떻게 연결되고, 반복 업무가 어디에서 줄어드는지 함께 짚어 드립니다.',
     cta_btn:'데모 요청하기',
@@ -2273,16 +2274,16 @@ const T={
     sec_n2_t:'Security edge',sec_n2_d:'End-to-end encryption · attack filtering · server address never exposed',
     sec_n3_t:'App server',sec_n3_d:'Domestic region · per-organization isolation',
     sec_n4_t:'Data · backup',sec_n4_d:'Separated per organization · duplicated nightly',
-    sec_l1:'<b>Customer data is held in country</b> — stored in the Seoul region, where day-to-day reads and writes are completed',
-    sec_l2:'<b>The server address is not published</b> — every connection passes the security edge, and floods are blocked at the door',
-    sec_l3:'<b>Everything in transit is encrypted</b> — certificates renew automatically, so nothing breaks on expiry',
-    sec_l4:'<b>Permissions are granted per item</b> — viewing, editing and Excel export are set separately by role',
-    sec_l5:'<b>Three tiers: developer, admin, user</b> — a permission not granted cannot be reached',
-    sec_l6:'<b>Idle sessions are logged out</b> — while you are working, the session extends automatically',
-    sec_l7:'<b>Attachments are separated per organisation</b> — down to where the files are stored',
-    sec_l8:'<b>Backed up twice daily</b> — a data backup and a disk snapshot run independently',
-    sec_l9:'<b>The server accepts key access only</b> — password login is disabled, so brute force gets nowhere',
-    sec_l10:'<b>The admin console requires 2FA</b> — root-level keys are never issued',
+    sec_l1:'<b>Customer data is held in country</b><span class="sd">—</span>stored in the Seoul region, where day-to-day reads and writes are completed',
+    sec_l2:'<b>The server address is not published</b><span class="sd">—</span>every connection passes the security edge, and floods are blocked at the door',
+    sec_l3:'<b>Everything in transit is encrypted</b><span class="sd">—</span>certificates renew automatically, so nothing breaks on expiry',
+    sec_l4:'<b>Permissions are granted per item</b><span class="sd">—</span>viewing, editing and Excel export are set separately by role',
+    sec_l5:'<b>Three tiers: developer, admin, user</b><span class="sd">—</span>a permission not granted cannot be reached',
+    sec_l6:'<b>Idle sessions are logged out</b><span class="sd">—</span>while you are working, the session extends automatically',
+    sec_l7:'<b>Attachments are separated per organisation</b><span class="sd">—</span>down to where the files are stored',
+    sec_l8:'<b>Backed up twice daily</b><span class="sd">—</span>a data backup and a disk snapshot run independently',
+    sec_l9:'<b>The server accepts key access only</b><span class="sd">—</span>password login is disabled, so brute force gets nowhere',
+    sec_l10:'<b>The admin console requires 2FA</b><span class="sd">—</span>root-level keys are never issued',
     cta_h2:'See how your way of working changes, in a 15-minute demo',
     cta_p:'We show the difference between how you manage customers today and Linkspace, on the real screens. Together we walk through how customer data connects and where the repetitive work drops away.',
     cta_btn:'Request a demo',
@@ -2411,16 +2412,16 @@ const T={
     sec_n2_t:'安全关口',sec_n2_d:'全程加密 · 拦截攻击 · 服务器地址不公开',
     sec_n3_t:'应用服务器',sec_n3_d:'国内区域 · 按组织隔离处理',
     sec_n4_t:'数据 · 备份',sec_n4_d:'按组织分开存放 · 每日双重备份',
-    sec_l1:'<b>客户数据保存在国内</b> — 存储于首尔区域，日常的查询与录入均在其中完成',
-    sec_l2:'<b>服务器地址不对外公开</b> — 所有连接均经过安全网关，大流量攻击在入口处被拦截',
-    sec_l3:'<b>传输区间全部加密</b> — 证书自动续期，不会因到期而中断',
-    sec_l4:'<b>权限按项目单独授予</b> — 查询 · 编辑 · 表格下载依角色分别设定',
-    sec_l5:'<b>开发 · 管理员 · 用户三级分离</b> — 未授予的权限无法访问',
-    sec_l6:'<b>闲置一定时间后自动登出</b> — 使用期间会话会自动延长',
-    sec_l7:'<b>附件同样按组织分离</b> — 连文件存储位置也相互分开',
-    sec_l8:'<b>每日双重备份</b> — 数据备份与磁盘快照分别执行',
-    sec_l9:'<b>服务器仅支持密钥登录</b> — 已禁用密码登录，暴力破解无从下手',
-    sec_l10:'<b>管理控制台强制二次验证</b> — 且不签发最高权限密钥',
+    sec_l1:'<b>客户数据保存在国内</b><span class="sd">—</span>存储于首尔区域，日常的查询与录入均在其中完成',
+    sec_l2:'<b>服务器地址不对外公开</b><span class="sd">—</span>所有连接均经过安全网关，大流量攻击在入口处被拦截',
+    sec_l3:'<b>传输区间全部加密</b><span class="sd">—</span>证书自动续期，不会因到期而中断',
+    sec_l4:'<b>权限按项目单独授予</b><span class="sd">—</span>查询 · 编辑 · 表格下载依角色分别设定',
+    sec_l5:'<b>开发 · 管理员 · 用户三级分离</b><span class="sd">—</span>未授予的权限无法访问',
+    sec_l6:'<b>闲置一定时间后自动登出</b><span class="sd">—</span>使用期间会话会自动延长',
+    sec_l7:'<b>附件同样按组织分离</b><span class="sd">—</span>连文件存储位置也相互分开',
+    sec_l8:'<b>每日双重备份</b><span class="sd">—</span>数据备份与磁盘快照分别执行',
+    sec_l9:'<b>服务器仅支持密钥登录</b><span class="sd">—</span>已禁用密码登录，暴力破解无从下手',
+    sec_l10:'<b>管理控制台强制二次验证</b><span class="sd">—</span>且不签发最高权限密钥',
     cta_h2:'通过 15 分钟演示，确认工作方式将如何改变',
     cta_p:'我们会通过真实画面展示您当前的客户管理方式与 Linkspace 的差异。客户信息如何连接、重复工作在哪些环节减少，我们将一并说明。',
     cta_btn:'预约演示',
