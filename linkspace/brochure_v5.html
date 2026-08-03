@@ -78,7 +78,7 @@ body{
 
 /* ── 표지 히어로 ─────────────────────────────────────────── */
 .hero{
-  height:74mm;flex:none;position:relative;overflow:hidden;color:var(--white);
+  height:65mm;flex:none;position:relative;overflow:hidden;color:var(--white);
   background:linear-gradient(160deg,#0f172a 0%,#0e1629 52%,#0b1120 100%);
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
   padding:9mm 14mm 0;
@@ -93,7 +93,7 @@ body{
   background:radial-gradient(circle,rgba(79,142,247,.32),rgba(79,142,247,0) 68%);
 }
 .hero > *{position:relative;z-index:1}
-.brand-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8mm}
+.brand-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:6mm}
 .brand{display:flex;align-items:center;gap:3mm}
 /* 로고는 자체 라운드 사각 프레임을 가진 흰색 마크다. 예전처럼 파란 그라데이션
    배지 안에 넣으면 프레임이 두 겹으로 겹치므로, 마크를 그대로 얹고 글로우만 남긴다.
@@ -115,16 +115,23 @@ body{
   font-family:'Noto Sans KR','Inter',sans-serif;font-weight:400;
   font-size:7.8pt;color:#aab6c6;letter-spacing:-.01em;line-height:1.3;margin-top:.8mm;
 }
-.hero h1{font-size:29pt;font-weight:900;line-height:1.24;letter-spacing:-.035em;margin-bottom:6mm}
+/* 표제가 짧은 한 마디에서 한 문장으로 길어졌다. 29pt로는 두 줄이 되면서 히어로
+   74mm를 넘겨 아래 신뢰 배지가 잘렸다. 25pt면 한 줄에 들어가고(오른쪽 약 17mm 여유
+   — 폰트가 맑은 고딕으로 떨어져 폭이 늘어도 버틴다) 높이는 원래 한 줄보다 낮아,
+   히어로 안쪽 여백은 예전 값을 그대로 쓸 수 있다. */
+.hero h1{font-size:25pt;font-weight:900;line-height:1.26;letter-spacing:-.035em;margin-bottom:4mm}
 .hero h1 .accent{
   background:linear-gradient(120deg,#7fb2ff 0%,#4f8ef7 46%,#cfe1ff 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
-.hero-lead{font-size:9.2pt;color:#a9b6cb;line-height:1.8;max-width:118mm}
+/* max-width 는 줄바꿈 위치를 잡으려는 게 아니라(그건 본문의 <br> 몫) 넘침 방지용이다.
+   118mm 는 둘째 줄 실제 폭과 거의 같아, 폰트가 대체 서체로 떨어지면 한 줄이 더
+   생기면서 아래 신뢰 배지를 히어로 밖으로 밀어냈다. 여유를 두어 두 줄을 고정한다. */
+.hero-lead{font-size:9.2pt;color:#a9b6cb;line-height:1.8;max-width:140mm}
 .hero-trust{
   display:flex;align-items:center;gap:2.4mm;flex-wrap:wrap;
-  margin-top:9mm;font-size:7.4pt;color:#93a3ba;
+  margin-top:5mm;font-size:7.4pt;color:#93a3ba;
 }
 .hero-trust .dot{
   width:1.8mm;height:1.8mm;border-radius:50%;background:#22c55e;flex:none;
@@ -332,10 +339,10 @@ body{
 
     <!-- 「Connect. Align. Grow.」는 위 락업 태그라인으로 옮겨 갔다. 여기 그대로 두면
          3cm 사이에 같은 문장이 두 번 나온다. 한글 한 줄만 남기고 크기를 키움. -->
-    <h1><span class="accent">놓치는 고객이 없도록</span></h1>
+    <h1><span class="accent">고객과 영업기회를 놓치지 않는 연결형 CRM</span></h1>
     <p class="hero-lead">
-      지난달 만료된 라이선스, 반년째 연락 못 한 고객, 세 번 등록된 같은 회사 —<br>
-      기억에 의존하던 일을 Linkspace가 대신 챙깁니다.
+      놓친 갱신 일정, 장기간 연락하지 못한 고객, 중복으로 등록된 고객사까지.<br>
+      사람의 기억과 개별 파일에 의존하던 업무를 Linkspace가 체계적으로 관리합니다.
     </p>
     <div class="hero-trust">
       <span class="dot"></span>
@@ -350,43 +357,43 @@ body{
     <div class="prob-head">
       <div>
         <div class="badge badge-amber">이런 경험, 있으시죠?</div>
-        <h2 class="sec-title" style="margin-top:2.4mm">CRM은 있는데, 정작 필요한 순간에 도움이 안 됩니다</h2>
+        <h2 class="sec-title" style="margin-top:2.4mm">CRM은 도입했지만, 고객 관리와 영업 판단은 여전히 사람의 기억에 의존하고 있습니다</h2>
       </div>
-      <p class="sec-sub" style="max-width:62mm;flex:none;text-align:right">
-        B2B 영업이 힘든 건 기능이 부족해서가 아닙니다.<br>매일 반복되는 작은 마찰이 쌓여서입니다.
+      <p class="sec-sub" style="max-width:70mm;flex:none;text-align:right">
+        B2B 영업의 어려움은 기능의 부족보다, 데이터가 흩어지고 후속 업무가 단절되는 작은 비효율에서 시작됩니다.<br>이러한 반복적인 불편이 쌓이면 고객 대응은 늦어지고 새로운 영업기회도 놓치게 됩니다.
       </p>
     </div>
 
     <div class="prob-grid">
       <div class="prob">
         <div class="n">01</div>
-        <h4>같은 회사가 세 번 등록돼 있어요</h4>
-        <p>영업은 「가나다」, 경리는 「(주)가나다」, 해외팀은 「GANADA」라고 씁니다. 같은 회사인데 CRM에는 셋으로 남습니다.</p>
+        <h4>고객사가 여러 이름으로 중복돼요</h4>
+        <p>부서와 담당자마다 회사명을 다르게 입력하면 동일한 고객사가 여러 개의 데이터로 분리됩니다. 고객 이력과 매출 정보가 흩어지고, 정확한 현황을 파악하기도 어려워집니다.</p>
       </div>
       <div class="prob">
         <div class="n">02</div>
-        <h4>갱신 시점을 놓쳤어요</h4>
-        <p>만료일은 PDF 증서 안에, 엑셀 어딘가에, 메일함 깊은 곳에. 지나고 알면 이미 늦습니다.</p>
+        <h4>중요한 갱신 시점을 놓쳤어요</h4>
+        <p>계약 및 라이선스 만료 정보가 PDF, 엑셀, 이메일에 분산되어 있으면 담당자가 직접 확인해야 합니다. 갱신 시점을 놓친 뒤에야 알게 되면 고객 대응과 매출 기회 모두 늦어질 수 있습니다.</p>
       </div>
       <div class="prob">
         <div class="n">03</div>
-        <h4>진행 중인 건이 없으면 잊혀져요</h4>
-        <p>이번 달 목표를 쫓다 보면 조용한 고객은 뒤로 밀립니다. 반년 뒤엔 상황이 달라져 있습니다.</p>
+        <h4>영업기회가 없는 고객은 멀어져요</h4>
+        <p>현재 진행 중인 영업기회가 없더라도 고객의 상황과 요구는 계속 변화합니다. 정기적인 접점이 관리되지 않으면, 다시 제안할 수 있는 적절한 시점을 놓치게 됩니다.</p>
       </div>
       <div class="prob">
         <div class="n">04</div>
-        <h4>다음에 뭘 팔지는 감으로 정해요</h4>
-        <p>고객이 수천 곳이면 그 감이 닿는 건 늘 보던 몇 곳뿐입니다. 나머지는 그냥 지나갑니다.</p>
+        <h4>다음 제안 대상을 경험에 의존해요</h4>
+        <p>고객 수가 많아질수록 담당자의 경험만으로 모든 가능성을 검토하기는 어렵습니다. 결국 익숙한 고객에게만 제안이 집중되고, 데이터 속에 숨어 있는 새로운 기회는 발견되지 못합니다.</p>
       </div>
       <div class="prob">
         <div class="n">05</div>
         <h4>메일은 메일함에, 이력은 CRM에</h4>
-        <p>보내고 나서 CRM에 다시 적어야 합니다. 바쁘면 두 번째를 잊고, 나중엔 메일을 하나씩 열어 봅니다.</p>
+        <p>고객에게 메일을 보낸 뒤 CRM에 다시 기록해야 한다면 동일한 업무를 반복하게 됩니다. 기록이 누락되면 담당자 변경이나 후속 대응 시 전체 커뮤니케이션 맥락을 파악하기 어려워집니다.</p>
       </div>
       <div class="prob">
         <div class="n">06</div>
-        <h4>세미나는 했는데, 그다음이 없어요</h4>
-        <p>참석자 명단은 마케팅 파일에, 파이프라인은 그 명단을 모른 채 움직입니다. 옮겨 적는 건 사람 몫입니다.</p>
+        <h4>마케팅과 영업이 이어지지 않아요</h4>
+        <p>세미나와 캠페인을 통해 확보한 고객 정보가 별도의 파일에 머물면 영업 담당자가 적절한 시점에 후속 대응하기 어렵습니다. 관심 고객을 영업기회로 전환하는 과정도 결국 사람의 수작업에 의존하게 됩니다.</p>
       </div>
     </div>
   </div>
@@ -539,8 +546,8 @@ body{
   <!-- 차별점 -->
   <div class="p2-head">
     <div class="badge badge-acc">What makes it different</div>
-    <h2 class="sec-title" style="margin-top:2.4mm">기능 목록이 아니라, 실제로 손이 덜 가는 지점</h2>
-    <p class="sec-sub">CRM에 무엇이 있느냐보다, 매일 반복하던 손일이 어디서 사라지는지가 중요합니다.</p>
+    <h2 class="sec-title" style="margin-top:2.4mm">기능의 수보다 중요한 것은, 반복 업무가 실제로 얼마나 줄어드는가입니다</h2>
+    <p class="sec-sub">CRM의 가치는 많은 기능을 제공하는 데 있지 않습니다.<br>매일 반복되는 수작업을 줄이고, 고객 대응과 영업 판단에 더 많은 시간을 사용할 수 있게 하는 데 있습니다.</p>
   </div>
 
   <div class="diff">
@@ -549,8 +556,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#60a5fa,#2563eb)">1</div>
         <div class="d-b">
           <div class="d-k">Account matching</div>
-          <div class="d-t">이름을 어떻게 적든, 그 회사가 첫 줄에 나옵니다</div>
-          <p class="d-p">㈜를 붙이든 빼든, 띄어쓰기나 영문 표기가 달라도 같은 회사로 찾아냅니다. 한 번 <em>「이 표기도 그 회사」</em>라고 알려주면 다음부터는 알아서 맞춥니다.</p>
+          <div class="d-t">표기가 달라도 같은 고객사로 인식합니다</div>
+          <p class="d-p">㈜ 표기, 띄어쓰기, 영문명이 달라도 <em>동일한 고객사</em>로 찾아냅니다. 한 번 등록한 표기는 다음 검색부터 자동으로 반영됩니다.</p>
         </div>
       </div>
 
@@ -558,8 +565,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#fb7185,#e11d48)">2</div>
         <div class="d-b">
           <div class="d-k">License PDF</div>
-          <div class="d-t">한 줄씩 옮겨 적던 증서를, 올려놓고 확인만</div>
-          <p class="d-p">PDF를 올리면 <em>제품 · 시리얼 · 만료일 · 수량</em>이 표로 정리됩니다. 이미 등록된 시리얼은 걸러 내고, 읽어 온 만료일이 그대로 갱신 알림이 됩니다.</p>
+          <div class="d-t">라이선스 증서를 올리면 항목이 자동으로 정리됩니다</div>
+          <p class="d-p">PDF를 등록하면 <em>제품 · 시리얼 번호 · 만료일 · 수량</em>이 표로 정리됩니다. 중복 시리얼 번호는 자동 제외되고, 만료일은 갱신 알림으로 연결됩니다.</p>
         </div>
       </div>
 
@@ -567,8 +574,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#34d399,#059669)">3</div>
         <div class="d-b">
           <div class="d-k">Nurturing</div>
-          <div class="d-t">진행 중인 건이 없어도, 때가 되면 알려줍니다</div>
-          <p class="d-p">만료일을 거꾸로 세어 <em>만료 12개월 전부터 3개월 간격</em>으로 「지금 연락할 때」를 띄웁니다. 이미 만료된 고객은 재공략 대상으로 따로 관리합니다.</p>
+          <div class="d-t">영업기회가 없어도 접촉 시점을 알려 드립니다</div>
+          <p class="d-p">만료일을 기준으로 <em>12개월 전부터 3개월 간격</em>으로 접촉 시점을 안내합니다. 이미 만료된 고객은 재공략 대상으로 따로 관리합니다.</p>
         </div>
       </div>
 
@@ -576,8 +583,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#a78bfa,#7c3aed)">4</div>
         <div class="d-b">
           <div class="d-k">Insights</div>
-          <div class="d-t">다음에 팔 것을, 데이터가 골라 줍니다</div>
-          <p class="d-p">설계 제품만 쓰는 고객 중 해석을 문의했거나 교육을 들은 곳을 <em>가능성이 높은 순서로</em> 세웁니다. 왜 이 순위인지 근거도 함께 보입니다.</p>
+          <div class="d-t">축적된 고객 데이터를 바탕으로 다음 영업기회를 제안합니다</div>
+          <p class="d-p">보유 제품·문의 이력·교육 참여를 분석해 추가 제안 가능성이 높은 고객을 <em>우선순위로</em> 세웁니다. 판단 근거도 함께 제공합니다.</p>
         </div>
       </div>
 
@@ -585,8 +592,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#38bdf8,#0284c7)">5</div>
         <div class="d-b">
           <div class="d-k">Mail</div>
-          <div class="d-t">메일은 담당자 이름으로, 기록은 저절로</div>
-          <p class="d-p">고객 화면에서 그대로 보내고, 본문과 첨부까지 그 고객사 이력으로 남습니다. <em>담당자 본인 계정</em>으로 나가니 답장도 본인에게 옵니다.</p>
+          <div class="d-t">고객에게 보낸 메일이 입력 없이 영업 이력으로 남습니다</div>
+          <p class="d-p">고객 화면에서 <em>담당자 본인 계정</em>으로 보내고, 본문과 첨부를 그 고객사 활동 이력에 자동 기록합니다. 중복 입력을 줄이고 대화 맥락을 유지합니다.</p>
         </div>
       </div>
 
@@ -594,8 +601,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#fbbf24,#d97706)">6</div>
         <div class="d-b">
           <div class="d-k">Lead → Deal</div>
-          <div class="d-t">관심을 보인 사람이, 영업 목록으로 넘어옵니다</div>
-          <p class="d-p">리드를 <em>SQL(영업적격)</em>로 올리는 순간 그 고객사의 영업기회가 자동으로 생겨 파이프라인 맨 위에 올라갑니다. 어느 캠페인에서 왔는지도 남습니다.</p>
+          <div class="d-t">리드를 영업적격으로 올리면 영업기회가 자동 생성됩니다</div>
+          <p class="d-p">리드를 <em>SQL(영업적격)</em>로 전환하면 해당 고객사의 영업기회가 생성되어 파이프라인에 올라갑니다. 유입 캠페인도 함께 기록됩니다.</p>
         </div>
       </div>
 
@@ -603,8 +610,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#22d3ee,#0891b2)">7</div>
         <div class="d-b">
           <div class="d-k">Business card</div>
-          <div class="d-t">받은 명함이, 그 자리에서 고객이 됩니다</div>
-          <p class="d-p">사진만 올리면 이름 · 직책 · 부서 · 연락처가 채워지고, 어느 고객사 사람인지 <em>네 단계</em>로 찾아 붙입니다. 저장은 사람이 확인한 뒤에.</p>
+          <div class="d-t">명함 사진 한 장으로 고객 정보가 등록됩니다</div>
+          <p class="d-p">사진을 올리면 이름 · 직책 · 부서 · 연락처가 입력되고, 소속 고객사를 <em>네 단계</em>로 찾아 연결합니다. 저장은 담당자가 확인한 뒤 이뤄집니다.</p>
         </div>
       </div>
 
@@ -612,8 +619,8 @@ body{
         <div class="d-n" style="background:linear-gradient(135deg,#94a3b8,#475569)">+</div>
         <div class="d-b">
           <div class="d-k">And the rest</div>
-          <div class="d-t">고객사부터 회계까지 한 화면 안에서</div>
-          <p class="d-p">파이프라인 · 라이선스 현황 · 프로젝트 · 기술지원 · 교육 · 매출과 수금까지. 누가 언제 무엇을 바꿨는지도 남습니다.</p>
+          <div class="d-t">고객사부터 회계까지 하나의 화면에서 관리합니다</div>
+          <p class="d-p">파이프라인 · 라이선스 현황 · 프로젝트 · 기술지원 · 교육 · 매출과 수금을 한곳에서 다룹니다. 모든 변경은 이력으로 남습니다.</p>
         </div>
       </div>
     </div>
@@ -624,29 +631,28 @@ body{
     <div class="rule" style="margin-bottom:5mm"></div>
     <div class="ai-row">
       <div class="badge badge-acc">AI-powered</div>
-      <h3>타이핑은 AI에게, 판단은 사람에게</h3>
-      <p>시간은 오래 걸리는데 티는 안 나는 일들 — 그건 넘기셔도 됩니다.</p>
+      <h3>반복 업무는 AI로 줄이고, 중요한 판단은 사람이 수행합니다</h3>
     </div>
     <div class="ai-grid">
       <div class="ai-c">
         <div class="bar" style="background:#8b5cf6"></div>
-        <div class="t">물어보면 답합니다</div>
-        <div class="p">"작년에 교육받고 아직 안 산 고객" — 문장으로 물으면 명단이 나옵니다</div>
+        <div class="t">문장으로 검색합니다</div>
+        <div class="p">「작년에 교육받고 아직 구매하지 않은 고객」처럼 조회합니다</div>
       </div>
       <div class="ai-c">
         <div class="bar" style="background:#f59e0b"></div>
-        <div class="t">보고서가 이미 써져 있습니다</div>
-        <div class="p">교육을 마치고 돌아오면 초안이 준비돼 있습니다. 읽고 다듬으면 끝</div>
+        <div class="t">보고서 초안이 준비됩니다</div>
+        <div class="p">교육이 끝나면 결과 보고서 초안이 자동으로 작성됩니다</div>
       </div>
       <div class="ai-c">
         <div class="bar" style="background:#06b6d4"></div>
-        <div class="t">다음에 뭘 할지 막막할 때</div>
-        <div class="p">그동안 쌓인 고객 데이터를 근거로 다음 수를 제안합니다</div>
+        <div class="t">다음 행동을 제안합니다</div>
+        <div class="p">축적된 고객 데이터를 근거로 다음 영업 행동을 제안합니다</div>
       </div>
       <div class="ai-c">
         <div class="bar" style="background:#10b981"></div>
-        <div class="t">이름은 가리고 물어봅니다</div>
-        <div class="p">이름과 고객사명은 식별자로 바꿔 보냅니다. 화면에는 실명 그대로</div>
+        <div class="t">개인정보는 가린 채 처리합니다</div>
+        <div class="p">이름과 고객사명은 식별자로 치환해 전송합니다</div>
       </div>
     </div>
   </div>
@@ -655,15 +661,15 @@ body{
   <div class="sec-band">
     <div>
       <div class="badge badge-dark">Why trust it</div>
-      <h3 style="margin-top:2.4mm">데모가 아니라, 매일 돌아가고 있는 시스템입니다</h3>
-      <p class="s">Linkspace는 자사 영업에 쓰려고 만들었고 지금도 매일 씁니다. 이 브로셔의 기능은 전부 「없어서 불편했던 것」들입니다.</p>
+      <h3 style="margin-top:2.4mm">실제 영업 현장에서 매일 사용하며 검증하고 있는 시스템입니다</h3>
+      <p class="s">Linkspace는 자사의 B2B 영업과 고객 관리를 위해 개발했습니다. 모든 기능은 현장에서 반복되던 불편과 관리 공백을 해결하며 만들어졌습니다.</p>
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="v">7,300+</div><div class="l">우리가 관리하는 고객사</div></div>
-      <div class="stat"><div class="v">분리</div><div class="l">조직 밖에선 조회 불가</div></div>
+      <div class="stat"><div class="v">7,300+</div><div class="l">자사가 관리 중인 고객사</div></div>
+      <div class="stat"><div class="v">분리</div><div class="l">조직 외부에서 조회 불가</div></div>
       <div class="stat"><div class="v">매일</div><div class="l">자동 백업 · 이중화</div></div>
-      <div class="stat"><div class="v">기록</div><div class="l">누가 언제 무엇을 바꿨는지</div></div>
+      <div class="stat"><div class="v">기록</div><div class="l">변경 이력 기록</div></div>
       <div class="stat"><div class="v">KO·EN</div><div class="l">버튼 하나로 화면 전환</div></div>
     </div>
 
@@ -688,8 +694,8 @@ body{
   <div class="cta">
     <div class="orb"></div>
     <div>
-      <h3>한 번 보시면 압니다</h3>
-      <p>15분이면 충분합니다. 지금 쓰시는 방식과 무엇이 다른지 직접 보여 드리겠습니다.</p>
+      <h3>15분 데모로 업무 방식이 어떻게 달라지는지 확인해 보세요</h3>
+      <p>현재 사용하고 있는 고객 관리 방식과 Linkspace의 차이를 실제 화면을 통해 보여 드립니다. 고객 정보가 어떻게 연결되고, 반복 업무가 어디에서 줄어드는지 함께 짚어 드립니다.</p>
     </div>
     <div class="cta-right">
       <div class="contact">
