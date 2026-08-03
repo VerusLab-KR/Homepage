@@ -181,8 +181,12 @@ body{
 .mbloom{opacity:.22}
 .mhalo{fill:none;stroke:var(--ma);stroke-opacity:.3;stroke-width:.6}
 /* 노드 글로우 — 홈페이지의 drop-shadow 인상을 인쇄에서도 살린다.
-   --ma 를 그대로 쓰므로 노드마다 자기 색으로 번진다. */
-.map-fig svg g > g[style]{filter:drop-shadow(0 0 4px var(--ma)) drop-shadow(0 1px 3px rgba(0,0,0,.5))}
+   --ma 를 그대로 쓰므로 노드마다 자기 색으로 번진다.
+   그룹(g)이 아니라 그룹 안의 원에만 거는 것이 중요하다. 그룹에 걸면 라벨
+   텍스트까지 filter 안에 들어가고, PDF 로 인쇄할 때 filter 가 걸린 영역은
+   벡터를 포기하고 300 DPI 비트맵으로 구워진다 — 옆 본문은 벡터라 구조도
+   라벨만 흐리게 보인다. 원에만 걸면 글자가 filter 밖에 남아 벡터로 출력된다. */
+.map-fig svg g > g[style] > circle{filter:drop-shadow(0 0 4px var(--ma)) drop-shadow(0 1px 3px rgba(0,0,0,.5))}
 
 /* ── 페이지 하단 바 ─────────────────────────────────────── */
 .foot{
